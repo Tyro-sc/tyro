@@ -3,7 +3,6 @@ package sc.tyro.core.component
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import sc.tyro.core.Config
 import sc.tyro.core.MetaInfo
 import sc.tyro.core.Provider
 import sc.tyro.core.support.Draggable
@@ -27,14 +26,14 @@ class ComponentTest {
 
     @Test
     @DisplayName("Should have expected Inheritance")
-    void should_have_expected_inheritance() {
+    void inheritance() {
         assert Component in MouseSupport
         assert Component in Draggable
     }
 
     @Test
     @DisplayName("Should have identity on Id")
-    void should_have_identity_on_id() {
+    void identity() {
         Component cmp_1 = new Component()
         Component cmp_2 = new Component()
         Component cmp_3 = new Component()
@@ -60,7 +59,7 @@ class ComponentTest {
 
     @Test
     @DisplayName("Should implement toString() based on ClassName and Id")
-    void should_implement_toString_based_on_class_name_and_id() {
+    void implementToString() {
         Component cmp_1 = new Component()
 
         when(provider.metaInfo(cmp_1)).thenReturn(new MetaInfo(id: '1'))
@@ -68,10 +67,34 @@ class ComponentTest {
         assert cmp_1.toString() == 'Component:1'
     }
 
-//    @Test
-//    @DisplayName("")
-//    void should_have_generic_behaviours_delegated_to_provider() {
-//
-//    }
+    @Test
+    @DisplayName("Should implements state: enabled")
+    void enabled() {
+        Component cmp_1 = new Component()
 
+        when(provider.enabled(cmp_1)).thenReturn(false)
+
+        assert !cmp_1.enabled()
+    }
+
+    @Test
+    @DisplayName("Should implements state: visible")
+    void visible() {
+        Component cmp_1 = new Component()
+
+        when(provider.visible(cmp_1)).thenReturn(true)
+
+        assert cmp_1.visible()
+    }
+
+    @Test
+    @DisplayName("Should implements contains")
+    void contains() {
+        Component cmp_1 = new Component()
+        Component cmp_2 = new Component()
+
+        when(provider.contains(cmp_2)).thenReturn(true)
+
+        assert cmp_1.contains(cmp_2)
+    }
 }
