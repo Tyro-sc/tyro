@@ -1,0 +1,4 @@
+moduleName=tyro
+moduleVersion=1
+extensionClasses=sc.tyro.core.internal.GroovyExtensions
+staticExtensionClasses=
