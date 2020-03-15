@@ -16,7 +16,7 @@ class DummyGroup extends Group {
 
     @Override
     List<Item> items() {
-        return null
+        return []
     }
 
     @Override

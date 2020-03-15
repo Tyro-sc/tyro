@@ -3,20 +3,24 @@ package sc.tyro.dsl
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import sc.tyro.core.ComponentException
 import sc.tyro.core.MetaInfo
 import sc.tyro.core.Provider
 import sc.tyro.core.Tyro
-import sc.tyro.core.component.CheckBox
-import sc.tyro.core.component.Form
-import sc.tyro.core.component.Item
-import sc.tyro.core.component.ListBox
+import sc.tyro.core.component.*
 import sc.tyro.core.component.field.RangeField
 import sc.tyro.core.component.field.TextField
+import sc.tyro.core.input.Keyboard
+import sc.tyro.core.input.Mouse
+import sc.tyro.core.support.Clearable
 
+import static org.hamcrest.MatcherAssert.assertThat
+import static org.hamcrest.Matchers.containsString
+import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.Mockito.*
 import static sc.tyro.core.Config.provider
 import static sc.tyro.core.Tyro.*
-import static sc.tyro.core.input.Key.CTRL
+import static sc.tyro.core.input.Key.*
 import static sc.tyro.core.input.MouseModifiers.LEFT
 import static sc.tyro.core.input.MouseModifiers.SINGLE
 
@@ -61,6 +65,16 @@ class ActionTest {
     }
 
     @Test
+    @DisplayName("Should clear field")
+    void should_clear_field() {
+        Clearable clearable = spy(Clearable)
+
+        clear clearable
+
+        verify(clearable, times(1)).clear()
+    }
+
+    @Test
     @DisplayName("Should set")
     void should_be_set() {
         RangeField range = spy(RangeField)
@@ -91,6 +105,111 @@ class ActionTest {
 
         verify(form, times(1)).submit()
     }
+
+    @Test
+    @DisplayName("Should check a checkable component")
+    void should_check() {
+        CheckBox checkBox = mock(CheckBox)
+        when(checkBox.enabled()).thenReturn(true)
+
+        check checkBox
+
+        verify(checkBox, times(1)).click()
+
+        // Cannot check disabled component
+        when(checkBox.enabled()).thenReturn(false)
+
+        ComponentException error = assertThrows(ComponentException, {
+            check checkBox
+        }) as ComponentException
+
+        assertThat(error.message, containsString('is disabled and cannot be checked'))
+
+        // Cannot check already checked component
+        when(checkBox.enabled()).thenReturn(true)
+        when(checkBox.checked()).thenReturn(true)
+
+        error = assertThrows(ComponentException, {
+            check checkBox
+        }) as ComponentException
+
+        assertThat(error.message, containsString('is already checked and cannot be checked'))
+    }
+
+    @Test
+    @DisplayName("Should uncheck a uncheckable component")
+    void should_uncheck() {
+        CheckBox checkBox = mock(CheckBox)
+        when(checkBox.enabled()).thenReturn(true)
+        when(checkBox.checked()).thenReturn(true)
+
+        uncheck checkBox
+
+        verify(checkBox, times(1)).click()
+
+        // Cannot uncheck disabled component
+        when(checkBox.enabled()).thenReturn(false)
+
+        ComponentException error = assertThrows(ComponentException, {
+            uncheck checkBox
+        }) as ComponentException
+
+        assertThat(error.message, containsString('is disabled and cannot be unchecked'))
+
+        // Cannot uncheck already checked component
+        when(checkBox.enabled()).thenReturn(true)
+        when(checkBox.checked()).thenReturn(false)
+
+        error = assertThrows(ComponentException, {
+            uncheck checkBox
+        }) as ComponentException
+
+        assertThat(error.message, containsString('is already unchecked and cannot be unchecked'))
+    }
+
+    @Test
+    @DisplayName("Should delegate to mouse")
+    void mouse_delegation() {
+        Mouse mouse = mock(Mouse)
+        Tyro.mouse = mouse
+
+        Component component = mock(Component)
+
+        clickOn component
+        verify(mouse, times(1)).clickOn(component)
+
+        doubleClickOn component
+        verify(mouse, times(1)).doubleClickOn(component)
+
+        rightClickOn component
+        verify(mouse, times(1)).rightClickOn(component)
+
+        hoveringMouseOn component
+        verify(mouse, times(1)).hoveringMouseOn(component)
+
+        drag component
+        verify(mouse, times(1)).drag(component)
+    }
+
+    @Test
+    @DisplayName("Should delegate to Keyboard")
+    void keyboard_delegation() {
+        Keyboard keyboard = mock(Keyboard)
+        Tyro.keyboard = keyboard
+
+        type "Some input"
+        verify(keyboard, times(1)).type(["Some input"])
+
+        type CTRL
+        verify(keyboard, times(1)).type([CTRL])
+
+        type CTRL + SHIFT + DELETE
+        verify(keyboard, times(1)).type([CTRL, SHIFT, DELETE])
+    }
+
+
+//    =========================================================================================================
+//    TODO
 
     @Test
     @Disabled

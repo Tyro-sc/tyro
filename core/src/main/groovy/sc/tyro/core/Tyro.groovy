@@ -23,9 +23,9 @@ import static sc.tyro.core.Config.provider
  * @since 1.0.0
  */
 class Tyro {
-    protected static mouse = new Mouse()
-    protected static keyboard = new Keyboard()
-    protected static wait = new Wait()
+    static mouse = new Mouse()
+    static keyboard = new Keyboard()
+    static wait = new Wait()
 
     /**
      * States

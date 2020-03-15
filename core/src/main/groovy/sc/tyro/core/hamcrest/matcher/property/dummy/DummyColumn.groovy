@@ -16,7 +16,7 @@ class DummyColumn extends Column {
 
     @Override
     List<Cell> cells() {
-        return null
+        return []
     }
 
     @Override
