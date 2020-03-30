@@ -10,11 +10,10 @@ import sc.tyro.core.support.Draggable
 import sc.tyro.core.support.MouseSupport
 
 import static java.util.Collections.unmodifiableCollection
-
-import static sc.tyro.core.input.Key.LEFT
-import static sc.tyro.core.input.Key.RIGHT
 import static sc.tyro.core.input.MouseModifiers.DOUBLE
 import static sc.tyro.core.input.MouseModifiers.SINGLE
+import static sc.tyro.core.input.MouseModifiers.LEFT
+import static sc.tyro.core.input.MouseModifiers.RIGHT
 
 /**
  * @author David Avenante
@@ -22,9 +21,10 @@ import static sc.tyro.core.input.MouseModifiers.SINGLE
  */
 public class Component implements MouseSupport, Draggable {
     private final Queue<Matcher> BLOCKS = new LinkedList<>()
-    Provider provider = Config.provider
+    private Provider provider = Config.provider
 
     public String id() {
+//        println "Je passe la: " + provider.metaInfo(this).id
         provider.metaInfo(this).id
     }
 
@@ -88,7 +88,9 @@ public class Component implements MouseSupport, Draggable {
     }
 
     @Override
-    public String toString() { getClass().simpleName + ":${this.id()}" }
+    public String toString() {
+        getClass().simpleName + ":${this.id()}"
+    }
 
     public Object asType(Class clazz) {
         if (Component.isAssignableFrom(clazz)) {
@@ -109,5 +111,13 @@ public class Component implements MouseSupport, Draggable {
 
     void clearBlocks() {
         BLOCKS.clear()
+    }
+
+    void setProvider(Provider provider) {
+        this.provider = provider
+    }
+
+    Provider getProvider() {
+        provider
     }
 }

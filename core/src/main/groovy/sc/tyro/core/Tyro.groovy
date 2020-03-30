@@ -17,6 +17,7 @@ import sc.tyro.core.support.*
 import sc.tyro.core.support.property.InputSupport
 
 import static sc.tyro.core.Config.provider
+import static sc.tyro.core.input.Key.CTRL
 
 /**
  * @author David Avenante
@@ -123,6 +124,24 @@ class Tyro {
         if (!c.checked())
             throw new ComponentException("${c.class.simpleName} ${c} is already unchecked and cannot be unchecked")
         c.click()
+    }
+
+    static void select(Item c) {
+        if (!c.enabled())
+            throw new ComponentException("${c.class.simpleName} ${c} is disabled and cannot be selected")
+        if (c.selected()) {
+            throw new ComponentException("${c.class.simpleName} ${c} is already selected and cannot be selected")
+        }
+        CTRL.click c
+    }
+
+    static void unselect(Item c) {
+        if (!c.enabled())
+            throw new ComponentException("${c.class.simpleName} ${c} is disabled and cannot be deselected")
+        if (!c.selected()) {
+            throw new ComponentException("${c.class.simpleName} ${c} is already unselected and cannot be deselected")
+        }
+        CTRL.click c
     }
 
     static void clear(Clearable c) { c.clear() }

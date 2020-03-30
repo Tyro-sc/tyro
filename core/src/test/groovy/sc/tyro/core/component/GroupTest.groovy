@@ -2,6 +2,8 @@ package sc.tyro.core.component
 
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import sc.tyro.core.support.property.ItemSupport
+import sc.tyro.core.support.property.ValueSupport
 
 /**
  * @author David Avenante
@@ -13,6 +15,8 @@ class GroupTest {
     @DisplayName("Should have expected Inheritance")
     void should_have_expected_inheritance() {
         assert Group in Component
+        assert Group in  ValueSupport
+        assert Group in ItemSupport
     }
 
     @Test

@@ -2,6 +2,7 @@ package sc.tyro.core.component
 
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import sc.tyro.core.support.property.ReferenceSupport
 
 /**
  * @author David Avenante
@@ -13,5 +14,6 @@ class ImageTest {
     @DisplayName("Should have expected Inheritance")
     void should_have_expected_inheritance() {
         assert Image in Component
+        assert Image in ReferenceSupport
     }
 }

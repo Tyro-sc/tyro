@@ -1,7 +1,6 @@
 package sc.tyro.core.internal
 
 import org.hamcrest.Matcher
-import sc.tyro.core.ComponentException
 import sc.tyro.core.component.Component
 import sc.tyro.core.component.Item
 import sc.tyro.core.hamcrest.PropertyMatcher
@@ -11,15 +10,15 @@ import sc.tyro.core.hamcrest.matcher.state.ContainMatcher
 import sc.tyro.core.input.Key
 import sc.tyro.core.input.MouseModifiers
 import sc.tyro.core.support.Selectable
+import sc.tyro.core.support.UnSelectable
 
 import java.time.Duration
 
 import static java.time.Duration.ofSeconds
 import static org.hamcrest.Matchers.is
-import static sc.tyro.core.Tyro.waitUntil
+import static sc.tyro.core.Tyro.*
 import static sc.tyro.core.hamcrest.Matchers.has
-import static sc.tyro.core.input.Key.*
-import static sc.tyro.core.input.MouseModifiers.SINGLE
+import static sc.tyro.core.input.MouseModifiers.*
 
 /**
  * @author Mathieu Carbou
@@ -53,36 +52,30 @@ class GroovyExtensions {
     }
 
     static void select(Selectable component, Item... items) {
-        items.each {
-            if (component.items().contains(it)) {
-                if (!it.enabled())
-                    throw new ComponentException("${it.class.simpleName} ${it} is disabled and cannot be selected")
-                if (it.selected()) {
-                    throw new ComponentException("${it.class.simpleName} ${it} is already selected and cannot be selected")
-                }
-                CTRL.click it
-            }
+        items.each { select(component, it) }
+    }
+
+    static void select(Selectable component, Item item) {
+        if (component.items().contains(item)) {
+            select(item)
         }
     }
 
-//    static void unselect(UnSelectable component, String... values) {
-//        values.each { value ->
-//            component.items().find { it.value() == value }.each { unselect(component, it) }
-//        }
-//    }
-//
-//    static void unselect(UnSelectable component, Item... items) {
-//        items.each {
-//            if (component.items().contains(it)) {
-//                if (!it.enabled())
-//                    throw new ComponentException("${it.class.simpleName} ${it} is disabled and cannot be deselected")
-//                if (!it.selected()) {
-//                    throw new ComponentException("${it.class.simpleName} ${it} is already unselected and cannot be deselected")
-//                }
-//                org.tyro.core.input.Key.CTRL.click it
-//            }
-//        }
-//    }
+    static void unselect(UnSelectable component, String... values) {
+        values.each { value ->
+            component.items().find { it.value() == value }.each { unselect(component, it) }
+        }
+    }
+
+    static void unselect(UnSelectable component, Item... items) {
+        items.each { unselect(component, it) }
+    }
+
+    static void unselect(UnSelectable component, Item item) {
+        if (component.items().contains(item)) {
+            unselect(item)
+        }
+    }
 
     // ====================================================================
 

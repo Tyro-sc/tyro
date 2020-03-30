@@ -2,6 +2,7 @@ package sc.tyro.core.component
 
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import sc.tyro.core.support.property.TitleSupport
 
 /**
  * @author David Avenante
@@ -13,5 +14,6 @@ class PanelTest {
     @DisplayName("Should have expected Inheritance")
     void should_have_expected_inheritance() {
         assert Panel in Component
+        assert Panel in TitleSupport
     }
 }

@@ -1,5 +1,7 @@
 package sc.tyro.dsl
 
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -12,6 +14,8 @@ import sc.tyro.core.component.field.RangeField
 import sc.tyro.core.component.field.TextField
 import sc.tyro.core.input.Keyboard
 import sc.tyro.core.input.Mouse
+import sc.tyro.core.input.MouseModifiers
+import sc.tyro.core.input.MouseTest
 import sc.tyro.core.support.Clearable
 
 import static org.hamcrest.MatcherAssert.assertThat
@@ -30,11 +34,19 @@ import static sc.tyro.core.input.MouseModifiers.SINGLE
  */
 @DisplayName("Test actions on components")
 class ActionTest {
+    @BeforeEach
+    void setUp() {
+        provider = mock(Provider)
+    }
+
+    @AfterEach()
+    void tearDown() {
+        reset(provider)
+    }
+
     @Test
     @DisplayName("Should visit")
     void should_visit() {
-        provider = mock(Provider)
-
         verify(provider, times(0)).open('http://myUrl')
 
         visit('http://myUrl')
@@ -45,8 +57,6 @@ class ActionTest {
     @Test
     @DisplayName("Should type text")
     void should_type_text() {
-        provider = mock(Provider)
-
         verify(provider, times(0)).type(['data'])
 
         type('data')
@@ -168,6 +178,38 @@ class ActionTest {
     }
 
     @Test
+    @DisplayName("Should select an Item")
+    void should_select() {
+        Item item = mock(Item)
+        when(item.provider).thenReturn(provider)
+//        when(item.enabled()).thenReturn(true)
+//        when(item.provider.metaInfo(item)).thenReturn(new MetaInfo('node', '1'))
+
+        select item
+
+        verify(provider, times(1)).click(item, [LEFT, SINGLE], [CTRL])
+
+        // Cannot select disabled item
+        when(item.enabled()).thenReturn(false)
+
+        ComponentException error = assertThrows(ComponentException, {
+            select item
+        }) as ComponentException
+
+        assertThat(error.message, containsString('is disabled and cannot be selected'))
+
+        // Cannot select already selected item
+        when(item.enabled()).thenReturn(true)
+        when(item.selected()).thenReturn(true)
+
+        error = assertThrows(ComponentException, {
+            select item
+        }) as ComponentException
+
+        assertThat(error.message, containsString('is already selected and cannot be selected'))
+    }
+
+    @Test
     @DisplayName("Should delegate to mouse")
     void mouse_delegation() {
         Mouse mouse = mock(Mouse)
@@ -207,24 +249,45 @@ class ActionTest {
         verify(keyboard, times(1)).type([CTRL, SHIFT, DELETE])
     }
 
+    @Test
+    @DisplayName("Should delegate to Factory")
+    void factory_delegation() {
 
-//    =========================================================================================================
-//    TODO
+    }
 
     @Test
     @Disabled
-    void should_be_able_to_select_items_in_components_containing_items() {
-        provider = mock(Provider)
+    @DisplayName("Should select items")
+    void should_be_able_to_select_items() {
+        ListBox listBox = mock(ListBox)
 
-        ListBox listBox = spy(ListBox)
-        Item item_1 = spy(Item)
-        Item item_2 = spy(Item)
+        Item item_1 = mock(Item)
+        when(item_1.provider).thenReturn(provider)
+        when(item_1.provider.metaInfo(item_1)).thenReturn(new MetaInfo('node', '1'))
+        Item item_2 = mock(Item)
+        when(item_2.provider).thenReturn(provider)
+        when(item_2.provider.metaInfo(item_2)).thenReturn(new MetaInfo('node', '2'))
 
         doReturn([item_1, item_2]).when(listBox).items()
-        when(provider.enabled(item_1)).thenReturn(true)
-        when(provider.metaInfo(item_1)).thenReturn(new MetaInfo('node', '1'))
-        when(provider.enabled(item_2)).thenReturn(true)
-        when(provider.metaInfo(item_2)).thenReturn(new MetaInfo('node', '2'))
+        when(listBox.contains(item_1)).thenReturn(true)
+        when(listBox.contains(item_2)).thenReturn(true)
+        when(item_1.enabled()).thenReturn(true)
+
+//        select item_1, item_2
+
+        listBox.select(item_1)
+
+        verify(provider, times(1)).click(item_1, [LEFT, SINGLE] as Collection<MouseModifiers>, [CTRL])
+//
+//        ListBox listBox = spy(ListBox)
+//        Item item_1 = spy(Item)
+//        Item item_2 = spy(Item)
+//
+//        doReturn([item_1, item_2]).when(listBox).items()
+//        when(provider.enabled(item_1)).thenReturn(true)
+//        when(provider.metaInfo(item_1)).thenReturn(new MetaInfo('node', '1'))
+//        when(provider.enabled(item_2)).thenReturn(true)
+//        when(provider.metaInfo(item_2)).thenReturn(new MetaInfo('node', '2'))
 
         listBox.select(item_1)
 
@@ -268,6 +331,12 @@ class ActionTest {
 //        Mockito.verify(org.testatoo.core.Testatoo.getConfig.evaluator, Mockito.times(1)).click('1', [org.testatoo.core.input.MouseModifiers.LEFT, org.testatoo.core.input.MouseModifiers.SINGLE], [org.testatoo.core.input.Key.CTRL])
 //        Mockito.verify(org.testatoo.core.Testatoo.getConfig.evaluator, Mockito.times(1)).click('2', [org.testatoo.core.input.MouseModifiers.LEFT, org.testatoo.core.input.MouseModifiers.SINGLE], [org.testatoo.core.input.Key.CTRL])
     }
+
+
+//    =========================================================================================================
+//    TODO
+
+
 //
 //    @Test
 //    void should_throw_an_error_when_action_on_component_does_not_correspond_to_its_state() {

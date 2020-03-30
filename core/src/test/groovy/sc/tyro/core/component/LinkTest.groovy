@@ -2,6 +2,7 @@ package sc.tyro.core.component
 
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import sc.tyro.core.support.property.ReferenceSupport
 import sc.tyro.core.support.property.TextSupport
 
 /**
@@ -15,5 +16,6 @@ class LinkTest {
     void should_have_expected_inheritance() {
         assert Link in Component
         assert Link in TextSupport
+        assert Link in ReferenceSupport
     }
 }

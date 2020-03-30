@@ -24,17 +24,17 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
 
-        <groovy.version>2.5.8</groovy.version>
+        <groovy.version>3.0.2</groovy.version>
         <classgraph.version>4.8.59</classgraph.version>
         <guava.version>27.1-jre</guava.version>
         <slf4j.version>1.7.30</slf4j.version>
 
         <!-- Tests -->
-        <junit.jupiter.version>5.5.2</junit.jupiter.version>
-        <mockito-junit.version>3.2.4</mockito-junit.version>
+        <junit.jupiter.version>5.6.1</junit.jupiter.version>
+        <mockito-junit.version>3.3.3</mockito-junit.version>
         <hamcrest.version>2.2</hamcrest.version>
 
         <!-- Plugins -->

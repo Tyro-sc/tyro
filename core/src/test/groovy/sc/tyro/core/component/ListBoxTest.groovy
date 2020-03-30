@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test
 import sc.tyro.core.support.Selectable
 import sc.tyro.core.support.UnSelectable
 import sc.tyro.core.support.property.*
+import sc.tyro.core.support.state.EmptySupport
 
 /**
  * @author David Avenante
@@ -19,6 +20,7 @@ class ListBoxTest {
         assert ListBox in ItemSupport
         assert ListBox in GroupSupport
         assert ListBox in SelectedItemsSupport
+        assert ListBox in EmptySupport
         assert ListBox in VisibleItemsSupport
         assert ListBox in LabelSupport
         assert ListBox in Selectable
