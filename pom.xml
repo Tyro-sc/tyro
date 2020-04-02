@@ -19,6 +19,7 @@
 
     <modules>
         <module>core</module>
+        <module>web</module>
         <module>documentation</module>
     </modules>
 
@@ -27,7 +28,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
 
-        <groovy.version>3.0.2</groovy.version>
+        <groovy.version>2.5.10</groovy.version>
         <classgraph.version>4.8.59</classgraph.version>
         <guava.version>27.1-jre</guava.version>
         <slf4j.version>1.7.30</slf4j.version>

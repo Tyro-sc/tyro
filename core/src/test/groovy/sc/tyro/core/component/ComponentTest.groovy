@@ -3,15 +3,22 @@ package sc.tyro.core.component
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestTemplate
+import sc.tyro.core.ComponentException
 import sc.tyro.core.MetaInfo
 import sc.tyro.core.Provider
+import sc.tyro.core.input.DragBuilder
 import sc.tyro.core.support.Draggable
 import sc.tyro.core.support.MouseSupport
 
 import static org.mockito.ArgumentMatchers.any
 import static org.mockito.Mockito.mock
+import static org.mockito.Mockito.times
+import static org.mockito.Mockito.verify
 import static org.mockito.Mockito.when
 import static sc.tyro.core.Config.provider
+import static sc.tyro.core.input.MouseModifiers.LEFT
+import static sc.tyro.core.input.MouseModifiers.SINGLE
 
 /**
  * @author David Avenante
@@ -68,6 +75,21 @@ class ComponentTest {
     }
 
     @Test
+    @DisplayName("Should be available")
+    void available() {
+        Component cmp = new Component()
+        cmp.provider = provider
+
+        when(provider.metaInfo(cmp)).thenReturn(new MetaInfo('node', '1'))
+
+        assert cmp.available()
+
+        when(provider.metaInfo(cmp)).thenThrow(new ComponentException(""))
+
+        assert !cmp.available()
+    }
+
+    @Test
     @DisplayName("Should implements state: enabled")
     void enabled() {
         Component cmp_1 = new Component()
@@ -97,4 +119,29 @@ class ComponentTest {
 
         assert cmp_1.contains(cmp_2)
     }
+
+    @Test
+    @DisplayName("Should be draggable")
+    void draggable() {
+        Component cmp_1 = new Component()
+        cmp_1.provider = provider
+        Component cmp_2 = new Component()
+
+        cmp_1.drag().on(cmp_2)
+
+        verify(provider, times(1)).dragAndDrop(cmp_1, cmp_2)
+    }
+
+    @Test
+    @DisplayName("Should support type coercion")
+    void coercion() {
+        Component cmp_1 = new Widget()
+
+        Widget cmp_2 = cmp_1 as Widget
+        assert !cmp_1.is(cmp_2)
+        // Provider is passed to new Object
+        assert cmp_1.provider.is(cmp_2.provider)
+    }
+
+    private class Widget extends Component {}
 }

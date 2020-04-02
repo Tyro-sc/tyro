@@ -1,10 +1,6 @@
 package sc.tyro.dsl
 
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Disabled
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.*
 import sc.tyro.core.ComponentException
 import sc.tyro.core.MetaInfo
 import sc.tyro.core.Provider
@@ -15,7 +11,6 @@ import sc.tyro.core.component.field.TextField
 import sc.tyro.core.input.Keyboard
 import sc.tyro.core.input.Mouse
 import sc.tyro.core.input.MouseModifiers
-import sc.tyro.core.input.MouseTest
 import sc.tyro.core.support.Clearable
 
 import static org.hamcrest.MatcherAssert.assertThat
@@ -119,28 +114,34 @@ class ActionTest {
     @Test
     @DisplayName("Should check a checkable component")
     void should_check() {
-        CheckBox checkBox = mock(CheckBox)
-        when(checkBox.enabled()).thenReturn(true)
+        CheckBox checkBox_1 = mock(CheckBox)
+        when(checkBox_1.enabled()).thenReturn(true)
+        when(checkBox_1.checked()).thenReturn(false)
 
-        check checkBox
+        CheckBox checkBox_2 = mock(CheckBox)
+        when(checkBox_2.enabled()).thenReturn(true)
+        when(checkBox_2.checked()).thenReturn(false)
 
-        verify(checkBox, times(1)).click()
+        check checkBox_1, checkBox_2
+
+        verify(checkBox_1, times(1)).click()
+        verify(checkBox_2, times(1)).click()
 
         // Cannot check disabled component
-        when(checkBox.enabled()).thenReturn(false)
+        when(checkBox_1.enabled()).thenReturn(false)
 
         ComponentException error = assertThrows(ComponentException, {
-            check checkBox
+            check checkBox_1
         }) as ComponentException
 
         assertThat(error.message, containsString('is disabled and cannot be checked'))
 
         // Cannot check already checked component
-        when(checkBox.enabled()).thenReturn(true)
-        when(checkBox.checked()).thenReturn(true)
+        when(checkBox_1.enabled()).thenReturn(true)
+        when(checkBox_1.checked()).thenReturn(true)
 
         error = assertThrows(ComponentException, {
-            check checkBox
+            check checkBox_1
         }) as ComponentException
 
         assertThat(error.message, containsString('is already checked and cannot be checked'))
@@ -149,29 +150,34 @@ class ActionTest {
     @Test
     @DisplayName("Should uncheck a uncheckable component")
     void should_uncheck() {
-        CheckBox checkBox = mock(CheckBox)
-        when(checkBox.enabled()).thenReturn(true)
-        when(checkBox.checked()).thenReturn(true)
+        CheckBox checkBox_1 = mock(CheckBox)
+        when(checkBox_1.enabled()).thenReturn(true)
+        when(checkBox_1.checked()).thenReturn(true)
 
-        uncheck checkBox
+        CheckBox checkBox_2 = mock(CheckBox)
+        when(checkBox_2.enabled()).thenReturn(true)
+        when(checkBox_2.checked()).thenReturn(true)
 
-        verify(checkBox, times(1)).click()
+        uncheck checkBox_1, checkBox_2
+
+        verify(checkBox_1, times(1)).click()
+        verify(checkBox_2, times(1)).click()
 
         // Cannot uncheck disabled component
-        when(checkBox.enabled()).thenReturn(false)
+        when(checkBox_1.enabled()).thenReturn(false)
 
         ComponentException error = assertThrows(ComponentException, {
-            uncheck checkBox
+            uncheck checkBox_1
         }) as ComponentException
 
         assertThat(error.message, containsString('is disabled and cannot be unchecked'))
 
         // Cannot uncheck already checked component
-        when(checkBox.enabled()).thenReturn(true)
-        when(checkBox.checked()).thenReturn(false)
+        when(checkBox_1.enabled()).thenReturn(true)
+        when(checkBox_1.checked()).thenReturn(false)
 
         error = assertThrows(ComponentException, {
-            uncheck checkBox
+            uncheck checkBox_1
         }) as ComponentException
 
         assertThat(error.message, containsString('is already unchecked and cannot be unchecked'))
@@ -180,33 +186,157 @@ class ActionTest {
     @Test
     @DisplayName("Should select an Item")
     void should_select() {
-        Item item = mock(Item)
-        when(item.provider).thenReturn(provider)
-//        when(item.enabled()).thenReturn(true)
-//        when(item.provider.metaInfo(item)).thenReturn(new MetaInfo('node', '1'))
+        Item item_1 = mock(Item)
+        when(item_1.provider).thenReturn(provider)
+        when(item_1.enabled()).thenReturn(true)
 
-        select item
+        Item item_2 = mock(Item)
+        when(item_2.provider).thenReturn(provider)
+        when(item_2.enabled()).thenReturn(true)
 
-        verify(provider, times(1)).click(item, [LEFT, SINGLE], [CTRL])
+        select item_1, item_2
+
+        verify(provider, times(1)).click(item_1, [LEFT, SINGLE], [CTRL])
+        verify(provider, times(1)).click(item_2, [LEFT, SINGLE], [CTRL])
 
         // Cannot select disabled item
-        when(item.enabled()).thenReturn(false)
+        when(item_1.enabled()).thenReturn(false)
 
         ComponentException error = assertThrows(ComponentException, {
-            select item
+            select item_1
         }) as ComponentException
 
         assertThat(error.message, containsString('is disabled and cannot be selected'))
 
         // Cannot select already selected item
-        when(item.enabled()).thenReturn(true)
-        when(item.selected()).thenReturn(true)
+        when(item_1.enabled()).thenReturn(true)
+        when(item_1.selected()).thenReturn(true)
 
         error = assertThrows(ComponentException, {
-            select item
+            select item_1
         }) as ComponentException
 
         assertThat(error.message, containsString('is already selected and cannot be selected'))
+    }
+
+    @Test
+    @DisplayName("Should unselect an Item")
+    void should_unselect() {
+        Item item_1 = mock(Item)
+        when(item_1.provider).thenReturn(provider)
+        when(item_1.enabled()).thenReturn(true)
+        when(item_1.selected()).thenReturn(true)
+
+        Item item_2 = mock(Item)
+        when(item_2.provider).thenReturn(provider)
+        when(item_2.enabled()).thenReturn(true)
+        when(item_2.selected()).thenReturn(true)
+
+        unselect item_1, item_2
+
+        verify(provider, times(1)).click(item_1, [LEFT, SINGLE], [CTRL])
+        verify(provider, times(1)).click(item_2, [LEFT, SINGLE], [CTRL])
+
+        // Cannot unselect disabled item
+        when(item_1.enabled()).thenReturn(false)
+
+        ComponentException error = assertThrows(ComponentException, {
+            unselect item_1
+        }) as ComponentException
+
+        assertThat(error.message, containsString('is disabled and cannot be deselected'))
+
+        // Cannot unselect already unselected item
+        when(item_1.enabled()).thenReturn(true)
+        when(item_1.selected()).thenReturn(false)
+
+        error = assertThrows(ComponentException, {
+            unselect item_1
+        }) as ComponentException
+
+        assertThat(error.message, containsString('is already unselected and cannot be deselected'))
+    }
+
+    @Test
+    @DisplayName("Should select items in Listbox")
+    void should_be_able_to_select_items_in_listbox() {
+        ListBox listBox = mock(ListBox)
+
+        Item item_1 = mock(Item)
+        when(item_1.provider).thenReturn(provider)
+        when(item_1.enabled()).thenReturn(true)
+        when(item_1.provider.metaInfo(item_1)).thenReturn(new MetaInfo('node', '1'))
+        when(item_1.value()).thenReturn("Item_1")
+
+        Item item_2 = mock(Item)
+        when(item_2.provider).thenReturn(provider)
+        when(item_2.enabled()).thenReturn(true)
+        when(item_2.provider.metaInfo(item_2)).thenReturn(new MetaInfo('node', '2'))
+        when(item_2.value()).thenReturn("Item_2")
+
+        Item item_3 = mock(Item)
+        when(item_3.provider).thenReturn(provider)
+        when(item_3.provider.metaInfo(item_3)).thenReturn(new MetaInfo('node', '3'))
+
+        when(listBox.items()).thenReturn([item_1, item_2])
+        when(listBox.contains(item_1)).thenReturn(true)
+        when(listBox.contains(item_2)).thenReturn(true)
+
+        listBox.select(item_1, item_2)
+        verify(provider, times(1)).click(item_1, [LEFT, SINGLE] as Collection<MouseModifiers>, [CTRL])
+        verify(provider, times(1)).click(item_2, [LEFT, SINGLE] as Collection<MouseModifiers>, [CTRL])
+
+        listBox.select("Item_1", "Item_2")
+        verify(provider, times(2)).click(item_1, [LEFT, SINGLE] as Collection<MouseModifiers>, [CTRL])
+        verify(provider, times(2)).click(item_2, [LEFT, SINGLE] as Collection<MouseModifiers>, [CTRL])
+
+        ComponentException error = assertThrows(ComponentException, {
+            listBox.select(item_3)
+        }) as ComponentException
+
+        assertThat(error.message, containsString('is not contains by'))
+    }
+
+    @Test
+    @DisplayName("Should unselect items in Listbox")
+    void should_be_able_to_unselect_items_in_listbox() {
+        ListBox listBox = mock(ListBox)
+
+        Item item_1 = mock(Item)
+        when(item_1.provider).thenReturn(provider)
+        when(item_1.enabled()).thenReturn(true)
+        when(item_1.selected()).thenReturn(true)
+        when(item_1.provider.metaInfo(item_1)).thenReturn(new MetaInfo('node', '1'))
+        when(item_1.value()).thenReturn("Item_1")
+
+        Item item_2 = mock(Item)
+        when(item_2.provider).thenReturn(provider)
+        when(item_2.enabled()).thenReturn(true)
+        when(item_2.selected()).thenReturn(true)
+        when(item_2.provider.metaInfo(item_2)).thenReturn(new MetaInfo('node', '2'))
+        when(item_2.value()).thenReturn("Item_2")
+
+        Item item_3 = mock(Item)
+        when(item_3.provider).thenReturn(provider)
+        when(item_3.provider.metaInfo(item_3)).thenReturn(new MetaInfo('node', '3'))
+
+        when(listBox.items()).thenReturn([item_1, item_2])
+        when(listBox.contains(item_1)).thenReturn(true)
+        when(listBox.contains(item_2)).thenReturn(true)
+
+        listBox.unselect(item_1, item_2)
+        verify(provider, times(1)).click(item_1, [LEFT, SINGLE] as Collection<MouseModifiers>, [CTRL])
+        verify(provider, times(1)).click(item_2, [LEFT, SINGLE] as Collection<MouseModifiers>, [CTRL])
+
+        listBox.unselect("Item_1", "Item_2")
+        verify(provider, times(2)).click(item_1, [LEFT, SINGLE] as Collection<MouseModifiers>, [CTRL])
+        verify(provider, times(2)).click(item_2, [LEFT, SINGLE] as Collection<MouseModifiers>, [CTRL])
+
+        ComponentException error = assertThrows(ComponentException, {
+            listBox.unselect(item_3)
+        }) as ComponentException
+
+        assertThat(error.message, containsString('is not contains by'))
     }
 
     @Test
@@ -239,100 +369,28 @@ class ActionTest {
         Keyboard keyboard = mock(Keyboard)
         Tyro.keyboard = keyboard
 
-        type "Some input"
-        verify(keyboard, times(1)).type(["Some input"])
+        type 'Some input'
+        verify(keyboard, times(1)).type(['Some input'])
 
         type CTRL
         verify(keyboard, times(1)).type([CTRL])
 
         type CTRL + SHIFT + DELETE
         verify(keyboard, times(1)).type([CTRL, SHIFT, DELETE])
+
+        type CTRL + 'c'
+        verify(keyboard, times(1)).type([CTRL, 'c'])
     }
 
     @Test
     @DisplayName("Should delegate to Factory")
     void factory_delegation() {
-
+//        ComponentFactory factory = mock(ComponentFactory)
+//
+//        button("Ok")
+//        verify(factory, times(1)).collectAll(Button)
     }
-
-    @Test
-    @Disabled
-    @DisplayName("Should select items")
-    void should_be_able_to_select_items() {
-        ListBox listBox = mock(ListBox)
-
-        Item item_1 = mock(Item)
-        when(item_1.provider).thenReturn(provider)
-        when(item_1.provider.metaInfo(item_1)).thenReturn(new MetaInfo('node', '1'))
-        Item item_2 = mock(Item)
-        when(item_2.provider).thenReturn(provider)
-        when(item_2.provider.metaInfo(item_2)).thenReturn(new MetaInfo('node', '2'))
-
-        doReturn([item_1, item_2]).when(listBox).items()
-        when(listBox.contains(item_1)).thenReturn(true)
-        when(listBox.contains(item_2)).thenReturn(true)
-        when(item_1.enabled()).thenReturn(true)
-
-//        select item_1, item_2
-
-        listBox.select(item_1)
-
-        verify(provider, times(1)).click(item_1, [LEFT, SINGLE] as Collection<MouseModifiers>, [CTRL])
-//
-//        ListBox listBox = spy(ListBox)
-//        Item item_1 = spy(Item)
-//        Item item_2 = spy(Item)
-//
-//        doReturn([item_1, item_2]).when(listBox).items()
-//        when(provider.enabled(item_1)).thenReturn(true)
-//        when(provider.metaInfo(item_1)).thenReturn(new MetaInfo('node', '1'))
-//        when(provider.enabled(item_2)).thenReturn(true)
-//        when(provider.metaInfo(item_2)).thenReturn(new MetaInfo('node', '2'))
-
-        listBox.select(item_1)
-
-        verify(provider, times(1)).click(item_1, [LEFT, SINGLE], [CTRL])
-        verify(provider, times(0)).click(item_2, [LEFT, SINGLE], [CTRL])
-//
-//        reset(org.testatoo.core.Testatoo.getConfig.evaluator)
-//        reset(item_1)
-//        reset(item_2)
-//        Mockito.doReturn('1').when(item_1).id()
-//        Mockito.doReturn('2').when(item_2).id()
-//        Mockito.doReturn(true).when(item_1).selected()
-//
-//        listBox.unselect(item_1)
-//        Mockito.verify(org.testatoo.core.Testatoo.getConfig.evaluator, Mockito.times(1)).click('1', [org.testatoo.core.input.MouseModifiers.LEFT, org.testatoo.core.input.MouseModifiers.SINGLE], [org.testatoo.core.input.Key.CTRL])
-//        Mockito.verify(org.testatoo.core.Testatoo.getConfig.evaluator, Mockito.times(0)).click('2', [org.testatoo.core.input.MouseModifiers.LEFT, org.testatoo.core.input.MouseModifiers.SINGLE], [org.testatoo.core.input.Key.CTRL])
-//
-//        reset(org.testatoo.core.Testatoo.getConfig.evaluator)
-//        reset(item_1)
-//        reset(item_2)
-//        Mockito.doReturn('1').when(item_1).id()
-//        Mockito.doReturn('2').when(item_2).id()
-//        Mockito.doReturn('Item_1').when(item_1).value()
-//        Mockito.doReturn('Item_2').when(item_2).value()
-//
-//        listBox.select('Item_2')
-//        Mockito.verify(org.testatoo.core.Testatoo.getConfig.evaluator, Mockito.times(0)).click('1', [org.testatoo.core.input.MouseModifiers.LEFT, org.testatoo.core.input.MouseModifiers.SINGLE], [org.testatoo.core.input.Key.CTRL])
-//        Mockito.verify(org.testatoo.core.Testatoo.getConfig.evaluator, Mockito.times(1)).click('2', [org.testatoo.core.input.MouseModifiers.LEFT, org.testatoo.core.input.MouseModifiers.SINGLE], [org.testatoo.core.input.Key.CTRL])
-//
-//        reset(org.testatoo.core.Testatoo.getConfig.evaluator)
-//        reset(item_1)
-//        reset(item_2)
-//        Mockito.doReturn('1').when(item_1).id()
-//        Mockito.doReturn('2').when(item_2).id()
-//        Mockito.doReturn('Item_1').when(item_1).value()
-//        Mockito.doReturn('Item_2').when(item_2).value()
-//        Mockito.doReturn(true).when(item_1).selected()
-//        Mockito.doReturn(true).when(item_2).selected()
-//
-//        listBox.unselect('Item_1', 'Item_2')
-//        Mockito.verify(org.testatoo.core.Testatoo.getConfig.evaluator, Mockito.times(1)).click('1', [org.testatoo.core.input.MouseModifiers.LEFT, org.testatoo.core.input.MouseModifiers.SINGLE], [org.testatoo.core.input.Key.CTRL])
-//        Mockito.verify(org.testatoo.core.Testatoo.getConfig.evaluator, Mockito.times(1)).click('2', [org.testatoo.core.input.MouseModifiers.LEFT, org.testatoo.core.input.MouseModifiers.SINGLE], [org.testatoo.core.input.Key.CTRL])
-    }
-
-
+}
 //    =========================================================================================================
 //    TODO
 
@@ -424,4 +482,4 @@ class ActionTest {
 //            assert e.message.endsWith('is already unselected and cannot be deselected')
 //        }
 //    }
-}
+//}

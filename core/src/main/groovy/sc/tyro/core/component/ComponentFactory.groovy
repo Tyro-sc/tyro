@@ -63,9 +63,9 @@ public class ComponentFactory {
 //        throw new ComponentException("Unable to find $clazz with label or placeholder equals to '$value'")
     }
 
-//    private static <T extends Component> List<T> collectAll(Class<T> clazz) {
+    private static <T extends Component> List<T> collectAll(Class<T> clazz) {
 //        Identifiers.findSelectorsFor(clazz).collectMany {
 //            org.testattoo.core.Testattoo.$$(it.value, it.key)
 //        }
-//    }
+    }
 }

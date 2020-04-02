@@ -2,7 +2,6 @@ package sc.tyro.dsl
 
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import sc.tyro.core.Config
 import sc.tyro.core.MetaInfo
 import sc.tyro.core.Provider
 import sc.tyro.core.component.CheckBox
@@ -10,10 +9,10 @@ import sc.tyro.core.component.Component
 import sc.tyro.core.component.Item
 import sc.tyro.core.component.field.RangeField
 import sc.tyro.core.component.field.TextField
+import sc.tyro.core.support.state.CollapseSupport
 
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.Mockito.*
-import static sc.tyro.core.Config.provider
 import static sc.tyro.core.Tyro.*
 
 /**
@@ -132,6 +131,44 @@ class StateTest {
     }
 
     @Test
+    @DisplayName("Should support expanded")
+    void should_support_expanded() {
+        Widget widget = mock(Widget.class,
+                withSettings()
+                        .useConstructor()
+                        .outerInstance(this)
+                        .defaultAnswer(CALLS_REAL_METHODS));
+        doReturn(true).when(widget).expanded()
+
+        widget.should { be expanded }
+
+        doReturn(false).when(widget).expanded()
+
+        assertThrows(AssertionError, {
+            widget.should { be expanded }
+        })
+    }
+
+    @Test
+    @DisplayName("Should support collapsed")
+    void should_support_collapsed() {
+        Widget widget = mock(Widget.class,
+                withSettings()
+                        .useConstructor()
+                        .outerInstance(this)
+                        .defaultAnswer(CALLS_REAL_METHODS));
+        doReturn(true).when(widget).collapsed()
+
+        widget.should { be collapsed }
+
+        doReturn(false).when(widget).collapsed()
+
+        assertThrows(AssertionError, {
+            widget.should { be collapsed }
+        })
+    }
+
+    @Test
     @DisplayName("Should support selected ans unselected")
     void should_support_selected() {
         Item item = spy(Item)
@@ -179,4 +216,6 @@ class StateTest {
             cmp_1.should { contain cmp_2, cmp_3 }
         })
     }
+
+    private abstract class Widget extends Component implements CollapseSupport {}
 }

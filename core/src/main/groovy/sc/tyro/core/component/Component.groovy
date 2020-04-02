@@ -24,7 +24,6 @@ public class Component implements MouseSupport, Draggable {
     private Provider provider = Config.provider
 
     public String id() {
-//        println "Je passe la: " + provider.metaInfo(this).id
         provider.metaInfo(this).id
     }
 
@@ -92,12 +91,13 @@ public class Component implements MouseSupport, Draggable {
         getClass().simpleName + ":${this.id()}"
     }
 
-    public Object asType(Class clazz) {
+    def asType(Class clazz) {
         if (Component.isAssignableFrom(clazz)) {
             Component c = (Component) clazz.newInstance()
             c.provider = this.provider
             return c
         }
+        // Fallback to default
         return super.asType(clazz)
     }
 

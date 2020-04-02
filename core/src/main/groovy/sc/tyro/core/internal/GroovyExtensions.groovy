@@ -1,6 +1,8 @@
 package sc.tyro.core.internal
 
 import org.hamcrest.Matcher
+import sc.tyro.core.ComponentException
+import sc.tyro.core.Tyro
 import sc.tyro.core.component.Component
 import sc.tyro.core.component.Item
 import sc.tyro.core.hamcrest.PropertyMatcher
@@ -16,7 +18,6 @@ import java.time.Duration
 
 import static java.time.Duration.ofSeconds
 import static org.hamcrest.Matchers.is
-import static sc.tyro.core.Tyro.*
 import static sc.tyro.core.hamcrest.Matchers.has
 import static sc.tyro.core.input.MouseModifiers.*
 
@@ -57,7 +58,9 @@ class GroovyExtensions {
 
     static void select(Selectable component, Item item) {
         if (component.items().contains(item)) {
-            select(item)
+            Tyro.select(item)
+        } else {
+            throw new ComponentException("${item.class.simpleName} ${item} is not contains by ${component.class.simpleName} ${component}")
         }
     }
 
@@ -73,7 +76,9 @@ class GroovyExtensions {
 
     static void unselect(UnSelectable component, Item item) {
         if (component.items().contains(item)) {
-            unselect(item)
+            Tyro.unselect(item)
+        } else {
+            throw new ComponentException("${item.class.simpleName} ${item} is not contains by ${component.class.simpleName} ${component}")
         }
     }
 
@@ -107,7 +112,7 @@ class GroovyExtensions {
         closure.delegate = component
         closure(this)
         for (Matcher matcher : component.blocks) {
-            waitUntil(closure, matcher)
+            Tyro.waitUntil(closure, matcher)
         }
         component.clearBlocks()
     }

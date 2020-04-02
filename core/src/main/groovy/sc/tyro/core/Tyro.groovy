@@ -110,38 +110,46 @@ class Tyro {
      */
     static void visit(String uri) { browser().open(uri) }
 
-    static void check(Checkable c) {
-        if (!c.enabled())
-            throw new ComponentException("${c.class.simpleName} ${c} is disabled and cannot be checked")
-        if (c.checked())
-            throw new ComponentException("${c.class.simpleName} ${c} is already checked and cannot be checked")
-        c.click()
-    }
-
-    static void uncheck(UnCheckable c) {
-        if (!c.enabled())
-            throw new ComponentException("${c.class.simpleName} ${c} is disabled and cannot be unchecked")
-        if (!c.checked())
-            throw new ComponentException("${c.class.simpleName} ${c} is already unchecked and cannot be unchecked")
-        c.click()
-    }
-
-    static void select(Item c) {
-        if (!c.enabled())
-            throw new ComponentException("${c.class.simpleName} ${c} is disabled and cannot be selected")
-        if (c.selected()) {
-            throw new ComponentException("${c.class.simpleName} ${c} is already selected and cannot be selected")
+    static void check(Checkable... checkables) {
+        checkables.each {
+            if (!it.enabled())
+                throw new ComponentException("${it.class.simpleName} ${it} is disabled and cannot be checked")
+            if (it.checked())
+                throw new ComponentException("${it.class.simpleName} ${it} is already checked and cannot be checked")
+            it.click()
         }
-        CTRL.click c
     }
 
-    static void unselect(Item c) {
-        if (!c.enabled())
-            throw new ComponentException("${c.class.simpleName} ${c} is disabled and cannot be deselected")
-        if (!c.selected()) {
-            throw new ComponentException("${c.class.simpleName} ${c} is already unselected and cannot be deselected")
+    static void uncheck(UnCheckable... unCheckables) {
+        unCheckables.each {
+            if (!it.enabled())
+                throw new ComponentException("${it.class.simpleName} ${it} is disabled and cannot be unchecked")
+            if (!it.checked())
+                throw new ComponentException("${it.class.simpleName} ${it} is already unchecked and cannot be unchecked")
+            it.click()
         }
-        CTRL.click c
+    }
+
+    static void select(Item... items) {
+        items.each {
+            if (!it.enabled())
+                throw new ComponentException("${it.class.simpleName} ${it} is disabled and cannot be selected")
+            if (it.selected()) {
+                throw new ComponentException("${it.class.simpleName} ${it} is already selected and cannot be selected")
+            }
+            CTRL.click it
+        }
+    }
+
+    static void unselect(Item... items) {
+        items.each {
+            if (!it.enabled())
+                throw new ComponentException("${it.class.simpleName} ${it} is disabled and cannot be deselected")
+            if (!it.selected()) {
+                throw new ComponentException("${it.class.simpleName} ${it} is already unselected and cannot be deselected")
+            }
+            CTRL.click it
+        }
     }
 
     static void clear(Clearable c) { c.clear() }

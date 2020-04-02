@@ -44,6 +44,6 @@ class KeyboardTest {
     void should_use_key_modifier_on_keyboard() {
         keyboard.type([SHIFT, 'tyro'])
 
-        verify(provider, times(1)).type([SHIFT, 'tyro']);
+        verify(provider, times(1)).type([SHIFT, 'tyro'])
     }
 }
