@@ -39,4 +39,7 @@ public interface Provider {
     boolean visible(Component component)
 
     boolean contains(Component component)
+
+    abstract String eval(String id, String expr)
+
 }
