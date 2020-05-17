@@ -1,5 +1,6 @@
 package sc.tyro.core
 
+
 import sc.tyro.core.component.Component
 import sc.tyro.core.input.MouseModifiers
 
@@ -8,6 +9,12 @@ import sc.tyro.core.input.MouseModifiers
  * @since 1.0.0
  */
 public interface Provider {
+    def <T extends Component> T find(By by, Class<T> clazz)
+
+    def <T extends Component>  List<T> findAll(By, Class<T> clazz)
+
+    def <T extends Component> List<T> findByType(Class<T> clazz)
+
     MetaInfo metaInfo(Component component)
 
     void click(Component component, Collection<MouseModifiers> click, Collection<?> keys)
@@ -17,6 +24,8 @@ public interface Provider {
     void dragAndDrop(Component from, Component to)
 
     void type(Collection<?> keys)
+
+    void navigateTo(String url)
 
     void back()
 
@@ -41,5 +50,4 @@ public interface Provider {
     boolean contains(Component component)
 
     abstract String eval(String id, String expr)
-
 }

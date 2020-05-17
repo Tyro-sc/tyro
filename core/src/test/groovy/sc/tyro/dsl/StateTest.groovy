@@ -137,7 +137,7 @@ class StateTest {
                 withSettings()
                         .useConstructor()
                         .outerInstance(this)
-                        .defaultAnswer(CALLS_REAL_METHODS));
+                        .defaultAnswer(CALLS_REAL_METHODS))
         doReturn(true).when(widget).expanded()
 
         widget.should { be expanded }
@@ -156,7 +156,7 @@ class StateTest {
                 withSettings()
                         .useConstructor()
                         .outerInstance(this)
-                        .defaultAnswer(CALLS_REAL_METHODS));
+                        .defaultAnswer(CALLS_REAL_METHODS))
         doReturn(true).when(widget).collapsed()
 
         widget.should { be collapsed }

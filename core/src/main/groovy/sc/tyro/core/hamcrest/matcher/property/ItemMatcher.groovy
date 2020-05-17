@@ -10,7 +10,7 @@ import sc.tyro.core.support.property.ItemSupport
  * @author David Avenante
  * @since 1.0.0
  */
-public class ItemMatcher extends PropertyMatcher<ItemSupport> {
+class ItemMatcher extends PropertyMatcher<ItemSupport> {
     private List<String> values = new ArrayList<>()
     private List<Item> items = new ArrayList<>()
 

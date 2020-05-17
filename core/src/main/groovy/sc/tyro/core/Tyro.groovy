@@ -16,6 +16,8 @@ import sc.tyro.core.internal.Wait
 import sc.tyro.core.support.*
 import sc.tyro.core.support.property.InputSupport
 
+import java.util.concurrent.TimeoutException
+
 import static sc.tyro.core.Config.provider
 import static sc.tyro.core.input.Key.CTRL
 
@@ -24,6 +26,14 @@ import static sc.tyro.core.input.Key.CTRL
  * @since 1.0.0
  */
 class Tyro {
+    static Component $(String expression) {
+        provider.find(By.expression(expression), Component)
+    }
+
+    static <T extends Component> List<T> $$(String expression, Class<T> clazz = Component) {
+        provider.findAll(By.expression(expression), clazz)
+    }
+
     static mouse = new Mouse()
     static keyboard = new Keyboard()
     static wait = new Wait()
@@ -164,28 +174,6 @@ class Tyro {
 
     static final FillAction set(InputSupport c) { new FillAction(c) }
 
-//    static class Components<T extends Component> {
-//        private final Provider provider
-//        private final MetaDataProvider meta
-//        private final Class<T> type
-//        private List<T> components
-//
-//        Components(Class<T> type, Provider provider, MetaDataProvider meta) {
-//            this.meta = meta
-//            this.type = type
-//            this.provider = provider
-//        }
-//
-//        List<T> list() {
-//            if (components == null) {
-//                components = meta.metaInfos().collect {
-//                    new Component(provider, new CachedMetaData(idProvider: Config.idProvider.get("#${it.id}", false))).asType(type)
-//                } as List<T>
-//            }
-//            return Collections.unmodifiableList(components)
-//        }
-//    }
-
     // Delegate to Mouse
     static void clickOn(Component c) { mouse.clickOn(c) }
 
@@ -207,53 +195,53 @@ class Tyro {
     // Generic Component Factory
     static Browser browser() { new Browser(provider) }
 
-    static Button button(String text) { ComponentFactory.button(text) }
+    static Button button(String text) { provider.find(By.text(text), Button) }
 
-    static Radio radio(String label) { ComponentFactory.radio(label) }
+    static Radio radio(String label) { provider.find(By.label(label), Radio) }
 
-    static CheckBox checkbox(String label) { ComponentFactory.checkbox(label) }
+    static CheckBox checkbox(String label) { provider.find(By.label(label), CheckBox) }
 
-    static Dropdown dropdown(String label) { ComponentFactory.dropdown(label) }
+    static Dropdown dropdown(String label) { provider.find(By.label(label), Dropdown) }
 
-    static ListBox listBox(String label) { ComponentFactory.listBox(label) }
+    static ListBox listBox(String label) { provider.find(By.label(label), ListBox) }
 
-    static Group group(String value) { ComponentFactory.group(value) }
+    static Group group(String value) { provider.find(By.value(value), Group) }
 
-    static Item item(String value) { ComponentFactory.item(value) }
+    static Item item(String value) { provider.find(By.value(value), Item) }
 
-    static Heading heading(String text) { ComponentFactory.heading(text) }
+    static Heading heading(String text) { provider.find(By.text(text), Heading) }
 
-    static Panel panel(String title) { ComponentFactory.panel(title) }
+    static Panel panel(String title) { provider.find(By.title(title), Panel) }
 
-    static Link link(String text) { ComponentFactory.link(text) }
+    static Link link(String text) { provider.find(By.text(text), Link)  }
 
-    static PasswordField passwordField(String value) { ComponentFactory.passwordField(value) }
+    static PasswordField passwordField(String label) { provider.find(By.label(label), PasswordField) }
 
-    static TextField textField(String value) { ComponentFactory.textField(value) }
+    static TextField textField(String label) { provider.find(By.label(label), TextField) }
 
-    static SearchField searchField(String value) { ComponentFactory.searchField(value) }
+    static SearchField searchField(String label) { provider.find(By.label(label), SearchField) }
 
-    static EmailField emailField(String value) { ComponentFactory.emailField(value) }
+    static EmailField emailField(String label) { provider.find(By.label(label), EmailField) }
 
-    static URLField urlField(String value) { ComponentFactory.urlField(value) }
+    static URLField urlField(String label) { provider.find(By.label(label), URLField) }
 
-    static NumberField numberField(String value) { ComponentFactory.numberField(value) }
+    static NumberField numberField(String label) { provider.find(By.label(label), NumberField) }
 
-    static RangeField rangeField(String value) { ComponentFactory.rangeField(value) }
+    static RangeField rangeField(String label) { provider.find(By.label(label), RangeField) }
 
-    static DateField dateField(String value) { ComponentFactory.dateField(value) }
+    static DateField dateField(String label) { provider.find(By.label(label), DateField) }
 
-    static ColorField colorField(String value) { ComponentFactory.colorField(value) }
+    static ColorField colorField(String label) { provider.find(By.label(label), ColorField) }
 
-    static DateTimeField dateTimeField(String value) { ComponentFactory.dateTimeField(value) }
+    static DateTimeField dateTimeField(String label) { provider.find(By.label(label), DateTimeField) }
 
-    static MonthField monthField(String value) { ComponentFactory.monthField(value) }
+    static MonthField monthField(String label) { provider.find(By.label(label), MonthField) }
 
-    static PhoneField phoneField(String value) { ComponentFactory.phoneField(value) }
+    static PhoneField phoneField(String label) { provider.find(By.label(label), PhoneField) }
 
-    static TimeField timeField(String value) { ComponentFactory.timeField(value) }
+    static TimeField timeField(String label) { provider.find(By.label(label), TimeField) }
 
-    static WeekField weekField(String value) { ComponentFactory.weekField(value) }
+    static WeekField weekField(String label) { provider.find(By.label(label), WeekField) }
 
     static void waitUntil(Closure c, Matcher what = null) { wait.waitUntil(c, what) }
 

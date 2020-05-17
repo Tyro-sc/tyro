@@ -8,7 +8,7 @@ import sc.tyro.core.support.property.ColumnSupport
  * @author David Avenante
  * @since 1.0.0
  */
-public class ColumnSizeMatcher extends PropertyMatcher<ColumnSupport> {
+class ColumnSizeMatcher extends PropertyMatcher<ColumnSupport> {
     private Integer number
 
     ColumnSizeMatcher(Integer number) {

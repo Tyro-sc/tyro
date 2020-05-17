@@ -8,7 +8,7 @@ import sc.tyro.core.support.property.ItemSupport
  * @author David Avenante
  * @since 1.0.0
  */
-public class ItemSizeMatcher extends PropertyMatcher<ItemSupport> {
+class ItemSizeMatcher extends PropertyMatcher<ItemSupport> {
     private Integer number
 
     ItemSizeMatcher(Integer number) {

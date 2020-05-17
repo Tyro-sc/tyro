@@ -8,7 +8,7 @@ import sc.tyro.core.hamcrest.StateMatcher
  * @author David Avenante
  * @since 1.0.0
  */
-public class ContainMatcher extends StateMatcher<Component> {
+class ContainMatcher extends StateMatcher<Component> {
     private List<Component> components = new ArrayList<>()
     private Component container
 

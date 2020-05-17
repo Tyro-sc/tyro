@@ -8,7 +8,7 @@ import sc.tyro.core.support.property.CellSupport
  * @author David Avenante
  * @since 1.0.0
  */
-public class CellSizeMatcher extends PropertyMatcher<CellSupport> {
+class CellSizeMatcher extends PropertyMatcher<CellSupport> {
     private Integer number
 
     CellSizeMatcher(Integer number) {

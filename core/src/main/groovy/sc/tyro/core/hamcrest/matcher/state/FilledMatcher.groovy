@@ -8,7 +8,7 @@ import sc.tyro.core.support.state.EmptySupport
  * @author David Avenante
  * @since 1.0.0
  */
-public class FilledMatcher extends StateMatcher<EmptySupport> {
+class FilledMatcher extends StateMatcher<EmptySupport> {
     @Override
     protected boolean matchesSafely(EmptySupport component, Description mismatchDescription) {
         mismatchDescription.appendText('is empty')

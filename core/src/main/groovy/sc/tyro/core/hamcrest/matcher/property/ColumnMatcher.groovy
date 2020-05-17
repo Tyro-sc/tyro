@@ -10,7 +10,7 @@ import sc.tyro.core.support.property.ColumnSupport
  * @author David Avenante
  * @since 1.0.0
  */
-public class ColumnMatcher extends PropertyMatcher<ColumnSupport> {
+class ColumnMatcher extends PropertyMatcher<ColumnSupport> {
     private List<String> values = new ArrayList<>()
     private List<Column> columns = new ArrayList<>()
 

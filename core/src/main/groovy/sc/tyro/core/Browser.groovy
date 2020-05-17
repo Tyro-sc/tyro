@@ -13,7 +13,7 @@ class Browser {
         this.provider = provider
     }
 
-    void navigateTo(String url) { provider.to(url) }
+    void navigateTo(String url) { provider.navigateTo(url) }
 
     void back() { provider.back() }
 
@@ -25,6 +25,7 @@ class Browser {
 
     String getUrl() { provider.url }
 
+    //TODO: duplicate with NavigateTo ?
     void open(String url) { provider.open(url) }
 
     List<Window> getWindows() {

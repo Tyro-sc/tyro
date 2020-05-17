@@ -10,7 +10,7 @@ import sc.tyro.core.support.property.GroupSupport
  * @author David Avenante
  * @since 1.0.0
  */
-public class GroupMatcher extends PropertyMatcher<GroupSupport> {
+class GroupMatcher extends PropertyMatcher<GroupSupport> {
     private List<String> values = new ArrayList<>()
     private List<Group> groups = new ArrayList<>()
 

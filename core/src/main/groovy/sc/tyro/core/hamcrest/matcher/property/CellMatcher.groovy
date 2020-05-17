@@ -10,7 +10,7 @@ import sc.tyro.core.support.property.CellSupport
  * @author David Avenante
  * @since 1.0.0
  */
-public class CellMatcher extends PropertyMatcher<CellSupport> {
+class CellMatcher extends PropertyMatcher<CellSupport> {
     private List<String> values = new ArrayList<>()
     private List<Cell> cells = new ArrayList<>()
 

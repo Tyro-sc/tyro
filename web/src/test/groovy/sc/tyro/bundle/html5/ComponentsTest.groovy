@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import org.openqa.selenium.By
 import sc.tyro.web.TyroTestExtension
 
 import static sc.tyro.core.Tyro.*
@@ -22,7 +23,23 @@ class ComponentsTest {
     }
 
     @Test
-    void sample() {
-        println "toto"
+    void component_should_have_expected_common_behaviours() {
+        assert Button in sc.tyro.core.component.Button
+
+        Button button = $('#button') as Button
+
+        assert button.enabled()
+        assert button.available()
+        assert button.visible()
+
+        button = $('#submit') as Button
+        assert !button.enabled()
+
+        Div panel = $('#hidden_panel') as Div
+        assert !panel.visible()
+
+        panel = $('#non_existing_id') as Div
+        assert !panel.available()
+        By
     }
 }

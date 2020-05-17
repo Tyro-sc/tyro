@@ -8,7 +8,7 @@ import sc.tyro.core.support.state.ValiditySupport
  * @author David Avenante
  * @since 1.0.0
  */
-public class ValidMatcher extends StateMatcher<ValiditySupport> {
+class ValidMatcher extends StateMatcher<ValiditySupport> {
     @Override
     protected boolean matchesSafely(ValiditySupport component, Description mismatchDescription) {
         mismatchDescription.appendText('is invalid')

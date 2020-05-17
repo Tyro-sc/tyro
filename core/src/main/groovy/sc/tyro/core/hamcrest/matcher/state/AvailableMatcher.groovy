@@ -8,7 +8,7 @@ import sc.tyro.core.hamcrest.StateMatcher
  * @author David Avenante
  * @since 1.0.0
  */
-public class AvailableMatcher extends StateMatcher<Component> {
+class AvailableMatcher extends StateMatcher<Component> {
     @Override
     protected boolean matchesSafely(Component component, Description mismatchDescription) {
         mismatchDescription.appendText('is missing')

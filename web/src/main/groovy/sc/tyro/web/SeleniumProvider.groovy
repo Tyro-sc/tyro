@@ -2,6 +2,7 @@ package sc.tyro.web
 
 import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.WebDriver
+import sc.tyro.core.By
 import sc.tyro.core.MetaInfo
 import sc.tyro.core.Provider
 import sc.tyro.core.component.Component
@@ -15,6 +16,21 @@ class SeleniumProvider implements Provider {
     SeleniumProvider(WebDriver webDriver) {
         this.webDriver = webDriver
         this.js = (JavascriptExecutor) webDriver
+    }
+
+    @Override
+    Component find(By by) {
+        return null
+    }
+
+    @Override
+    List findAll(Object By, Class clazz) {
+        return null
+    }
+
+    @Override
+    <T extends Component> List<T> findByType(Class<T> clazz) {
+        return null
     }
 
     @Override

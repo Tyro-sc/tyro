@@ -8,7 +8,7 @@ import sc.tyro.core.support.state.SelectSupport
  * @author David Avenante
  * @since 1.0.0
  */
-public class SelectedMatcher extends StateMatcher<SelectSupport> {
+class SelectedMatcher extends StateMatcher<SelectSupport> {
     @Override
     protected boolean matchesSafely(SelectSupport component, Description mismatchDescription) {
         mismatchDescription.appendText('is unselected')

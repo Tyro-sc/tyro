@@ -8,7 +8,7 @@ import sc.tyro.core.support.state.RequiredSupport
  * @author David Avenante
  * @since 1.0.0
  */
-public class RequiredMatcher extends StateMatcher<RequiredSupport> {
+class RequiredMatcher extends StateMatcher<RequiredSupport> {
     @Override
     protected boolean matchesSafely(RequiredSupport component, Description mismatchDescription) {
         mismatchDescription.appendText('is optional')

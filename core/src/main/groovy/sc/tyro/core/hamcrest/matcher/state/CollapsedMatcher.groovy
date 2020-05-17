@@ -8,7 +8,7 @@ import sc.tyro.core.support.state.CollapseSupport
  * @author David Avenante
  * @since 1.0.0
  */
-public class CollapsedMatcher extends StateMatcher<CollapseSupport> {
+class CollapsedMatcher extends StateMatcher<CollapseSupport> {
     @Override
     protected boolean matchesSafely(CollapseSupport component, Description mismatchDescription) {
         mismatchDescription.appendText('is expanded')

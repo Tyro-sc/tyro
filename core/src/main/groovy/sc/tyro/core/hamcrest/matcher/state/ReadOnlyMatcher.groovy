@@ -8,7 +8,7 @@ import sc.tyro.core.support.state.ReadOnlySupport
  * @author David Avenante
  * @since 1.0.0
  */
-public class ReadOnlyMatcher extends StateMatcher<ReadOnlySupport> {
+class ReadOnlyMatcher extends StateMatcher<ReadOnlySupport> {
     @Override
     protected boolean matchesSafely(ReadOnlySupport component, Description mismatchDescription) {
         mismatchDescription.appendText('is not read only')

@@ -8,7 +8,7 @@ import sc.tyro.core.support.state.CheckSupport
  * @author David Avenante
  * @since 1.0.0
  */
-public class CheckedMatcher extends StateMatcher<CheckSupport> {
+class CheckedMatcher extends StateMatcher<CheckSupport> {
     @Override
     protected boolean matchesSafely(CheckSupport component, Description mismatchDescription) {
         mismatchDescription.appendText('is unchecked')

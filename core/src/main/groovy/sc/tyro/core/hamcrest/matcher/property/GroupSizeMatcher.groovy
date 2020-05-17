@@ -8,7 +8,7 @@ import sc.tyro.core.support.property.GroupSupport
  * @author David Avenante
  * @since 1.0.0
  */
-public class GroupSizeMatcher extends PropertyMatcher<GroupSupport> {
+class GroupSizeMatcher extends PropertyMatcher<GroupSupport> {
     private Integer number
 
     GroupSizeMatcher(Integer number) {
