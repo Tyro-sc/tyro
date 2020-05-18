@@ -3,8 +3,6 @@ package sc.tyro.core.hamcrest.matcher.property
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import sc.tyro.core.Config
-import sc.tyro.core.MetaDataProvider
-import sc.tyro.core.MetaInfo
 import sc.tyro.core.Provider
 import sc.tyro.core.component.Group
 import sc.tyro.core.support.property.GroupSupport
@@ -12,7 +10,6 @@ import sc.tyro.core.support.property.GroupSupport
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.is
 import static org.junit.jupiter.api.Assertions.assertThrows
-import static org.mockito.ArgumentMatchers.any
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
 import static sc.tyro.core.hamcrest.Matchers.groups
@@ -28,12 +25,6 @@ class GroupMatcherTest {
     @DisplayName("Should have expected matcher available")
     void should_have_expected_matcher() {
         Config.provider = mock(Provider)
-        MetaDataProvider meta = mock(MetaDataProvider)
-        MetaInfo metaInfo = mock(MetaInfo)
-
-        when(Config.provider.metaDataProvider).thenReturn(meta)
-        when(meta.metaInfo(any())).thenReturn(metaInfo)
-        when(metaInfo.id).thenReturn('id')
 
         GroupSupport cmp = mock(GroupSupport)
         Group group_1 = mock(Group)

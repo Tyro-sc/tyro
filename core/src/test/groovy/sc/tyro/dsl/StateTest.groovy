@@ -200,8 +200,6 @@ class StateTest {
     @DisplayName("Should support contains")
     void should_support_contain() {
         Config.provider = mock(Provider)
-        MetaDataProvider meta = mock(MetaDataProvider)
-        when(Config.provider.metaDataProvider).thenReturn(meta)
 
         Component cmp_1 = spy(new Component())
         doReturn('1').when(cmp_1).id()

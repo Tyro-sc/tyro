@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.openqa.selenium.By
-import sc.tyro.web.TyroTestExtension
+import sc.tyro.web.TyroWebTestExtension
 
 import static sc.tyro.core.Tyro.$
 import static sc.tyro.core.Tyro.visit
@@ -14,7 +14,7 @@ import static sc.tyro.core.Tyro.visit
  * @author David Avenante
  * @since 1.0.0
  */
-@ExtendWith(TyroTestExtension)
+@ExtendWith(TyroWebTestExtension)
 @DisplayName("Test core implementation with Html5 components ")
 class ComponentsTest {
     @BeforeAll

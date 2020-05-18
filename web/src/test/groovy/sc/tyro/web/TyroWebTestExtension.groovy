@@ -16,7 +16,7 @@ import static io.github.bonigarcia.wdm.WebDriverManager.*
  * @since 1.0.0
  */
 
-class TyroTestExtension implements BeforeAllCallback, AfterAllCallback {
+class TyroWebTestExtension implements BeforeAllCallback, AfterAllCallback {
     private static Javalin app;
     private static WebDriver driver
 
@@ -28,7 +28,7 @@ class TyroTestExtension implements BeforeAllCallback, AfterAllCallback {
 
         firefoxdriver().setup()
         driver = new FirefoxDriver()
-        Config.provider = new SeleniumProvider(driver)
+        WebBundle.init(driver)
     }
 
     @Override

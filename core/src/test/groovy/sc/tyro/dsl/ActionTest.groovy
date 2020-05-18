@@ -2,7 +2,6 @@ package sc.tyro.dsl
 
 import org.junit.jupiter.api.*
 import sc.tyro.core.ComponentException
-import sc.tyro.core.MetaInfo
 import sc.tyro.core.Provider
 import sc.tyro.core.Tyro
 import sc.tyro.core.component.*
@@ -32,11 +31,6 @@ class ActionTest {
     @BeforeEach
     void setUp() {
         provider = mock(Provider)
-    }
-
-    @AfterEach()
-    void tearDown() {
-        reset(provider)
     }
 
     @Test
@@ -265,18 +259,15 @@ class ActionTest {
         Item item_1 = mock(Item)
         when(item_1.provider).thenReturn(provider)
         when(item_1.enabled()).thenReturn(true)
-//        when(item_1.provider.metaInfo(item_1)).thenReturn(new MetaInfo('node', '1'))
         when(item_1.value()).thenReturn("Item_1")
 
         Item item_2 = mock(Item)
         when(item_2.provider).thenReturn(provider)
         when(item_2.enabled()).thenReturn(true)
-//        when(item_2.provider.metaInfo(item_2)).thenReturn(new MetaInfo('node', '2'))
         when(item_2.value()).thenReturn("Item_2")
 
         Item item_3 = mock(Item)
         when(item_3.provider).thenReturn(provider)
-//        when(item_3.provider.metaInfo(item_3)).thenReturn(new MetaInfo('node', '3'))
 
         when(listBox.items()).thenReturn([item_1, item_2])
         when(listBox.contains(item_1)).thenReturn(true)
@@ -306,19 +297,16 @@ class ActionTest {
         when(item_1.provider).thenReturn(provider)
         when(item_1.enabled()).thenReturn(true)
         when(item_1.selected()).thenReturn(true)
-//        when(item_1.provider.metaInfo(item_1)).thenReturn(new MetaInfo('node', '1'))
         when(item_1.value()).thenReturn("Item_1")
 
         Item item_2 = mock(Item)
         when(item_2.provider).thenReturn(provider)
         when(item_2.enabled()).thenReturn(true)
         when(item_2.selected()).thenReturn(true)
-//        when(item_2.provider.metaInfo(item_2)).thenReturn(new MetaInfo('node', '2'))
         when(item_2.value()).thenReturn("Item_2")
 
         Item item_3 = mock(Item)
         when(item_3.provider).thenReturn(provider)
-//        when(item_3.provider.metaInfo(item_3)).thenReturn(new MetaInfo('node', '3'))
 
         when(listBox.items()).thenReturn([item_1, item_2])
         when(listBox.contains(item_1)).thenReturn(true)

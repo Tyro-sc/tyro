@@ -9,7 +9,12 @@ import sc.tyro.core.Provider
 import sc.tyro.core.component.Component
 import sc.tyro.core.input.MouseModifiers
 import sc.tyro.web.internal.CachedMetaData
+import sc.tyro.web.internal.DomIdProvider
 
+/**
+ * @author Mathieu Carbou
+ * @since 1.0.0
+ */
 class SeleniumProvider implements Provider {
     private final WebDriver webDriver
     private final JavascriptExecutor js
@@ -21,14 +26,8 @@ class SeleniumProvider implements Provider {
     }
 
     @Override
-    MetaDataProvider getMetaDataProvider() {
-        new CachedMetaData()
-    }
-
-    @Override
     <T extends Component> T find(By by, Class<T> clazz) {
-//        new Component(new CachedMetaData(idProvider: new jQueryIdProvider(convertToExpression(by).expression, true)))
-        return null
+        new Component(metaDataProvider: new CachedMetaData(idProvider: new DomIdProvider(convertToExpression(by), true))).asType(clazz)
     }
 
     @Override
@@ -43,6 +42,11 @@ class SeleniumProvider implements Provider {
 
     @Override
     MetaInfo metaInfo(Component component) {
+        return null
+    }
+
+    @Override
+    List<MetaInfo> metaInfo(By.ByExpression expression) {
         return null
     }
 

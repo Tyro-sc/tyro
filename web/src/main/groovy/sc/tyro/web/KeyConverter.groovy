@@ -6,7 +6,8 @@ import sc.tyro.core.input.Key
 import static sc.tyro.core.input.Key.*
 
 /**
- * @author David Avenante (d.avenante@gmail.com)
+ * @author David Avenante
+ * @since 1.0.0
  */
 class KeyConverter {
     static Keys convert(Key key) {

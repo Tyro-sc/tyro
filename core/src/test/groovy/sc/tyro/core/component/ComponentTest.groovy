@@ -26,7 +26,6 @@ class ComponentTest {
     void before() {
         provider = mock(Provider)
         meta = mock(MetaDataProvider)
-        when(provider.metaDataProvider).thenReturn(meta)
     }
 
     @Test
@@ -59,10 +58,8 @@ class ComponentTest {
     @Test
     @DisplayName("Should implement toString() based on ClassName and Id")
     void implementToString() {
-        Component cmp = new Component()
-        MetaInfo metaInfo = mock(MetaInfo)
-        when(meta.metaInfo(any())).thenReturn(metaInfo)
-        when(metaInfo.id).thenReturn('1')
+        Component cmp = new Component(metaDataProvider: meta)
+        when(meta.metaInfo(any())).thenReturn(new MetaInfo(id: '1'))
 
         assert cmp.toString() == 'Component:1'
     }
@@ -70,9 +67,9 @@ class ComponentTest {
     @Test
     @DisplayName("Should be available")
     void available() {
-        Component cmp = new Component()
+        Component cmp = new Component(metaDataProvider: meta)
 
-        when(meta.metaInfo(cmp)).thenReturn(mock(MetaInfo))
+        when(meta.metaInfo(cmp)).thenReturn(new MetaInfo())
 
         assert cmp.available()
 
@@ -131,7 +128,7 @@ class ComponentTest {
 
         assert !cmp_1.is(cmp_2)
         // MetaDataProvider is passed to new Object
-        assert cmp_1.meta.is(cmp_2.meta)
+        assert cmp_1.metaDataProvider.is(cmp_2.metaDataProvider)
     }
 
     private class Widget extends Component {

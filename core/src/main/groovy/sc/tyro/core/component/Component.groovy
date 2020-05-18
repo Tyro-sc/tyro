@@ -11,10 +11,7 @@ import sc.tyro.core.support.Draggable
 import sc.tyro.core.support.MouseSupport
 
 import static java.util.Collections.unmodifiableCollection
-import static sc.tyro.core.input.MouseModifiers.DOUBLE
-import static sc.tyro.core.input.MouseModifiers.SINGLE
-import static sc.tyro.core.input.MouseModifiers.LEFT
-import static sc.tyro.core.input.MouseModifiers.RIGHT
+import static sc.tyro.core.input.MouseModifiers.*
 
 /**
  * @author David Avenante
@@ -22,15 +19,13 @@ import static sc.tyro.core.input.MouseModifiers.RIGHT
  */
 public class Component implements MouseSupport, Draggable {
     private final Queue<Matcher> BLOCKS = new LinkedList<>()
-    private Provider provider = Config.provider
-    MetaDataProvider meta
+    Provider provider = Config.provider
+    MetaDataProvider metaDataProvider
 
-    Component() {
-        meta = provider.metaDataProvider
-    }
+    Component() {}
 
     public String id() {
-        meta.metaInfo(this).id
+        metaDataProvider.metaInfo(this).id
     }
 
     public boolean enabled() {
@@ -39,7 +34,7 @@ public class Component implements MouseSupport, Draggable {
 
     public boolean available() {
         try {
-            meta.metaInfo(this)
+            metaDataProvider.metaInfo(this)
             return true
         } catch (ComponentException ignored) {
             return false
@@ -100,7 +95,7 @@ public class Component implements MouseSupport, Draggable {
     def asType(Class clazz) {
         if (Component.isAssignableFrom(clazz)) {
             Component c = (Component) clazz.newInstance()
-            c.meta = this.meta
+            c.metaDataProvider = this.metaDataProvider
             return c
         }
         // TODO: better to throw an Exception
@@ -123,8 +118,8 @@ public class Component implements MouseSupport, Draggable {
     void setProvider(Provider provider) {
         this.provider = provider
     }
-
-    Provider getProvider() {
-        provider
-    }
+//
+//    Provider getProvider() {
+//        provider
+//    }
 }
