@@ -1,7 +1,4 @@
 package sc.tyro.core
-
-import sc.tyro.core.component.Window
-
 /**
  * @author David Avenante
  * @since 1.0.0
@@ -13,7 +10,7 @@ class Browser {
         this.provider = provider
     }
 
-    void navigateTo(String url) { provider.navigateTo(url) }
+    void open(String url) { provider.open(url) }
 
     void back() { provider.back() }
 
@@ -21,17 +18,14 @@ class Browser {
 
     void refresh() { provider.refresh() }
 
-    String getTitle() { provider.title }
+    String getTitle() { provider.pageTitle }
 
     String getUrl() { provider.url }
-
-    //TODO: duplicate with NavigateTo ?
-    void open(String url) { provider.open(url) }
 
     List<Window> getWindows() {
         List<Window> windows = new ArrayList<>()
         provider.windowIds.each { String id ->
-            windows.add(new Window(id))
+            windows.add(new Window(id, provider))
         }
         return windows
     }

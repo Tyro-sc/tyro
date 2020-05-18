@@ -97,6 +97,7 @@ public class Component implements MouseSupport, Draggable {
             c.provider = this.provider
             return c
         }
+        // TODO: better to throw an Exception
         // Fallback to default
         return super.asType(clazz)
     }

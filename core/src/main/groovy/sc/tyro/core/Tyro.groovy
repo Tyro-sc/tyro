@@ -16,8 +16,6 @@ import sc.tyro.core.internal.Wait
 import sc.tyro.core.support.*
 import sc.tyro.core.support.property.InputSupport
 
-import java.util.concurrent.TimeoutException
-
 import static sc.tyro.core.Config.provider
 import static sc.tyro.core.input.Key.CTRL
 
@@ -32,6 +30,10 @@ class Tyro {
 
     static <T extends Component> List<T> $$(String expression, Class<T> clazz = Component) {
         provider.findAll(By.expression(expression), clazz)
+    }
+
+    static <T extends Component> List<T> findBy(Class<T> clazz = Component) {
+        provider.findBy(clazz)
     }
 
     static mouse = new Mouse()
@@ -213,7 +215,7 @@ class Tyro {
 
     static Panel panel(String title) { provider.find(By.title(title), Panel) }
 
-    static Link link(String text) { provider.find(By.text(text), Link)  }
+    static Link link(String text) { provider.find(By.text(text), Link) }
 
     static PasswordField passwordField(String label) { provider.find(By.label(label), PasswordField) }
 

@@ -6,6 +6,10 @@ import org.junit.jupiter.api.Test
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.*
 
+/**
+ * @author David Avenante
+ * @since 1.0.0
+ */
 @DisplayName("By Tests")
 class ByTest {
     @Test

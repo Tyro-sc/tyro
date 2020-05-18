@@ -12,7 +12,7 @@ import sc.tyro.core.Config
  * @since 1.0.0
  */
 class Wait {
-    private static final Logger logger = LoggerFactory.getLogger(Wait.class);
+    private static final Logger logger = LoggerFactory.getLogger(Wait.class)
 
     static void waitUntil(Closure c, Matcher what = null) {
         boolean success = false
@@ -42,7 +42,7 @@ class Wait {
                         .appendText('\n     but: ')
                 what.describeMismatch(c.delegate, description)
             }
-            throw new AssertionError(description.toString())
+            throw new AssertionError(new RuntimeException(description.toString()))
         }
     }
 }

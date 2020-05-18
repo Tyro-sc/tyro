@@ -19,12 +19,9 @@ class ContainMatcher extends StateMatcher<Component> {
     @Override
     protected boolean matchesSafely(Component container, Description mismatchDescription) {
         this.container = container
-        List<Component> ret = new ArrayList<>()
-        components.each {
-            if (!container.contains(it)) {
-                ret.add(it)
-            }
-        }
+        List<Component> ret = components.findAll({
+            !container.contains(it)
+        })
 
         mismatchDescription.appendText("does not contains expected component(s): ${ret.findAll { it }}")
         ret.empty

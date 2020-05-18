@@ -11,6 +11,10 @@ import static org.hamcrest.Matchers.is
 import static org.mockito.Mockito.*
 import static sc.tyro.core.Tyro.*
 
+/**
+ * @author David Avenante
+ * @since 1.0.0
+ */
 @DisplayName("Tyro base class Tests")
 class TyroTest {
     private Provider provider
@@ -35,6 +39,14 @@ class TyroTest {
         $$('expression', Button)
 
         verify(provider, times(1)).findAll(By.expression('expression'), Button)
+    }
+
+    @Test
+    @DisplayName("Should find all components by type")
+    void findByType() {
+        findBy(Button)
+
+        verify(provider, times(1)).findBy(Button)
     }
 
     @Test

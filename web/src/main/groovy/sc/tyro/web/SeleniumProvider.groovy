@@ -18,10 +18,6 @@ class SeleniumProvider implements Provider {
         this.js = (JavascriptExecutor) webDriver
     }
 
-    @Override
-    Component find(By by) {
-        return null
-    }
 
     @Override
     List findAll(Object By, Class clazz) {
@@ -29,7 +25,12 @@ class SeleniumProvider implements Provider {
     }
 
     @Override
-    <T extends Component> List<T> findByType(Class<T> clazz) {
+    def <T extends Component> T find(By by, Class<T> clazz) {
+        return null
+    }
+
+    @Override
+    <T extends Component> List<T> findBy(Class<T> clazz) {
         return null
     }
 
@@ -74,13 +75,18 @@ class SeleniumProvider implements Provider {
     }
 
     @Override
-    String getTitle() {
+    String getPageTitle() {
         return null
     }
 
     @Override
     String getUrl() {
         return null
+    }
+
+    @Override
+    void closeWindow(String id) {
+
     }
 
     @Override

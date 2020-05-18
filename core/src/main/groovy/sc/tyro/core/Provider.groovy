@@ -13,7 +13,7 @@ public interface Provider {
 
     def <T extends Component>  List<T> findAll(By, Class<T> clazz)
 
-    def <T extends Component> List<T> findByType(Class<T> clazz)
+    def <T extends Component> List<T> findBy(Class<T> clazz)
 
     MetaInfo metaInfo(Component component)
 
@@ -25,7 +25,14 @@ public interface Provider {
 
     void type(Collection<?> keys)
 
-    void navigateTo(String url)
+    boolean enabled(Component component)
+
+    boolean visible(Component component)
+
+    boolean contains(Component component)
+
+    // Navigation
+    void open(String url)
 
     void back()
 
@@ -33,21 +40,16 @@ public interface Provider {
 
     void refresh()
 
-    String getTitle()
+    String getPageTitle()
 
     String getUrl()
 
-    void open(String url)
+    // Windows
+    void closeWindow(String id)
 
-    String[] getWindowIds()
+    List<String> getWindowIds()
 
     void switchToWindow(String windowId)
-
-    boolean enabled(Component component)
-
-    boolean visible(Component component)
-
-    boolean contains(Component component)
 
     abstract String eval(String id, String expr)
 }

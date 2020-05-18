@@ -5,12 +5,14 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 import static org.hamcrest.MatcherAssert.assertThat
-import static org.hamcrest.Matchers.*
-import static org.mockito.Mockito.mock
-import static org.mockito.Mockito.times
-import static org.mockito.Mockito.verify
-import static org.mockito.Mockito.when
+import static org.hamcrest.Matchers.hasSize
+import static org.hamcrest.Matchers.is
+import static org.mockito.Mockito.*
 
+/**
+ * @author David Avenante
+ * @since 1.0.0
+ */
 @DisplayName("Browser Tests")
 class BrowserTest {
     private Provider provider
@@ -24,11 +26,11 @@ class BrowserTest {
     }
 
     @Test
-    @DisplayName("Should Navigate to an URL")
+    @DisplayName("Should Open an URL")
     void navigate() {
-        browser.navigateTo('http://shouldItestprivatemethods.com')
+        browser.open('http://shouldItestprivatemethods.com')
 
-        verify(provider, times(1)).navigateTo('http://shouldItestprivatemethods.com')
+        verify(provider, times(1)).open('http://shouldItestprivatemethods.com')
     }
 
     @Test
@@ -63,4 +65,29 @@ class BrowserTest {
         assertThat(browser.url, is('http://www.tyro.sc'))
     }
 
+    @Test
+    @DisplayName("Should get Title")
+    void getTitle() {
+        when(provider.pageTitle).thenReturn('Tyro Rocks')
+
+        assertThat(browser.title, is('Tyro Rocks'))
+    }
+
+    @Test
+    @DisplayName("Should get all windows")
+    void windows() {
+        when(provider.windowIds).thenReturn(List.of('id_1', 'id_2', 'id_3'))
+
+        assertThat(browser.windows, hasSize(3))
+    }
+
+    @Test
+    @DisplayName("Should switch to specific window")
+    void switchToWindow() {
+        Window window = new Window('id', provider)
+
+        browser.switchTo(window)
+
+        verify(provider, times(1)).switchToWindow('id')
+    }
 }

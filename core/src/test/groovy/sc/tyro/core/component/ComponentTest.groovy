@@ -3,22 +3,15 @@ package sc.tyro.core.component
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestTemplate
 import sc.tyro.core.ComponentException
 import sc.tyro.core.MetaInfo
 import sc.tyro.core.Provider
-import sc.tyro.core.input.DragBuilder
 import sc.tyro.core.support.Draggable
 import sc.tyro.core.support.MouseSupport
 
 import static org.mockito.ArgumentMatchers.any
-import static org.mockito.Mockito.mock
-import static org.mockito.Mockito.times
-import static org.mockito.Mockito.verify
-import static org.mockito.Mockito.when
+import static org.mockito.Mockito.*
 import static sc.tyro.core.Config.provider
-import static sc.tyro.core.input.MouseModifiers.LEFT
-import static sc.tyro.core.input.MouseModifiers.SINGLE
 
 /**
  * @author David Avenante
