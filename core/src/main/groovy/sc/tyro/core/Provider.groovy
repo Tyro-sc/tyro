@@ -9,6 +9,8 @@ import sc.tyro.core.input.MouseModifiers
  * @since 1.0.0
  */
 public interface Provider {
+    MetaDataProvider getMetaDataProvider()
+
     def <T extends Component> T find(By by, Class<T> clazz)
 
     def <T extends Component>  List<T> findAll(By, Class<T> clazz)

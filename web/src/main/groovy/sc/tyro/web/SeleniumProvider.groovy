@@ -3,10 +3,12 @@ package sc.tyro.web
 import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.WebDriver
 import sc.tyro.core.By
+import sc.tyro.core.MetaDataProvider
 import sc.tyro.core.MetaInfo
 import sc.tyro.core.Provider
 import sc.tyro.core.component.Component
 import sc.tyro.core.input.MouseModifiers
+import sc.tyro.web.internal.CachedMetaData
 
 class SeleniumProvider implements Provider {
     private final WebDriver webDriver
@@ -18,19 +20,24 @@ class SeleniumProvider implements Provider {
         this.js = (JavascriptExecutor) webDriver
     }
 
-
     @Override
-    List findAll(Object By, Class clazz) {
-        return null
+    MetaDataProvider getMetaDataProvider() {
+        new CachedMetaData()
     }
 
     @Override
-    def <T extends Component> T find(By by, Class<T> clazz) {
+    <T extends Component> T find(By by, Class<T> clazz) {
+//        new Component(new CachedMetaData(idProvider: new jQueryIdProvider(convertToExpression(by).expression, true)))
         return null
     }
 
     @Override
     <T extends Component> List<T> findBy(Class<T> clazz) {
+        return null
+    }
+
+    @Override
+    List findAll(Object By, Class clazz) {
         return null
     }
 
@@ -95,8 +102,8 @@ class SeleniumProvider implements Provider {
     }
 
     @Override
-    String[] getWindowIds() {
-        return new String[0]
+    List getWindowIds() {
+        return List.of()
     }
 
     @Override
@@ -122,5 +129,16 @@ class SeleniumProvider implements Provider {
     @Override
     String eval(String id, String expr) {
         return null
+    }
+
+    By.ByExpression convertToExpression(By by) {
+        switch (by.class) {
+            case By.ByExpression:
+                return by as By.ByExpression
+            default:
+                throw new RuntimeException("Invalid By.xxx")
+        }
+
+
     }
 }

@@ -7,13 +7,13 @@ import org.junit.jupiter.api.extension.ExtendWith
 import org.openqa.selenium.By
 import sc.tyro.web.TyroTestExtension
 
-import static sc.tyro.core.Tyro.*
+import static sc.tyro.core.Tyro.$
+import static sc.tyro.core.Tyro.visit
 
 /**
  * @author David Avenante
  * @since 1.0.0
  */
-
 @ExtendWith(TyroTestExtension)
 @DisplayName("Test core implementation with Html5 components ")
 class ComponentsTest {

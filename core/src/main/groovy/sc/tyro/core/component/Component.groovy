@@ -3,6 +3,7 @@ package sc.tyro.core.component
 import org.hamcrest.Matcher
 import sc.tyro.core.ComponentException
 import sc.tyro.core.Config
+import sc.tyro.core.MetaDataProvider
 import sc.tyro.core.Provider
 import sc.tyro.core.input.DragBuilder
 import sc.tyro.core.input.MouseModifiers
@@ -22,9 +23,14 @@ import static sc.tyro.core.input.MouseModifiers.RIGHT
 public class Component implements MouseSupport, Draggable {
     private final Queue<Matcher> BLOCKS = new LinkedList<>()
     private Provider provider = Config.provider
+    MetaDataProvider meta
+
+    Component() {
+        meta = provider.metaDataProvider
+    }
 
     public String id() {
-        provider.metaInfo(this).id
+        meta.metaInfo(this).id
     }
 
     public boolean enabled() {
@@ -33,7 +39,7 @@ public class Component implements MouseSupport, Draggable {
 
     public boolean available() {
         try {
-            provider.metaInfo(this)
+            meta.metaInfo(this)
             return true
         } catch (ComponentException ignored) {
             return false
@@ -88,13 +94,13 @@ public class Component implements MouseSupport, Draggable {
 
     @Override
     public String toString() {
-        getClass().simpleName + ":${this.id()}"
+        getClass().simpleName + ":${id()}"
     }
 
     def asType(Class clazz) {
         if (Component.isAssignableFrom(clazz)) {
             Component c = (Component) clazz.newInstance()
-            c.provider = this.provider
+            c.meta = this.meta
             return c
         }
         // TODO: better to throw an Exception

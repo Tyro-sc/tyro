@@ -29,7 +29,7 @@ class MouseTest {
     @BeforeEach
     void setUp() {
         provider = mock(Provider)
-        when(provider.metaInfo(any())).thenReturn(new MetaInfo('node', '1'))
+//        when(provider.metaInfo(any())).thenReturn(new MetaInfo('node', '1'))
 
         cmp = new Component()
     }

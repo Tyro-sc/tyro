@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import sc.tyro.core.ComponentException
+import sc.tyro.core.MetaDataProvider
 import sc.tyro.core.MetaInfo
 import sc.tyro.core.Provider
 import sc.tyro.core.support.Draggable
@@ -19,9 +20,13 @@ import static sc.tyro.core.Config.provider
  */
 @DisplayName("Component Tests")
 class ComponentTest {
+    private MetaDataProvider meta
+
     @BeforeEach
     void before() {
         provider = mock(Provider)
+        meta = mock(MetaDataProvider)
+        when(provider.metaDataProvider).thenReturn(meta)
     }
 
     @Test
@@ -35,49 +40,43 @@ class ComponentTest {
     @DisplayName("Should have identity on Id")
     void identity() {
         Component cmp_1 = new Component()
+        cmp_1.metaClass.id = { '1' }
         Component cmp_2 = new Component()
+        cmp_2.metaClass.id = { '2' }
         Component cmp_3 = new Component()
-        Component cmp_4 = new Button() {
-            @Override
-            String text() {
-                return "Button"
-            }
-        }
+        cmp_3.metaClass.id = { '1' }
 
-        when(provider.metaInfo(any(Component)))
-                .thenReturn(new MetaInfo(id: '1'))
-                .thenReturn(new MetaInfo(id: '2'))
-                .thenReturn(new MetaInfo(id: '1'))
-                .thenReturn(new MetaInfo(id: '1'))
+        Widget cmp_4 = new Widget()
+        cmp_4.metaClass.id = { '1' }
 
         assert cmp_1 != cmp_2 // Same class not same id
         assert cmp_1 == cmp_3  // Same class and same id
         assert cmp_1 != cmp_4  // Different class and same id
 
-        assert cmp_1.hashCode() == cmp_1.id().hashCode() // hashCode is based on id
+        assert cmp_1.hashCode() == '1'.hashCode() // hashCode is based on id
     }
 
     @Test
     @DisplayName("Should implement toString() based on ClassName and Id")
     void implementToString() {
-        Component cmp_1 = new Component()
+        Component cmp = new Component()
+        MetaInfo metaInfo = mock(MetaInfo)
+        when(meta.metaInfo(any())).thenReturn(metaInfo)
+        when(metaInfo.id).thenReturn('1')
 
-        when(provider.metaInfo(cmp_1)).thenReturn(new MetaInfo(id: '1'))
-
-        assert cmp_1.toString() == 'Component:1'
+        assert cmp.toString() == 'Component:1'
     }
 
     @Test
     @DisplayName("Should be available")
     void available() {
         Component cmp = new Component()
-        cmp.provider = provider
 
-        when(provider.metaInfo(cmp)).thenReturn(new MetaInfo('node', '1'))
+        when(meta.metaInfo(cmp)).thenReturn(mock(MetaInfo))
 
         assert cmp.available()
 
-        when(provider.metaInfo(cmp)).thenThrow(new ComponentException(""))
+        when(meta.metaInfo(cmp)).thenThrow(new ComponentException(""))
 
         assert !cmp.available()
     }
@@ -85,21 +84,21 @@ class ComponentTest {
     @Test
     @DisplayName("Should implements state: enabled")
     void enabled() {
-        Component cmp_1 = new Component()
+        Component cmp = new Component()
 
-        when(provider.enabled(cmp_1)).thenReturn(false)
+        when(provider.enabled(cmp)).thenReturn(false)
 
-        assert !cmp_1.enabled()
+        assert !cmp.enabled()
     }
 
     @Test
     @DisplayName("Should implements state: visible")
     void visible() {
-        Component cmp_1 = new Component()
+        Component cmp = new Component()
 
-        when(provider.visible(cmp_1)).thenReturn(true)
+        when(provider.visible(cmp)).thenReturn(true)
 
-        assert cmp_1.visible()
+        assert cmp.visible()
     }
 
     @Test
@@ -117,7 +116,6 @@ class ComponentTest {
     @DisplayName("Should be draggable")
     void draggable() {
         Component cmp_1 = new Component()
-        cmp_1.provider = provider
         Component cmp_2 = new Component()
 
         cmp_1.drag().on(cmp_2)
@@ -129,12 +127,17 @@ class ComponentTest {
     @DisplayName("Should support type coercion")
     void coercion() {
         Component cmp_1 = new Widget()
-
         Widget cmp_2 = cmp_1 as Widget
+
         assert !cmp_1.is(cmp_2)
-        // Provider is passed to new Object
-        assert cmp_1.provider.is(cmp_2.provider)
+        // MetaDataProvider is passed to new Object
+        assert cmp_1.meta.is(cmp_2.meta)
     }
 
-    private class Widget extends Component {}
+    private class Widget extends Component {
+        @Override
+        String toString() {
+            return 'widget:' + this.id()
+        }
+    }
 }

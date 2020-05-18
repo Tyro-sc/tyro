@@ -2,6 +2,8 @@ package sc.tyro.dsl
 
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import sc.tyro.core.Config
+import sc.tyro.core.MetaDataProvider
 import sc.tyro.core.MetaInfo
 import sc.tyro.core.Provider
 import sc.tyro.core.component.CheckBox
@@ -24,7 +26,7 @@ class StateTest {
     @Test
     @DisplayName("Should support Component default states: available, enabled, visible, missing, disabled and hidden")
     void should_support_available_enabled_visible() {
-        Component cmp = spy(Component)
+        Component cmp = spy(new Component())
 
         doReturn(true).when(cmp).available()
         doReturn(true).when(cmp).enabled()
@@ -197,18 +199,19 @@ class StateTest {
     @Test
     @DisplayName("Should support contains")
     void should_support_contain() {
-        Component cmp_1 = new Component()
-        cmp_1.provider = mock(Provider)
-        Component cmp_2 = new Component()
-        cmp_2.provider = mock(Provider)
-        Component cmp_3 = new Component()
-        cmp_3.provider = mock(Provider)
+        Config.provider = mock(Provider)
+        MetaDataProvider meta = mock(MetaDataProvider)
+        when(Config.provider.metaDataProvider).thenReturn(meta)
 
-        when(cmp_1.provider.metaInfo(cmp_1)).thenReturn(new MetaInfo('node', '1'))
-        when(cmp_2.provider.metaInfo(cmp_2)).thenReturn(new MetaInfo('node', '2'))
-        when(cmp_3.provider.metaInfo(cmp_3)).thenReturn(new MetaInfo('node', '3'))
+        Component cmp_1 = spy(new Component())
+        doReturn('1').when(cmp_1).id()
+        Component cmp_2 = spy(new Component())
+        doReturn('2').when(cmp_2).id()
+        Component cmp_3 = spy(new Component())
+        doReturn('3').when(cmp_3).id()
 
         when(cmp_1.provider.contains(cmp_2)).thenReturn(true)
+        when(cmp_1.provider.contains(cmp_3)).thenReturn(false)
 
         cmp_1.should { contain cmp_2 }
 
