@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import org.openqa.selenium.By
 import sc.tyro.web.TyroWebTestExtension
 
 import static sc.tyro.core.Tyro.$
@@ -31,14 +30,14 @@ class ComponentsTest {
         assert button.available()
         assert button.enabled()
         assert button.visible()
-//
-//        button = $('#submit') as Button
-//        assert !button.enabled()
-//
-//        Div panel = $('#hidden_panel') as Div
-//        assert !panel.visible()
-//
-//        panel = $('#non_existing_id') as Div
-//        assert !panel.available()
+
+        button = $('#submit') as Button
+        assert !button.enabled()
+
+        Div panel = $('#hidden_panel') as Div
+        assert !panel.visible()
+
+        panel = $('#non_existing_id') as Div
+        assert !panel.available()
     }
 }
