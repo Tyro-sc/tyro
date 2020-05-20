@@ -15,8 +15,6 @@ public interface Provider {
 
     def <T extends Component> List<T> findBy(Class<T> clazz)
 
-    MetaInfo metaInfo(Component component)
-
     List<MetaInfo> metaInfo(By.ByExpression expression)
 
     void click(Component component, Collection<MouseModifiers> click, Collection<?> keys)
@@ -53,5 +51,9 @@ public interface Provider {
 
     void switchToWindow(String windowId)
 
-    abstract String eval(String id, String expr)
+    String eval(String id, String expr)
+
+    Boolean check(String id, String expr)
+
+    def <T> T getJson(String expression)
 }

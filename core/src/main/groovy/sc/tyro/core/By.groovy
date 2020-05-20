@@ -1,27 +1,27 @@
 package sc.tyro.core
 
 public abstract class By {
-    public static By id(String id) {
+    public static ById id(String id) {
         new ById(id)
     }
 
-    public static By expression(String expression) {
+    public static ByExpression expression(String expression) {
         new ByExpression(expression)
     }
 
-    public static By value(String value) {
+    public static ByValue value(String value) {
         new ByValue(value);
     }
 
-    public static By text(String text) {
+    public static ByText text(String text) {
         new ByText(text);
     }
 
-    public static By label(String label) {
+    public static ByLabel label(String label) {
         new ByLabel(label)
     }
 
-    public static By title(String title) {
+    public static ByTitle title(String title) {
         new ByTitle(title)
     }
 

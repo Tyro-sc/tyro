@@ -29,7 +29,7 @@
         <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
 
         <groovy.version>2.5.11</groovy.version>
-        <classgraph.version>4.8.59</classgraph.version>
+        <classgraph.version>4.8.78</classgraph.version>
         <guava.version>27.1-jre</guava.version>
         <slf4j.version>1.7.30</slf4j.version>
 

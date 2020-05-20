@@ -28,6 +28,4 @@ class Config {
                 .collect { it.load() }
                 .findAll { Component.isAssignableFrom(it) && identifiers.hasIdentifier(it) })
     }
-
-
 }

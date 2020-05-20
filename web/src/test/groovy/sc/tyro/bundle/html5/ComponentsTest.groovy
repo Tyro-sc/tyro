@@ -28,18 +28,17 @@ class ComponentsTest {
 
         Button button = $('#button') as Button
 
-        assert button.enabled()
         assert button.available()
+        assert button.enabled()
         assert button.visible()
-
-        button = $('#submit') as Button
-        assert !button.enabled()
-
-        Div panel = $('#hidden_panel') as Div
-        assert !panel.visible()
-
-        panel = $('#non_existing_id') as Div
-        assert !panel.available()
-        By
+//
+//        button = $('#submit') as Button
+//        assert !button.enabled()
+//
+//        Div panel = $('#hidden_panel') as Div
+//        assert !panel.visible()
+//
+//        panel = $('#non_existing_id') as Div
+//        assert !panel.available()
     }
 }

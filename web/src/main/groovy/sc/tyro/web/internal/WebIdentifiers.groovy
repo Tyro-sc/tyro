@@ -1,13 +1,11 @@
 package sc.tyro.web.internal
 
-import io.github.classgraph.ClassGraph
-import io.github.classgraph.ScanResult
+
 import sc.tyro.core.ComponentException
-import sc.tyro.core.Config
 import sc.tyro.core.Identifiers
 import sc.tyro.core.component.Component
 import sc.tyro.web.CssIdentifier
-import sc.tyro.web.Identifier
+import sc.tyro.core.Identifier
 
 import java.lang.annotation.Annotation
 

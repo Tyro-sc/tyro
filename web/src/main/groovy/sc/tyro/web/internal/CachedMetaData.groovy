@@ -8,6 +8,7 @@ import sc.tyro.web.IdProvider
 
 import static sc.tyro.core.Config.componentTypes
 import static sc.tyro.core.Config.provider
+import static sc.tyro.web.internal.WebIdentifiers.*
 
 /**
  * @author Mathieu Carbou
@@ -22,10 +23,10 @@ class CachedMetaData implements MetaDataProvider {
         if (!metaInfo) {
             MetaInfo info = idProvider.metaInfos()[0]
             if (c.class != Component) {
-                String identifyingExpr = WebIdentifiers.identifyingExpression(c.class)
-                if (!(provider.check(info.id, identifyingExpr))) {
+                String identifyingExpr = identifyingExpression(c.class)
+                if (!provider.check(info.id, identifyingExpr)) {
                     Class<Component> type = componentTypes.find {
-                        provider.check(info.id, WebIdentifiers.identifyingExpression(it))
+                        provider.check(info.id, identifyingExpression(it))
                     }
                     throw new ComponentException("Expected a ${c.class.simpleName} for component with id '${info.id}', but was: ${type?.simpleName ?: 'unknown'}")
                 }

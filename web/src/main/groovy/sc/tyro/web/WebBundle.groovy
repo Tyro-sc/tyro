@@ -9,6 +9,5 @@ class WebBundle {
         Config.provider = new SeleniumProvider(webDriver)
         Config.identifiers = new WebIdentifiers()
         Config.scan("sc.tyro.bundle")
-        printf "test"
     }
 }

@@ -1,5 +1,7 @@
 package sc.tyro.web
 
+import sc.tyro.core.Identifier
+
 import java.lang.annotation.*
 
 /**

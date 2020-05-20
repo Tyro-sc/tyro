@@ -1,4 +1,4 @@
-package sc.tyro.web
+package sc.tyro.core
 
 import java.lang.annotation.ElementType
 import java.lang.annotation.Retention

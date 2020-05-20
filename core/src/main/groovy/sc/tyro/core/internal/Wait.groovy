@@ -12,14 +12,14 @@ import sc.tyro.core.Config
  * @since 1.0.0
  */
 class Wait {
-    private static final Logger logger = LoggerFactory.getLogger(Wait.class)
+    private static final Logger LOGGER = LoggerFactory.getLogger(Wait)
 
     static void waitUntil(Closure c, Matcher what = null) {
         boolean success = false
         long timeout = Config.waitUntil.toMillis()
         long interval = 200
 
-        logger.info("WaitUntil: " + timeout)
+        LOGGER.debug("WaitUntil: " + timeout)
         for (; timeout > 0; timeout -= interval) {
             try {
                 if (what ? what.matches(c.delegate) : c()) {
@@ -27,8 +27,8 @@ class Wait {
                     break
                 }
             } catch (e) {
-                logger.info('Matcher evaluation fail with this exception : ' + e.message)
-                logger.info('Retrying...')
+                LOGGER.debug('Matcher evaluation fail with this exception : ' + e.message)
+                LOGGER.debug('Retrying...')
             }
             Thread.sleep(interval)
         }
