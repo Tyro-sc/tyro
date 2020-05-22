@@ -14,7 +14,7 @@ import sc.tyro.web.CssIdentifier
 class Form extends sc.tyro.core.component.Form {
     @Override
     void reset() {
-        Button reset_button = provider.find(By.expression('[type=reset]:first'), Button)
+        Button reset_button = provider.find(By.expression('#' + id() + ' input[type=reset]:first'), Button)
         if (reset_button && reset_button.available())
             reset_button.click()
         else

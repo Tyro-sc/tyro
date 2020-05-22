@@ -115,7 +115,18 @@ class SeleniumProvider implements Provider {
 
     @Override
     void type(Collection<?> keys) {
-
+        Actions action = new Actions(webDriver)
+        Collection<Key> modifiers = []
+        Collection<String> text = []
+        keys.each { k ->
+            if (k instanceof Key && text) throw new IllegalArgumentException('Cannot type a modifier after some text')
+            if (k instanceof Key && k in [Key.SHIFT, Key.CTRL, Key.ALT]) modifiers << k
+            else text << k as String
+        }
+        modifiers.each { action.keyDown(KeyConverter.convert(it)) }
+        text.each { it instanceof Key ? action.sendKeys(KeyConverter.convert(it)) : action.sendKeys(it) }
+        modifiers.each { action.keyUp(KeyConverter.convert(it)) }
+        action.build().perform()
     }
 
     @Override
@@ -273,7 +284,7 @@ class SeleniumProvider implements Provider {
         List<T> list() {
             if (components == null) {
                 components = meta.metaInfos().collect {
-                    new Component(metaDataProvider: new CachedMetaData(idProvider: new DomIdProvider(By.expression("[id='${it.id}']"), false))).asType(type)
+                    new Component(metaDataProvider: new CachedMetaData(idProvider: new DomIdProvider(By.expression('[id="' + it.id + '"]'), false))).asType(type)
                 } as List<T>
             }
             return Collections.unmodifiableList(components)
