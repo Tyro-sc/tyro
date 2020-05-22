@@ -4,7 +4,8 @@ import sc.tyro.core.component.Link
 import sc.tyro.web.CssIdentifier
 
 /**
- * @author David Avenante (d.avenante@gmail.com)
+ * @author David Avenante
+ * @since 1.0.0
  */
 @CssIdentifier('a')
 class A extends Link {

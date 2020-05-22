@@ -19,8 +19,8 @@ import static sc.tyro.core.input.MouseModifiers.*
  */
 public class Component implements MouseSupport, Draggable {
     private final Queue<Matcher> BLOCKS = new LinkedList<>()
-    Provider provider = Config.provider
-    MetaDataProvider metaDataProvider
+    protected Provider provider = Config.provider
+    protected MetaDataProvider metaDataProvider
 
     Component() {}
 

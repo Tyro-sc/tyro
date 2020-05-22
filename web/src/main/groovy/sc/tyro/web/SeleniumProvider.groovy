@@ -3,15 +3,23 @@ package sc.tyro.web
 import groovy.json.JsonSlurper
 import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.WebDriver
+import org.openqa.selenium.WebElement
+import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.interactions.Actions
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import sc.tyro.core.By
+import sc.tyro.core.MetaDataProvider
 import sc.tyro.core.MetaInfo
 import sc.tyro.core.Provider
 import sc.tyro.core.component.Component
+import sc.tyro.core.input.Key
 import sc.tyro.core.input.MouseModifiers
 import sc.tyro.web.internal.CachedMetaData
 import sc.tyro.web.internal.DomIdProvider
+
+import static sc.tyro.core.input.MouseModifiers.*
+import static sc.tyro.web.KeyConverter.convert
 
 /**
  * @author Mathieu Carbou
@@ -40,8 +48,9 @@ class SeleniumProvider implements Provider {
     }
 
     @Override
-    List findAll(Object By, Class clazz) {
-        return null
+    List findAll(By by, Class clazz) {
+        Components components = new Components(clazz, new CachedMetaData(idProvider: new DomIdProvider(convertToExpression(by), false)))
+        components.list()
     }
 
     @Override
@@ -56,18 +65,52 @@ class SeleniumProvider implements Provider {
     }
 
     @Override
-    void click(Component component, Collection<MouseModifiers> click, Collection<?> keys) {
+    void click(Component component, Collection<MouseModifiers> mouseModifiers, Collection<?> keys) {
+        WebElement element = webDriver.findElement(org.openqa.selenium.By.id(component.id()))
+        if (webDriver instanceof FirefoxDriver) {
+//            https://github.com/mozilla/geckodriver/issues/776
+            runScript("document.getElementById('${component.id()}').scrollIntoView(true)")
+        } else {
+            new Actions(webDriver).moveToElement(element).build().perform()
+        }
 
+        // Temporary hack until Selenium fix
+        if (optionInDropdown(component.id())) {
+            element.click()
+            return
+        }
+
+        Actions action = new Actions(webDriver)
+        Collection<Key> modifiers = []
+        Collection<String> text = []
+        keys.each { k ->
+            if (k instanceof Key && text) throw new IllegalArgumentException('Cannot type a modifier after some text')
+            if (k instanceof Key && k in [Key.SHIFT, Key.CTRL, Key.ALT]) modifiers << k
+            else text << k as String
+        }
+        modifiers.each { action.keyDown(convert(it)) }
+        text.each { it instanceof Key ? action.sendKeys(convert(it)) : action.sendKeys(it) }
+        if (mouseModifiers == [LEFT, SINGLE]) {
+            action.click(element)
+        } else if (mouseModifiers == [RIGHT, SINGLE]) {
+            action.contextClick(element)
+        } else if (mouseModifiers == [LEFT, DOUBLE]) {
+            action.doubleClick(element)
+        } else {
+            throw new IllegalArgumentException('Invalid click sequence')
+        }
+        modifiers.each { action.keyUp(convert(it)) }
+        action.perform()
     }
 
     @Override
     void mouseOver(Component component) {
-
+        new Actions(webDriver).moveToElement(webDriver.findElement(org.openqa.selenium.By.id(component.id()))).build().perform()
     }
 
     @Override
     void dragAndDrop(Component from, Component to) {
-
+        new Actions(webDriver).dragAndDrop(webDriver.findElement(org.openqa.selenium.By.id(from.id())), webDriver.findElement(org.openqa.selenium.By.id(to.id()))).perform()
     }
 
     @Override
@@ -77,32 +120,32 @@ class SeleniumProvider implements Provider {
 
     @Override
     void back() {
-
+        webDriver.navigate().back()
     }
 
     @Override
     void forward() {
-
+        webDriver.navigate().forward()
     }
 
     @Override
     void refresh() {
-
+        webDriver.navigate().refresh()
     }
 
     @Override
     String getPageTitle() {
-        return null
+        webDriver.title
     }
 
     @Override
     String getUrl() {
-        return null
+        webDriver.currentUrl
     }
 
     @Override
     void closeWindow(String id) {
-
+        webDriver.windowHandles
     }
 
     @Override
@@ -148,6 +191,16 @@ class SeleniumProvider implements Provider {
     @Override
     <T> T getJson(String expression) {
         eval(null, "JSON.stringify(${removeTrailingChars(expression)})")?.with { new JsonSlurper().parseText(it) as T }
+    }
+
+    @Override
+    void runScript(String script) {
+
+    }
+
+    @Override
+    void registerScripts(String... scripts) {
+
     }
 
     private static By.ByExpression convertToExpression(By by) {
@@ -201,5 +254,29 @@ class SeleniumProvider implements Provider {
     private static String removeTrailingChars(String expr) {
         expr = expr.trim()
         expr.endsWith(';') ? expr.substring(0, expr.length() - 1) : expr
+    }
+
+    private boolean optionInDropdown(String id) {
+        return check(id, "it.prop('tagName').toLowerCase() === 'option' && !it.closest('select').prop('multiple')")
+    }
+
+    static class Components<T extends Component> {
+        private final MetaDataProvider meta
+        private final Class<T> type
+        private List<T> components
+
+        Components(Class<T> type, MetaDataProvider meta) {
+            this.meta = meta
+            this.type = type
+        }
+
+        List<T> list() {
+            if (components == null) {
+                components = meta.metaInfos().collect {
+                    new Component(metaDataProvider: new CachedMetaData(idProvider: new DomIdProvider(By.expression("[id='${it.id}']"), false))).asType(type)
+                } as List<T>
+            }
+            return Collections.unmodifiableList(components)
+        }
     }
 }

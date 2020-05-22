@@ -11,13 +11,13 @@ import sc.tyro.core.input.MouseModifiers
 public interface Provider {
     def <T extends Component> T find(By by, Class<T> clazz)
 
-    def <T extends Component>  List<T> findAll(By, Class<T> clazz)
+    def <T extends Component>  List<T> findAll(By by, Class<T> clazz)
 
     def <T extends Component> List<T> findBy(Class<T> clazz)
 
     List<MetaInfo> metaInfo(By.ByExpression expression)
 
-    void click(Component component, Collection<MouseModifiers> click, Collection<?> keys)
+    void click(Component component, Collection<MouseModifiers> mouseModifiers, Collection<?> keys)
 
     void mouseOver(Component component)
 
@@ -51,9 +51,14 @@ public interface Provider {
 
     void switchToWindow(String windowId)
 
+    // Execution
     String eval(String id, String expr)
 
     Boolean check(String id, String expr)
 
     def <T> T getJson(String expression)
+
+    void runScript(String script)
+
+    void registerScripts(String... scripts)
 }

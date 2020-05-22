@@ -32,6 +32,7 @@ public abstract class By {
             this.id = id
         }
 
+        @Override
         boolean equals(o) {
             if (this.is(o)) return true
             if (getClass() != o.class) return false
@@ -40,8 +41,14 @@ public abstract class By {
             id == byId.id
         }
 
+        @Override
         int hashCode() {
             return id.hashCode()
+        }
+
+        @Override
+        String toString() {
+            return 'id: ' + id
         }
     }
 
@@ -52,6 +59,7 @@ public abstract class By {
             this.expression = expression
         }
 
+        @Override
         boolean equals(o) {
             if (this.is(o)) return true
             if (getClass() != o.class) return false
@@ -60,8 +68,14 @@ public abstract class By {
             expression == that.expression
         }
 
+        @Override
         int hashCode() {
             return expression.hashCode()
+        }
+
+        @Override
+        String toString() {
+            return 'expression: ' + expression
         }
     }
 
@@ -72,6 +86,7 @@ public abstract class By {
             this.value = value;
         }
 
+        @Override
         boolean equals(o) {
             if (this.is(o)) return true
             if (getClass() != o.class) return false
@@ -80,8 +95,14 @@ public abstract class By {
             value == byValue.value
         }
 
+        @Override
         int hashCode() {
             return value.hashCode()
+        }
+
+        @Override
+        String toString() {
+            return 'value: ' + value
         }
     }
 
@@ -92,6 +113,7 @@ public abstract class By {
             this.text = text;
         }
 
+        @Override
         boolean equals(o) {
             if (this.is(o)) return true
             if (getClass() != o.class) return false
@@ -100,8 +122,14 @@ public abstract class By {
             text == byText.text
         }
 
+        @Override
         int hashCode() {
             return text.hashCode()
+        }
+
+        @Override
+        String toString() {
+            return 'text: ' + text
         }
     }
 
@@ -109,9 +137,10 @@ public abstract class By {
         public String label
 
         ByLabel(String label) {
-            this.label = label;
+            this.label = label
         }
 
+        @Override
         boolean equals(o) {
             if (this.is(o)) return true
             if (getClass() != o.class) return false
@@ -120,8 +149,14 @@ public abstract class By {
             label == byLabel.label
         }
 
+        @Override
         int hashCode() {
             return label.hashCode()
+        }
+
+        @Override
+        String toString() {
+            return 'label: ' + label
         }
     }
 
@@ -132,6 +167,7 @@ public abstract class By {
             this.title = title;
         }
 
+        @Override
         boolean equals(o) {
             if (this.is(o)) return true
             if (getClass() != o.class) return false
@@ -140,8 +176,14 @@ public abstract class By {
             title == byTitle.title
         }
 
+        @Override
         int hashCode() {
             return title.hashCode()
+        }
+
+        @Override
+        String toString() {
+            return 'title: ' + title
         }
     }
 }
