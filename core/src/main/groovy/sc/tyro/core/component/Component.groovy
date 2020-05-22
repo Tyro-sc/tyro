@@ -87,10 +87,10 @@ public class Component implements MouseSupport, Draggable {
         id().hashCode()
     }
 
-    @Override
-    public String toString() {
-        getClass().simpleName + ":${id()}"
-    }
+//    @Override
+//    public String toString() {
+//        getClass().simpleName + ":${id()}"
+//    }
 
     def asType(Class clazz) {
         if (Component.isAssignableFrom(clazz)) {
