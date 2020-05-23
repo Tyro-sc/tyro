@@ -10,7 +10,7 @@ import sc.tyro.core.support.state.RequiredSupport
  * @since 1.0.0
  */
 public interface InputSupport extends Clearable, EmptySupport, ReadOnlySupport, RequiredSupport {
-    String placeholder()
+    public String placeholder()
 
-    void value(Object value)
+    public void value(Object value)
 }

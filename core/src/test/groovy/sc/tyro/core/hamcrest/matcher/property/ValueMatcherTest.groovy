@@ -26,10 +26,7 @@ class ValueMatcherTest {
 
         assertThat(cmp, has(value('MyValue')))
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, has(value('OtherValue')))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(value('OtherValue'))) })
         assertThat(error.message, is('\nExpected: has value "OtherValue"\n     but: has value "MyValue"'))
     }
 }

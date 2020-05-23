@@ -7,5 +7,5 @@ import sc.tyro.core.component.Item
  * @since 1.0.0
  */
 public interface SelectedItemSupport {
-    Item selectedItem()
+    public Item selectedItem()
 }

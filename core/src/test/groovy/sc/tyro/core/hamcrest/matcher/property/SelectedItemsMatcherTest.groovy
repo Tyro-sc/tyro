@@ -33,10 +33,7 @@ class SelectedItemsMatcherTest {
         assertThat(cmp, has(selectedItems('selected_value_1', 'selected_value_2')))
         assertThat(cmp, has(selectedItems(itemSelected_1, itemSelected_1)))
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, has(selectedItems('no_selected_item_1', 'no_selected_item_2')))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(selectedItems('no_selected_item_1', 'no_selected_item_2'))) })
         assertThat(error.message, is('\nExpected: has selected item(s) ["no_selected_item_1", "no_selected_item_2"]\n     but: has selected item(s) ["selected_value_1", "selected_value_2"]'))
 
         Item item_1 = mock(Item)
@@ -44,10 +41,7 @@ class SelectedItemsMatcherTest {
         when(item_1.value()).thenReturn('no_selected_item_1')
         when(item_2.value()).thenReturn('no_selected_item_2')
 
-        error = assertThrows(AssertionError, {
-            assertThat(cmp, has(selectedItems(item_1, item_2)))
-        }) as AssertionError
-
+        error = assertThrows(AssertionError, { assertThat(cmp, has(selectedItems(item_1, item_2))) })
         assertThat(error.message, is('\nExpected: has selected item(s) ["no_selected_item_1", "no_selected_item_2"]\n     but: has selected item(s) ["selected_value_1", "selected_value_2"]'))
     }
 }

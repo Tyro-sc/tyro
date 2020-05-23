@@ -39,7 +39,7 @@ class SeleniumProvider implements Provider {
 
     @Override
     <T extends Component> T find(By by, Class<T> clazz) {
-        new Component(metaDataProvider: new CachedMetaData(idProvider: new DomIdProvider(convertToExpression(by), true))).asType(clazz)
+        (T) new Component(this, new CachedMetaData(idProvider: new DomIdProvider(convertToExpression(by), true)))
     }
 
     @Override

@@ -35,10 +35,7 @@ class ContainMatcherTest {
 
         when(container.contains(cmp_2)).thenReturn(false)
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(container, contain(cmp_1, cmp_2))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(container, contain(cmp_1, cmp_2)) })
         assertThat(error.message, is('\nExpected: Component Component:container contains [Component:1, Component:2]\n     but: does not contains expected component(s): [Component:2]'))
     }
 }

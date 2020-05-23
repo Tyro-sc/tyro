@@ -5,5 +5,5 @@ package sc.tyro.core.support
  * @since 1.0.0
  */
 public interface Submissible {
-    void submit()
+    public void submit()
 }

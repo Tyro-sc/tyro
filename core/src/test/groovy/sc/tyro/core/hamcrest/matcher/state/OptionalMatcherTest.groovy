@@ -27,10 +27,7 @@ class OptionalMatcherTest {
 
         when(cmp.required()).thenReturn(true)
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, is(optional()))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, is(optional())) })
         assertThat(error.message, is('\nExpected: is optional\n     but: is required'))
     }
 }

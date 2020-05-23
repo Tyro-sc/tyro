@@ -27,10 +27,7 @@ class RowSizeMatcherTest {
 
         assertThat(cmp, has(2.rows))
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, has(3.rows))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(3.rows)) })
         assertThat(error.message, is('\nExpected: has 3 row(s)\n     but: has 2 row(s)'))
     }
 }

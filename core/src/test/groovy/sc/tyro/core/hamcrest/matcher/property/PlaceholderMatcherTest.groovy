@@ -26,10 +26,7 @@ class PlaceholderMatcherTest {
         when(cmp.placeholder()).thenReturn('MyPlaceholder')
         assertThat(cmp, has(placeholder('MyPlaceholder')))
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, has(placeholder('OtherPlaceholder')))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(placeholder('OtherPlaceholder'))) })
         assertThat(error.message, is('\nExpected: has placeholder "OtherPlaceholder"\n     but: has placeholder "MyPlaceholder"'))
     }
 }

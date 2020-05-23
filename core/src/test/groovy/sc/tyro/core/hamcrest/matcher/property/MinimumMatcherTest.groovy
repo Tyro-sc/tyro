@@ -26,10 +26,7 @@ class MinimumMatcherTest {
         when(cmp.minimum()).thenReturn(10)
         assertThat(cmp, has(minimum(10)))
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, has(minimum(50)))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(minimum(50))) })
         assertThat(error.message, is('\nExpected: has minimum 50\n     but: has minimum 10'))
     }
 }

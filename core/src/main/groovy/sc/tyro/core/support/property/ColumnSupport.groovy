@@ -7,7 +7,7 @@ import sc.tyro.core.component.datagrid.Column
  * @since 1.0.0
  */
 public interface ColumnSupport {
-    List<Column> columns()
+    public List<Column> columns()
 
-    Column column(String title)
+    public Column column(String title)
 }

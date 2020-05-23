@@ -19,13 +19,21 @@ import static sc.tyro.core.input.MouseModifiers.*
  */
 public class Component implements MouseSupport, Draggable {
     private final Queue<Matcher> BLOCKS = new LinkedList<>()
-    protected Provider provider = Config.provider
-    protected MetaDataProvider metaDataProvider
+    private final Provider provider
+    private final MetaDataProvider meta
 
-    Component() {}
+    public Component() {
+        this.provider = Config.provider
+        this.meta = null
+    }
+
+    public Component(Provider provider, MetaDataProvider meta) {
+        this.provider = provider
+        this.meta = meta
+    }
 
     public String id() {
-        metaDataProvider.metaInfo(this).id
+        meta.metaInfo(this).id
     }
 
     public boolean enabled() {
@@ -34,7 +42,7 @@ public class Component implements MouseSupport, Draggable {
 
     public boolean available() {
         try {
-            metaDataProvider.metaInfo(this)
+            meta.metaInfo(this)
             return true
         } catch (ComponentException ignored) {
             return false
@@ -74,6 +82,10 @@ public class Component implements MouseSupport, Draggable {
         new DragBuilder(this)
     }
 
+    public Provider getProvider() {
+        return provider
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this.is(o)) return true
@@ -92,17 +104,6 @@ public class Component implements MouseSupport, Draggable {
         getClass().simpleName + ":${id()}"
     }
 
-    def asType(Class clazz) {
-        if (Component.isAssignableFrom(clazz)) {
-            Component c = (Component) clazz.newInstance()
-            c.metaDataProvider = this.metaDataProvider
-            return c
-        }
-        // TODO: better to throw an Exception
-        // Fallback to default
-        return super.asType(clazz)
-    }
-
     Collection<Matcher> getBlocks() {
         unmodifiableCollection(BLOCKS)
     }
@@ -114,12 +115,4 @@ public class Component implements MouseSupport, Draggable {
     void clearBlocks() {
         BLOCKS.clear()
     }
-
-    void setProvider(Provider provider) {
-        this.provider = provider
-    }
-//
-//    Provider getProvider() {
-//        provider
-//    }
 }

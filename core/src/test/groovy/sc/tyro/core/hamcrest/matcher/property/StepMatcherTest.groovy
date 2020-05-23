@@ -26,10 +26,7 @@ class StepMatcherTest {
         when(cmp.step()).thenReturn(10)
         assertThat(cmp, has(step(10)))
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, has(step(50)))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(step(50))) })
         assertThat(error.message, is('\nExpected: has step 50\n     but: has step 10'))
     }
 }

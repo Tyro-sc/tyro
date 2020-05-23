@@ -124,21 +124,15 @@ class ActionTest {
         // Cannot check disabled component
         when(checkBox_1.enabled()).thenReturn(false)
 
-        ComponentException error = assertThrows(ComponentException, {
-            check checkBox_1
-        }) as ComponentException
-
-        assertThat(error.message, containsString('is disabled and cannot be checked'))
+        Exception ex = assertThrows(ComponentException, { check checkBox_1 })
+        assertThat(ex.message, containsString('is disabled and cannot be checked'))
 
         // Cannot check already checked component
         when(checkBox_1.enabled()).thenReturn(true)
         when(checkBox_1.checked()).thenReturn(true)
 
-        error = assertThrows(ComponentException, {
-            check checkBox_1
-        }) as ComponentException
-
-        assertThat(error.message, containsString('is already checked and cannot be checked'))
+        ex = assertThrows(ComponentException, { check checkBox_1 })
+        assertThat(ex.message, containsString('is already checked and cannot be checked'))
     }
 
     @Test
@@ -160,21 +154,15 @@ class ActionTest {
         // Cannot uncheck disabled component
         when(checkBox_1.enabled()).thenReturn(false)
 
-        ComponentException error = assertThrows(ComponentException, {
-            uncheck checkBox_1
-        }) as ComponentException
-
-        assertThat(error.message, containsString('is disabled and cannot be unchecked'))
+        Exception ex = assertThrows(ComponentException, { uncheck checkBox_1 })
+        assertThat(ex.message, containsString('is disabled and cannot be unchecked'))
 
         // Cannot uncheck already checked component
         when(checkBox_1.enabled()).thenReturn(true)
         when(checkBox_1.checked()).thenReturn(false)
 
-        error = assertThrows(ComponentException, {
-            uncheck checkBox_1
-        }) as ComponentException
-
-        assertThat(error.message, containsString('is already unchecked and cannot be unchecked'))
+        ex = assertThrows(ComponentException, { uncheck checkBox_1 })
+        assertThat(ex.message, containsString('is already unchecked and cannot be unchecked'))
     }
 
     @Test
@@ -196,21 +184,19 @@ class ActionTest {
         // Cannot select disabled item
         when(item_1.enabled()).thenReturn(false)
 
-        ComponentException error = assertThrows(ComponentException, {
-            select item_1
-        }) as ComponentException
-
-        assertThat(error.message, containsString('is disabled and cannot be selected'))
+        Exception ex = assertThrows(ComponentException, { select item_1  })
+        assertThat(ex.message, containsString('is disabled and cannot be selected'))
 
         // Cannot select already selected item
         when(item_1.enabled()).thenReturn(true)
         when(item_1.selected()).thenReturn(true)
 
-        error = assertThrows(ComponentException, {
-            select item_1
-        }) as ComponentException
+        ex = assertThrows(ComponentException, { select item_1 })
+        assertThat(ex.message, containsString('is already selected and cannot be selected'))
 
-        assertThat(error.message, containsString('is already selected and cannot be selected'))
+        ex = assertThrows(ComponentException, { select item_1 })
+        assertThat(ex.message, containsString('is already selected and cannot be selected'))
+
     }
 
     @Test
@@ -234,21 +220,15 @@ class ActionTest {
         // Cannot unselect disabled item
         when(item_1.enabled()).thenReturn(false)
 
-        ComponentException error = assertThrows(ComponentException, {
-            unselect item_1
-        }) as ComponentException
-
-        assertThat(error.message, containsString('is disabled and cannot be deselected'))
+        Exception ex = assertThrows(ComponentException, { unselect item_1 })
+        assertThat(ex.message, containsString('is disabled and cannot be deselected'))
 
         // Cannot unselect already unselected item
         when(item_1.enabled()).thenReturn(true)
         when(item_1.selected()).thenReturn(false)
 
-        error = assertThrows(ComponentException, {
-            unselect item_1
-        }) as ComponentException
-
-        assertThat(error.message, containsString('is already unselected and cannot be deselected'))
+        ex = assertThrows(ComponentException, { unselect item_1 })
+        assertThat(ex.message, containsString('is already unselected and cannot be deselected'))
     }
 
     @Test
@@ -281,11 +261,8 @@ class ActionTest {
         verify(provider, times(2)).click(item_1, [LEFT, SINGLE] as Collection<MouseModifiers>, [CTRL])
         verify(provider, times(2)).click(item_2, [LEFT, SINGLE] as Collection<MouseModifiers>, [CTRL])
 
-        ComponentException error = assertThrows(ComponentException, {
-            listBox.select(item_3)
-        }) as ComponentException
-
-        assertThat(error.message, containsString('is not contains by'))
+        Exception ex = assertThrows(ComponentException, { listBox.select(item_3) })
+        assertThat(ex.message, containsString('is not contains by'))
     }
 
     @Test
@@ -320,11 +297,8 @@ class ActionTest {
         verify(provider, times(2)).click(item_1, [LEFT, SINGLE] as Collection<MouseModifiers>, [CTRL])
         verify(provider, times(2)).click(item_2, [LEFT, SINGLE] as Collection<MouseModifiers>, [CTRL])
 
-        ComponentException error = assertThrows(ComponentException, {
-            listBox.unselect(item_3)
-        }) as ComponentException
-
-        assertThat(error.message, containsString('is not contains by'))
+        Exception ex = assertThrows(ComponentException, { listBox.unselect(item_3) })
+        assertThat(ex.message, containsString('is not contains by'))
     }
 
     @Test

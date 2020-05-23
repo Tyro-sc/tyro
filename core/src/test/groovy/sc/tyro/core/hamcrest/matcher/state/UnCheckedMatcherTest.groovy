@@ -27,10 +27,7 @@ class UnCheckedMatcherTest {
 
         when(cmp.checked()).thenReturn(true)
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, is(unchecked()))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, is(unchecked())) })
         assertThat(error.message, is('\nExpected: is unchecked\n     but: is checked'))
     }
 }

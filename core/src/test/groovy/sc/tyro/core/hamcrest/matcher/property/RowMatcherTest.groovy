@@ -36,16 +36,10 @@ class RowMatcherTest {
         assertThat(cmp, has(rows('row_1', 'row_2')))
         assertThat(cmp, has(rows(row_1, row_2)))
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, has(rows('row_1', 'row_3')))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(rows('row_1', 'row_3'))) })
         assertThat(error.message, is('\nExpected: has row(s) ["row_1", "row_3"]\n     but: has row(s) ["row_1", "row_2"]'))
 
-        error = assertThrows(AssertionError, {
-            assertThat(cmp, has(rows(row_1, row_3)))
-        }) as AssertionError
-
+        error = assertThrows(AssertionError, { assertThat(cmp, has(rows(row_1, row_3))) })
         assertThat(error.message, is('\nExpected: has row(s) ["row_1", "row_3"]\n     but: has row(s) ["row_1", "row_2"]'))
     }
 }

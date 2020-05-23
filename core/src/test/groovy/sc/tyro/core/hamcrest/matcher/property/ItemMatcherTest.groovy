@@ -37,16 +37,10 @@ class ItemMatcherTest {
         assertThat(cmp, has(items('item_1', 'item_2')))
         assertThat(cmp, has(items(item_1, item_2)))
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, has(items('item_1', 'item_3')))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(items('item_1', 'item_3'))) })
         assertThat(error.message, is('\nExpected: has item(s) ["item_1", "item_3"]\n     but: has item(s) ["item_1", "item_2"]'))
 
-        error = assertThrows(AssertionError, {
-            assertThat(cmp, has(items(item_1, item_3)))
-        }) as AssertionError
-
+        error = assertThrows(AssertionError, { assertThat(cmp, has(items(item_1, item_3))) })
         assertThat(error.message, is('\nExpected: has item(s) ["item_1", "item_3"]\n     but: has item(s) ["item_1", "item_2"]'))
     }
 }

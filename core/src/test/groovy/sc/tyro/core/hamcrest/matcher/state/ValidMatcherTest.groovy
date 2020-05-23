@@ -27,10 +27,8 @@ class ValidMatcherTest {
         assertThat(cmp, is(valid()))
 
         when(cmp.valid()).thenReturn(false)
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, is(valid()))
-        }) as AssertionError
 
+        Error error = assertThrows(AssertionError, { assertThat(cmp, is(valid())) })
         assertThat(error.message, is('\nExpected: is valid\n     but: is invalid'))
     }
 }

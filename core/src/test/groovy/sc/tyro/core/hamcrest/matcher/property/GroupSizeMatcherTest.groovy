@@ -1,6 +1,5 @@
 package sc.tyro.core.hamcrest.matcher.property
 
-import org.hamcrest.MatcherAssert
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import sc.tyro.core.component.Group
@@ -26,12 +25,9 @@ class GroupSizeMatcherTest {
 
         when(cmp.groups()).thenReturn([mock(Group), mock(Group)])
 
-        MatcherAssert.assertThat(cmp, has(2.groups))
+        assertThat(cmp, has(2.groups))
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, has(3.groups))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(3.groups)) })
         assertThat(error.message, is('\nExpected: has 3 group(s)\n     but: has 2 group(s)'))
     }
 }

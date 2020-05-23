@@ -27,10 +27,7 @@ class VisibleItemsSizeMatcherTest {
 
         assertThat(cmp, has(2.visibleItems))
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, has(3.visibleItems))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(3.visibleItems)) })
         assertThat(error.message, is('\nExpected: has 3 visible item(s)\n     but: has 2 visible item(s)'))
     }
 }

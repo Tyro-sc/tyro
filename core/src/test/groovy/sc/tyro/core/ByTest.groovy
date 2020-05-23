@@ -19,6 +19,7 @@ class ByTest {
 
         assertThat(by.id, is('id'))
         assertThat(by.hashCode(), is('id'.hashCode()))
+        assertThat(by.toString(), is('id: id'))
     }
 
     @Test
@@ -28,6 +29,7 @@ class ByTest {
 
         assertThat(by.expression, is('expression'))
         assertThat(by.hashCode(), is('expression'.hashCode()))
+        assertThat(by.toString(), is('expression: expression'))
     }
 
     @Test
@@ -37,6 +39,7 @@ class ByTest {
 
         assertThat(by.value, is('value'))
         assertThat(by.hashCode(), is('value'.hashCode()))
+        assertThat(by.toString(), is('value: value'))
     }
 
     @Test
@@ -46,6 +49,7 @@ class ByTest {
 
         assertThat(by.text, is('text'))
         assertThat(by.hashCode(), is('text'.hashCode()))
+        assertThat(by.toString(), is('text: text'))
     }
 
     @Test
@@ -55,6 +59,7 @@ class ByTest {
 
         assertThat(by.label, is('label'))
         assertThat(by.hashCode(), is('label'.hashCode()))
+        assertThat(by.toString(), is('label: label'))
     }
 
     @Test
@@ -64,6 +69,7 @@ class ByTest {
 
         assertThat(by.title, is('title'))
         assertThat(by.hashCode(), is('title'.hashCode()))
+        assertThat(by.toString(), is('title: title'))
     }
 
     @Test

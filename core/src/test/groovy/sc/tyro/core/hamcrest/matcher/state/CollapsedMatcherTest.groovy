@@ -29,10 +29,7 @@ class CollapsedMatcherTest {
 
         when(cmp.collapsed()).thenReturn(false)
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, is(collapsed()))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, is(collapsed())) })
         assertThat(error.message, is('\nExpected: is collapsed\n     but: is expanded'))
     }
 }

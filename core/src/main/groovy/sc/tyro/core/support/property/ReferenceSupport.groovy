@@ -5,5 +5,5 @@ package sc.tyro.core.support.property
  * @since 1.0.0
  */
 public interface ReferenceSupport {
-    String reference()
+    public String reference()
 }

@@ -27,10 +27,7 @@ class ExpandedMatcherTest {
 
         when(cmp.expanded()).thenReturn(false)
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, is(expanded()))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, is(expanded())) })
         assertThat(error.message, is('\nExpected: is expanded\n     but: is collapsed'))
     }
 }

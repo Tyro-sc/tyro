@@ -5,5 +5,5 @@ package sc.tyro.core.support.state
  * @since 1.0.0
  */
 public interface CheckSupport {
-    boolean checked()
+    public boolean checked()
 }

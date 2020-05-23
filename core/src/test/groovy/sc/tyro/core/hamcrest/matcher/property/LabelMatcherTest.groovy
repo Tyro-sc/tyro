@@ -26,10 +26,7 @@ class LabelMatcherTest {
 
         assertThat(cmp, has(Matchers.label('MyLabel')))
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, has(Matchers.label('OtherLabel')))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(Matchers.label('OtherLabel'))) })
         assertThat(error.message, is('\nExpected: has label "OtherLabel"\n     but: has label "MyLabel"'))
     }
 }

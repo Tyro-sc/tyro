@@ -9,5 +9,5 @@ import sc.tyro.core.support.property.StepSupport
  * @since 1.0.0
  */
 public interface RangeSupport extends MaximumSupport, MinimumSupport, StepSupport {
-    boolean inRange()
+    public boolean inRange()
 }

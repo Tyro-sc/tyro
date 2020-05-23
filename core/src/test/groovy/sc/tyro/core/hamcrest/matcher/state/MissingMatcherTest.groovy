@@ -26,10 +26,8 @@ class MissingMatcherTest {
         assertThat(cmp, is(missing()))
 
         when(cmp.available()).thenReturn(true)
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, is(missing()))
-        }) as AssertionError
 
+        Error error = assertThrows(AssertionError, { assertThat(cmp, is(missing())) })
         assertThat(error.message, is('\nExpected: is missing\n     but: is available'))
     }
 }

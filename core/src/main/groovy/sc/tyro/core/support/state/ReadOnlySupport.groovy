@@ -5,5 +5,5 @@ package sc.tyro.core.support.state
  * @since 1.0.0
  */
 public interface ReadOnlySupport {
-    boolean readOnly()
+    public boolean readOnly()
 }

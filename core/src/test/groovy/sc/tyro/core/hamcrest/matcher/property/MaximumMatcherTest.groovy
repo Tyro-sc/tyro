@@ -26,10 +26,7 @@ class MaximumMatcherTest {
         when(cmp.maximum()).thenReturn(10)
         assertThat(cmp, has(Matchers.maximum(10)))
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, has(Matchers.maximum(50)))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(Matchers.maximum(50))) })
         assertThat(error.message, is('\nExpected: has maximum 50\n     but: has maximum 10'))
     }
 }

@@ -27,10 +27,7 @@ class ItemSizeMatcherTest {
 
         assertThat(cmp, has(2.items))
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, has(3.items))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(3.items)) })
         assertThat(error.message, is('\nExpected: has 3 item(s)\n     but: has 2 item(s)'))
     }
 }

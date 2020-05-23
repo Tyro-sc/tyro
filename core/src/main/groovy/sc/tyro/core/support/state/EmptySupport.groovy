@@ -5,5 +5,5 @@ package sc.tyro.core.support.state
  * @since 1.0.0
  */
 public interface EmptySupport {
-    boolean empty()
+    public boolean empty()
 }

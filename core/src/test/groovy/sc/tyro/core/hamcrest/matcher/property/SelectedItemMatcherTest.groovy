@@ -31,19 +31,13 @@ class SelectedItemMatcherTest {
         assertThat(cmp, has(selectedItem('selected')))
         assertThat(cmp, has(selectedItem(itemSelected)))
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, has(selectedItem('no selected')))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(selectedItem('no selected'))) })
         assertThat(error.message, is('\nExpected: has selected item "no selected"\n     but: has selected item "selected"'))
 
         Item item = mock(Item)
         when(item.value()).thenReturn('no selected')
 
-        error = assertThrows(AssertionError, {
-            assertThat(cmp, has(selectedItem(item)))
-        }) as AssertionError
-
+        error = assertThrows(AssertionError, { assertThat(cmp, has(selectedItem(item))) })
         assertThat(error.message, is('\nExpected: has selected item "no selected"\n     but: has selected item "selected"'))
     }
 }

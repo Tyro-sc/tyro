@@ -26,10 +26,8 @@ class ReadOnlyMatcherTest {
         assertThat(cmp, is(readOnly()))
 
         when(cmp.readOnly()).thenReturn(false)
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, is(readOnly()))
-        }) as AssertionError
 
+        Error error = assertThrows(AssertionError, { assertThat(cmp, is(readOnly())) })
         assertThat(error.message, is('\nExpected: is read only\n     but: is not read only'))
     }
 }

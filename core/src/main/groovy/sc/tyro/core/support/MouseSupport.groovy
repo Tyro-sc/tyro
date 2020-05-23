@@ -5,11 +5,11 @@ package sc.tyro.core.support
  * @since 1.0.0
  */
 public interface MouseSupport {
-    void click()
+    public void click()
 
-    void rightClick()
+    public void rightClick()
 
-    void doubleClick()
+    public void doubleClick()
 
-    void mouseOver()
+    public void mouseOver()
 }

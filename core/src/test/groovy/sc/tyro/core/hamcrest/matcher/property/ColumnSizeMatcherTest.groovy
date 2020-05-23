@@ -1,6 +1,5 @@
 package sc.tyro.core.hamcrest.matcher.property
 
-
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import sc.tyro.core.component.datagrid.Column
@@ -28,10 +27,7 @@ class ColumnSizeMatcherTest {
 
         assertThat(cmp, has(2.columns))
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, has(3.columns))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(3.columns)) })
         assertThat(error.message, is('\nExpected: has 3 column(s)\n     but: has 2 column(s)'))
     }
 }

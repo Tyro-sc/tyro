@@ -5,5 +5,5 @@ package sc.tyro.core.support.property
  * @since 1.0.0
  */
 public interface TitleSupport {
-    String title()
+    public String title()
 }

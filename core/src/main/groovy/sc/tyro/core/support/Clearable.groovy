@@ -5,5 +5,5 @@ package sc.tyro.core.support
  * @since 1.0.0
  */
 public interface Clearable {
-    void clear()
+    public void clear()
 }

@@ -27,10 +27,7 @@ class SelectedMatcherTest {
         assertThat(cmp, is(selected()))
 
         when(cmp.selected()).thenReturn(false)
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, is(selected()))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, is(selected())) })
         assertThat(error.message, is('\nExpected: is selected\n     but: is unselected'))
     }
 }

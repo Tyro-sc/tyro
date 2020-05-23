@@ -49,37 +49,33 @@ class GroovyExtensions {
 
     static void select(Selectable component, String... values) {
         values.each { value ->
-            component.items().find { it.value() == value }.each { select(component, it) }
+            component.items().find { it.value() == value }.each { select(component, (Item) it) }
         }
     }
 
     static void select(Selectable component, Item... items) {
-        items.each { select(component, it) }
-    }
-
-    static void select(Selectable component, Item item) {
-        if (component.items().contains(item)) {
-            Tyro.select(item)
-        } else {
-            throw new ComponentException("${item.class.simpleName} ${item} is not contains by ${component.class.simpleName} ${component}")
+        items.each { item ->
+            if (component.items().contains(item)) {
+                Tyro.select(item)
+            } else {
+                throw new ComponentException("${item.class.simpleName} ${item} is not contains by ${component.class.simpleName} ${component}")
+            }
         }
     }
 
     static void unselect(UnSelectable component, String... values) {
         values.each { value ->
-            component.items().find { it.value() == value }.each { unselect(component, it) }
+            component.items().find { it.value() == value }.each { unselect(component, (Item) it) }
         }
     }
 
     static void unselect(UnSelectable component, Item... items) {
-        items.each { unselect(component, it) }
-    }
-
-    static void unselect(UnSelectable component, Item item) {
-        if (component.items().contains(item)) {
-            Tyro.unselect(item)
-        } else {
-            throw new ComponentException("${item.class.simpleName} ${item} is not contains by ${component.class.simpleName} ${component}")
+        items.each { item ->
+            if (component.items().contains(item)) {
+                Tyro.unselect(item)
+            } else {
+                throw new ComponentException("${item.class.simpleName} ${item} is not contains by ${component.class.simpleName} ${component}")
+            }
         }
     }
 

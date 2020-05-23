@@ -27,10 +27,7 @@ class HiddenMatcherTest {
 
         when(cmp.visible()).thenReturn(true)
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, is(hidden()))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, is(hidden())) })
         assertThat(error.message, is('\nExpected: is hidden\n     but: is visible'))
     }
 }

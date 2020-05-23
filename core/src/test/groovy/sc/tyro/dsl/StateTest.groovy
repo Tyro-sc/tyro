@@ -3,8 +3,6 @@ package sc.tyro.dsl
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import sc.tyro.core.Config
-import sc.tyro.core.MetaDataProvider
-import sc.tyro.core.MetaInfo
 import sc.tyro.core.Provider
 import sc.tyro.core.component.CheckBox
 import sc.tyro.core.component.Component
@@ -112,9 +110,7 @@ class StateTest {
 
         doReturn(false).when(field).readOnly()
 
-        assertThrows(AssertionError, {
-            field.should { be readOnly }
-        })
+        assertThrows(AssertionError, { field.should { be readOnly } })
     }
 
     @Test
@@ -127,9 +123,7 @@ class StateTest {
 
         doReturn(false).when(field).focused()
 
-        assertThrows(AssertionError, {
-            field.should { be focused }
-        })
+        assertThrows(AssertionError, { field.should { be focused } })
     }
 
     @Test
@@ -146,9 +140,7 @@ class StateTest {
 
         doReturn(false).when(widget).expanded()
 
-        assertThrows(AssertionError, {
-            widget.should { be expanded }
-        })
+        assertThrows(AssertionError, { widget.should { be expanded } })
     }
 
     @Test
@@ -165,9 +157,7 @@ class StateTest {
 
         doReturn(false).when(widget).collapsed()
 
-        assertThrows(AssertionError, {
-            widget.should { be collapsed }
-        })
+        assertThrows(AssertionError, { widget.should { be collapsed } })
     }
 
     @Test
@@ -213,9 +203,7 @@ class StateTest {
 
         cmp_1.should { contain cmp_2 }
 
-        assertThrows(AssertionError, {
-            cmp_1.should { contain cmp_2, cmp_3 }
-        })
+        assertThrows(AssertionError, { cmp_1.should { contain cmp_2, cmp_3 } })
     }
 
     private abstract class Widget extends Component implements CollapseSupport {}

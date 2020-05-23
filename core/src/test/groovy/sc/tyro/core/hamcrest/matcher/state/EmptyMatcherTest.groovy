@@ -27,10 +27,7 @@ class EmptyMatcherTest {
 
         when(cmp.empty()).thenReturn(false)
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, is(empty()))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, is(empty())) })
         assertThat(error.message, is('\nExpected: is empty\n     but: is filled'))
     }
 }

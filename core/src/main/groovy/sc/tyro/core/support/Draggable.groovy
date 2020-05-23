@@ -7,5 +7,5 @@ import sc.tyro.core.input.DragBuilder
  * @since 1.0.0
  */
 public interface Draggable {
-    DragBuilder drag()
+    public DragBuilder drag()
 }

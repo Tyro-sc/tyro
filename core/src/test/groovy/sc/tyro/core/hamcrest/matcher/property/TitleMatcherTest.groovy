@@ -26,10 +26,7 @@ class TitleMatcherTest {
 
         assertThat(cmp, has(Matchers.title('MyTitle')))
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, has(Matchers.title('OtherTitle')))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(Matchers.title('OtherTitle'))) })
         assertThat(error.message, is('\nExpected: has title "OtherTitle"\n     but: has title "MyTitle"'))
     }
 }

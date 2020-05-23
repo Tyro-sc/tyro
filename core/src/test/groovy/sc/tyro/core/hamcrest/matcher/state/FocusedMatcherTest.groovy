@@ -27,10 +27,7 @@ class FocusedMatcherTest {
 
         when(cmp.focused()).thenReturn(false)
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, is(focused()))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, is(focused())) })
         assertThat(error.message, is('\nExpected: is focused\n     but: is not focused'))
     }
 }

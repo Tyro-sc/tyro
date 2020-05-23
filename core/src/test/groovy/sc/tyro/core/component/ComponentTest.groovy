@@ -58,7 +58,7 @@ class ComponentTest {
     @Test
     @DisplayName("Should implement toString() based on ClassName and Id")
     void implementToString() {
-        Component cmp = new Component(metaDataProvider: meta)
+        Component cmp = new Component(provider, meta)
         when(meta.metaInfo(any())).thenReturn(new MetaInfo(id: '1'))
 
         assert cmp.toString() == 'Component:1'
@@ -67,7 +67,7 @@ class ComponentTest {
     @Test
     @DisplayName("Should be available")
     void available() {
-        Component cmp = new Component(metaDataProvider: meta)
+        Component cmp = new Component(provider, meta)
 
         when(meta.metaInfo(cmp)).thenReturn(new MetaInfo())
 
@@ -120,18 +120,7 @@ class ComponentTest {
         verify(provider, times(1)).dragAndDrop(cmp_1, cmp_2)
     }
 
-    @Test
-    @DisplayName("Should support type coercion")
-    void coercion() {
-        Component cmp_1 = new Widget()
-        Widget cmp_2 = cmp_1 as Widget
-
-        assert !cmp_1.is(cmp_2)
-        // MetaDataProvider is passed to new Object
-        assert cmp_1.metaDataProvider.is(cmp_2.metaDataProvider)
-    }
-
-    private class Widget extends Component {
+    private static class Widget extends Component {
         @Override
         String toString() {
             return 'widget:' + this.id()

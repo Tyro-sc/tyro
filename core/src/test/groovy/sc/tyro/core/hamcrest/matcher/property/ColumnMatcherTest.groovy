@@ -36,16 +36,10 @@ class ColumnMatcherTest {
         assertThat(cmp, has(columns('column_1', 'column_2')))
         assertThat(cmp, has(columns(column_1, column_2)))
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, has(columns('column_1', 'column_3')))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(columns('column_1', 'column_3'))) })
         assertThat(error.message, is('\nExpected: has column(s) ["column_1", "column_3"]\n     but: has column(s) ["column_1", "column_2"]'))
 
-        error = assertThrows(AssertionError, {
-            assertThat(cmp, has(columns(column_1, column_3)))
-        }) as AssertionError
-
+        error = assertThrows(AssertionError, { assertThat(cmp, has(columns(column_1, column_3))) })
         assertThat(error.message, is('\nExpected: has column(s) ["column_1", "column_3"]\n     but: has column(s) ["column_1", "column_2"]'))
     }
 }

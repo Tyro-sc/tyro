@@ -7,7 +7,7 @@ import sc.tyro.core.component.datagrid.Cell
  * @since 1.0.0
  */
 public interface CellSupport {
-    List<Cell> cells()
+    public List<Cell> cells()
 
-    Cell cell(Object value)
+    public Cell cell(Object value)
 }

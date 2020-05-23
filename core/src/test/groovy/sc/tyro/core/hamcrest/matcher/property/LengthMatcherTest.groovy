@@ -26,10 +26,7 @@ class LengthMatcherTest {
         when(cmp.length()).thenReturn(10)
         assertThat(cmp, has(length(10)))
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, has(length(50)))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(length(50))) })
         assertThat(error.message, is('\nExpected: has length 50\n     but: has length 10'))
     }
 }

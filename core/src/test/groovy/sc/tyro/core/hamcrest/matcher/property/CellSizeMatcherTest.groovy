@@ -27,10 +27,7 @@ class CellSizeMatcherTest {
 
         assertThat(cmp, has(2.cells))
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, has(3.cells))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(3.cells)) }) as AssertionError
         assertThat(error.message, is('\nExpected: has 3 cell(s)\n     but: has 2 cell(s)'))
     }
 }

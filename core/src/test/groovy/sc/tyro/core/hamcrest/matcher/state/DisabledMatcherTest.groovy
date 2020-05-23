@@ -27,10 +27,7 @@ class DisabledMatcherTest {
 
         when(cmp.enabled()).thenReturn(true)
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, is(disabled()))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, is(disabled())) })
         assertThat(error.message, is('\nExpected: is disabled\n     but: is enabled'))
     }
 }

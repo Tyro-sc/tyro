@@ -26,10 +26,7 @@ class TextMatcherTest {
 
         assertThat(cmp, has(text('MyText')))
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, has(text('OtherText')))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(text('OtherText'))) })
         assertThat(error.message, is('\nExpected: has text "OtherText"\n     but: has text "MyText"'))
     }
 }

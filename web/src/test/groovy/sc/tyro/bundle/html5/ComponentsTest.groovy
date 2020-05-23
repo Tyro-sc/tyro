@@ -4,24 +4,16 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import sc.tyro.bundle.html5.heading.H1
-import sc.tyro.bundle.html5.heading.H2
-import sc.tyro.bundle.html5.heading.H3
-import sc.tyro.bundle.html5.heading.H4
-import sc.tyro.bundle.html5.heading.H5
-import sc.tyro.bundle.html5.heading.H6
+import sc.tyro.bundle.html5.Button
+import sc.tyro.bundle.html5.Form
+import sc.tyro.bundle.html5.Label
+import sc.tyro.bundle.html5.heading.*
 import sc.tyro.bundle.html5.input.InputTypeCheckBox
 import sc.tyro.bundle.html5.input.InputTypeEmail
 import sc.tyro.bundle.html5.input.InputTypePassword
 import sc.tyro.bundle.html5.input.InputTypeRadio
 import sc.tyro.core.ComponentException
-import sc.tyro.core.component.CheckBox
-import sc.tyro.core.component.Component
-import sc.tyro.core.component.Heading
-import sc.tyro.core.component.Image
-import sc.tyro.core.component.Link
-import sc.tyro.core.component.Panel
-import sc.tyro.core.component.Radio
+import sc.tyro.core.component.*
 import sc.tyro.core.support.property.TextSupport
 import sc.tyro.web.CssIdentifier
 import sc.tyro.web.TyroWebTestExtension
@@ -117,19 +109,19 @@ class ComponentsTest {
         checkBox.click()
         assert checkBox.checked()
 
-        Exception ex = assertThrows(ComponentException, {check checkBox})
+        Exception ex = assertThrows(ComponentException, { check checkBox })
         assert ex.message == 'InputTypeCheckBox InputTypeCheckBox:checkbox is already checked and cannot be checked'
 
         clickOn checkBox
 
-        ex = assertThrows(ComponentException, {uncheck checkBox})
+        ex = assertThrows(ComponentException, { uncheck checkBox })
         assert ex.message == 'InputTypeCheckBox InputTypeCheckBox:checkbox is already unchecked and cannot be unchecked'
 
         checkBox = $('#disabled_checkbox') as InputTypeCheckBox
-        ex = assertThrows(ComponentException, {check checkBox})
+        ex = assertThrows(ComponentException, { check checkBox })
         assert ex.message == 'InputTypeCheckBox InputTypeCheckBox:disabled_checkbox is disabled and cannot be checked'
 
-        ex = assertThrows(ComponentException, {uncheck checkBox})
+        ex = assertThrows(ComponentException, { uncheck checkBox })
         assert ex.message == 'InputTypeCheckBox InputTypeCheckBox:disabled_checkbox is disabled and cannot be unchecked'
     }
 
@@ -261,11 +253,11 @@ class ComponentsTest {
         radio.click()
         assert radio.checked()
 
-        Exception ex = assertThrows(ComponentException, {check radio})
+        Exception ex = assertThrows(ComponentException, { check radio })
         assert ex.message == 'InputTypeRadio InputTypeRadio:radio_2 is already checked and cannot be checked'
 
         radio = $('#disabled_radio') as InputTypeRadio
-        ex = assertThrows(ComponentException, {check radio})
+        ex = assertThrows(ComponentException, { check radio })
         assert ex.message == 'InputTypeRadio InputTypeRadio:disabled_radio is disabled and cannot be checked'
     }
 

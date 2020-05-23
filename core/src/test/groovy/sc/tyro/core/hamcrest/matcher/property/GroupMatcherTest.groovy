@@ -39,16 +39,10 @@ class GroupMatcherTest {
         assertThat(cmp, has(groups('group_1', 'group_2')))
         assertThat(cmp, has(groups(group_1, group_2)))
 
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, has(groups('group_1', 'group_3')))
-        }) as AssertionError
-
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(groups('group_1', 'group_3'))) })
         assertThat(error.message, is('\nExpected: has group(s) ["group_1", "group_3"]\n     but: has group(s) ["group_1", "group_2"]'))
 
-        error = assertThrows(AssertionError, {
-            assertThat(cmp, has(groups(group_1, group_3)))
-        }) as AssertionError
-
+        error = assertThrows(AssertionError, { assertThat(cmp, has(groups(group_1, group_3))) })
         assertThat(error.message, is('\nExpected: has group(s) ["group_1", "group_3"]\n     but: has group(s) ["group_1", "group_2"]'))
     }
 }

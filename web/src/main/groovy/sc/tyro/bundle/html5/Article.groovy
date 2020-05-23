@@ -11,6 +11,6 @@ import sc.tyro.web.CssIdentifier
 @CssIdentifier('article')
 class Article extends Component {
     List<P> getParagraphs() {
-        provider.findAll(By.expression('> p'), P)
+        provider.findAll(By.expression('#' + id() + ' > p'), P)
     }
 }

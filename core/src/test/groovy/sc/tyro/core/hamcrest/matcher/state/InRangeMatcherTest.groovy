@@ -26,10 +26,8 @@ class InRangeMatcherTest {
         assertThat(cmp, is(inRange()))
 
         when(cmp.inRange()).thenReturn(false)
-        AssertionError error = assertThrows(AssertionError, {
-            assertThat(cmp, is(inRange()))
-        }) as AssertionError
 
+        Error error = assertThrows(AssertionError, { assertThat(cmp, is(inRange())) })
         assertThat(error.message, is('\nExpected: is in range\n     but: is out of range'))
     }
 }

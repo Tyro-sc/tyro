@@ -8,14 +8,14 @@ public class Window {
     public final String id
     private final Provider provider
 
-    Window(String id, Provider provider) {
+    public Window(String id, Provider provider) {
         this.id = id
         this.provider = provider
     }
 
-    void close() { provider.closeWindow(id) }
+    public void close() { provider.closeWindow(id) }
 
-    boolean equals(o) {
+    public boolean equals(o) {
         if (this.is(o)) return true
         if (getClass() != o.class) return false
 
@@ -23,5 +23,5 @@ public class Window {
         id == window.id
     }
 
-    int hashCode() { id.hashCode() }
+    public int hashCode() { id.hashCode() }
 }

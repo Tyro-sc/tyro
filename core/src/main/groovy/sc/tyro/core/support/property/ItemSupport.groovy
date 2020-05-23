@@ -7,7 +7,7 @@ import sc.tyro.core.component.Item
  * @since 1.0.0
  */
 public interface ItemSupport {
-    List<Item> items()
+    public List<Item> items()
 
-    Item item(String value)
+    public Item item(String value)
 }

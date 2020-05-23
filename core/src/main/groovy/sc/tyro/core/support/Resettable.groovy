@@ -5,5 +5,5 @@ package sc.tyro.core.support
  * @since 1.0.0
  */
 public interface Resettable {
-    void reset()
+    public void reset()
 }
