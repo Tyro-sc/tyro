@@ -15,6 +15,7 @@
  */
 package sc.tyro.bundle.html5.input
 
+import sc.tyro.bundle.html5.helper.LabelHelper
 import sc.tyro.core.ComponentException
 
 import static sc.tyro.core.Tyro.type

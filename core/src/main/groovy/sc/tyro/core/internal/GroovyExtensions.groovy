@@ -18,6 +18,7 @@ import java.time.Duration
 
 import static java.time.Duration.ofSeconds
 import static org.hamcrest.Matchers.is
+import static sc.tyro.core.Tyro.waitUntil
 import static sc.tyro.core.hamcrest.Matchers.has
 import static sc.tyro.core.input.MouseModifiers.*
 
@@ -112,7 +113,7 @@ class GroovyExtensions {
         closure.delegate = component
         closure(this)
         for (Matcher matcher : component.blocks) {
-            Tyro.waitUntil(closure, matcher)
+            waitUntil(closure, matcher)
         }
         component.clearBlocks()
     }

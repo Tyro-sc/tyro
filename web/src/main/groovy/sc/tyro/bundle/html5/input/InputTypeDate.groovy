@@ -1,5 +1,6 @@
 package sc.tyro.bundle.html5.input
 
+import sc.tyro.bundle.html5.helper.RangeHelper
 import sc.tyro.core.component.field.DateField
 import sc.tyro.web.CssIdentifier
 
@@ -16,7 +17,7 @@ class InputTypeDate extends DateField implements Input {
 
     @Override
     Object minimum() {
-        RangeHelper.minimun(this)
+        RangeHelper.minimum(this)
     }
 
     @Override

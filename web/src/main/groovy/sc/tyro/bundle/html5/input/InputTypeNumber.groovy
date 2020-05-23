@@ -1,5 +1,6 @@
 package sc.tyro.bundle.html5.input
 
+import sc.tyro.bundle.html5.helper.RangeHelper
 import sc.tyro.core.ComponentException
 import sc.tyro.core.component.field.NumberField
 import sc.tyro.web.CssIdentifier
@@ -11,7 +12,7 @@ import sc.tyro.web.CssIdentifier
 @CssIdentifier('input[type=number]')
 class InputTypeNumber extends NumberField implements Input {
     Number value() {
-        Object value = org.testatoo.core.Testatoo.getConfig.evaluator.eval(id(), "it.val()")
+        Object value = provider.eval(id(), "it.val()")
         if (value)
             value as BigDecimal
         else
@@ -20,7 +21,7 @@ class InputTypeNumber extends NumberField implements Input {
 
     @Override
     Number minimum() {
-        RangeHelper.minimun(this) as BigDecimal
+        RangeHelper.minimum(this) as BigDecimal
     }
 
     @Override

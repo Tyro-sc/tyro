@@ -4,13 +4,24 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import sc.tyro.bundle.html5.heading.H1
+import sc.tyro.bundle.html5.heading.H2
+import sc.tyro.bundle.html5.heading.H3
+import sc.tyro.bundle.html5.heading.H4
+import sc.tyro.bundle.html5.heading.H5
+import sc.tyro.bundle.html5.heading.H6
 import sc.tyro.bundle.html5.input.InputTypeCheckBox
 import sc.tyro.bundle.html5.input.InputTypeEmail
 import sc.tyro.bundle.html5.input.InputTypePassword
+import sc.tyro.bundle.html5.input.InputTypeRadio
 import sc.tyro.core.ComponentException
 import sc.tyro.core.component.CheckBox
 import sc.tyro.core.component.Component
+import sc.tyro.core.component.Heading
+import sc.tyro.core.component.Image
+import sc.tyro.core.component.Link
 import sc.tyro.core.component.Panel
+import sc.tyro.core.component.Radio
 import sc.tyro.core.support.property.TextSupport
 import sc.tyro.web.CssIdentifier
 import sc.tyro.web.TyroWebTestExtension
@@ -23,7 +34,7 @@ import static sc.tyro.core.Tyro.*
  * @since 1.0.0
  */
 @ExtendWith(TyroWebTestExtension)
-@DisplayName("Test core implementation with Html5 components ")
+@DisplayName("Html5 components")
 class ComponentsTest {
     @BeforeAll
     static void before() {
@@ -50,14 +61,14 @@ class ComponentsTest {
         assert !panel.available()
     }
 
-//    @Test
-//    void article_should_have_expected_behaviours() {
-//        assert Article in Component
-//
-//        Article article = $('#article') as Article
-//
-//        assert article.paragraphs.size() == 2
-//    }
+    @Test
+    void article_should_have_expected_behaviours() {
+        assert Article in Component
+
+        Article article = $('#article') as Article
+
+        assert article.paragraphs.size() == 2
+    }
 
     @Test
     void aside_should_have_expected_behaviours() {
@@ -161,139 +172,131 @@ class ComponentsTest {
         assert message.title() == 'The form was submitted 1 time(s)'
     }
 
-//    @Test
-//    void header_should_have_expected_behaviours() {
-//        assert Header in Component
-//
-//        Header header = $('#header') as Header
-//
-//        assert header.visible()
-//    }
-//
-//    @Test
-//    void heading_should_have_expected_behaviours() {
-//        assert H1 in Heading
-//        assert H2 in Heading
-//        assert H3 in Heading
-//        assert H4 in Heading
-//        assert H5 in Heading
-//        assert H6 in Heading
-//
-//        H1 h1 = $('#h1') as H1
-//        assert h1.text() == 'heading 1'
-//
-//        H2 h2 = $('#h2') as H2
-//        assert h2.text() == 'heading 2'
-//
-//        H3 h3 = $('#h3') as H3
-//        assert h3.text() == 'heading 3'
-//
-//        H4 h4 = $('#h4') as H4
-//        assert h4.text() == 'heading 4'
-//
-//        H5 h5 = $('#h5') as H5
-//        assert h5.text() == 'heading 5'
-//
-//        H6 h6 = $('#h6') as H6
-//        assert h6.text() == 'heading 6'
-//    }
-//
-//    @Test
-//    void image_should_have_expected_behaviours() {
-//        assert Img in Image
-//
-//        Img image = $('#image') as Img
-//
-//        assert image.reference().endsWith('img/Montpellier.jpg')
-//    }
-//
-//    @Test
-//    void link_should_have_expected_behaviours() {
-//        assert A in Link
-//
-//        A link = $('#link') as A
-//
-//        assert link.text() == 'Link external page'
-//        assert link.reference().contains('https://www.google.ca')
-//    }
-//
-//    @Test
-//    void panel_should_have_expected_behaviours() {
-//        assert Div in Panel
-//
-//        Div panel = $('#panel') as Div
-//
-//        assert panel.title() == ''
-//    }
-//
-//    @Test
-//    void paragraph_should_have_expected_behaviours() {
-//        assert P in Component
-//        assert P in TextSupport
-//
-//        P paragraph = $('#p_1') as P
-//
-//        assert paragraph.text() == 'Paragraph 1'
-//    }
-//
-//    @Test
-//    void radio_should_have_expected_behaviours() {
-//        assert InputTypeRadio in Radio
-//
-//        Radio radio = $('#radio_1') as InputTypeRadio
-//        assert radio.label() == 'Radio checked'
-//        assert radio.checked()
-//
-//        radio = $('#radio_2') as InputTypeRadio
-//        assert radio.label() == 'Radio unchecked'
-//        assert !radio.checked()
-//        radio.click()
-//        assert radio.checked()
-//
-//        try {
-//            check radio
-//            fail()
-//        } catch (ComponentException e) {
-//            assert e.message == 'InputTypeRadio InputTypeRadio:radio_2 is already checked and cannot be checked'
-//        }
-//
-//        radio = $('#disabled_radio') as InputTypeRadio
-//        try {
-//            check radio
-//            fail()
-//        } catch (ComponentException e) {
-//            assert e.message == 'InputTypeRadio InputTypeRadio:disabled_radio is disabled and cannot be checked'
-//        }
-//    }
-//
-//    @Test
-//    void section_should_have_expected_behaviours() {
-//        assert Section in Component
-//
-//        Section section = $('#section') as Section
-//
-//        assert section.paragraphs().size() == 1
-//        assert section.articles().size() == 1
-//    }
-//
-//    @Test
-//    void span_should_have_expected_behaviours() {
-//        assert Span in Component
-//
-//        Span span = $('#span') as Span
-//
-//        assert span.text() == 'A span'
-//    }
-//
-//    @Test
-//    void label_should_have_expected_behaviours() {
-//        assert Label in org.testatoo.core.component.Label
-//
-//        Label label = $('[for=password_field]') as Label
-//
-//        assert label.text() == 'Password'
-//    }
-//
+    @Test
+    void header_should_have_expected_behaviours() {
+        assert Header in Component
+
+        Header header = $('#header') as Header
+
+        assert header.visible()
+    }
+
+    @Test
+    void heading_should_have_expected_behaviours() {
+        assert H1 in Heading
+        assert H2 in Heading
+        assert H3 in Heading
+        assert H4 in Heading
+        assert H5 in Heading
+        assert H6 in Heading
+
+        H1 h1 = $('#h1') as H1
+        assert h1.text() == 'heading 1'
+
+        H2 h2 = $('#h2') as H2
+        assert h2.text() == 'heading 2'
+
+        H3 h3 = $('#h3') as H3
+        assert h3.text() == 'heading 3'
+
+        H4 h4 = $('#h4') as H4
+        assert h4.text() == 'heading 4'
+
+        H5 h5 = $('#h5') as H5
+        assert h5.text() == 'heading 5'
+
+        H6 h6 = $('#h6') as H6
+        assert h6.text() == 'heading 6'
+    }
+
+    @Test
+    void image_should_have_expected_behaviours() {
+        assert Img in Image
+
+        Img image = $('#image') as Img
+
+        assert image.reference().endsWith('img/Montpellier.jpg')
+    }
+
+    @Test
+    void link_should_have_expected_behaviours() {
+        assert A in Link
+
+        A link = $('#link') as A
+
+        assert link.text() == 'Link external page'
+        assert link.reference().contains('https://www.google.ca')
+    }
+
+    @Test
+    void panel_should_have_expected_behaviours() {
+        assert Div in Panel
+
+        Div panel = $('#panel') as Div
+
+        assert panel.title() == ''
+    }
+
+    @Test
+    void paragraph_should_have_expected_behaviours() {
+        assert P in Component
+        assert P in TextSupport
+
+        P paragraph = $('#p_1') as P
+
+        assert paragraph.text() == 'Paragraph 1'
+    }
+
+    @Test
+    void radio_should_have_expected_behaviours() {
+        assert InputTypeRadio in Radio
+
+        Radio radio = $('#radio_1') as InputTypeRadio
+        assert radio.label() == 'Radio checked'
+        assert radio.checked()
+
+        radio = $('#radio_2') as InputTypeRadio
+        assert radio.label() == 'Radio unchecked'
+        assert !radio.checked()
+        radio.click()
+        assert radio.checked()
+
+        Exception ex = assertThrows(ComponentException, {check radio})
+        assert ex.message == 'InputTypeRadio InputTypeRadio:radio_2 is already checked and cannot be checked'
+
+        radio = $('#disabled_radio') as InputTypeRadio
+        ex = assertThrows(ComponentException, {check radio})
+        assert ex.message == 'InputTypeRadio InputTypeRadio:disabled_radio is disabled and cannot be checked'
+    }
+
+    @Test
+    void section_should_have_expected_behaviours() {
+        assert Section in Component
+
+        Section section = $('#section') as Section
+
+        assert section.paragraphs().size() == 1
+        assert section.articles().size() == 1
+    }
+
+    @Test
+    void span_should_have_expected_behaviours() {
+        assert Span in Component
+
+        Span span = $('#span') as Span
+
+        assert span.text() == 'A span'
+    }
+
+    @Test
+    void label_should_have_expected_behaviours() {
+        assert Label in sc.tyro.core.component.Label
+
+        Label label = $('[for=password_field]') as Label
+
+        assert label.text() == 'Password'
+    }
+
 //    @Test
 //    void should_find_child_elements_by_css() {
 //        // TODO David
@@ -308,7 +311,7 @@ class ComponentsTest {
     class Message extends Panel {
         @Override
         String title() {
-            config.evaluator.eval(id(), "it.text()")
+            provider.eval(id(), "it.text()")
         }
     }
 }

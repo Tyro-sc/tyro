@@ -206,7 +206,7 @@ class SeleniumProvider implements Provider {
 
     @Override
     void runScript(String script) {
-
+        js.executeScript(script)
     }
 
     @Override
@@ -218,6 +218,8 @@ class SeleniumProvider implements Provider {
         switch (by.class) {
             case By.ByExpression:
                 return by as By.ByExpression
+            case By.ById:
+                return By.expression("#" + ((By.ById) by).id)
             default:
                 throw new RuntimeException("Invalid By.xxx")
         }

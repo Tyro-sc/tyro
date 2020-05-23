@@ -1,5 +1,6 @@
 package sc.tyro.bundle.html5.input
 
+import sc.tyro.bundle.html5.helper.LabelHelper
 import sc.tyro.core.component.Radio
 import sc.tyro.web.CssIdentifier
 
