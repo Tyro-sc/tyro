@@ -15,6 +15,7 @@ class MetaInfo {
     @Override
     String toString() { "id=${id}, node=${node}" }
 
+    // TODO: remove
     Object asType(Class clazz) {
         if (Component.isAssignableFrom(clazz)) {
             return provider.find(By.id(id), clazz)

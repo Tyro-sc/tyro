@@ -189,13 +189,13 @@ class StateTest {
     @Test
     @DisplayName("Should support contains")
     void should_support_contain() {
-        Config.provider = mock(Provider)
+        Provider provider = mock(Provider)
 
-        Component cmp_1 = spy(new Component())
+        Component cmp_1 = spy(new Component(provider,null))
         doReturn('1').when(cmp_1).id()
-        Component cmp_2 = spy(new Component())
+        Component cmp_2 = spy(new Component(provider, null))
         doReturn('2').when(cmp_2).id()
-        Component cmp_3 = spy(new Component())
+        Component cmp_3 = spy(new Component(provider, null))
         doReturn('3').when(cmp_3).id()
 
         when(cmp_1.provider.contains(cmp_2)).thenReturn(true)

@@ -9,6 +9,7 @@ import org.openqa.selenium.interactions.Actions
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import sc.tyro.core.By
+import sc.tyro.core.Config
 import sc.tyro.core.MetaDataProvider
 import sc.tyro.core.MetaInfo
 import sc.tyro.core.Provider
@@ -39,7 +40,7 @@ class SeleniumProvider implements Provider {
 
     @Override
     <T extends Component> T find(By by, Class<T> clazz) {
-        (T) new Component(this, new CachedMetaData(idProvider: new DomIdProvider(convertToExpression(by), true)))
+        (T) new Component(this, new CachedMetaData(idProvider: new DomIdProvider(convertToExpression(by), true))).asType(clazz)
     }
 
     @Override
@@ -49,7 +50,7 @@ class SeleniumProvider implements Provider {
 
     @Override
     List findAll(By by, Class clazz) {
-        Components components = new Components(clazz, new CachedMetaData(idProvider: new DomIdProvider(convertToExpression(by), false)))
+        Components components = new Components(this, clazz, new CachedMetaData(idProvider: new DomIdProvider(convertToExpression(by), false)))
         components.list()
     }
 
@@ -123,9 +124,9 @@ class SeleniumProvider implements Provider {
             if (k instanceof Key && k in [Key.SHIFT, Key.CTRL, Key.ALT]) modifiers << k
             else text << k as String
         }
-        modifiers.each { action.keyDown(KeyConverter.convert(it)) }
-        text.each { it instanceof Key ? action.sendKeys(KeyConverter.convert(it)) : action.sendKeys(it) }
-        modifiers.each { action.keyUp(KeyConverter.convert(it)) }
+        modifiers.each { action.keyDown(convert(it)) }
+        text.each { it instanceof Key ? action.sendKeys(convert(it)) : action.sendKeys(it) }
+        modifiers.each { action.keyUp(convert(it)) }
         action.build().perform()
     }
 
@@ -274,11 +275,13 @@ class SeleniumProvider implements Provider {
     }
 
     static class Components<T extends Component> {
+        private final Provider provider
         private final MetaDataProvider meta
         private final Class<T> type
         private List<T> components
 
-        Components(Class<T> type, MetaDataProvider meta) {
+        Components(Provider provider, Class<T> type, MetaDataProvider meta) {
+            this.provider = provider
             this.meta = meta
             this.type = type
         }
@@ -286,7 +289,7 @@ class SeleniumProvider implements Provider {
         List<T> list() {
             if (components == null) {
                 components = meta.metaInfos().collect {
-                    new Component(metaDataProvider: new CachedMetaData(idProvider: new DomIdProvider(By.expression('[id="' + it.id + '"]'), false))).asType(type)
+                    new Component(provider, new CachedMetaData(idProvider: new DomIdProvider(By.expression('[id="' + it.id + '"]'), false))).asType(type)
                 } as List<T>
             }
             return Collections.unmodifiableList(components)

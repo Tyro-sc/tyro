@@ -19,8 +19,8 @@ import static sc.tyro.core.input.MouseModifiers.*
  */
 public class Component implements MouseSupport, Draggable {
     private final Queue<Matcher> BLOCKS = new LinkedList<>()
-    private final Provider provider
-    private final MetaDataProvider meta
+    protected Provider provider
+    protected MetaDataProvider meta
 
     public Component() {
         this.provider = Config.provider
@@ -102,6 +102,18 @@ public class Component implements MouseSupport, Draggable {
     @Override
     public String toString() {
         getClass().simpleName + ":${id()}"
+    }
+
+    public def asType(Class clazz) {
+        if (Component.isAssignableFrom(clazz)) {
+            Component c = (Component) clazz.newInstance()
+            c.provider = provider
+            c.meta = meta
+            return c
+        }
+        // TODO: better to throw an Exception
+        // Fallback to default
+        return super.asType(clazz)
     }
 
     Collection<Matcher> getBlocks() {

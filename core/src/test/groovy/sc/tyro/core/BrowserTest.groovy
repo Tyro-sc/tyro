@@ -21,7 +21,6 @@ class BrowserTest {
     @BeforeEach
     void setUp() {
         provider = mock(Provider)
-        Config.provider = provider
         browser = new Browser(provider)
     }
 

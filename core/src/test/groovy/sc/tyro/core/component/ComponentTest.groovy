@@ -12,7 +12,6 @@ import sc.tyro.core.support.MouseSupport
 
 import static org.mockito.ArgumentMatchers.any
 import static org.mockito.Mockito.*
-import static sc.tyro.core.Config.provider
 
 /**
  * @author David Avenante
@@ -21,6 +20,7 @@ import static sc.tyro.core.Config.provider
 @DisplayName("Component Tests")
 class ComponentTest {
     private MetaDataProvider meta
+    private Provider provider
 
     @BeforeEach
     void before() {
@@ -81,7 +81,7 @@ class ComponentTest {
     @Test
     @DisplayName("Should implements state: enabled")
     void enabled() {
-        Component cmp = new Component()
+        Component cmp = new Component(provider, meta)
 
         when(provider.enabled(cmp)).thenReturn(false)
 
@@ -91,7 +91,7 @@ class ComponentTest {
     @Test
     @DisplayName("Should implements state: visible")
     void visible() {
-        Component cmp = new Component()
+        Component cmp = new Component(provider, meta)
 
         when(provider.visible(cmp)).thenReturn(true)
 
@@ -101,8 +101,8 @@ class ComponentTest {
     @Test
     @DisplayName("Should implements contains")
     void contains() {
-        Component cmp_1 = new Component()
-        Component cmp_2 = new Component()
+        Component cmp_1 = new Component(provider, meta)
+        Component cmp_2 = new Component(provider, meta)
 
         when(provider.contains(cmp_2)).thenReturn(true)
 
@@ -112,8 +112,8 @@ class ComponentTest {
     @Test
     @DisplayName("Should be draggable")
     void draggable() {
-        Component cmp_1 = new Component()
-        Component cmp_2 = new Component()
+        Component cmp_1 = new Component(provider, meta)
+        Component cmp_2 = new Component(provider, meta)
 
         cmp_1.drag().on(cmp_2)
 

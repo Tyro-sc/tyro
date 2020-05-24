@@ -19,7 +19,6 @@ class WindowTest {
     @BeforeEach
     void setUp() {
         provider = mock(Provider)
-        Config.provider = provider
     }
 
     @Test
