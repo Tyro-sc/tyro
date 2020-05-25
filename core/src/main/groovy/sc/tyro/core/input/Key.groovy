@@ -12,9 +12,11 @@ enum Key {
     CLEAR,
     META,
     COMMAND,
+    PAUSE,
 
     SEPARATOR,
     DECIMAL,
+    SEMICOLON,
 
     F1,
     F2,
@@ -28,6 +30,17 @@ enum Key {
     F10,
     F11,
     F12,
+
+    NUMPAD0,
+    NUMPAD1,
+    NUMPAD2,
+    NUMPAD3,
+    NUMPAD4,
+    NUMPAD5,
+    NUMPAD6,
+    NUMPAD7,
+    NUMPAD8,
+    NUMPAD9,
 
     INSERT,
     DELETE,
@@ -54,31 +67,15 @@ enum Key {
     RIGHT,
     DOWN,
 
+    ARROW_LEFT,
+    ARROW_UP,
+    ARROW_RIGHT,
+    ARROW_DOWN,
+
     SHIFT,
+    LEFT_SHIFT,
     CTRL,
-    ALT
+    LEFT_CONTROL,
+    ALT,
+    LEFT_ALT
 }
-
-
-//LEFT_SHIFT   (Keys.SHIFT),
-//LEFT_CONTROL (Keys.CONTROL),
-//LEFT_ALT     (Keys.ALT),
-//PAUSE        ('\uE00B'),
-//ARROW_LEFT   (Keys.LEFT),
-//ARROW_UP     (Keys.UP),
-//ARROW_RIGHT  (Keys.RIGHT),
-//ARROW_DOWN   (Keys.DOWN),
-//SEMICOLON    ('\uE018'),
-//
-//// Number pad keys
-//NUMPAD0      ('\uE01A'),
-//NUMPAD1      ('\uE01B'),
-//NUMPAD2      ('\uE01C'),
-//NUMPAD3      ('\uE01D'),
-//NUMPAD4      ('\uE01E'),
-//NUMPAD5      ('\uE01F'),
-//NUMPAD6      ('\uE020'),
-//NUMPAD7      ('\uE021'),
-//NUMPAD8      ('\uE022'),
-//NUMPAD9      ('\uE023'),
-
