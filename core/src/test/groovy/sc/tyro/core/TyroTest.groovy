@@ -52,10 +52,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find Button by text")
     void findButtonByText() {
-        Button _button = mock(Button)
-        when(_button.text()).thenReturn('Ok')
+        Button button_1 = mock(Button)
+        when(button_1.text()).thenReturn('Ok')
+        Button button_2 = mock(Button)
+        when(button_2.text()).thenReturn('Ko')
 
-        when(provider.find(By.text('Ok'), Button)).thenReturn(_button)
+        when(provider.findBy(Button)).thenReturn([button_1, button_2])
 
         Button button = button('Ok')
 
@@ -65,10 +67,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find Radio by label")
     void findRadioByLabel() {
-        Radio _radio = mock(Radio)
-        when(_radio.label()).thenReturn('label')
+        Radio radio_1 = mock(Radio)
+        when(radio_1.label()).thenReturn('label')
+        Radio radio_2 = mock(Radio)
+        when(radio_2.label()).thenReturn('lab')
 
-        when(provider.find(By.label('label'), Radio)).thenReturn(_radio)
+        when(provider.findBy(Radio)).thenReturn([radio_1, radio_2])
 
         Radio radio = radio('label')
 
@@ -78,10 +82,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find CheckBox by label")
     void findCheckBoxByLabel() {
-        CheckBox _checkBox = mock(CheckBox)
-        when(_checkBox.label()).thenReturn('label')
+        CheckBox checkBox1 = mock(CheckBox)
+        when(checkBox1.label()).thenReturn('label')
+        CheckBox checkBox2 = mock(CheckBox)
+        when(checkBox2.label()).thenReturn('lab')
 
-        when(provider.find(By.label('label'), CheckBox)).thenReturn(_checkBox)
+        when(provider.findBy(CheckBox)).thenReturn([checkBox1, checkBox2])
 
         CheckBox checkBox = checkbox('label')
 
@@ -91,10 +97,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find Dropdown by label")
     void findDropdownByLabel() {
-        Dropdown _dropdown = mock(Dropdown)
-        when(_dropdown.label()).thenReturn('label')
+        Dropdown dropdown_1 = mock(Dropdown)
+        when(dropdown_1.label()).thenReturn('label')
+        Dropdown dropdown_2 = mock(Dropdown)
+        when(dropdown_2.label()).thenReturn('lab')
 
-        when(provider.find(By.label('label'), Dropdown)).thenReturn(_dropdown)
+        when(provider.findBy(Dropdown)).thenReturn([dropdown_1, dropdown_2])
 
         Dropdown dropdown = dropdown('label')
 
@@ -104,10 +112,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find ListBox by label")
     void findListBoxByLabel() {
-        ListBox _listBox = mock(ListBox)
-        when(_listBox.label()).thenReturn('label')
+        ListBox listBox_1 = mock(ListBox)
+        when(listBox_1.label()).thenReturn('label')
+        ListBox listBox_2 = mock(ListBox)
+        when(listBox_2.label()).thenReturn('lab')
 
-        when(provider.find(By.label('label'), ListBox)).thenReturn(_listBox)
+        when(provider.findBy(ListBox)).thenReturn([listBox_1, listBox_2])
 
         ListBox listBox = listBox('label')
 
@@ -117,10 +127,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find Group by value")
     void findGroupByValue() {
-        Group _group = mock(Group)
-        when(_group.value()).thenReturn('value')
+        Group group_1 = mock(Group)
+        when(group_1.value()).thenReturn('value')
+        Group group_2 = mock(Group)
+        when(group_2.value()).thenReturn('val')
 
-        when(provider.find(By.value('value'), Group)).thenReturn(_group)
+        when(provider.findBy(Group)).thenReturn([group_1, group_2])
 
         Group group = group('value')
 
@@ -130,10 +142,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find Item by value")
     void findItemByValue() {
-        Item _item = mock(Item)
-        when(_item.value()).thenReturn('value')
+        Item item_1 = mock(Item)
+        when(item_1.value()).thenReturn('value')
+        Item item_2 = mock(Item)
+        when(item_2.value()).thenReturn('val')
 
-        when(provider.find(By.value('value'), Item)).thenReturn(_item)
+        when(provider.findBy(Item)).thenReturn([item_1, item_2])
 
         Item item = item('value')
 
@@ -143,10 +157,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find Heading by text")
     void findHeadingByText() {
-        Heading _heading = mock(Heading)
-        when(_heading.text()).thenReturn('text')
+        Heading heading_1 = mock(Heading)
+        when(heading_1.text()).thenReturn('text')
+        Heading heading_2 = mock(Heading)
+        when(heading_2.text()).thenReturn('txt')
 
-        when(provider.find(By.text('text'), Heading)).thenReturn(_heading)
+        when(provider.findBy(Heading)).thenReturn([heading_1, heading_2])
 
         Heading heading = heading('text')
 
@@ -156,10 +172,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find Panel by title")
     void findPanelByTitle() {
-        Panel _panel = mock(Panel)
-        when(_panel.title()).thenReturn('title')
+        Panel panel_1 = mock(Panel)
+        when(panel_1.title()).thenReturn('title')
+        Panel panel_2 = mock(Panel)
+        when(panel_2.title()).thenReturn('')
 
-        when(provider.find(By.title('title'), Panel)).thenReturn(_panel)
+        when(provider.findBy(Panel)).thenReturn([panel_1, panel_2])
 
         Panel panel = panel('title')
 
@@ -169,10 +187,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find Link by text")
     void findLinkByText() {
-        Link _link = mock(Link)
-        when(_link.text()).thenReturn('text')
+        Link link_1 = mock(Link)
+        when(link_1.text()).thenReturn('text')
+        Link link_2 = mock(Link)
+        when(link_2.text()).thenReturn('txt')
 
-        when(provider.find(By.text('text'), Link)).thenReturn(_link)
+        when(provider.findBy(Link)).thenReturn([link_1, link_2])
 
         Link link = link('text')
 
@@ -182,10 +202,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find PasswordField by label")
     void findPasswordFieldByLabel() {
-        PasswordField _passwordField = mock(PasswordField)
-        when(_passwordField.label()).thenReturn("label")
+        PasswordField passwordField_1 = mock(PasswordField)
+        when(passwordField_1.label()).thenReturn("label")
+        PasswordField passwordField_2 = mock(PasswordField)
+        when(passwordField_2.label()).thenReturn("lab")
 
-        when(provider.find(By.label('label'), PasswordField)).thenReturn(_passwordField)
+        when(provider.findBy(PasswordField)).thenReturn([passwordField_1, passwordField_2])
 
         PasswordField passwordField = passwordField('label')
 
@@ -195,10 +217,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find TextField by label")
     void findTextFieldByLabel() {
-        TextField _textField = mock(TextField)
-        when(_textField.label()).thenReturn("label")
+        TextField textField_1 = mock(TextField)
+        when(textField_1.label()).thenReturn("label")
+        TextField textField_2 = mock(TextField)
+        when(textField_2.label()).thenReturn("lab")
 
-        when(provider.find(By.label('label'), TextField)).thenReturn(_textField)
+        when(provider.findBy(TextField)).thenReturn([textField_1, textField_2])
 
         TextField textField = textField('label')
 
@@ -208,10 +232,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find SearchField by label")
     void findSearchFieldByLabel() {
-        SearchField _searchField = mock(SearchField)
-        when(_searchField.label()).thenReturn("label")
+        SearchField searchField_1 = mock(SearchField)
+        when(searchField_1.label()).thenReturn("label")
+        SearchField searchField_2 = mock(SearchField)
+        when(searchField_2.label()).thenReturn("lab")
 
-        when(provider.find(By.label('label'), SearchField)).thenReturn(_searchField)
+        when(provider.findBy(SearchField)).thenReturn([searchField_1, searchField_2])
 
         SearchField searchField = searchField('label')
 
@@ -221,10 +247,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find EmailField by label")
     void findEmailFieldByLabel() {
-        EmailField _emailField = mock(EmailField)
-        when(_emailField.label()).thenReturn("label")
+        EmailField emailField_1 = mock(EmailField)
+        when(emailField_1.label()).thenReturn("label")
+        EmailField emailField_2 = mock(EmailField)
+        when(emailField_2.label()).thenReturn("lab")
 
-        when(provider.find(By.label('label'), EmailField)).thenReturn(_emailField)
+        when(provider.findBy(EmailField)).thenReturn([emailField_1, emailField_2])
 
         EmailField emailField = emailField('label')
 
@@ -234,10 +262,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find URLField by label")
     void findURLFieldByLabel() {
-        URLField _urlField = mock(URLField)
-        when(_urlField.label()).thenReturn("label")
+        URLField urlField_1 = mock(URLField)
+        when(urlField_1.label()).thenReturn("label")
+        URLField urlField_2 = mock(URLField)
+        when(urlField_2.label()).thenReturn("lab")
 
-        when(provider.find(By.label('label'), URLField)).thenReturn(_urlField)
+        when(provider.findBy(URLField)).thenReturn([urlField_1, urlField_2])
 
         URLField urlField = urlField('label')
 
@@ -247,10 +277,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find NumberField by label")
     void findNumberFieldByLabel() {
-        NumberField _numberField = mock(NumberField)
-        when(_numberField.label()).thenReturn("label")
+        NumberField numberField_1 = mock(NumberField)
+        when(numberField_1.label()).thenReturn("label")
+        NumberField numberField_2 = mock(NumberField)
+        when(numberField_2.label()).thenReturn("lab")
 
-        when(provider.find(By.label('label'), NumberField)).thenReturn(_numberField)
+        when(provider.findBy(NumberField)).thenReturn([numberField_1, numberField_2])
 
         NumberField numberField = numberField('label')
 
@@ -260,10 +292,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find RangeField by label")
     void findRangeFieldByLabel() {
-        RangeField _rangeField = mock(RangeField)
-        when(_rangeField.label()).thenReturn("label")
+        RangeField rangeField_1 = mock(RangeField)
+        when(rangeField_1.label()).thenReturn("label")
+        RangeField rangeField_2 = mock(RangeField)
+        when(rangeField_2.label()).thenReturn("lab")
 
-        when(provider.find(By.label('label'), RangeField)).thenReturn(_rangeField)
+        when(provider.findBy(RangeField)).thenReturn([rangeField_1, rangeField_2])
 
         RangeField rangeField = rangeField('label')
 
@@ -273,10 +307,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find DateField by label")
     void findDateFieldByLabel() {
-        DateField _dateField = mock(DateField)
-        when(_dateField.label()).thenReturn("label")
+        DateField dateField_1 = mock(DateField)
+        when(dateField_1.label()).thenReturn("label")
+        DateField dateField_2 = mock(DateField)
+        when(dateField_2.label()).thenReturn("lab")
 
-        when(provider.find(By.label('label'), DateField)).thenReturn(_dateField)
+        when(provider.findBy(DateField)).thenReturn([dateField_1, dateField_2])
 
         DateField dateField = dateField('label')
 
@@ -286,10 +322,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find ColorField by label")
     void findColorFieldByLabel() {
-        ColorField _colorField = mock(ColorField)
-        when(_colorField.label()).thenReturn("label")
+        ColorField colorField_1 = mock(ColorField)
+        when(colorField_1.label()).thenReturn("label")
+        ColorField colorField_2 = mock(ColorField)
+        when(colorField_2.label()).thenReturn("lab")
 
-        when(provider.find(By.label('label'), ColorField)).thenReturn(_colorField)
+        when(provider.findBy(ColorField)).thenReturn([colorField_1,colorField_2])
 
         ColorField colorField = colorField('label')
 
@@ -299,10 +337,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find DateTimeField by label")
     void findDateTimeFieldByLabel() {
-        DateTimeField _dateTimeField = mock(DateTimeField)
-        when(_dateTimeField.label()).thenReturn("label")
+        DateTimeField dateTimeField_1 = mock(DateTimeField)
+        when(dateTimeField_1.label()).thenReturn("label")
+        DateTimeField dateTimeField_2 = mock(DateTimeField)
+        when(dateTimeField_2.label()).thenReturn("lab")
 
-        when(provider.find(By.label('label'), DateTimeField)).thenReturn(_dateTimeField)
+        when(provider.findBy(DateTimeField)).thenReturn([dateTimeField_1, dateTimeField_2])
 
         DateTimeField dateTimeField = dateTimeField('label')
 
@@ -312,10 +352,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find MonthField by label")
     void findMonthFieldByLabel() {
-        MonthField _monthField = mock(MonthField)
-        when(_monthField.label()).thenReturn("label")
+        MonthField monthField_1 = mock(MonthField)
+        when(monthField_1.label()).thenReturn("label")
+        MonthField monthField_2 = mock(MonthField)
+        when(monthField_2.label()).thenReturn("lab")
 
-        when(provider.find(By.label('label'), MonthField)).thenReturn(_monthField)
+        when(provider.findBy(MonthField)).thenReturn([monthField_1, monthField_2])
 
         MonthField monthField = monthField('label')
 
@@ -325,10 +367,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find PhoneField by label")
     void findPhoneFieldByLabel() {
-        PhoneField _phoneField = mock(PhoneField)
-        when(_phoneField.label()).thenReturn("label")
+        PhoneField phoneField_1 = mock(PhoneField)
+        when(phoneField_1.label()).thenReturn("label")
+        PhoneField phoneField_2 = mock(PhoneField)
+        when(phoneField_2.label()).thenReturn("lab")
 
-        when(provider.find(By.label('label'), PhoneField)).thenReturn(_phoneField)
+        when(provider.findBy(PhoneField)).thenReturn([phoneField_1, phoneField_2])
 
         PhoneField phoneField = phoneField('label')
 
@@ -338,10 +382,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find TimeField by label")
     void findTimeFieldByLabel() {
-        TimeField _timeField = mock(TimeField)
-        when(_timeField.label()).thenReturn("label")
+        TimeField timeField_1 = mock(TimeField)
+        when(timeField_1.label()).thenReturn("label")
+        TimeField timeField_2 = mock(TimeField)
+        when(timeField_2.label()).thenReturn("lab")
 
-        when(provider.find(By.label('label'), TimeField)).thenReturn(_timeField)
+        when(provider.findBy(TimeField)).thenReturn([timeField_1, timeField_2])
 
         TimeField timeField = timeField('label')
 
@@ -351,10 +397,12 @@ class TyroTest {
     @Test
     @DisplayName("Should find WeekField by label")
     void findWeekFieldByLabel() {
-        WeekField _weekField = mock(WeekField)
-        when(_weekField.label()).thenReturn("label")
+        WeekField weekField_1 = mock(WeekField)
+        when(weekField_1.label()).thenReturn("label")
+        WeekField weekField_2 = mock(WeekField)
+        when(weekField_2.label()).thenReturn("lab")
 
-        when(provider.find(By.label('label'), WeekField)).thenReturn(_weekField)
+        when(provider.findBy(WeekField)).thenReturn([weekField_1, weekField_2])
 
         WeekField weekField = weekField('label')
 

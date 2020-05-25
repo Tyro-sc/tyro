@@ -197,53 +197,53 @@ class Tyro {
     // Generic Component Factory
     static Browser browser() { new Browser(provider) }
 
-    static Button button(String text) { provider.find(By.text(text), Button) }
+    static Button button(String text) { provider.findBy(Button).find { it.text() == text } }
 
-    static Radio radio(String label) { provider.find(By.label(label), Radio) }
+    static Radio radio(String label) { provider.findBy(Radio).find { it.label() == label } }
 
-    static CheckBox checkbox(String label) { provider.find(By.label(label), CheckBox) }
+    static CheckBox checkbox(String label) { provider.findBy(CheckBox).find { it.label() == label } }
 
-    static Dropdown dropdown(String label) { provider.find(By.label(label), Dropdown) }
+    static Dropdown dropdown(String label) { provider.findBy(Dropdown).find { it.label() == label } }
 
-    static ListBox listBox(String label) { provider.find(By.label(label), ListBox) }
+    static ListBox listBox(String label) { provider.findBy(ListBox).find { it.label() == label } }
 
-    static Group group(String value) { provider.find(By.value(value), Group) }
+    static Group group(String value) { provider.findBy(Group).find { it.value() == value } }
 
-    static Item item(String value) { provider.find(By.value(value), Item) }
+    static Item item(String value) { provider.findBy(Item).find { it.value() == value } }
 
-    static Heading heading(String text) { provider.find(By.text(text), Heading) }
+    static Heading heading(String text) { provider.findBy(Heading).find { it.text() == text } }
 
-    static Panel panel(String title) { provider.find(By.title(title), Panel) }
+    static Panel panel(String title) { provider.findBy(Panel).find { it.title() == title } }
 
-    static Link link(String text) { provider.find(By.text(text), Link) }
+    static Link link(String text) { provider.findBy(Link).find { it.text() == text } }
 
-    static PasswordField passwordField(String label) { provider.find(By.label(label), PasswordField) }
+    static PasswordField passwordField(String label) { provider.findBy(PasswordField).find { it.label() == label } }
 
-    static TextField textField(String label) { provider.find(By.label(label), TextField) }
+    static TextField textField(String label) { provider.findBy(TextField).find { it.label() == label } }
 
-    static SearchField searchField(String label) { provider.find(By.label(label), SearchField) }
+    static SearchField searchField(String label) { provider.findBy(SearchField).find { it.label() == label } }
 
-    static EmailField emailField(String label) { provider.find(By.label(label), EmailField) }
+    static EmailField emailField(String label) { provider.findBy(EmailField).find { it.label() == label } }
 
-    static URLField urlField(String label) { provider.find(By.label(label), URLField) }
+    static URLField urlField(String label) { provider.findBy(URLField).find { it.label() == label } }
 
-    static NumberField numberField(String label) { provider.find(By.label(label), NumberField) }
+    static NumberField numberField(String label) { provider.findBy(NumberField).find { it.label() == label } }
 
-    static RangeField rangeField(String label) { provider.find(By.label(label), RangeField) }
+    static RangeField rangeField(String label) { provider.findBy(RangeField).find { it.label() == label } }
 
-    static DateField dateField(String label) { provider.find(By.label(label), DateField) }
+    static DateField dateField(String label) { provider.findBy(DateField).find { it.label() == label } }
 
-    static ColorField colorField(String label) { provider.find(By.label(label), ColorField) }
+    static ColorField colorField(String label) { provider.findBy(ColorField).find { it.label() == label } }
 
-    static DateTimeField dateTimeField(String label) { provider.find(By.label(label), DateTimeField) }
+    static DateTimeField dateTimeField(String label) { provider.findBy(DateTimeField).find { it.label() == label } }
 
-    static MonthField monthField(String label) { provider.find(By.label(label), MonthField) }
+    static MonthField monthField(String label) { provider.findBy(MonthField).find { it.label() == label } }
 
-    static PhoneField phoneField(String label) { provider.find(By.label(label), PhoneField) }
+    static PhoneField phoneField(String label) { provider.findBy(PhoneField).find { it.label() == label } }
 
-    static TimeField timeField(String label) { provider.find(By.label(label), TimeField) }
+    static TimeField timeField(String label) { provider.findBy(TimeField).find { it.label() == label } }
 
-    static WeekField weekField(String label) { provider.find(By.label(label), WeekField) }
+    static WeekField weekField(String label) { provider.findBy(WeekField).find { it.label() == label } }
 
     static void waitUntil(Closure c, Matcher what = null) { wait.waitUntil(c, what) }
 
