@@ -15,7 +15,7 @@ class GroupTest {
     @DisplayName("Should have expected Inheritance")
     void should_have_expected_inheritance() {
         assert Group in Component
-        assert Group in  ValueSupport
+        assert Group in ValueSupport
         assert Group in ItemSupport
     }
 
@@ -33,7 +33,7 @@ class GroupTest {
     }
 
     private class TestGroup extends Group {
-        private String value;
+        private String value
 
         TestGroup(String value) {
             this.value = value

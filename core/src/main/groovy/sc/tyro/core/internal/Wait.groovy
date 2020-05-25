@@ -42,7 +42,7 @@ class Wait {
                         .appendText('\n     but: ')
                 what.describeMismatch(c.delegate, description)
             }
-            throw new AssertionError(new RuntimeException(description.toString()))
+            throw new AssertionError(description)
         }
     }
 }

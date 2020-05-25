@@ -2,7 +2,6 @@ package sc.tyro.dsl
 
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import sc.tyro.core.Config
 import sc.tyro.core.Provider
 import sc.tyro.core.component.CheckBox
 import sc.tyro.core.component.Component
@@ -191,7 +190,7 @@ class StateTest {
     void should_support_contain() {
         Provider provider = mock(Provider)
 
-        Component cmp_1 = spy(new Component(provider,null))
+        Component cmp_1 = spy(new Component(provider, null))
         doReturn('1').when(cmp_1).id()
         Component cmp_2 = spy(new Component(provider, null))
         doReturn('2').when(cmp_2).id()

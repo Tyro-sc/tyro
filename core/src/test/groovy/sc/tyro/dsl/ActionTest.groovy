@@ -1,6 +1,9 @@
 package sc.tyro.dsl
 
-import org.junit.jupiter.api.*
+
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import sc.tyro.core.ComponentException
 import sc.tyro.core.Provider
 import sc.tyro.core.Tyro
@@ -184,7 +187,7 @@ class ActionTest {
         // Cannot select disabled item
         when(item_1.enabled()).thenReturn(false)
 
-        Exception ex = assertThrows(ComponentException, { select item_1  })
+        Exception ex = assertThrows(ComponentException, { select item_1 })
         assertThat(ex.message, containsString('is disabled and cannot be selected'))
 
         // Cannot select already selected item
@@ -343,105 +346,4 @@ class ActionTest {
         type CTRL + 'c'
         verify(keyboard, times(1)).type([CTRL, 'c'])
     }
-
-    @Test
-    @DisplayName("Should delegate to Factory")
-    void factory_delegation() {
-//        ComponentFactory factory = mock(ComponentFactory)
-//
-//        button("Ok")
-//        verify(factory, times(1)).collectAll(Button)
-    }
 }
-//    =========================================================================================================
-//    TODO
-
-
-//
-//    @Test
-//    void should_throw_an_error_when_action_on_component_does_not_correspond_to_its_state() {
-//        CheckBox checkbox = spy(new CheckBoxStub())
-//        checkbox.meta = meta
-//
-//        Mockito.doReturn(false).when(checkbox).enabled()
-//        try {
-//            org.testatoo.core.Testatoo.check checkbox
-//            org.junit.Assert.fail()
-//        } catch (ComponentException e) {
-//            assert e.message.endsWith('is disabled and cannot be checked')
-//        }
-//
-//        Mockito.doReturn(true).when(checkbox).enabled()
-//        Mockito.doReturn(true).when(checkbox).checked()
-//        try {
-//            org.testatoo.core.Testatoo.check checkbox
-//            org.junit.Assert.fail()
-//        } catch (ComponentException e) {
-//            assert e.message.endsWith('is already checked and cannot be checked')
-//        }
-//
-//        Mockito.doReturn(false).when(checkbox).enabled()
-//        try {
-//            org.testatoo.core.Testatoo.uncheck checkbox
-//            org.junit.Assert.fail()
-//        } catch (ComponentException e) {
-//            assert e.message.endsWith('is disabled and cannot be unchecked')
-//        }
-//
-//        Mockito.doReturn(true).when(checkbox).enabled()
-//        Mockito.doReturn(false).when(checkbox).checked()
-//        try {
-//            org.testatoo.core.Testatoo.uncheck checkbox
-//            org.junit.Assert.fail()
-//        } catch (ComponentException e) {
-//            assert e.message.endsWith('is already unchecked and cannot be unchecked')
-//        }
-//
-//        ListBox listBox = spy(new ListBoxStub())
-//        listBox.meta = meta
-//
-//        Item item_1 = spy(new ItemStub())
-//        item_1.meta = meta
-//
-//        Mockito.doReturn([item_1]).when(listBox).items()
-//        Mockito.doReturn(false).when(item_1).enabled()
-//
-//        try {
-//            listBox.select(item_1)
-//            org.junit.Assert.fail()
-//        } catch (ComponentException e) {
-//            assert e.message.endsWith('is disabled and cannot be selected')
-//        }
-//
-//        reset(item_1)
-//        Mockito.doReturn(true).when(item_1).enabled()
-//        Mockito.doReturn(true).when(item_1).selected()
-//
-//        try {
-//            listBox.select(item_1)
-//            org.junit.Assert.fail()
-//        } catch (ComponentException e) {
-//            assert e.message.endsWith('is already selected and cannot be selected')
-//        }
-//
-//        reset(item_1)
-//        Mockito.doReturn(false).when(item_1).enabled()
-//        try {
-//            listBox.unselect(item_1)
-//            org.junit.Assert.fail()
-//        } catch (ComponentException e) {
-//            assert e.message.endsWith('is disabled and cannot be deselected')
-//        }
-//
-//        reset(item_1)
-//        Mockito.doReturn(true).when(item_1).enabled()
-//        Mockito.doReturn(false).when(item_1).selected()
-//
-//        try {
-//            listBox.unselect(item_1)
-//            org.junit.Assert.fail()
-//        } catch (ComponentException e) {
-//            assert e.message.endsWith('is already unselected and cannot be deselected')
-//        }
-//    }
-//}

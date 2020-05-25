@@ -7,7 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 import sc.tyro.core.component.datagrid.Cell
 import sc.tyro.core.component.datagrid.Column
 import sc.tyro.core.component.datagrid.DataGrid
-import sc.tyro.web.TyroWebTestExtension
+import sc.tyro.bundle.web.TyroWebTestExtension
 
 import static sc.tyro.core.Tyro.$
 import static sc.tyro.core.Tyro.visit

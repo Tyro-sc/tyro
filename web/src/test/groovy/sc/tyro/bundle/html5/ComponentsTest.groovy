@@ -4,9 +4,6 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import sc.tyro.bundle.html5.Button
-import sc.tyro.bundle.html5.Form
-import sc.tyro.bundle.html5.Label
 import sc.tyro.bundle.html5.heading.*
 import sc.tyro.bundle.html5.input.InputTypeCheckBox
 import sc.tyro.bundle.html5.input.InputTypeEmail
@@ -16,7 +13,7 @@ import sc.tyro.core.ComponentException
 import sc.tyro.core.component.*
 import sc.tyro.core.support.property.TextSupport
 import sc.tyro.web.CssIdentifier
-import sc.tyro.web.TyroWebTestExtension
+import sc.tyro.bundle.web.TyroWebTestExtension
 
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static sc.tyro.core.Tyro.*

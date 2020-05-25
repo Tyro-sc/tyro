@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Tyro Rocks</title>
+
+    <meta name="description" content="Tyro Rocks">
+    <meta name="author" content="ovea">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <style>
+        * {
+            font-family: Helvetica, Verdana, Arial, sans-serif;
+            font-size: 0.95em
+        }
+
+        .eventNotifier {
+            width: 100px;
+            float: left;
+            color: navy;
+            border: dotted 1px navy;
+            padding: 4px;
+            background-color: white;
+            margin: 3px
+        }
+
+        .dirty {
+            border: solid 1px #0ca2ff;
+            color: white;
+            background-color: #0ca2ff
+        }
+    </style>
+
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/keyboard-2.5.0.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">Tyro Keyboard Tests</a>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+
+            <h2>A-Z Letters</h2>
+
+            <div id="_a" class="eventNotifier">a</div>
+            <div id="_b" class="eventNotifier">b</div>
+            <div id="_c" class="eventNotifier">c</div>
+            <div id="_d" class="eventNotifier">d</div>
+            <div id="_e" class="eventNotifier">e</div>
+            <div id="_f" class="eventNotifier">f</div>
+            <div id="_g" class="eventNotifier">g</div>
+            <div id="_h" class="eventNotifier">h</div>
+            <div id="_i" class="eventNotifier">i</div>
+            <div id="_j" class="eventNotifier">j</div>
+            <div id="_k" class="eventNotifier">k</div>
+            <div id="_l" class="eventNotifier">l</div>
+            <div id="_m" class="eventNotifier">m</div>
+            <div id="_n" class="eventNotifier">n</div>
+            <div id="_o" class="eventNotifier">o</div>
+            <div id="_p" class="eventNotifier">p</div>
+            <div id="_q" class="eventNotifier">q</div>
+            <div id="_r" class="eventNotifier">r</div>
+            <div id="_s" class="eventNotifier">s</div>
+            <div id="_t" class="eventNotifier">t</div>
+            <div id="_u" class="eventNotifier">u</div>
+            <div id="_v" class="eventNotifier">v</div>
+            <div id="_w" class="eventNotifier">w</div>
+            <div id="_x" class="eventNotifier">x</div>
+            <div id="_y" class="eventNotifier">y</div>
+            <div id="_z" class="eventNotifier">z</div>
+            <div style="clear: both;"></div>
+
+            <h2>0-9 Digits</h2>
+
+            <div id="_0" class="eventNotifier">0</div>
+            <div id="_1" class="eventNotifier">1</div>
+            <div id="_2" class="eventNotifier">2</div>
+            <div id="_3" class="eventNotifier">3</div>
+            <div id="_4" class="eventNotifier">4</div>
+            <div id="_5" class="eventNotifier">5</div>
+            <div id="_6" class="eventNotifier">6</div>
+            <div id="_7" class="eventNotifier">7</div>
+            <div id="_8" class="eventNotifier">8</div>
+            <div id="_9" class="eventNotifier">9</div>
+
+            <div style="clear: both;"></div>
+
+            <h2>Special Keys</h2>
+
+            <div id="_divide" class="eventNotifier">/</div>
+            <div id="_multiply" class="eventNotifier">*</div>
+            <div id="_substract" class="eventNotifier">-</div>
+            <div id="_add" class="eventNotifier">+</div>
+            <div id="_equals" class="eventNotifier">=</div>
+
+            <div id="_return" class="eventNotifier">return</div>
+            <div id="_space" class="eventNotifier">space</div>
+
+            <div style="clear: both;"></div>
+
+            <h2>Input text</h2>
+
+            <div style="clear: both;"></div>
+            <input id="textfield" type="text"/>
+
+            <div style="clear: both;"></div>
+
+            <h2>Special Modifiers</h2>
+
+            <div id="_Ctrl_Alt_Shift_x" class="eventNotifier">Ctrl+Alt+Shift+x</div>
+            <div style="clear: both;"></div>
+
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+<script>
+    $.fn.dirtyCheck = function () {
+        this.addClass('dirty');
+        this.append('<span id="span' + this.attr('id') + '" style="display:none"/>');
+    };
+
+    (function ($) {
+        // ==================== KEYBOARD ===================
+        //        ============= LETTERS ===============
+        for (let i = 0; i < 26; i++) {
+            let letter = (i + 10).toString(36)
+            keyboardJS.bind(letter, function (e) {
+                $('#_' + letter).dirtyCheck();
+            });
+        }
+
+        //        ============= DIGITS ===============
+        for (let i = 0; i < 10; i++) {
+            keyboardJS.bind('' + i, function (e) {
+                $('#_' + i).dirtyCheck();
+            });
+        }
+
+        //     ============= SPECIAL KEYS ===============
+        keyboardJS.bind('/', function (e) {
+            $('#_divide').dirtyCheck();
+        });
+
+        keyboardJS.bind('*', function (e) {
+            $('#_multiply').dirtyCheck();
+        });
+
+        keyboardJS.bind('-', function (e) {
+            $('#_substract').dirtyCheck();
+        });
+
+        keyboardJS.bind('+', function (e) {
+            $('#_add').dirtyCheck();
+        });
+
+        keyboardJS.bind('=', function (e) {
+            $('#_equals').dirtyCheck();
+        });
+
+        keyboardJS.bind('return', function (e) {
+            $('#_return').dirtyCheck();
+        });
+
+        keyboardJS.bind('space', function (e) {
+            $('#_space').dirtyCheck();
+        });
+
+        //   ============= SPECIAL MODIFIERS  ===============
+        keyboardJS.bind('alt+ctrl+shift+x', function (e) {
+            $('#_Ctrl_Alt_Shift_x').dirtyCheck();
+        });
+    }(jQuery));
+</script>
+</body>
+</html>

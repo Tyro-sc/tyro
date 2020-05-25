@@ -12,7 +12,7 @@ import sc.tyro.web.CssIdentifier
 class Tr extends Row {
     @Override
     List<Td> cells() {
-        provider.metaInfo(By.expression("\$('[id=\"${id()}\"]').find('td')")).collect { it as Td }
+        provider.findAll(By.expression("\$('[id=\"${id()}\"]').find('td')"), Td)
     }
 
     @Override

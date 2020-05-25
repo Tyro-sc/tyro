@@ -14,7 +14,6 @@ class Th extends Column {
     List<Td> cells() {
         int index = provider.eval(id(), "it.index() + 1") as int
         provider.findAll(By.expression("\$('[id=\"${id()}\"]').closest('table').find('tbody tr').find('td:nth-child(${index})')"), Td)
-//        find(By.js("\$('[id=\"${id()}\"]').closest('table').find('tbody tr').find('td:nth-child(${index})')"), Td)
     }
 
     @Override

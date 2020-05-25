@@ -1,5 +1,7 @@
 package sc.tyro.web.internal
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import sc.tyro.core.ComponentException
 import sc.tyro.core.MetaDataProvider
 import sc.tyro.core.MetaInfo

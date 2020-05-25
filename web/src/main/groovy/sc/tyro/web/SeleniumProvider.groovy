@@ -4,12 +4,10 @@ import groovy.json.JsonSlurper
 import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
-import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.interactions.Actions
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import sc.tyro.core.By
-import sc.tyro.core.Config
 import sc.tyro.core.MetaDataProvider
 import sc.tyro.core.MetaInfo
 import sc.tyro.core.Provider
@@ -28,10 +26,10 @@ import static sc.tyro.web.KeyConverter.convert
  */
 class SeleniumProvider implements Provider {
     private static final Logger LOGGER = LoggerFactory.getLogger(SeleniumProvider)
+    private final List<String> registeredScripts = new ArrayList<>()
 
     private final WebDriver webDriver
     private final JavascriptExecutor js
-    private final List<String> registeredScripts = new ArrayList<>()
 
     SeleniumProvider(WebDriver webDriver) {
         this.webDriver = webDriver
@@ -45,6 +43,7 @@ class SeleniumProvider implements Provider {
 
     @Override
     <T extends Component> List<T> findBy(Class<T> clazz) {
+//        TODO: factories
         return null
     }
 
@@ -68,12 +67,8 @@ class SeleniumProvider implements Provider {
     @Override
     void click(Component component, Collection<MouseModifiers> mouseModifiers, Collection<?> keys) {
         WebElement element = webDriver.findElement(org.openqa.selenium.By.id(component.id()))
-        if (webDriver instanceof FirefoxDriver) {
-//            https://github.com/mozilla/geckodriver/issues/776
-            runScript("document.getElementById('${component.id()}').scrollIntoView(true)")
-        } else {
-            new Actions(webDriver).moveToElement(element).build().perform()
-        }
+        // https://github.com/mozilla/geckodriver/issues/776
+        runScript("document.getElementById('${component.id()}').scrollIntoView(true)")
 
         // Temporary hack until Selenium fix
         if (optionInDropdown(component.id())) {
@@ -81,7 +76,6 @@ class SeleniumProvider implements Provider {
             return
         }
 
-        Actions action = new Actions(webDriver)
         Collection<Key> modifiers = []
         Collection<String> text = []
         keys.each { k ->
@@ -89,6 +83,8 @@ class SeleniumProvider implements Provider {
             if (k instanceof Key && k in [Key.SHIFT, Key.CTRL, Key.ALT]) modifiers << k
             else text << k as String
         }
+
+        Actions action = new Actions(webDriver)
         modifiers.each { action.keyDown(convert(it)) }
         text.each { it instanceof Key ? action.sendKeys(convert(it)) : action.sendKeys(it) }
         if (mouseModifiers == [LEFT, SINGLE]) {
@@ -116,7 +112,6 @@ class SeleniumProvider implements Provider {
 
     @Override
     void type(Collection<?> keys) {
-        Actions action = new Actions(webDriver)
         Collection<Key> modifiers = []
         Collection<String> text = []
         keys.each { k ->
@@ -124,8 +119,12 @@ class SeleniumProvider implements Provider {
             if (k instanceof Key && k in [Key.SHIFT, Key.CTRL, Key.ALT]) modifiers << k
             else text << k as String
         }
+
+        Actions action = new Actions(webDriver)
         modifiers.each { action.keyDown(convert(it)) }
-        text.each { it instanceof Key ? action.sendKeys(convert(it)) : action.sendKeys(it) }
+        text.each {
+            it instanceof Key ? action.sendKeys(convert(it)) : action.sendKeys(it)
+        }
         modifiers.each { action.keyUp(convert(it)) }
         action.build().perform()
     }
@@ -172,7 +171,7 @@ class SeleniumProvider implements Provider {
 
     @Override
     void switchToWindow(String windowId) {
-
+        // TODO switch window
     }
 
     @Override
@@ -187,6 +186,7 @@ class SeleniumProvider implements Provider {
 
     @Override
     boolean contains(Component component) {
+        // TODO: contains
         return false
     }
 
@@ -212,7 +212,7 @@ class SeleniumProvider implements Provider {
 
     @Override
     void registerScripts(String... scripts) {
-
+        registeredScripts.addAll(scripts)
     }
 
     private static By.ByExpression convertToExpression(By by) {

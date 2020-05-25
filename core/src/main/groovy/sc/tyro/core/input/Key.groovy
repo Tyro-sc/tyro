@@ -6,6 +6,15 @@ package sc.tyro.core.input
  */
 enum Key {
     ESCAPE,
+    NULL,
+    CANCEL,
+    HELP,
+    CLEAR,
+    META,
+    COMMAND,
+
+    SEPARATOR,
+    DECIMAL,
 
     F1,
     F2,
@@ -37,6 +46,7 @@ enum Key {
 
     TAB,
     RETURN,
+    ENTER,
     SPACE,
 
     LEFT,
@@ -48,3 +58,27 @@ enum Key {
     CTRL,
     ALT
 }
+
+
+//LEFT_SHIFT   (Keys.SHIFT),
+//LEFT_CONTROL (Keys.CONTROL),
+//LEFT_ALT     (Keys.ALT),
+//PAUSE        ('\uE00B'),
+//ARROW_LEFT   (Keys.LEFT),
+//ARROW_UP     (Keys.UP),
+//ARROW_RIGHT  (Keys.RIGHT),
+//ARROW_DOWN   (Keys.DOWN),
+//SEMICOLON    ('\uE018'),
+//
+//// Number pad keys
+//NUMPAD0      ('\uE01A'),
+//NUMPAD1      ('\uE01B'),
+//NUMPAD2      ('\uE01C'),
+//NUMPAD3      ('\uE01D'),
+//NUMPAD4      ('\uE01E'),
+//NUMPAD5      ('\uE01F'),
+//NUMPAD6      ('\uE020'),
+//NUMPAD7      ('\uE021'),
+//NUMPAD8      ('\uE022'),
+//NUMPAD9      ('\uE023'),
+

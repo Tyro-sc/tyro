@@ -2,6 +2,7 @@ package sc.tyro.core.internal
 
 import org.hamcrest.Matcher
 import sc.tyro.core.ComponentException
+import sc.tyro.core.Config
 import sc.tyro.core.Tyro
 import sc.tyro.core.component.Component
 import sc.tyro.core.component.Item

@@ -4,15 +4,15 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import sc.tyro.core.MetaDataProvider
 import sc.tyro.core.MetaInfo
 import sc.tyro.core.Provider
 import sc.tyro.core.component.Component
 
-import static org.mockito.ArgumentMatchers.any
 import static org.mockito.Mockito.*
 import static sc.tyro.core.Config.provider
-import static sc.tyro.core.input.Key.CTRL
 import static sc.tyro.core.input.Key.ALT
+import static sc.tyro.core.input.Key.CTRL
 import static sc.tyro.core.input.Key.DELETE
 import static sc.tyro.core.input.Key.SPACE
 import static sc.tyro.core.input.MouseModifiers.*
@@ -29,9 +29,10 @@ class MouseTest {
     @BeforeEach
     void setUp() {
         provider = mock(Provider)
-//        when(provider.metaInfo(any())).thenReturn(new MetaInfo('node', '1'))
+        MetaDataProvider meta = mock(MetaDataProvider)
+        cmp = new Component(provider, meta)
 
-        cmp = new Component()
+        when(meta.metaInfo(cmp)).thenReturn(new MetaInfo(node: 'node', id: '1'))
     }
 
     @AfterEach
@@ -52,7 +53,7 @@ class MouseTest {
     void should_be_able_to_doubleClick() {
         mouse.doubleClickOn(cmp)
 
-        verify(provider, times(1)).click(cmp, [LEFT, DOUBLE], [] as Collection<?>)
+        verify(provider, times(1)).click(cmp, [LEFT, DOUBLE], [])
     }
 
     @Test

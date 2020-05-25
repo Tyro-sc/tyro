@@ -1,4 +1,4 @@
-package sc.tyro.web
+package sc.tyro.bundle.web
 
 import io.javalin.Javalin
 import org.junit.jupiter.api.extension.AfterAllCallback
@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import sc.tyro.core.Config
+import sc.tyro.web.WebBundle
 
 import static io.github.bonigarcia.wdm.WebDriverManager.*
 
@@ -15,9 +16,8 @@ import static io.github.bonigarcia.wdm.WebDriverManager.*
  * @author David Avenante
  * @since 1.0.0
  */
-
 class TyroWebTestExtension implements BeforeAllCallback, AfterAllCallback {
-    private static Javalin app;
+    private static Javalin app
     private static WebDriver driver
 
     @Override
@@ -26,6 +26,8 @@ class TyroWebTestExtension implements BeforeAllCallback, AfterAllCallback {
             config -> config.addStaticFiles("/webapp")
         }).start(8080)
 
+//        firefoxdriver().setup()
+//        driver = new FirefoxDriver()
         chromedriver().setup()
         driver = new ChromeDriver()
         WebBundle.init(driver)

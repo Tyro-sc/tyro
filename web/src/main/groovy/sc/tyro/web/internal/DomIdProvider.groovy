@@ -15,7 +15,7 @@ import static sc.tyro.core.Config.provider
  * @since 1.0.0
  */
 class DomIdProvider implements IdProvider {
-    private static Logger LOGGER = LoggerFactory.getLogger(DomIdProvider.class);
+    private static Logger LOGGER = LoggerFactory.getLogger(DomIdProvider.class)
 
     private final ByExpression expression
     private boolean singleElement
@@ -27,7 +27,7 @@ class DomIdProvider implements IdProvider {
 
     @Override
     List<MetaInfo> metaInfos() throws ComponentException {
-        LOGGER.info("metaInfos: ${expression}")
+        LOGGER.debug("metaInfos - ${expression}")
 
         List<MetaInfo> metaInfos = provider.metaInfo(expression)
         if (singleElement) {

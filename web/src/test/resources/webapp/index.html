@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Tyro Rocks</title>
+
+    <meta name="description" content="Tyro Rocks">
+    <meta name="author" content="ovea">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <script src="js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">Tyro Tests</a>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <a href="keyboard.html">Keyboard Tests</a>
+            <hr/>
+            <a href="mouse.html">Mouse Tests</a>
+            <hr/>
+            <a href="components.html">Components Tests</a>
+            <hr/>
+            <a href="errors.html">Errors Tests</a>
+            <hr/>
+            <a id="link" href="#">Link to popup</a>
+            <hr/>
+            <a href="wait.html">Link to Wait</a>
+            <hr/>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('#link').on('click', function (e) {
+        e.preventDefault();
+        window.open("popup.html", "window_name", "width=500,height=500");
+    });
+
+    $('#form').on('submit', function (e) {
+        e.preventDefault();
+        $(this).find('span').text(+$(this).find('span').text() + 1);
+    });
+</script>
+
+</body>
+</html>
