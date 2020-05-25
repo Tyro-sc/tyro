@@ -30,7 +30,7 @@ class KeyboardTest {
 
         (0..25).each {
             char letter = (char) (('a' as char) + it)
-            Component current_span = $("#span_$letter") as Component
+            Component current_span = $("#span_$letter")
             current_span.should { be missing }
             type "$letter"
             current_span.should { be available }
@@ -42,7 +42,7 @@ class KeyboardTest {
         browser().refresh()
 
         (0..9).each {
-            Component current_span = $("#span_$it") as Component
+            Component current_span = $("#span_$it")
             current_span.should { be missing }
             type "$it"
             current_span.should { be available }
@@ -63,22 +63,22 @@ class KeyboardTest {
         Config.provider
 
         [
-                '#span_divide'   : DIVIDE,
-                '#span_multiply' : MULTIPLY,
+//                '#span_divide'   : DIVIDE,
+//                '#span_multiply' : MULTIPLY,
                 '#span_substract': SUBTRACT,
                 '#span_add'      : ADD,
                 '#span_equals'   : EQUALS,
                 '#span_return'   : RETURN,
                 '#span_space'    : SPACE
         ].each { k, v ->
-            Component current_span = $(k) as Component
+            Component current_span = $(k)
             current_span.should { be missing }
             type v
             println "====> " + v
             current_span.should { be available }
         }
 
-        Component span = $('#span_Ctrl_Alt_Shift_x') as Component
+        Component span = $('#span_Ctrl_Alt_Shift_x')
         assert !span.available()
         type(CTRL + ALT + SHIFT + 'x')
         assert span.available()
