@@ -106,12 +106,12 @@ public class Component implements MouseSupport, Draggable {
 
     public def asType(Class clazz) {
         if (Component.isAssignableFrom(clazz)) {
-            Component c = (Component) clazz.newInstance()
+            Component c = (Component) clazz.getDeclaredConstructor().newInstance()
             c.provider = provider
             c.meta = meta
             return c
         }
-        throw new IllegalStateException("Unable to assign instance to type " + clazz)
+        throw new IllegalStateException("Unable to assign instance to " + clazz)
     }
 
     Collection<Matcher> getBlocks() {

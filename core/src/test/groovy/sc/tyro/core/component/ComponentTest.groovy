@@ -3,6 +3,7 @@ package sc.tyro.core.component
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import sc.tyro.bundle.Widget
 import sc.tyro.core.ComponentException
 import sc.tyro.core.MetaDataProvider
 import sc.tyro.core.MetaInfo
@@ -10,6 +11,7 @@ import sc.tyro.core.Provider
 import sc.tyro.core.support.Draggable
 import sc.tyro.core.support.MouseSupport
 
+import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.ArgumentMatchers.any
 import static org.mockito.Mockito.*
 
@@ -120,10 +122,22 @@ class ComponentTest {
         verify(provider, times(1)).dragAndDrop(cmp_1, cmp_2)
     }
 
-    private static class Widget extends Component {
-        @Override
-        String toString() {
-            return 'widget:' + this.id()
-        }
+    @Test
+    @DisplayName("Should support type coercion")
+    void coercion() {
+        Component cmp = new Widget()
+
+        cmp as Widget
+
+        Exception ex = assertThrows(IllegalStateException, { cmp as BigDecimal })
+        assert ex.message == "Unable to assign instance to class java.math.BigDecimal"
+    }
+
+    @Test
+    @DisplayName("Should implement toString on MetaInfo")
+    void metaInfo() {
+        MetaInfo metaInfo = new MetaInfo(id: 'id', node: 'node')
+
+        assert metaInfo.toString() == 'id=id, node=node'
     }
 }

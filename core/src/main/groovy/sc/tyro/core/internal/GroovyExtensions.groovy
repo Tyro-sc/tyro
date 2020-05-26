@@ -2,7 +2,6 @@ package sc.tyro.core.internal
 
 import org.hamcrest.Matcher
 import sc.tyro.core.ComponentException
-import sc.tyro.core.Config
 import sc.tyro.core.Tyro
 import sc.tyro.core.component.Component
 import sc.tyro.core.component.Item
@@ -116,7 +115,7 @@ class GroovyExtensions {
     }
 
     static void be(Component component, Class<StateMatcher> matcher) {
-        component.addBlock(is(matcher.newInstance()))
+        component.addBlock(is(matcher.getDeclaredConstructor().newInstance()))
     }
 
     static void contain(Component component, Component... components) {

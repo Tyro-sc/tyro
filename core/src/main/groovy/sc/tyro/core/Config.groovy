@@ -19,7 +19,7 @@ class Config {
 
     public static Identifiers identifiers
 
-    final static Collection<Class<Component>> componentTypes = new HashSet<>()
+    public final static Collection<Class<Component>> componentTypes = new HashSet<>()
 
     static void scan(String... packageNames) {
         componentTypes.addAll(packageNames
