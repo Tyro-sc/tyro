@@ -1,6 +1,5 @@
 package sc.tyro.web.internal
 
-
 import sc.tyro.core.ComponentException
 import sc.tyro.core.Identifiers
 import sc.tyro.core.component.Component
@@ -9,7 +8,7 @@ import sc.tyro.core.Identifier
 
 import java.lang.annotation.Annotation
 
-public class WebIdentifiers implements Identifiers {
+class WebIdentifiers implements Identifiers {
     static Map factories = [
             (CssIdentifier): { CssIdentifier annotation -> return "it.is('${annotation.value()}')" }
     ]
@@ -32,30 +31,4 @@ public class WebIdentifiers implements Identifiers {
         }
         return handler.call(annotation)
     }
-
-//    private static Map<Class, List<Class>> cachedComponents = new HashMap<>()
-
-//    private static ScanResult scan = new ClassGraph()
-//            .whitelistPackages('org.testatoo.bundle')
-//            .scan()
-
-
-
-//
-//    static Map<Class, String> findSelectorsFor(Class clazz) {
-//        Map<Class, String> selectors = new HashMap<>()
-//
-//        if (!cachedComponents.get(clazz)) {
-//            cachedComponents.put(clazz, scan.getSubclasses(clazz.name).loadClasses())
-//        }
-//
-//        cachedComponents.get(clazz).each {
-//            Annotation annotation = it.declaredAnnotations.find { it.annotationType().isAnnotationPresent(Identifier) }
-//            if (annotation == null) {
-//                throw new ComponentException("Unable to find any component definition for: " + clazz)
-//            }
-//            selectors.put(it, annotation.value())
-//        }
-//        selectors
-//    }
 }

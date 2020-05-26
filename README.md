@@ -6,7 +6,7 @@ TODO:
 
 DOC:
 ClickOn Tyro base + Mouse => 95% use case
-Collection of KEy + click => groovy extension
+Collection of Key + click => groovy extension
 Si custom  low level use Config.provider
 
 
