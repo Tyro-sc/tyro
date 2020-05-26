@@ -106,7 +106,7 @@ class ComponentTest {
         Component cmp_1 = new Component(provider, meta)
         Component cmp_2 = new Component(provider, meta)
 
-        when(provider.contains(cmp_2)).thenReturn(true)
+        when(provider.contains(cmp_1, cmp_2)).thenReturn(true)
 
         assert cmp_1.contains(cmp_2)
     }

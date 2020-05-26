@@ -185,9 +185,8 @@ class SeleniumProvider implements Provider {
     }
 
     @Override
-    boolean contains(Component component) {
-        // TODO: contains
-        return false
+    boolean contains(Component parent, Component child) {
+        Integer.valueOf(eval(parent.id(), "it.has('#${child.id()}').length")) > 0
     }
 
     @Override

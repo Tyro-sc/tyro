@@ -18,13 +18,6 @@
           });
         });
         return metaInfos;
-      case 'contains':
-        let el = $("[id='" + options.id + "']");
-        let not = [];
-        $.each(options.ids, function (index, _id) {
-          !$.contains(el[0], $("[id='" + _id + "']")[0]) && not.push(_id);
-        });
-        return not;
     }
   };
 }(window.jQuery));

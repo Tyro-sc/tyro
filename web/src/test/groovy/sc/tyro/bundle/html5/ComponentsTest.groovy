@@ -11,6 +11,7 @@ import sc.tyro.bundle.html5.input.InputTypePassword
 import sc.tyro.bundle.html5.input.InputTypeRadio
 import sc.tyro.core.ComponentException
 import sc.tyro.core.component.*
+import sc.tyro.core.component.field.EmailField
 import sc.tyro.core.support.property.TextSupport
 import sc.tyro.web.CssIdentifier
 import sc.tyro.web.TyroWebTestExtension
@@ -49,6 +50,11 @@ class ComponentsTest {
 
         panel = $('#non_existing_id') as Div
         assert !panel.available()
+
+        Form form = $('#form') as Form
+        EmailField email = $('#email') as InputTypeEmail
+        assert form.contains(email)
+        assert !form.contains(button)
     }
 
     @Test

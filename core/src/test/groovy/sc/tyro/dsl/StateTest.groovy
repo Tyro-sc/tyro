@@ -197,8 +197,8 @@ class StateTest {
         Component cmp_3 = spy(new Component(provider, null))
         doReturn('3').when(cmp_3).id()
 
-        when(cmp_1.provider.contains(cmp_2)).thenReturn(true)
-        when(cmp_1.provider.contains(cmp_3)).thenReturn(false)
+        when(cmp_1.provider.contains(cmp_1, cmp_2)).thenReturn(true)
+        when(cmp_1.provider.contains(cmp_1, cmp_3)).thenReturn(false)
 
         cmp_1.should { contain cmp_2 }
 

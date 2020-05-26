@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import sc.tyro.core.component.Panel
 import sc.tyro.web.CssIdentifier
 import sc.tyro.web.TyroWebTestExtension
 
@@ -151,7 +150,7 @@ class MouseTest {
     }
 
     @CssIdentifier('div')
-    class DropPanel extends Panel {
+    class DropPanel extends Div {
         String title() {
             provider.eval(id(), "it.find('h1').text()")
         }

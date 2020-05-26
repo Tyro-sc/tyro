@@ -28,7 +28,7 @@ public interface Provider {
 
     public boolean visible(Component component)
 
-    public boolean contains(Component component)
+    public boolean contains(Component parent, Component child)
 
     // Navigation
     public void open(String url)

@@ -54,7 +54,7 @@ public class Component implements MouseSupport, Draggable {
     }
 
     public boolean contains(Component component) {
-        provider.contains(component)
+        provider.contains(this, component)
     }
 
     @Override
@@ -106,7 +106,7 @@ public class Component implements MouseSupport, Draggable {
 
     public def asType(Class clazz) {
         if (Component.isAssignableFrom(clazz)) {
-            Component c = (Component) clazz.getDeclaredConstructor().newInstance()
+            Component c = (Component) clazz.newInstance()
             c.provider = provider
             c.meta = meta
             return c
