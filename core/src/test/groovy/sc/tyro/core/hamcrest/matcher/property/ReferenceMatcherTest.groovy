@@ -19,8 +19,8 @@ import static sc.tyro.core.hamcrest.Matchers.has
 @DisplayName("Reference Property Matcher")
 class ReferenceMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Reference")
+    void matcher() {
         ReferenceSupport cmp = mock(ReferenceSupport)
 
         when(cmp.reference()).thenReturn('my-reference')

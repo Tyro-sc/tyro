@@ -18,8 +18,8 @@ import static sc.tyro.core.hamcrest.Matchers.readOnly
 @DisplayName("Read Only State Matcher")
 class ReadOnlyMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher ReadOnly")
+    void matcher() {
         ReadOnlySupport cmp = mock(ReadOnlySupport)
 
         when(cmp.readOnly()).thenReturn(true)

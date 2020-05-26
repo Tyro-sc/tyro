@@ -12,7 +12,7 @@ import sc.tyro.core.support.property.ReferenceSupport
 class ImageTest {
     @Test
     @DisplayName("Should have expected Inheritance")
-    void should_have_expected_inheritance() {
+    void inheritance() {
         assert Image in Component
         assert Image in ReferenceSupport
     }

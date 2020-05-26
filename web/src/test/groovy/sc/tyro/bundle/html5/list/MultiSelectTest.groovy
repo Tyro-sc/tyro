@@ -7,7 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 import sc.tyro.core.ComponentException
 import sc.tyro.core.component.Item
 import sc.tyro.core.component.ListBox
-import sc.tyro.bundle.web.TyroWebTestExtension
+import sc.tyro.web.TyroWebTestExtension
 
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static sc.tyro.core.Tyro.*

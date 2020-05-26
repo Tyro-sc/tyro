@@ -19,8 +19,8 @@ import static sc.tyro.core.hamcrest.Matchers.has
 @DisplayName("Label Property Matcher")
 class LabelMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Label")
+    void matcher() {
         LabelSupport cmp = mock(LabelSupport)
         Mockito.when(cmp.label()).thenReturn('MyLabel')
 

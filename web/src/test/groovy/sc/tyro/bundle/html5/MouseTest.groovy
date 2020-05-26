@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import sc.tyro.core.component.Panel
 import sc.tyro.web.CssIdentifier
-import sc.tyro.bundle.web.TyroWebTestExtension
+import sc.tyro.web.TyroWebTestExtension
 
 import static sc.tyro.core.Tyro.*
 import static sc.tyro.core.input.Key.*

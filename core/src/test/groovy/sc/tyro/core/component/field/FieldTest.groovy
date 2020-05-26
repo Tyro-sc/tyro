@@ -19,7 +19,7 @@ import sc.tyro.core.support.state.ValiditySupport
 class FieldTest {
     @Test
     @DisplayName("Should have expected Inheritance")
-    void should_have_expected_inheritance() {
+    void inheritance() {
         assert Field in Component
         assert Field in LabelSupport
         assert Field in InputSupport

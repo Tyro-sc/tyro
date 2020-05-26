@@ -19,8 +19,8 @@ import static sc.tyro.core.hamcrest.Matchers.has
 @DisplayName("Column Size Property Matcher")
 class ColumnSizeMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher ColumnSize")
+    void matcher() {
         ColumnSupport cmp = mock(ColumnSupport)
 
         when(cmp.columns()).thenReturn([mock(Column), mock(Column)])

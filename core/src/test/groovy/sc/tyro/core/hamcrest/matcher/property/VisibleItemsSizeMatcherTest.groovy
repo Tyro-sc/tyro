@@ -19,8 +19,8 @@ import static sc.tyro.core.hamcrest.Matchers.has
 @DisplayName("Visible Items Size Property Matcher")
 class VisibleItemsSizeMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Visible")
+    void matcher() {
         VisibleItemsSupport cmp = mock(VisibleItemsSupport)
 
         when(cmp.visibleItems()).thenReturn([mock(Item), mock(Item)])

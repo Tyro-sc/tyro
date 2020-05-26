@@ -1,4 +1,4 @@
-package sc.tyro.bundle.web
+package sc.tyro.web
 
 import io.javalin.Javalin
 import org.junit.jupiter.api.extension.AfterAllCallback

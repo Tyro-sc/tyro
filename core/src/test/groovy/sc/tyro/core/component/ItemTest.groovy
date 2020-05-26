@@ -13,7 +13,7 @@ import sc.tyro.core.support.state.SelectSupport
 class ItemTest {
     @Test
     @DisplayName("Should have expected Inheritance")
-    void should_have_expected_inheritance() {
+    void inheritance() {
         assert Item in Component
         assert Item in SelectSupport
         assert Item in ValueSupport
@@ -21,13 +21,13 @@ class ItemTest {
 
     @Test
     @DisplayName("Should have identity based on Value")
-    void should_have_equality_and_hashcode_based_on_value() {
+    void identity() {
         Item item_1 = new TestItem('value_1')
         Item item_2 = new TestItem('value_2')
         Item item_3 = new TestItem('value_1')
 
-        assert !item_1.equals(item_2)
-        assert item_1.equals(item_3)
+        assert item_1 != item_2
+        assert item_1 == item_3
 
         assert item_1.hashCode() == 'value_1'.hashCode()
     }

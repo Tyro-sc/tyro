@@ -6,8 +6,9 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import sc.tyro.core.ComponentException
 import sc.tyro.core.component.field.*
-import sc.tyro.bundle.web.TyroWebTestExtension
+import sc.tyro.web.TyroWebTestExtension
 
+import static org.junit.jupiter.api.Assertions.assertThrows
 import static sc.tyro.core.Tyro.*
 
 /**
@@ -23,6 +24,7 @@ class InputFieldTest {
     }
 
     @Test
+    @DisplayName("Should have expected bea")
     void input_should_have_expected_behaviours() {
         browser().refresh()
 
@@ -46,12 +48,8 @@ class InputFieldTest {
         assert text.readOnly()
         assert text.value() == 'Filled'
 
-        try {
-            text.value('New Value')
-            fail()
-        } catch (ComponentException e) {
-            assert e.message == 'InputTypeText InputTypeText:read_only_and_filled is disabled and cannot be filled'
-        }
+        Exception ex = assertThrows(ComponentException, { text.value('New Value') })
+        assert ex.message == 'InputTypeText InputTypeText:read_only_and_filled is disabled and cannot be filled'
 
         PasswordField password = $('#password') as InputTypePassword
         assert password.required()

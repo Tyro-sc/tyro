@@ -18,8 +18,8 @@ import static sc.tyro.core.hamcrest.Matchers.empty
 @DisplayName("Empty State Matcher")
 class EmptyMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Empty")
+    void matcher() {
         EmptySupport cmp = mock(EmptySupport)
 
         when(cmp.empty()).thenReturn(true)

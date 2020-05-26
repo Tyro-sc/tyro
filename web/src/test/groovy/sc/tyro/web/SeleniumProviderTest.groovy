@@ -1,4 +1,4 @@
-package sc.tyro.bundle.web
+package sc.tyro.web
 
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test

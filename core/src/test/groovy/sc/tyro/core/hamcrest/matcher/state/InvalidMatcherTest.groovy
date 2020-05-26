@@ -18,8 +18,8 @@ import static sc.tyro.core.hamcrest.Matchers.invalid
 @DisplayName("Invalid State Matcher")
 class InvalidMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Invalid")
+    void matcher() {
         ValiditySupport cmp = mock(ValiditySupport)
 
         when(cmp.valid()).thenReturn(false)

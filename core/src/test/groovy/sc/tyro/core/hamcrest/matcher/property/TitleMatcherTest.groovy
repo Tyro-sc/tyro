@@ -19,8 +19,8 @@ import static sc.tyro.core.hamcrest.Matchers.has
 @DisplayName("Title Property Matcher")
 class TitleMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Title")
+    void matcher() {
         TitleSupport cmp = mock(TitleSupport)
         when(cmp.title()).thenReturn('MyTitle')
 

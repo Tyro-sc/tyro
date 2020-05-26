@@ -42,7 +42,7 @@ class MouseTest {
 
     @Test
     @DisplayName("Should Click")
-    void should_be_able_to_click() {
+    void click() {
         mouse.clickOn(cmp)
 
         verify(provider, times(1)).click(cmp, [LEFT, SINGLE], [])
@@ -50,7 +50,7 @@ class MouseTest {
 
     @Test
     @DisplayName("Should Double Click")
-    void should_be_able_to_doubleClick() {
+    void doubleClick() {
         mouse.doubleClickOn(cmp)
 
         verify(provider, times(1)).click(cmp, [LEFT, DOUBLE], [])
@@ -58,7 +58,7 @@ class MouseTest {
 
     @Test
     @DisplayName("Should right click")
-    void should_be_able_to_rightClick() {
+    void rightClick() {
         mouse.rightClickOn(cmp)
 
         verify(provider, times(1)).click(cmp, [RIGHT, SINGLE], [])
@@ -66,7 +66,7 @@ class MouseTest {
 
     @Test
     @DisplayName("Should Mouse Over")
-    void should_be_able_to_mouseOver() {
+    void mouseOver() {
         mouse.hoveringMouseOn(cmp)
 
         verify(provider, times(1)).mouseOver(cmp)
@@ -74,7 +74,7 @@ class MouseTest {
 
     @Test
     @DisplayName("Should drag and drop")
-    void should_be_able_to_dragAndDrop() {
+    void dragAndDrop() {
         Component cmpTarget = spy(new Component())
 
         mouse.drag(cmp).on(cmpTarget)
@@ -84,7 +84,7 @@ class MouseTest {
 
     @Test
     @DisplayName("Should use Mouse with Key Modifier")
-    void should_be_able_to_use_mouse_with_key_modifier() {
+    void mouseWithKeyModifier() {
         CTRL.click cmp
         verify(provider, times(1)).click(cmp, [LEFT, SINGLE], [CTRL])
 

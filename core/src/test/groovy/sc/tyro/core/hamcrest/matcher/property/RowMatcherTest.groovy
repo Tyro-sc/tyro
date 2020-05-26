@@ -20,8 +20,8 @@ import static sc.tyro.core.hamcrest.Matchers.rows
 @DisplayName("Row Property Matcher")
 class RowMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Row")
+    void matcher() {
         RowSupport cmp = mock(RowSupport)
 
         Row row_1 = mock(Row)

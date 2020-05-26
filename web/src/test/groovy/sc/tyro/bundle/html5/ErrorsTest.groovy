@@ -11,7 +11,7 @@ import sc.tyro.core.ComponentException
 import sc.tyro.core.Config
 import sc.tyro.core.component.field.NumberField
 import sc.tyro.core.component.field.PasswordField
-import sc.tyro.bundle.web.TyroWebTestExtension
+import sc.tyro.web.TyroWebTestExtension
 
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static sc.tyro.core.Tyro.*

@@ -19,8 +19,8 @@ import static sc.tyro.core.hamcrest.Matchers.has
 @DisplayName("Row Size Property Matcher")
 class RowSizeMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher RowSize")
+    void matcher() {
         RowSupport cmp = mock(RowSupport)
 
         when(cmp.rows()).thenReturn([mock(Row), mock(Row)])

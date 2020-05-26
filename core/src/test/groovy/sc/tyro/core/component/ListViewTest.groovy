@@ -13,7 +13,7 @@ import sc.tyro.core.support.state.EmptySupport
 class ListViewTest {
     @Test
     @DisplayName("Should have expected Inheritance")
-    void should_have_expected_inheritance() {
+    void inheritance() {
         assert ListView in Component
         assert ListView in ItemSupport
         assert ListView in EmptySupport

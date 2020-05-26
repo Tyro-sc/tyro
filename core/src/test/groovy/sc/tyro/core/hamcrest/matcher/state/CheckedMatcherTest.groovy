@@ -18,8 +18,8 @@ import static sc.tyro.core.hamcrest.Matchers.checked
 @DisplayName("Checked State Matcher")
 class CheckedMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Checked")
+    void matcher() {
         CheckSupport cmp = mock(CheckSupport)
 
         when(cmp.checked()).thenReturn(true)

@@ -19,8 +19,8 @@ import static sc.tyro.core.hamcrest.Matchers.has
 @DisplayName("Group Size Property Matcher")
 class GroupSizeMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher GroupSize")
+    void matcher() {
         GroupSupport cmp = mock(GroupSupport)
 
         when(cmp.groups()).thenReturn([mock(Group), mock(Group)])

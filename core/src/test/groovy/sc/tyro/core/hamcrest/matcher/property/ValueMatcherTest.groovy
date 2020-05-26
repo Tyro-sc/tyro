@@ -19,8 +19,8 @@ import static sc.tyro.core.hamcrest.Matchers.value
 @DisplayName("Value Property Matcher")
 class ValueMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Value")
+    void matcher() {
         ValueSupport cmp = mock(ValueSupport)
         when(cmp.value()).thenReturn('MyValue')
 

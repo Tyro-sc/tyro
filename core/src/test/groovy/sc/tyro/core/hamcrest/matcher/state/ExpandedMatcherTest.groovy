@@ -18,8 +18,8 @@ import static sc.tyro.core.hamcrest.Matchers.expanded
 @DisplayName("Expanded State Matcher")
 class ExpandedMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Expanded")
+    void matcher() {
         CollapseSupport cmp = mock(CollapseSupport)
 
         when(cmp.expanded()).thenReturn(true)

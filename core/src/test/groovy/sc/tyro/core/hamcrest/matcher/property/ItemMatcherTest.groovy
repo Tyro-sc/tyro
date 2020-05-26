@@ -1,6 +1,5 @@
 package sc.tyro.core.hamcrest.matcher.property
 
-
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import sc.tyro.core.component.Item
@@ -21,8 +20,8 @@ import static sc.tyro.core.hamcrest.Matchers.items
 @DisplayName("Item Property Matcher")
 class ItemMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Item")
+    void matcher() {
         ItemSupport cmp = mock(ItemSupport)
 
         Item item_1 = mock(Item)

@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.*
 class DummyColumnTest {
     @Test
     @DisplayName("Should store title")
-    void column_title() {
+    void title() {
         DummyColumn column = new DummyColumn('Column Title')
 
         assertThat(column.title(), is('Column Title'))
@@ -18,7 +18,7 @@ class DummyColumnTest {
 
     @Test
     @DisplayName("Should store other properties with default values")
-    void column_default() {
+    void defaultValue() {
         DummyColumn column = new DummyColumn('Column Title')
 
         assertThat(column.cells(), is(empty()))

@@ -15,7 +15,7 @@ import sc.tyro.core.support.state.CheckSupport
 class CheckBoxTest {
     @Test
     @DisplayName("Should have expected Inheritance")
-    void should_have_expected_inheritance() {
+    void inheritance() {
         assert CheckBox in Component
         assert CheckBox in CheckSupport
         assert CheckBox in LabelSupport

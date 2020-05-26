@@ -20,8 +20,8 @@ import static sc.tyro.core.hamcrest.Matchers.collapsed
 @DisplayName("Collapsed State Matcher")
 class CollapsedMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Collapsed")
+    void matcher() {
         CollapseSupport cmp = mock(CollapseSupport)
 
         when(cmp.collapsed()).thenReturn(true)

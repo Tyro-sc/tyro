@@ -18,8 +18,8 @@ import static sc.tyro.core.hamcrest.Matchers.optional
 @DisplayName("Optional State Matcher")
 class OptionalMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Optional")
+    void matcher() {
         RequiredSupport cmp = mock(RequiredSupport)
 
         when(cmp.required()).thenReturn(false)

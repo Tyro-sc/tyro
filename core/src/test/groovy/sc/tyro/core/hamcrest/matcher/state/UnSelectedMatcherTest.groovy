@@ -18,8 +18,8 @@ import static sc.tyro.core.hamcrest.Matchers.unselected
 @DisplayName("Unselected State Matcher")
 class UnSelectedMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher UnSelected")
+    void matcher() {
         SelectSupport cmp = mock(SelectSupport)
 
         when(cmp.selected()).thenReturn(false)

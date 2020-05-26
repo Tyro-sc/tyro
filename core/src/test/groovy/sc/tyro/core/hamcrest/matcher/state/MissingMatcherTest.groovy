@@ -18,8 +18,8 @@ import static sc.tyro.core.hamcrest.Matchers.missing
 @DisplayName("Missing State Matcher")
 class MissingMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Missing")
+    void matcher() {
         Component cmp = mock(Component)
 
         when(cmp.available()).thenReturn(false)

@@ -13,7 +13,7 @@ import sc.tyro.core.support.property.TextSupport
 class LinkTest {
     @Test
     @DisplayName("Should have expected Inheritance")
-    void should_have_expected_inheritance() {
+    void inheritance() {
         assert Link in Component
         assert Link in TextSupport
         assert Link in ReferenceSupport

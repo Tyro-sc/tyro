@@ -12,7 +12,7 @@ import sc.tyro.core.support.property.TitleSupport
 class PanelTest {
     @Test
     @DisplayName("Should have expected Inheritance")
-    void should_have_expected_inheritance() {
+    void inheritance() {
         assert Panel in Component
         assert Panel in TitleSupport
     }

@@ -20,8 +20,8 @@ import static sc.tyro.core.hamcrest.Matchers.has
 @DisplayName("Group Property Matcher")
 class GroupMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Group")
+    void matcher() {
         GroupSupport cmp = mock(GroupSupport)
         Group group_1 = mock(Group)
         when(group_1.value()).thenReturn('group_1')

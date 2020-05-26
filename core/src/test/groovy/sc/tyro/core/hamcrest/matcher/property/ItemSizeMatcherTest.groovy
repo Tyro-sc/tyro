@@ -19,8 +19,8 @@ import static sc.tyro.core.hamcrest.Matchers.has
 @DisplayName("Item Size Property Matcher")
 class ItemSizeMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher ItemSize")
+    void matcher() {
         ItemSupport cmp = mock(ItemSupport)
 
         when(cmp.items()).thenReturn([mock(Item), mock(Item)])

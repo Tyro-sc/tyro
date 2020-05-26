@@ -13,14 +13,14 @@ import sc.tyro.core.support.property.ValueSupport
 class CellTest {
     @Test
     @DisplayName("Should have expected Inheritance")
-    void should_have_expected_inheritance() {
+    void inheritance() {
         assert Cell in Component
         assert Cell in ValueSupport
     }
 
     @Test
     @DisplayName("Should have identity based on Value")
-    void should_have_equality_and_hashcode_based_on_value() {
+    void identity() {
         Cell cell_1 = new TestCell('value_1')
         Cell cell_2 = new TestCell('value_2')
         Cell cell_3 = new TestCell('value_1')

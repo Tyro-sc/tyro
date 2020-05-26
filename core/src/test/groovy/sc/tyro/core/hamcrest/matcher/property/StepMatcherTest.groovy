@@ -19,8 +19,8 @@ import static sc.tyro.core.hamcrest.Matchers.step
 @DisplayName("Step Property Matcher")
 class StepMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Step")
+    void matcher() {
         StepSupport cmp = mock(StepSupport)
 
         when(cmp.step()).thenReturn(10)

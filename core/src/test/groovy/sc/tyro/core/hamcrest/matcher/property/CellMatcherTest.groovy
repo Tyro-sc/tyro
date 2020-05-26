@@ -20,8 +20,8 @@ import static sc.tyro.core.hamcrest.Matchers.has
 @DisplayName("Cell Property Matcher")
 class CellMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Cell")
+    void matcher() {
         CellSupport cmp = mock(CellSupport)
 
         Cell cell_1 = mock(Cell)

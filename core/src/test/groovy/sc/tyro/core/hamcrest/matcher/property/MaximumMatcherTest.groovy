@@ -19,8 +19,8 @@ import static sc.tyro.core.hamcrest.Matchers.has
 @DisplayName("Maximum Property Matcher")
 class MaximumMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Maximum")
+    void matcher() {
         MaximumSupport cmp = mock(MaximumSupport)
 
         when(cmp.maximum()).thenReturn(10)

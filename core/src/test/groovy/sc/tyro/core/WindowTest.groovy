@@ -32,7 +32,7 @@ class WindowTest {
 
     @Test
     @DisplayName("Should have equality and hasCode based on id")
-    void equality() {
+    void identity() {
         Window window_1 = new Window('id_1', provider)
         Window window_2 = new Window('id_2', provider)
         Window window_3 = new Window('id_1', provider)

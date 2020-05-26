@@ -18,8 +18,8 @@ import static sc.tyro.core.hamcrest.Matchers.selected
 @DisplayName("Selected State Matcher")
 class SelectedMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Selected")
+    void matcher() {
         SelectSupport cmp = mock(SelectSupport)
 
         // Selected

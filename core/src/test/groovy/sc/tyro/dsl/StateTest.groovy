@@ -22,7 +22,7 @@ import static sc.tyro.core.Tyro.*
 class StateTest {
     @Test
     @DisplayName("Should support Component default states: available, enabled, visible, missing, disabled and hidden")
-    void should_support_available_enabled_visible() {
+    void availableEnabledVisible() {
         Component cmp = spy(new Component())
 
         doReturn(true).when(cmp).available()
@@ -48,7 +48,7 @@ class StateTest {
 
     @Test
     @DisplayName("Should support checked and unchecked")
-    void should_support_checked_unchecked() {
+    void checkedUnchecked() {
         CheckBox checkbox = spy(CheckBox)
         doReturn(true).when(checkbox).enabled()
         doReturn(false).when(checkbox).checked()
@@ -62,7 +62,7 @@ class StateTest {
 
     @Test
     @DisplayName("Should support required and optional")
-    void should_support_required() {
+    void required() {
         TextField field = spy(TextField)
         doReturn(false).when(field).required()
 
@@ -75,7 +75,7 @@ class StateTest {
 
     @Test
     @DisplayName("Should support valid and invalid")
-    void should_support_valid() {
+    void valid() {
         TextField field = spy(TextField)
         doReturn(true).when(field).valid()
 
@@ -88,7 +88,7 @@ class StateTest {
 
     @Test
     @DisplayName("Should support empty and filled")
-    void should_support_empty() {
+    void empty() {
         TextField field = spy(TextField)
         doReturn(true).when(field).empty()
 
@@ -101,7 +101,7 @@ class StateTest {
 
     @Test
     @DisplayName("Should support read only")
-    void should_support_readOnly() {
+    void readOnly() {
         TextField field = spy(TextField)
         doReturn(true).when(field).readOnly()
 
@@ -114,7 +114,7 @@ class StateTest {
 
     @Test
     @DisplayName("Should support focused")
-    void should_support_focused() {
+    void focused() {
         TextField field = spy(TextField)
         doReturn(true).when(field).focused()
 
@@ -127,7 +127,7 @@ class StateTest {
 
     @Test
     @DisplayName("Should support expanded")
-    void should_support_expanded() {
+    void expanded() {
         Widget widget = mock(Widget.class,
                 withSettings()
                         .useConstructor()
@@ -144,7 +144,7 @@ class StateTest {
 
     @Test
     @DisplayName("Should support collapsed")
-    void should_support_collapsed() {
+    void collapsed() {
         Widget widget = mock(Widget.class,
                 withSettings()
                         .useConstructor()
@@ -161,7 +161,7 @@ class StateTest {
 
     @Test
     @DisplayName("Should support selected ans unselected")
-    void should_support_selected() {
+    void selected() {
         Item item = spy(Item)
         doReturn(false).when(item).selected()
 
@@ -174,7 +174,7 @@ class StateTest {
 
     @Test
     @DisplayName("Should support range")
-    void should_support_range() {
+    void range() {
         RangeField field = spy(RangeField)
         doReturn(true).when(field).inRange()
 
@@ -187,7 +187,7 @@ class StateTest {
 
     @Test
     @DisplayName("Should support contains")
-    void should_support_contain() {
+    void contains() {
         Provider provider = mock(Provider)
 
         Component cmp_1 = spy(new Component(provider, null))

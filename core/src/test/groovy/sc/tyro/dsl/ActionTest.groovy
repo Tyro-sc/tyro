@@ -1,6 +1,5 @@
 package sc.tyro.dsl
 
-
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -38,7 +37,7 @@ class ActionTest {
 
     @Test
     @DisplayName("Should visit")
-    void should_visit() {
+    void visit() {
         verify(provider, times(0)).open('http://myUrl')
 
         visit('http://myUrl')
@@ -47,18 +46,8 @@ class ActionTest {
     }
 
     @Test
-    @DisplayName("Should type text")
-    void should_type_text() {
-        verify(provider, times(0)).type(['data'])
-
-        type('data')
-
-        verify(provider, times(1)).type(['data'])
-    }
-
-    @Test
     @DisplayName("Should fill field")
-    void should_fill_field() {
+    void fill() {
         TextField field = spy(TextField)
 
         fill field with 'Some value'
@@ -68,7 +57,7 @@ class ActionTest {
 
     @Test
     @DisplayName("Should clear field")
-    void should_clear_field() {
+    void clear() {
         Clearable clearable = spy(Clearable)
 
         clear clearable
@@ -78,7 +67,7 @@ class ActionTest {
 
     @Test
     @DisplayName("Should set")
-    void should_be_set() {
+    void set() {
         RangeField range = spy(RangeField)
 
         set range to 10
@@ -88,7 +77,7 @@ class ActionTest {
 
     @Test
     @DisplayName("Should have on as placeholder")
-    void should_have_on_as_placeholder() {
+    void on() {
         CheckBox checkBox = spy(CheckBox)
 
         assert on(checkBox).is(checkBox)
@@ -96,7 +85,7 @@ class ActionTest {
 
     @Test
     @DisplayName("Should submit and reset a form")
-    void should_be_able_to_submit_and_reset_form() {
+    void submitAndReset() {
         Form form = spy(Form)
 
         Tyro.reset form // Explicit call to forbid Mockito reset method call
@@ -110,7 +99,7 @@ class ActionTest {
 
     @Test
     @DisplayName("Should check a checkable component")
-    void should_check() {
+    void check() {
         CheckBox checkBox_1 = mock(CheckBox)
         when(checkBox_1.enabled()).thenReturn(true)
         when(checkBox_1.checked()).thenReturn(false)
@@ -140,7 +129,7 @@ class ActionTest {
 
     @Test
     @DisplayName("Should uncheck a uncheckable component")
-    void should_uncheck() {
+    void uncheck() {
         CheckBox checkBox_1 = mock(CheckBox)
         when(checkBox_1.enabled()).thenReturn(true)
         when(checkBox_1.checked()).thenReturn(true)
@@ -170,7 +159,7 @@ class ActionTest {
 
     @Test
     @DisplayName("Should select an Item")
-    void should_select() {
+    void select() {
         Item item_1 = mock(Item)
         when(item_1.provider).thenReturn(provider)
         when(item_1.enabled()).thenReturn(true)
@@ -199,12 +188,11 @@ class ActionTest {
 
         ex = assertThrows(ComponentException, { select item_1 })
         assertThat(ex.message, containsString('is already selected and cannot be selected'))
-
     }
 
     @Test
     @DisplayName("Should unselect an Item")
-    void should_unselect() {
+    void unselect() {
         Item item_1 = mock(Item)
         when(item_1.provider).thenReturn(provider)
         when(item_1.enabled()).thenReturn(true)
@@ -236,7 +224,7 @@ class ActionTest {
 
     @Test
     @DisplayName("Should select items in Listbox")
-    void should_be_able_to_select_items_in_listbox() {
+    void selectItemsInListbox() {
         ListBox listBox = mock(ListBox)
 
         Item item_1 = mock(Item)
@@ -270,7 +258,7 @@ class ActionTest {
 
     @Test
     @DisplayName("Should unselect items in Listbox")
-    void should_be_able_to_unselect_items_in_listbox() {
+    void unselectItemsInListbox() {
         ListBox listBox = mock(ListBox)
 
         Item item_1 = mock(Item)
@@ -306,7 +294,7 @@ class ActionTest {
 
     @Test
     @DisplayName("Should delegate to mouse")
-    void mouse_delegation() {
+    void mouseDelegation() {
         Mouse mouse = mock(Mouse)
         Tyro.mouse = mouse
 
@@ -330,7 +318,7 @@ class ActionTest {
 
     @Test
     @DisplayName("Should delegate to Keyboard")
-    void keyboard_delegation() {
+    void keyboardDelegation() {
         Keyboard keyboard = mock(Keyboard)
         Tyro.keyboard = keyboard
 

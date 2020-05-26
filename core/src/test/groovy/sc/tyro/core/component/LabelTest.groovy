@@ -12,7 +12,7 @@ import sc.tyro.core.support.property.TextSupport
 class LabelTest {
     @Test
     @DisplayName("Should have expected Inheritance")
-    void should_have_expected_inheritance() {
+    void inheritance() {
         assert Label in Component
         assert Label in TextSupport
     }

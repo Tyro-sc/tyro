@@ -18,8 +18,8 @@ import static sc.tyro.core.hamcrest.Matchers.visible
 @DisplayName("Visible State Matcher")
 class VisibleMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Visible")
+    void matcher() {
         Component cmp = mock(Component)
 
         when(cmp.visible()).thenReturn(true)

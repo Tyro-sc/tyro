@@ -17,7 +17,7 @@ import sc.tyro.core.support.state.EmptySupport
 class DropdownTest {
     @Test
     @DisplayName("Should have expected Inheritance")
-    void should_have_expected_inheritance() {
+    void inheritance() {
         assert Dropdown in Component
         assert Dropdown in ItemSupport
         assert Dropdown in GroupSupport

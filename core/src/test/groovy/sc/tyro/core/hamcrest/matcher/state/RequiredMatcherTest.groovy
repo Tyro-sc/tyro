@@ -18,8 +18,8 @@ import static sc.tyro.core.hamcrest.Matchers.required
 @DisplayName("Required State Matcher")
 class RequiredMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Required")
+    void matcher() {
         RequiredSupport cmp = mock(RequiredSupport)
 
         when(cmp.required()).thenReturn(true)

@@ -20,8 +20,8 @@ import static sc.tyro.core.hamcrest.Matchers.has
 @DisplayName("Column Property Matcher")
 class ColumnMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matchers() {
+    @DisplayName("Should support matcher Column")
+    void matcher() {
         ColumnSupport cmp = mock(ColumnSupport)
 
         Column column_1 = mock(Column)

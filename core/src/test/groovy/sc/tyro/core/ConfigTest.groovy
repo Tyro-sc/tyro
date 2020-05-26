@@ -36,7 +36,7 @@ class ConfigTest {
 
     @Test
     @DisplayName("Should change the waitUntil Duration")
-    void setDuration() {
+    void duration() {
         assertThat(Config.waitUntil, is(equalTo(2.seconds)))
 
         Config.waitUntil = 10.seconds
@@ -46,7 +46,7 @@ class ConfigTest {
 
     @Test
     @DisplayName("Should add Components")
-    void addComponents() {
+    void componentTypes() {
         assertThat(Config.componentTypes, is(empty()))
 
         Identifiers identifiers = mock(Identifiers)

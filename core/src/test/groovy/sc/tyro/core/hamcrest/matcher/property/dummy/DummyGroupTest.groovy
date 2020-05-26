@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.*
 class DummyGroupTest {
     @Test
     @DisplayName("Should store value")
-    void group_value() {
+    void value() {
         DummyGroup group = new DummyGroup('Group Value')
 
         assertThat(group.value(), is('Group Value'))
@@ -18,7 +18,7 @@ class DummyGroupTest {
 
     @Test
     @DisplayName("Should store other properties with default values")
-    void group_default() {
+    void defaultValue() {
         DummyGroup group = new DummyGroup('Group Value')
 
         assertThat(group.items(), is(empty()))

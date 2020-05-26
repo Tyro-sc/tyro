@@ -19,8 +19,8 @@ import static sc.tyro.core.hamcrest.Matchers.text
 @DisplayName("Text Property Matcher")
 class TextMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Text")
+    void matcher() {
         TextSupport cmp = mock(TextSupport)
         when(cmp.text()).thenReturn('MyText')
 

@@ -25,15 +25,15 @@ class KeyboardTest {
 
     @Test
     @DisplayName("Should Type Characters")
-    void should_type_characters_on_keyboard() {
+    void characters() {
         keyboard.type(['a', 'b', 'c', 'd', 'e', '1', '2'])
 
-        verify(provider, times(1)).type(['a', 'b', 'c', 'd', 'e', '1', '2']);
+        verify(provider, times(1)).type(['a', 'b', 'c', 'd', 'e', '1', '2'])
     }
 
     @Test
     @DisplayName("Should Type Special Keys")
-    void should_type_special_key_on_keyboard() {
+    void specialKeys() {
         keyboard.type([DIVIDE, MULTIPLY, SUBTRACT, ADD, EQUALS, RETURN, SPACE])
 
         verify(provider, times(1)).type([DIVIDE, MULTIPLY, SUBTRACT, ADD, EQUALS, RETURN, SPACE])
@@ -41,7 +41,7 @@ class KeyboardTest {
 
     @Test
     @DisplayName("Should Type Key Modifiers")
-    void should_use_key_modifier_on_keyboard() {
+    void keyModifier() {
         keyboard.type([SHIFT, 'tyro'])
 
         verify(provider, times(1)).type([SHIFT, 'tyro'])

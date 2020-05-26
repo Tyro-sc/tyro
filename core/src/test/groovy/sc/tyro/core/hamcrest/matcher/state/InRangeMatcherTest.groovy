@@ -18,8 +18,8 @@ import static sc.tyro.core.hamcrest.Matchers.inRange
 @DisplayName("In Range State Matcher")
 class InRangeMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher InRange")
+    void matcher() {
         RangeSupport cmp = mock(RangeSupport)
 
         when(cmp.inRange()).thenReturn(true)

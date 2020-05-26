@@ -14,7 +14,7 @@ import sc.tyro.core.support.state.CheckSupport
 class RadioTest {
     @Test
     @DisplayName("Should have expected Inheritance")
-    void should_have_expected_inheritance() {
+    void inheritance() {
         assert Radio in Component
         assert Radio in LabelSupport
         assert Radio in CheckSupport

@@ -22,7 +22,7 @@ import static sc.tyro.core.Tyro.*
 class PropertyTest {
     @Test
     @DisplayName("Should support text")
-    void should_support_text() {
+    void text() {
         Button button = spy(Button)
 
         doReturn('Text').when(button).text()
@@ -32,7 +32,7 @@ class PropertyTest {
 
     @Test
     @DisplayName("Should support value")
-    void should_support_value() {
+    void value() {
         TextField field = spy(TextField)
 
         doReturn('Value').when(field).value()
@@ -42,7 +42,7 @@ class PropertyTest {
 
     @Test
     @DisplayName("Should support length")
-    void should_support_length() {
+    void length() {
         TextField field = spy(TextField)
 
         doReturn(25).when(field).length()
@@ -52,7 +52,7 @@ class PropertyTest {
 
     @Test
     @DisplayName("Should support reference")
-    void should_support_reference() {
+    void reference() {
         Link link = spy(Link)
 
         doReturn('http://reference').when(link).reference()
@@ -62,7 +62,7 @@ class PropertyTest {
 
     @Test
     @DisplayName("Should support label and placeholder")
-    void should_support_label_and_placeholder() {
+    void labelAndPlaceholder() {
         TextField field = spy(TextField)
 
         doReturn('Label').when(field).label()
@@ -76,7 +76,7 @@ class PropertyTest {
 
     @Test
     @DisplayName("Should support maximum minimum and step")
-    void should_support_maximum_minimum_and_step() {
+    void maximumAndMinimumAndStep() {
         RangeField field = spy(RangeField)
 
         doReturn(5).when(field).minimum()
@@ -94,7 +94,7 @@ class PropertyTest {
 
     @Test
     @DisplayName("Should support datagrid")
-    void should_support_datagrid() {
+    void datagrid() {
         DataGrid datagrid = spy(DataGrid)
 
         Column column_1 = spy(Column)
@@ -137,7 +137,7 @@ class PropertyTest {
 
     @Test
     @DisplayName("Should support dropdown")
-    void should_support_dropdown() {
+    void dropdown() {
         Dropdown dropdown = spy(Dropdown)
 
         Group group_1 = spy(Group)
@@ -172,7 +172,7 @@ class PropertyTest {
 
     @Test
     @DisplayName("Should support listbox")
-    void should_support_listbox() {
+    void listbox() {
         ListBox listBox = spy(ListBox)
         Item item_1 = spy(Item)
         Item item_2 = spy(Item)

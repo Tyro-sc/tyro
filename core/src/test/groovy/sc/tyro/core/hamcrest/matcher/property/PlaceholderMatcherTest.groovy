@@ -19,8 +19,8 @@ import static sc.tyro.core.hamcrest.Matchers.placeholder
 @DisplayName("Placeholder Property Matcher")
 class PlaceholderMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Placeholder")
+    void matcher() {
         InputSupport cmp = mock(InputSupport)
 
         when(cmp.placeholder()).thenReturn('MyPlaceholder')

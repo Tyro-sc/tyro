@@ -13,7 +13,7 @@ import sc.tyro.core.support.property.ValueSupport
 class GroupTest {
     @Test
     @DisplayName("Should have expected Inheritance")
-    void should_have_expected_inheritance() {
+    void inheritance() {
         assert Group in Component
         assert Group in ValueSupport
         assert Group in ItemSupport
@@ -21,13 +21,13 @@ class GroupTest {
 
     @Test
     @DisplayName("Should have identity based on Value")
-    void should_have_equality_and_hashcode_based_on_value() {
+    void identity() {
         Group group_1 = new TestGroup('value_1')
         Group group_2 = new TestGroup('value_2')
         Group group_3 = new TestGroup('value_1')
 
-        assert !group_1.equals(group_2)
-        assert group_1.equals(group_3)
+        assert group_1 != group_2
+        assert group_1 == group_3
 
         assert group_1.hashCode() == 'value_1'.hashCode()
     }

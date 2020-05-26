@@ -20,8 +20,8 @@ import static sc.tyro.core.hamcrest.Matchers.selectedItems
 @DisplayName("Selected Items Property Matcher")
 class SelectedItemsMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher SelectedItems")
+    void matcher() {
         SelectedItemsSupport cmp = mock(SelectedItemsSupport)
         Item itemSelected_1 = mock(Item)
         Item itemSelected_2 = mock(Item)

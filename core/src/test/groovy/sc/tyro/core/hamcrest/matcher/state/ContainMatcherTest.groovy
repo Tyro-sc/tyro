@@ -18,8 +18,8 @@ import static sc.tyro.core.hamcrest.Matchers.contain
 @DisplayName("Contain State Matcher")
 class ContainMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Contain")
+    void matcher() {
         Component container = mock(Component)
         Component cmp_1 = mock(Component)
         Component cmp_2 = mock(Component)

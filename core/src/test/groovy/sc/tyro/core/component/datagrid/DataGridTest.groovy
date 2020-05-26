@@ -14,7 +14,7 @@ import sc.tyro.core.support.property.RowSupport
 class DataGridTest {
     @Test
     @DisplayName("Should have expected Inheritance")
-    void should_have_expected_inheritance() {
+    void inheritance() {
         assert DataGrid in Component
         assert DataGrid in ColumnSupport
         assert DataGrid in RowSupport

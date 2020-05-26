@@ -18,8 +18,8 @@ import static sc.tyro.core.hamcrest.Matchers.hidden
 @DisplayName("Hidden State Matcher")
 class HiddenMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Hidden")
+    void matcher() {
         Component cmp = mock(Component)
 
         when(cmp.visible()).thenReturn(false)

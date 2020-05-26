@@ -15,7 +15,7 @@ import sc.tyro.core.support.state.EmptySupport
 class ListBoxTest {
     @Test
     @DisplayName("Should have expected Inheritance")
-    void should_have_expected_inheritance() {
+    void inheritance() {
         assert ListBox in Component
         assert ListBox in ItemSupport
         assert ListBox in GroupSupport

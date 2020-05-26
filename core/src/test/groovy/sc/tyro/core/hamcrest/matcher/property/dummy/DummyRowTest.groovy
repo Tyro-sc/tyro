@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.*
 class DummyRowTest {
     @Test
     @DisplayName("Should store title")
-    void row_title() {
+    void title() {
         DummyRow row = new DummyRow('Row Title')
 
         assertThat(row.title(), is('Row Title'))
@@ -18,7 +18,7 @@ class DummyRowTest {
 
     @Test
     @DisplayName("Should store other properties with default values")
-    void row_default() {
+    void defaultValue() {
         DummyRow row = new DummyRow('Row Title')
 
         assertThat(row.cells(), is(empty()))

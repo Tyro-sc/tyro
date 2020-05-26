@@ -19,8 +19,8 @@ import static sc.tyro.core.hamcrest.Matchers.minimum
 @DisplayName("Minimum Property Matcher")
 class MinimumMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Minimum")
+    void matcher() {
         MinimumSupport cmp = mock(MinimumSupport)
 
         when(cmp.minimum()).thenReturn(10)

@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.is
 class DummyCellTest {
     @Test
     @DisplayName("Should store value")
-    void cell_value() {
+    void value() {
         DummyCell cell = new DummyCell('Cell Value')
 
         assertThat(cell.value(), is('Cell Value'))

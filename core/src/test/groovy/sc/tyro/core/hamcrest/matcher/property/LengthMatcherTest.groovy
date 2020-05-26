@@ -19,8 +19,8 @@ import static sc.tyro.core.hamcrest.Matchers.length
 @DisplayName("Length Property Matcher")
 class LengthMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Length")
+    void matcher() {
         LengthSupport cmp = mock(LengthSupport)
 
         when(cmp.length()).thenReturn(10)

@@ -12,7 +12,7 @@ import sc.tyro.core.support.property.TextSupport
 class ButtonTest {
     @Test
     @DisplayName("Should have expected Inheritance")
-    void should_have_expected_inheritance() {
+    void inheritance() {
         assert Button in Component
         assert Button in TextSupport
     }

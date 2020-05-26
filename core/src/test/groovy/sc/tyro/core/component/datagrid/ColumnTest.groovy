@@ -14,7 +14,7 @@ import sc.tyro.core.support.property.TitleSupport
 class ColumnTest {
     @Test
     @DisplayName("Should have expected Inheritance")
-    void should_have_expected_inheritance() {
+    void inheritance() {
         assert Column in Component
         assert Column in TitleSupport
         assert Column in CellSupport
@@ -22,7 +22,7 @@ class ColumnTest {
 
     @Test
     @DisplayName("Should have identity based on Title")
-    void should_have_equality_and_hashcode_based_on_title() {
+    void identity() {
         Column column_1 = new TestColumn('title_1')
         Column column_2 = new TestColumn('title_2')
         Column column_3 = new TestColumn('title_1')

@@ -18,8 +18,8 @@ import static sc.tyro.core.hamcrest.Matchers.outOfRange
 @DisplayName("Out Of Range State Matcher")
 class OutOfRangeMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher OutOfRange")
+    void matcher() {
         RangeSupport cmp = mock(RangeSupport)
 
         when(cmp.inRange()).thenReturn(false)

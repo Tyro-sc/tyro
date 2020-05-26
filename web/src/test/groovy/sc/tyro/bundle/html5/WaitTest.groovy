@@ -8,7 +8,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import sc.tyro.core.Config
-import sc.tyro.bundle.web.TyroWebTestExtension
+import sc.tyro.web.TyroWebTestExtension
 
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static sc.tyro.core.Tyro.*

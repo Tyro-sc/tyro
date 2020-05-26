@@ -18,8 +18,8 @@ import static sc.tyro.core.hamcrest.Matchers.disabled
 @DisplayName("Disabled State Matcher")
 class DisabledMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Disabled")
+    void matcher() {
         Component cmp = mock(Component)
 
         when(cmp.enabled()).thenReturn(false)

@@ -14,7 +14,7 @@ import sc.tyro.core.support.state.ValiditySupport
 class FormTest {
     @Test
     @DisplayName("Should have expected Inheritance")
-    void should_have_expected_inheritance() {
+    void inheritance() {
         assert Form in Component
         assert Form in ValiditySupport
         assert Form in Resettable

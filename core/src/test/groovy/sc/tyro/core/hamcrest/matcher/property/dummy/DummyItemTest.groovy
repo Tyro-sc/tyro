@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.is
 class DummyItemTest {
     @Test
     @DisplayName("Should store value")
-    void item_value() {
+    void value() {
         DummyItem item = new DummyItem('Item Value')
 
         assertThat(item.value(), is('Item Value'))
@@ -18,7 +18,7 @@ class DummyItemTest {
 
     @Test
     @DisplayName("Should store other properties with default values")
-    void item_default() {
+    void defaultValue() {
         DummyItem item = new DummyItem('Item Value')
 
         assertThat(item.selected(), is(false))

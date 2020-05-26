@@ -18,8 +18,8 @@ import static sc.tyro.core.hamcrest.Matchers.focused
 @DisplayName("Focused State Matcher")
 class FocusedMatcherTest {
     @Test
-    @DisplayName("Should have expected matcher available")
-    void should_have_expected_matcher() {
+    @DisplayName("Should support matcher Focused")
+    void matcher() {
         FocusSupport cmp = mock(FocusSupport)
 
         when(cmp.focused()).thenReturn(true)
