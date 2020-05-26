@@ -17,7 +17,8 @@ import static sc.tyro.core.Tyro.*
 @DisplayName("Selenium Provider Tests")
 class SeleniumProviderTest {
     @Test
-    void should_add_jquery_if_missing() {
+    @DisplayName("Should add jquery if missing")
+    void jquery() {
         // Page with jquery missing
         visit 'http://localhost:8080/popup.html'
 
@@ -25,7 +26,8 @@ class SeleniumProviderTest {
     }
 
     @Test
-    void should_be_able_to_register_a_script() {
+    @DisplayName("Should be able to register scripts")
+    void registerScripts() {
         // Page with jquery missing
         visit 'http://localhost:8080/popup.html'
 

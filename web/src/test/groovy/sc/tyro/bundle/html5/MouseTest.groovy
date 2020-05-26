@@ -24,7 +24,8 @@ class MouseTest {
     }
 
     @Test
-    void should_be_able_to_click() {
+    @DisplayName("Should click")
+    void click() {
         Button button = $('#button_1') as Button
         assert button.text() == 'Button'
         clickOn button
@@ -39,7 +40,8 @@ class MouseTest {
     }
 
     @Test
-    void should_be_able_to_doubleClick() {
+    @DisplayName("Should double click")
+    void doubleClick() {
         Button button = $('#button_2') as Button
 
         assert button.text() == 'Button'
@@ -56,7 +58,8 @@ class MouseTest {
     }
 
     @Test
-    void should_be_able_to_rightClick() {
+    @DisplayName("Should right click")
+    void rightClick() {
         Button button = $('#button_5') as Button
 
         assert button.text() == 'Button'
@@ -73,7 +76,8 @@ class MouseTest {
     }
 
     @Test
-    void should_be_able_to_mouseOver() {
+    @DisplayName("Should mouse over")
+    void mouseOver() {
         Button button = $('#button_3') as Button
         assert button.text() == 'Button'
 
@@ -83,7 +87,8 @@ class MouseTest {
     }
 
     @Test
-    void should_be_able_to_mouseOut() {
+    @DisplayName("Should mouse out")
+    void mouseOut() {
         Button button = $('#button_4') as Button
         assert button.text() == 'Button'
 
@@ -97,7 +102,8 @@ class MouseTest {
     }
 
     @Test
-    void should_be_able_to_dragAndDrop() {
+    @DisplayName("Should drag and drop")
+    void dragAndDrop() {
         DropPanel dropPanel = $('#drop-zone') as DropPanel
         assert dropPanel.title() == 'Drop here'
 
@@ -116,7 +122,8 @@ class MouseTest {
     }
 
     @Test
-    void should_be_able_to_use_mouse_with_key_modifier() {
+    @DisplayName("Should use mouse with key modifiers")
+    void keyModifiers() {
         Span span_Ctrl_mouseleft = $('#span_Ctrl_mouseleft') as Span
         Span span_Shift_mouseleft = $('#span_Shift_mouseleft') as Span
 

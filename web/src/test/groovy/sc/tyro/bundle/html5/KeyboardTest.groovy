@@ -25,7 +25,8 @@ class KeyboardTest {
     }
 
     @Test
-    void should_type_letters_on_keyboard() {
+    @DisplayName("Should type letters")
+    void letters() {
         browser().refresh()
 
         (0..25).each {
@@ -38,7 +39,8 @@ class KeyboardTest {
     }
 
     @Test
-    void should_type_number_on_keyboard() {
+    @DisplayName("Should type numbers")
+    void numbers() {
         browser().refresh()
 
         (0..9).each {
@@ -57,7 +59,8 @@ class KeyboardTest {
      *  ESCAPE, INSERT, DELETE, PAGE_UP, PAGE_DOWN, HOME, END, BACK_SPACE, TAB, LEFT, UP, RIGHT, DOWN
      */
     @Test
-    void should_type_special_key_on_keyboard() {
+    @DisplayName("Should type special keys")
+    void specialKeys() {
         browser().refresh()
 
         Config.provider
@@ -85,7 +88,8 @@ class KeyboardTest {
     }
 
     @Test
-    void should_use_key_modifier_on_keyboard() {
+    @DisplayName("Should use Key Modifiers")
+    void keyModifiers() {
         browser().refresh()
 
         InputTypeText textField = $('#textfield') as InputTypeText

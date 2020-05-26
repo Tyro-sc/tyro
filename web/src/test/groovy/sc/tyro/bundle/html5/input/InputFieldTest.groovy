@@ -24,8 +24,8 @@ class InputFieldTest {
     }
 
     @Test
-    @DisplayName("Should have expected bea")
-    void input_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for Field")
+    void field() {
         browser().refresh()
 
         InputTypeEmail in EmailField
@@ -64,7 +64,8 @@ class InputFieldTest {
     }
 
     @Test
-    void color_field_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for ColorField")
+    void colorField() {
         InputTypeColor in ColorField
         InputTypeColor in Input
 
@@ -79,7 +80,8 @@ class InputFieldTest {
     }
 
     @Test
-    void date_field_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for DateField")
+    void dateField() {
         InputTypeColor in DateField
         InputTypeColor in Input
 
@@ -95,7 +97,8 @@ class InputFieldTest {
     }
 
     @Test
-    void dateTime_field_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for DateTime")
+    void dateTimeField() {
         InputTypeDateTime in DateTimeField
         InputTypeDateTime in Input
 
@@ -107,7 +110,8 @@ class InputFieldTest {
     }
 
     @Test
-    void email_field_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for EmailField")
+    void emailField() {
         InputTypeEmail in EmailField
         InputTypeEmail in Input
 
@@ -116,7 +120,8 @@ class InputFieldTest {
     }
 
     @Test
-    void month_field_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for MonthField")
+    void monthField() {
         InputTypeMonth in MonthField
         InputTypeMonth in Input
 
@@ -125,7 +130,8 @@ class InputFieldTest {
     }
 
     @Test
-    void number_field_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for NumberField")
+    void numberField() {
         InputTypeNumber in NumberField
         InputTypeNumber in Input
 
@@ -146,7 +152,8 @@ class InputFieldTest {
     }
 
     @Test
-    void password_field_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for PasswordField")
+    void passwordField() {
         InputTypePassword in PasswordField
         InputTypePassword in Input
 
@@ -156,7 +163,8 @@ class InputFieldTest {
     }
 
     @Test
-    void phone_field_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for PhoneField")
+    void phoneField() {
         InputTypeTel in PhoneField
         InputTypeTel in Input
 
@@ -165,7 +173,8 @@ class InputFieldTest {
     }
 
     @Test
-    void range_field_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for RangeField")
+    void rangeField() {
         InputTypeRange in RangeField
         InputTypeRange in Input
 
@@ -185,7 +194,8 @@ class InputFieldTest {
     }
 
     @Test
-    void search_field_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for SearchField")
+    void searchField() {
         InputTypeSearch in SearchField
         InputTypeSearch in Input
 
@@ -199,7 +209,8 @@ class InputFieldTest {
     }
 
     @Test
-    void text_field_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for TextField")
+    void textField() {
         InputTypeText in TextField
         InputTypeText in Input
 
@@ -209,7 +220,8 @@ class InputFieldTest {
     }
 
     @Test
-    void area_field_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for TextAreaField")
+    void textAreaField() {
         TextArea in TextField
         TextArea in Input
 
@@ -219,7 +231,8 @@ class InputFieldTest {
     }
 
     @Test
-    void time_field_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for TimeField")
+    void timeField() {
         InputTypeTime in TimeField
         InputTypeTime in Input
 
@@ -232,7 +245,8 @@ class InputFieldTest {
     }
 
     @Test
-    void url_field_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for UrlField")
+    void urlField() {
         InputTypeURL in URLField
         InputTypeURL in Input
 
@@ -248,7 +262,8 @@ class InputFieldTest {
     }
 
     @Test
-    void week_field_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for WeekField")
+    void weekField() {
         InputTypeWeek in WeekField
         InputTypeWeek in Input
 

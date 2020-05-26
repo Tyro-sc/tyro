@@ -25,7 +25,8 @@ class TableTest {
     }
 
     @Test
-    void should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for Table")
+    void table() {
         assert Table in DataGrid
 
         Table data_grid = $('#empty_data_grid') as Table
@@ -74,7 +75,8 @@ class TableTest {
     }
 
     @Test
-    void should_access_to_column_by_title() {
+    @DisplayName("Should access table column by title")
+    void columnByTitle() {
         DataGrid data_grid = $('#data_grid') as Table
 
         data_grid.column('').title() == ''
@@ -84,7 +86,8 @@ class TableTest {
     }
 
     @Test
-    void should_access_to_row_by_title() {
+    @DisplayName("Should access table row by title")
+    void rowByTitle() {
         DataGrid data_grid = $('#data_grid') as Table
 
         data_grid.row('Row 1').title() == 'Row 1'

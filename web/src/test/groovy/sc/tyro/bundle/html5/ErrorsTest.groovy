@@ -33,7 +33,8 @@ class ErrorsTest {
     }
 
     @Test
-    void should_not_check_already_checked_element() {
+    @DisplayName("Should not check already checked element")
+    void alreadyChecked() {
         InputTypeCheckBox checkbox = $('#checkbox_1') as InputTypeCheckBox
         checkbox.should { be checked }
 
@@ -42,7 +43,8 @@ class ErrorsTest {
     }
 
     @Test
-    void should_not_be_able_to_submit_form_if_no_submit_button_available() {
+    @DisplayName("Should not be able to submit a form if no submit button available")
+    void noSubmit() {
         Form form = $('#form') as Form
 
         Exception ex = assertThrows(ComponentException, { submit form })
@@ -50,7 +52,8 @@ class ErrorsTest {
     }
 
     @Test
-    void should_not_be_able_to_reset_form_if_no_reset_button_available() {
+    @DisplayName("Should not be able to reset a form if no reset button available")
+    void noReset() {
         Form form = $('#form') as Form
 
         Exception ex = assertThrows(ComponentException, { reset form })
@@ -58,7 +61,8 @@ class ErrorsTest {
     }
 
     @Test
-    void should_throw_an_error_on_invalid_click_sequence() {
+    @DisplayName("Should throw an error on invalid click sequence")
+    void invalidClickSequence() {
         Form form = $('#form') as Form
 
         Exception ex = assertThrows(IllegalArgumentException, { [CTRL, 'test', ALT].click form })
@@ -69,7 +73,8 @@ class ErrorsTest {
     }
 
     @Test
-    void should_throw_an_error_when_asking_length_on_input_whiteout_length() {
+    @DisplayName("Should throw an error when asking length on input without length")
+    void noLength() {
         PasswordField password = $('#password') as InputTypePassword
 
         Exception ex = assertThrows(ComponentException, { password.length() })
@@ -77,7 +82,8 @@ class ErrorsTest {
     }
 
     @Test
-    void should_throw_an_error_when_asking_value_on_number_field_whiteout_value() {
+    @DisplayName("Should throw an error when asking value on number field without value")
+    void numberWithNoValue() {
         NumberField number = $('#number') as InputTypeNumber
 
         Exception ex = assertThrows(ComponentException, { number.value() })

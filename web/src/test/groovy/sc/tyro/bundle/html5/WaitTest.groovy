@@ -32,7 +32,8 @@ class WaitTest {
     }
 
     @Test
-    void should_be_able_to_wait_on_condition() {
+    @DisplayName("Should be able to wait on condition")
+    void waitOnCondition() {
         browser().refresh()
 
         Button button = $('#add-message') as Button
@@ -54,7 +55,8 @@ class WaitTest {
     }
 
     @Test
-    void should_throw_exception_when_condition_in_not_reach_in_expected_duration() {
+    @DisplayName("Should fail when condition not reached in expected duration")
+    void expectedDuration() {
         browser().refresh()
 
         Button button = $('#add-message') as Button

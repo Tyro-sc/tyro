@@ -25,7 +25,8 @@ class ListTest {
     }
 
     @Test
-    void should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for List")
+    void list() {
         assert Ul in ListView
 
         Ul ul = $('#empty_unordered_list') as Ul

@@ -25,7 +25,8 @@ class MultiSelectTest {
     }
 
     @Test
-    void should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for MultiSelect")
+    void multiSelect() {
         assert MultiSelect in ListBox
 
         ListBox empty_multi_select = $('#empty_multi_select') as MultiSelect

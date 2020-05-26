@@ -24,7 +24,8 @@ class SelectTest {
 
     // http://en.wikipedia.org/wiki/Drop-down_list
     @Test
-    void select_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for Select")
+    void select() {
         assert Select in Dropdown
 
         Select empty_select = $('#empty_select') as Select

@@ -31,7 +31,8 @@ class ComponentsTest {
     }
 
     @Test
-    void component_should_have_expected_common_behaviours() {
+    @DisplayName("Should have expected behaviours for Component")
+    void component() {
         assert Button in sc.tyro.core.component.Button
 
         Button button = $('#button') as Button
@@ -51,7 +52,8 @@ class ComponentsTest {
     }
 
     @Test
-    void article_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for Article")
+    void article() {
         assert Article in Component
 
         Article article = $('#article') as Article
@@ -60,7 +62,8 @@ class ComponentsTest {
     }
 
     @Test
-    void aside_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for Aside")
+    void aside() {
         assert Aside in Component
 
         Aside aside = $('#aside') as Aside
@@ -69,7 +72,8 @@ class ComponentsTest {
     }
 
     @Test
-    void button_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for Button")
+    void button() {
         assert Button in sc.tyro.core.component.Button
 
         // fields type=button
@@ -93,7 +97,8 @@ class ComponentsTest {
     }
 
     @Test
-    void checkbox_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for Checkbox")
+    void checkbox() {
         assert InputTypeCheckBox in CheckBox
 
         CheckBox checkBox = $('#checkbox') as InputTypeCheckBox
@@ -123,7 +128,8 @@ class ComponentsTest {
     }
 
     @Test
-    void footer_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for Footer")
+    void footer() {
         assert Footer in Component
 
         Footer footer = $('#footer') as Footer
@@ -132,7 +138,8 @@ class ComponentsTest {
     }
 
     @Test
-    void form_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for Form")
+    void form() {
         assert Form in sc.tyro.core.component.Form
 
         Form form = $('#form') as Form
@@ -162,7 +169,8 @@ class ComponentsTest {
     }
 
     @Test
-    void header_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for Header")
+    void header() {
         assert Header in Component
 
         Header header = $('#header') as Header
@@ -171,7 +179,8 @@ class ComponentsTest {
     }
 
     @Test
-    void heading_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for Heading")
+    void heading() {
         assert H1 in Heading
         assert H2 in Heading
         assert H3 in Heading
@@ -199,7 +208,8 @@ class ComponentsTest {
     }
 
     @Test
-    void image_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for Image")
+    void image() {
         assert Img in Image
 
         Img image = $('#image') as Img
@@ -208,7 +218,8 @@ class ComponentsTest {
     }
 
     @Test
-    void link_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for Link")
+    void link() {
         assert A in Link
 
         A link = $('#link') as A
@@ -218,7 +229,8 @@ class ComponentsTest {
     }
 
     @Test
-    void panel_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for Panel")
+    void panel() {
         assert Div in Panel
 
         Div panel = $('#panel') as Div
@@ -227,7 +239,8 @@ class ComponentsTest {
     }
 
     @Test
-    void paragraph_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for Paragraph")
+    void paragraph() {
         assert P in Component
         assert P in TextSupport
 
@@ -237,7 +250,8 @@ class ComponentsTest {
     }
 
     @Test
-    void radio_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for Radio")
+    void radio() {
         assert InputTypeRadio in Radio
 
         Radio radio = $('#radio_1') as InputTypeRadio
@@ -259,7 +273,8 @@ class ComponentsTest {
     }
 
     @Test
-    void section_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for Section")
+    void section() {
         assert Section in Component
 
         Section section = $('#section') as Section
@@ -269,7 +284,8 @@ class ComponentsTest {
     }
 
     @Test
-    void span_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for Span")
+    void span() {
         assert Span in Component
 
         Span span = $('#span') as Span
@@ -278,23 +294,14 @@ class ComponentsTest {
     }
 
     @Test
-    void label_should_have_expected_behaviours() {
+    @DisplayName("Should have expected behaviours for Label")
+    void label() {
         assert Label in sc.tyro.core.component.Label
 
         Label label = $('[for=password_field]') as Label
 
         assert label.text() == 'Password'
     }
-
-//    @Test
-//    void should_find_child_elements_by_css() {
-//        // TODO David
-//    }
-//
-//    @Test
-//    void should_find_child_elements_by_js() {
-//        // TODO David
-//    }
 
     @CssIdentifier('div')
     class Message extends Panel {
