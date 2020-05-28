@@ -37,7 +37,7 @@ class SeleniumProviderTest {
         assert field.empty()
         assert !error.visible()
 
-        // Register scripts who
+        // Register scripts who:
         // 1 - show the first name_blur message
         // 2 - set an email in email field
         Config.provider.registerScripts("function A_test() { \$('#firstname_blur').show()  }; A_test()")

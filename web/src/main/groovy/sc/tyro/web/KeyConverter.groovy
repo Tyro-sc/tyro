@@ -12,14 +12,29 @@ import static sc.tyro.core.input.Key.*
 class KeyConverter {
     static Keys convert(Key key) {
         switch (key) {
-            case SHIFT:
-                return Keys.SHIFT
-            case CTRL:
-                return Keys.CONTROL
-            case ALT:
-                return Keys.ALT
             case ESCAPE:
                 return Keys.ESCAPE
+            case NULL:
+                return Keys.NULL
+            case CANCEL:
+                return Keys.CANCEL
+            case HELP:
+                return Keys.HELP
+            case CLEAR:
+                return Keys.CLEAR
+            case META:
+                return Keys.META
+            case COMMAND:
+                return Keys.COMMAND
+            case PAUSE:
+                return Keys.PAUSE
+            case SEPARATOR:
+                return Keys.SEPARATOR
+            case DECIMAL:
+                return Keys.DECIMAL
+            case SEMICOLON:
+                return Keys.SEMICOLON
+
             case F1:
                 return Keys.F1
             case F2:
@@ -44,6 +59,28 @@ class KeyConverter {
                 return Keys.F11
             case F12:
                 return Keys.F12
+
+            case NUMPAD0:
+                return Keys.NUMPAD0
+            case NUMPAD1:
+                return Keys.NUMPAD1
+            case NUMPAD2:
+                return Keys.NUMPAD2
+            case NUMPAD3:
+                return Keys.NUMPAD3
+            case NUMPAD4:
+                return Keys.NUMPAD4
+            case NUMPAD5:
+                return Keys.NUMPAD5
+            case NUMPAD6:
+                return Keys.NUMPAD6
+            case NUMPAD7:
+                return Keys.NUMPAD7
+            case NUMPAD8:
+                return Keys.NUMPAD8
+            case NUMPAD9:
+                return Keys.NUMPAD9
+
             case INSERT:
                 return Keys.INSERT
             case DELETE:
@@ -58,6 +95,7 @@ class KeyConverter {
                 return Keys.END
             case BACK_SPACE:
                 return Keys.BACK_SPACE
+
             case MULTIPLY:
                 return Keys.MULTIPLY
             case DIVIDE:
@@ -68,12 +106,16 @@ class KeyConverter {
                 return Keys.ADD
             case EQUALS:
                 return Keys.EQUALS
+
             case TAB:
                 return Keys.TAB
             case RETURN:
                 return Keys.RETURN
+            case ENTER:
+                return Keys.ENTER
             case SPACE:
                 return Keys.SPACE
+
             case LEFT:
                 return Keys.LEFT
             case UP:
@@ -82,6 +124,28 @@ class KeyConverter {
                 return Keys.RIGHT
             case DOWN:
                 return Keys.DOWN
+
+            case ARROW_LEFT:
+                return Keys.ARROW_LEFT
+            case ARROW_UP:
+                return Keys.ARROW_UP
+            case ARROW_RIGHT:
+                return Keys.ARROW_RIGHT
+            case ARROW_DOWN:
+                return Keys.ARROW_DOWN
+
+            case SHIFT:
+                return Keys.SHIFT
+            case LEFT_SHIFT:
+                return Keys.LEFT_SHIFT
+            case CTRL:
+                return Keys.CONTROL
+            case LEFT_CTRL:
+                return Keys.LEFT_CONTROL
+            case ALT:
+                return Keys.ALT
+            case LEFT_ALT:
+                return Keys.LEFT_ALT
         }
     }
 }

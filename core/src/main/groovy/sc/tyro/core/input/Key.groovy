@@ -75,7 +75,7 @@ enum Key {
     SHIFT,
     LEFT_SHIFT,
     CTRL,
-    LEFT_CONTROL,
+    LEFT_CTRL,
     ALT,
     LEFT_ALT
 }

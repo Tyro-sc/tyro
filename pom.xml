@@ -18,6 +18,13 @@
 
     <url>http://www.tyro.sc</url>
 
+    <scm>
+        <connection>scm:git:git@github.com:Tyro-sc/tyro.git</connection>
+        <developerConnection>scm:git:git@github.com:Tyro-sc/tyro.git</developerConnection>
+        <url>https://github.com/Tyro-sc/tyro</url>
+        <tag>HEAD</tag>
+    </scm>
+
     <modules>
         <module>core</module>
         <module>web</module>
@@ -174,4 +181,16 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <distributionManagement>
+        <repository>
+            <id>ovea-oss-staging</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+            <id>ovea-oss-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

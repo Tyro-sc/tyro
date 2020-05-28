@@ -7,5 +7,5 @@ import static sc.tyro.core.Config.provider
  * @since 1.0.0
  */
 class Keyboard {
-    void type(Collection<?> keys) { provider.type(keys) }
+    static void type(Collection<?> keys) { provider.type(keys) }
 }
