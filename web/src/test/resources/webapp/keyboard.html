@@ -97,12 +97,10 @@
 
             <h2>Special Keys</h2>
 
-
             <div id="backspace" class="eventNotifier">BACKSPACE</div>
             <div id="tab" class="eventNotifier">TAB</div>
             <div id="clear" class="eventNotifier">CLEAR</div>
             <div id="enter" class="eventNotifier">ENTER</div>
-<!--            <div id="return" class="eventNotifier">RETURN</div>-->
             <div id="escape" class="eventNotifier">ESCAPE</div>
             <div id="space" class="eventNotifier">SPACE</div>
             <div id="left" class="eventNotifier">LEFT</div>
@@ -115,9 +113,21 @@
             <div id="end" class="eventNotifier">END</div>
             <div id="pageup" class="eventNotifier">PAGE_UP</div>
             <div id="pagedown" class="eventNotifier">PAGE_DOWN</div>
+            <div id="null" class="eventNotifier">NULL</div>
+            <div id="cancel" class="eventNotifier">CANCEL</div>
+            <div id="help" class="eventNotifier">HELP</div>
+            <div id="meta" class="eventNotifier">META</div>
+            <div id="pause" class="eventNotifier">PAUSE</div>
+            <div id="multiply" class="eventNotifier">MULTIPLY</div>
+
+            <div style="clear: both;"></div>
+
+            <h2>Keys Modifier</h2>
+
             <div id="shift" class="eventNotifier">SHIFT</div>
             <div id="alt" class="eventNotifier">ALT</div>
             <div id="ctrl" class="eventNotifier">CTRL</div>
+            <div id="cmd" class="eventNotifier">COMMAND</div>
 
             <div style="clear: both;"></div>
 
@@ -188,7 +198,7 @@
         hotkeys('tab', function () { $('#tab').dirtyCheck(); });
         hotkeys('clear', function () { $('#clear').dirtyCheck(); });
         hotkeys('enter', function () { $('#enter').dirtyCheck(); });
-        // hotkeys('return', function () { $('#return').dirtyCheck(); });
+        hotkeys('return', function () { $('#return').dirtyCheck(); });
         hotkeys('escape', function () { $('#escape').dirtyCheck(); });
         hotkeys('space', function () { $('#space').dirtyCheck(); });
         hotkeys('left', function () { $('#left').dirtyCheck(); });
@@ -201,9 +211,31 @@
         hotkeys('end', function () { $('#end').dirtyCheck(); });
         hotkeys('pageup', function () { $('#pageup').dirtyCheck(); });
         hotkeys('pagedown', function () { $('#pagedown').dirtyCheck(); });
-        hotkeys('shift', function () { $('#shift').dirtyCheck(); });
-        hotkeys('altKey', function () { $('#alt').dirtyCheck(); });
-        hotkeys('ctrlKey', function () { $('#ctrl').dirtyCheck(); });
+        hotkeys('null', function () { $('#null').dirtyCheck(); });
+        hotkeys('cancel', function () { $('#cancel').dirtyCheck(); });
+        hotkeys('help', function () { $('#help').dirtyCheck(); });
+        hotkeys('meta', function () { $('#meta').dirtyCheck(); });
+        hotkeys('pause', function () { $('#pause').dirtyCheck(); });
+
+        hotkeys('multipliy', function () { $('#multiply').dirtyCheck(); });
+
+        hotkeys('*', function() {
+            if (hotkeys.shift) { $('#shift').dirtyCheck(); }
+            if (hotkeys.alt) { $('#alt').dirtyCheck(); }
+            if (hotkeys.ctrl) { $('#ctrl').dirtyCheck(); }
+            if (hotkeys.command) { $('#cmd').dirtyCheck(); }
+            if (hotkeys.enter) { $('#enter').dirtyCheck(); }
+
+
+            if (hotkeys.option) {
+                // console.log('option is pressed!');
+            }
+
+            if (hotkeys.control) {
+                // console.log('control is pressed!');
+            }
+
+        });
 
         //   ============= SPECIAL MODIFIERS  ===============
         hotkeys('ctrl+r', function (event) {

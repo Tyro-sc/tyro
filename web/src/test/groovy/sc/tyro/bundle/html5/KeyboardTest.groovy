@@ -100,7 +100,6 @@ class KeyboardTest {
                 '#span_tab'      : TAB,
                 '#span_clear'    : CLEAR,
                 '#span_enter'    : ENTER,
-//                '#span_return'    : RETURN,
                 '#span_escape'   : ESCAPE,
                 '#span_space'    : SPACE,
                 '#span_left'     : LEFT,
@@ -113,49 +112,34 @@ class KeyboardTest {
                 '#span_end'      : END,
                 '#span_pageup'   : PAGE_UP,
                 '#span_pagedown' : PAGE_DOWN,
+//                '#span_null'     : NULL,
+//                '#span_cancel'   : CANCEL,
+//                '#span_help'     : HELP,
+//                '#span_meta'     : META,
+//                '#span_pause'    : PAUSE,
+                '#span_multiply' : MULTIPLY,
+                '#span_divide'   : DIVIDE,
+                '#span_subscract': SUBTRACT,
+                '#span_add'      : ADD,
+                '#span_equals'   : EQUALS,
 
+                '#span_shift'    : SHIFT,
+                '#span_alt'      : ALT,
+                '#span_ctrl'     : CTRL,
+                '#span_cmd'      : COMMAND,
 
-//                shift: 16,
-//                 altKey
-//                '⌥': 18,
-//                alt: 18,
-//                option: 18,
-//                 ctrlKey
-//                '⌃': 17,
-//                ctrl: 17,
-//                control: 17,
-//                 metaKey
 //                '⌘': 91,
-//                cmd: 91,
-//                command: 91,
 
-
-//                NULL,
-//                CANCEL,
-//                HELP,
-//                META,
-//                COMMAND,
-//                PAUSE,
 //
 //                SEPARATOR,
 //                DECIMAL,
 //                SEMICOLON,
-//
-//                INSERT,
-//                DELETE,
-//
-//                MULTIPLY,
-//                DIVIDE,
-//                SUBTRACT,
-//                ADD,
-//                EQUALS,
 //
 //                ARROW_LEFT,
 //                ARROW_UP,
 //                ARROW_RIGHT,
 //                ARROW_DOWN,
 //
-//                SHIFT,
 //                LEFT_SHIFT,
 //                CTRL,
 //                LEFT_CTRL,
@@ -172,11 +156,6 @@ class KeyboardTest {
 //                NUMPAD8,
 //                NUMPAD9,
 
-//                '#span_substract': SUBTRACT,
-//                '#span_add'      : ADD,
-//                '#span_equals'   : EQUALS,
-//                '#span_return'   : RETURN,
-//                '#span_space'    : SPACE
         ].each { k, v ->
             Component span = $(k)
             span.should { be missing }
