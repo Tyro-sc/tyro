@@ -17,30 +17,30 @@ import static sc.tyro.core.input.MouseModifiers.*
  * @author David Avenante
  * @since 1.0.0
  */
-public class Component implements MouseSupport, Draggable {
+class Component implements MouseSupport, Draggable {
     private final Queue<Matcher> BLOCKS = new LinkedList<>()
     protected Provider provider
     protected MetaDataProvider meta
 
-    public Component() {
+    Component() {
         this.provider = Config.provider
-        this.meta = null
+        this.meta = Config.meta
     }
 
-    public Component(Provider provider, MetaDataProvider meta) {
+    Component(Provider provider, MetaDataProvider meta) {
         this.provider = provider
         this.meta = meta
     }
 
-    public String id() {
+    String id() {
         meta.metaInfo(this).id
     }
 
-    public boolean enabled() {
+    boolean enabled() {
         provider.enabled(this)
     }
 
-    public boolean available() {
+    boolean available() {
         try {
             meta.metaInfo(this)
             return true
@@ -49,45 +49,45 @@ public class Component implements MouseSupport, Draggable {
         }
     }
 
-    public boolean visible() {
+    boolean visible() {
         provider.visible(this)
     }
 
-    public boolean contains(Component component) {
+    boolean contains(Component component) {
         provider.contains(this, component)
     }
 
     @Override
-    public void click() {
+    void click() {
         provider.click(this, [LEFT, SINGLE] as Collection<MouseModifiers>, [])
     }
 
     @Override
-    public void doubleClick() {
+    void doubleClick() {
         provider.click(this, [LEFT, DOUBLE] as Collection<MouseModifiers>, [])
     }
 
     @Override
-    public void mouseOver() {
+    void mouseOver() {
         provider.mouseOver(this)
     }
 
     @Override
-    public void rightClick() {
+    void rightClick() {
         provider.click(this, [RIGHT, SINGLE] as Collection<MouseModifiers>, [])
     }
 
     @Override
-    public DragBuilder drag() {
+    DragBuilder drag() {
         new DragBuilder(this)
     }
 
-    public Provider getProvider() {
+    Provider getProvider() {
         return provider
     }
 
     @Override
-    public boolean equals(Object o) {
+    boolean equals(Object o) {
         if (this.is(o)) return true
         if (getClass() != o.class) return false
         Component component = (Component) o
@@ -95,16 +95,16 @@ public class Component implements MouseSupport, Draggable {
     }
 
     @Override
-    public int hashCode() {
+    int hashCode() {
         id().hashCode()
     }
 
     @Override
-    public String toString() {
+    String toString() {
         getClass().simpleName + ":${id()}"
     }
 
-    public def asType(Class clazz) {
+    def asType(Class clazz) {
         if (Component.isAssignableFrom(clazz)) {
             Component c = (Component) clazz.newInstance()
             c.provider = provider

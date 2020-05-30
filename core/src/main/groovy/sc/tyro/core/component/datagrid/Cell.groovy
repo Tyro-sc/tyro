@@ -7,7 +7,7 @@ import sc.tyro.core.support.property.ValueSupport
  * @author David Avenante
  * @since 1.0.0
  */
-public abstract class Cell extends Component implements ValueSupport {
+abstract class Cell extends Component implements ValueSupport {
     @Override
     boolean equals(o) {
         if (this.is(o)) return true

@@ -7,57 +7,57 @@ import sc.tyro.core.input.MouseModifiers
  * @author Mathieu Carbou
  * @since 1.0.0
  */
-public interface Provider {
-    public def <T extends Component> T find(By by, Class<T> clazz)
+interface Provider {
+    def <T extends Component> T find(By by, Class<T> clazz)
 
-    public def <T extends Component>  List<T> findAll(By by, Class<T> clazz)
+    def <T extends Component>  List<T> findAll(By by, Class<T> clazz)
 
-    public def <T extends Component> List<T> findBy(Class<T> clazz)
+    def <T extends Component> List<T> findBy(Class<T> clazz)
 
-    public List<MetaInfo> metaInfo(By.ByExpression expression)
+    List<MetaInfo> metaInfo(By.ByExpression expression)
 
-    public void click(Component component, Collection<MouseModifiers> mouseModifiers, Collection<?> keys)
+    void click(Component component, Collection<MouseModifiers> mouseModifiers, Collection<?> keys)
 
-    public void mouseOver(Component component)
+    void mouseOver(Component component)
 
-    public void dragAndDrop(Component from, Component to)
+    void dragAndDrop(Component from, Component to)
 
-    public void type(Collection<?> keys)
+    void type(Collection<?> keys)
 
-    public boolean enabled(Component component)
+    boolean enabled(Component component)
 
-    public boolean visible(Component component)
+    boolean visible(Component component)
 
-    public boolean contains(Component parent, Component child)
+    boolean contains(Component parent, Component child)
 
     // Navigation
-    public void open(String url)
+    void open(String url)
 
-    public void back()
+    void back()
 
-    public void forward()
+    void forward()
 
-    public void refresh()
+    void refresh()
 
-    public String getPageTitle()
+    String getPageTitle()
 
-    public String getUrl()
+    String getUrl()
 
     // Windows
-    public void closeWindow(String id)
+    void closeWindow(String id)
 
-    public List<String> getWindowIds()
+    List<String> getWindowIds()
 
-    public void switchToWindow(String windowId)
+    void switchToWindow(String windowId)
 
     // Execution
-    public String eval(String id, String expr)
+    String eval(String id, String expr)
 
-    public Boolean check(String id, String expr)
+    Boolean check(String id, String expr)
 
-    public def <T> T getJson(String expression)
+    def <T> T getJson(String expression)
 
-    public void runScript(String script)
+    void runScript(String script)
 
-    public void registerScripts(String... scripts)
+    void registerScripts(String... scripts)
 }

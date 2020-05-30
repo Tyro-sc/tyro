@@ -7,7 +7,7 @@ import sc.tyro.core.support.property.ValueSupport
  * @author David Avenante
  * @since 1.0.0
  */
-public abstract class Group extends Component implements ValueSupport, ItemSupport {
+abstract class Group extends Component implements ValueSupport, ItemSupport {
     @Override
     boolean equals(o) {
         if (this.is(o)) return true

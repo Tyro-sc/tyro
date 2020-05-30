@@ -16,7 +16,7 @@ import sc.tyro.core.support.state.*
  * @author David Avenante
  * @since 1.0.0
  */
-public class Matchers {
+class Matchers {
     static <T> Matcher<T> has(Matcher<T> matcher) { new Has(matcher) }
 
     // States

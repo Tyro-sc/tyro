@@ -6,8 +6,8 @@ import sc.tyro.core.component.Group
  * @author David Avenante
  * @since 1.0.0
  */
-public interface GroupSupport {
-    public List<Group> groups()
+interface GroupSupport {
+    List<Group> groups()
 
-    public Group group(String value)
+    Group group(String value)
 }

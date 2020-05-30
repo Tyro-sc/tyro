@@ -4,8 +4,8 @@ package sc.tyro.core.support.state
  * @author David Avenante
  * @since 1.0.0
  */
-public interface CollapseSupport {
-    public boolean collapsed()
+interface CollapseSupport {
+    boolean collapsed()
 
-    public boolean expanded()
+    boolean expanded()
 }

@@ -8,4 +8,4 @@ import sc.tyro.core.support.state.CheckSupport
  * @author David Avenante
  * @since 1.0.0
  */
-public abstract class Radio extends Component implements LabelSupport, CheckSupport, Checkable {}
+abstract class Radio extends Component implements LabelSupport, CheckSupport, Checkable {}

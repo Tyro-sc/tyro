@@ -117,50 +117,43 @@ class KeyboardTest {
 //                '#span_help'     : HELP,
 //                '#span_meta'     : META,
 //                '#span_pause'    : PAUSE,
-                '#span_multiply' : MULTIPLY,
-                '#span_divide'   : DIVIDE,
-                '#span_subscract': SUBTRACT,
-                '#span_add'      : ADD,
-                '#span_equals'   : EQUALS,
+//                '#span_multiply' : MULTIPLY,
+//                '#span_divide'   : DIVIDE,
+//                '#span_subscract': SUBTRACT,
+//                '#span_add'      : ADD,
+//                '#span_equals'   : EQUALS,
 
                 '#span_shift'    : SHIFT,
+//                '#span_left_shift': LEFT_SHIFT,
                 '#span_alt'      : ALT,
+//                '#span_left_alt'  : LEFT_ALT,
                 '#span_ctrl'     : CTRL,
+//                '#span_left_ctrl' : LEFT_CTRL,
                 '#span_cmd'      : COMMAND,
 
-//                '⌘': 91,
+//                '#span_arrow_left' : ARROW_LEFT,
+//                '#span_arrow_up'   : ARROW_UP,
+//                '#span_arrow_right': ARROW_RIGHT,
+//                '#span_arrow_down' : ARROW_DOWN,
 
-//
-//                SEPARATOR,
-//                DECIMAL,
-//                SEMICOLON,
-//
-//                ARROW_LEFT,
-//                ARROW_UP,
-//                ARROW_RIGHT,
-//                ARROW_DOWN,
-//
-//                LEFT_SHIFT,
-//                CTRL,
-//                LEFT_CTRL,
-//                ALT,
-//                LEFT_ALT
-//                NUMPAD0,
-//                NUMPAD1,
-//                NUMPAD2,
-//                NUMPAD3,
-//                NUMPAD4,
-//                NUMPAD5,
-//                NUMPAD6,
-//                NUMPAD7,
-//                NUMPAD8,
-//                NUMPAD9,
+//                '#span_separator': SEPARATOR,
+//                '#span_decimal'  : DECIMAL,
+//                '#span_semicolon': SEMICOLON,
 
+//                '#span_numpad0'      : NUMPAD0,
+//                '#span_numpad1'      : NUMPAD1,
+//                '#span_numpad2'      : NUMPAD2,
+//                '#span_numpad3'      : NUMPAD3,
+//                '#span_numpad4'      : NUMPAD4,
+//                '#span_numpad5'      : NUMPAD5,
+//                '#span_numpad6'      : NUMPAD6,
+//                '#span_numpad7'      : NUMPAD7,
+//                '#span_numpad8'      : NUMPAD8,
+//                '#span_numpad9'      : NUMPAD9
         ].each { k, v ->
             Component span = $(k)
             span.should { be missing }
             type v
-            println "====> " + v
             span.should { be available }
         }
 

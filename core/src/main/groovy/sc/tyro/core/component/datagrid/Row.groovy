@@ -8,7 +8,7 @@ import sc.tyro.core.support.property.TitleSupport
  * @author David Avenante
  * @since 1.0.0
  */
-public abstract class Row extends Component implements TitleSupport, CellSupport {
+abstract class Row extends Component implements TitleSupport, CellSupport {
     @Override
     boolean equals(o) {
         if (this.is(o)) return true

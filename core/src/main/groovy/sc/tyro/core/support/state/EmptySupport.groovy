@@ -4,6 +4,6 @@ package sc.tyro.core.support.state
  * @author David Avenante
  * @since 1.0.0
  */
-public interface EmptySupport {
-    public boolean empty()
+interface EmptySupport {
+    boolean empty()
 }

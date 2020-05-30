@@ -4,4 +4,4 @@ package sc.tyro.core.component.field
  * @author David Avenante
  * @since 1.0.0
  */
-public abstract class TimeField extends Field {}
+abstract class TimeField extends Field {}

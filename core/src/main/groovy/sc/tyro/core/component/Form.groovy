@@ -8,5 +8,5 @@ import sc.tyro.core.support.state.ValiditySupport
  * @author David Avenante
  * @since 1.0.0
  */
-public abstract class Form extends Component implements ValiditySupport, Resettable, Submissible {
+abstract class Form extends Component implements ValiditySupport, Resettable, Submissible {
 }

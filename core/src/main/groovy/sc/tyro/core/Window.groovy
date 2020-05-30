@@ -4,18 +4,18 @@ package sc.tyro.core
  * @author David Avenante
  * @since 1.0.0
  */
-public class Window {
-    public final String id
+class Window {
+    final String id
     private final Provider provider
 
-    public Window(String id, Provider provider) {
+    Window(String id, Provider provider) {
         this.id = id
         this.provider = provider
     }
 
-    public void close() { provider.closeWindow(id) }
+    void close() { provider.closeWindow(id) }
 
-    public boolean equals(o) {
+    boolean equals(o) {
         if (this.is(o)) return true
         if (getClass() != o.class) return false
 
@@ -23,5 +23,5 @@ public class Window {
         id == window.id
     }
 
-    public int hashCode() { id.hashCode() }
+    int hashCode() { id.hashCode() }
 }

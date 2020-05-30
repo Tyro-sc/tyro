@@ -4,12 +4,14 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import sc.tyro.core.ComponentException
+import sc.tyro.core.Config
+import sc.tyro.core.MetaDataProvider
+import sc.tyro.core.MetaInfo
 import sc.tyro.core.Provider
 import sc.tyro.core.Tyro
 import sc.tyro.core.component.*
 import sc.tyro.core.component.field.RangeField
 import sc.tyro.core.component.field.TextField
-import sc.tyro.core.input.Keyboard
 import sc.tyro.core.input.Mouse
 import sc.tyro.core.input.MouseModifiers
 import sc.tyro.core.support.Clearable
@@ -19,9 +21,13 @@ import static org.hamcrest.Matchers.containsString
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.Mockito.*
 import static sc.tyro.core.Config.provider
+import static sc.tyro.core.Config.provider
+import static sc.tyro.core.Config.provider
 import static sc.tyro.core.Tyro.*
 import static sc.tyro.core.input.Key.*
+import static sc.tyro.core.input.MouseModifiers.DOUBLE
 import static sc.tyro.core.input.MouseModifiers.LEFT
+import static sc.tyro.core.input.MouseModifiers.RIGHT
 import static sc.tyro.core.input.MouseModifiers.SINGLE
 
 /**
@@ -89,11 +95,9 @@ class ActionTest {
         Form form = spy(Form)
 
         Tyro.reset form // Explicit call to forbid Mockito reset method call
-
         verify(form, times(1)).reset()
 
         submit form
-
         verify(form, times(1)).submit()
     }
 
@@ -295,43 +299,41 @@ class ActionTest {
     @Test
     @DisplayName("Should delegate to mouse")
     void mouseDelegation() {
-        Mouse mouse = mock(Mouse)
-        Tyro.mouse = mouse
+        Config.provider = mock(Provider)
+        Config.meta = mock(MetaDataProvider)
+        Component cmp_1 = new Component()
+        Component cmp_2 = new Component()
+        when(Config.meta.metaInfo(any(Component))).thenReturn(new MetaInfo(id: '1', node: 'node'))
 
-        Component component = mock(Component)
+        clickOn cmp_1
+        verify(provider, times(1)).click(cmp_1, [LEFT, SINGLE], [] )
 
-        clickOn component
-        verify(mouse, times(1)).clickOn(component)
+        doubleClickOn cmp_1
+        verify(provider, times(1)).click(cmp_1, [LEFT, DOUBLE], [] )
 
-        doubleClickOn component
-        verify(mouse, times(1)).doubleClickOn(component)
+        rightClickOn cmp_1
+        verify(provider, times(1)).click(cmp_1, [RIGHT, SINGLE], [] )
 
-        rightClickOn component
-        verify(mouse, times(1)).rightClickOn(component)
+        hoveringMouseOn cmp_1
+        verify(provider, times(1)).mouseOver(cmp_1)
 
-        hoveringMouseOn component
-        verify(mouse, times(1)).hoveringMouseOn(component)
-
-        drag component
-        verify(mouse, times(1)).drag(component)
+        drag cmp_1 on cmp_2
+        verify(provider, times(1)).dragAndDrop(cmp_1, cmp_2)
     }
 
     @Test
     @DisplayName("Should delegate to Keyboard")
     void keyboardDelegation() {
-        Keyboard keyboard = mock(Keyboard)
-        Tyro.keyboard = keyboard
-
         type 'Some input'
-        verify(keyboard, times(1)).type(['Some input'])
+        verify(provider, times(1)).type(['Some input'])
 
         type CTRL
-        verify(keyboard, times(1)).type([CTRL])
+        verify(provider, times(1)).type([CTRL])
 
         type CTRL + SHIFT + DELETE
-        verify(keyboard, times(1)).type([CTRL, SHIFT, DELETE])
+        verify(provider, times(1)).type([CTRL, SHIFT, DELETE])
 
         type CTRL + 'c'
-        verify(keyboard, times(1)).type([CTRL, 'c'])
+        verify(provider, times(1)).type([CTRL, 'c'])
     }
 }

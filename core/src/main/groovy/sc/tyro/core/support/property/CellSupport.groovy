@@ -6,8 +6,8 @@ import sc.tyro.core.component.datagrid.Cell
  * @author David Avenante
  * @since 1.0.0
  */
-public interface CellSupport {
-    public List<Cell> cells()
+interface CellSupport {
+    List<Cell> cells()
 
-    public Cell cell(Object value)
+    Cell cell(Object value)
 }

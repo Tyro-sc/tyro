@@ -13,13 +13,15 @@ class Config {
     /**
      * Change default time to wait for wait for assertions to complete (waitUntil)
      */
-    public static Duration waitUntil = 2.seconds
+    static Duration waitUntil = 2.seconds
 
-    public static Provider provider
+    static Provider provider
 
-    public static Identifiers identifiers
+    static MetaDataProvider meta
 
-    public final static Collection<Class<Component>> componentTypes = new HashSet<>()
+    static Identifiers identifiers
+
+    final static Collection<Class<Component>> componentTypes = new HashSet<>()
 
     static void scan(String... packageNames) {
         componentTypes.addAll(packageNames

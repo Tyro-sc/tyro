@@ -118,7 +118,36 @@
             <div id="help" class="eventNotifier">HELP</div>
             <div id="meta" class="eventNotifier">META</div>
             <div id="pause" class="eventNotifier">PAUSE</div>
+
             <div id="multiply" class="eventNotifier">MULTIPLY</div>
+            <div id="divide" class="eventNotifier">DIVIDE</div>
+            <div id="subtract" class="eventNotifier">SUBTRACT</div>
+            <div id="add" class="eventNotifier">ADD</div>
+            <div id="equals" class="eventNotifier">EQUALS</div>
+
+            <div id="arrow_left" class="eventNotifier">ARROW_LEFT</div>
+            <div id="arrow_up" class="eventNotifier">ARROW_UP</div>
+            <div id="arrow_right" class="eventNotifier">ARROW_RIGHT</div>
+            <div id="arrow_down" class="eventNotifier">ARROW_DOWN</div>
+
+            <div id="separator" class="eventNotifier">SEPARATOR</div>
+            <div id="decimal" class="eventNotifier">DECIMAL</div>
+            <div id="semicolon" class="eventNotifier">SEMICOLON</div>
+
+            <div style="clear: both;"></div>
+
+            <h2>Numpad</h2>
+
+            <div id="numpad0" class="eventNotifier">NUMPAD0</div>
+            <div id="numpad1" class="eventNotifier">NUMPAD1</div>
+            <div id="numpad2" class="eventNotifier">NUMPAD2</div>
+            <div id="numpad3" class="eventNotifier">NUMPAD3</div>
+            <div id="numpad4" class="eventNotifier">NUMPAD4</div>
+            <div id="numpad5" class="eventNotifier">NUMPAD5</div>
+            <div id="numpad6" class="eventNotifier">NUMPAD6</div>
+            <div id="numpad7" class="eventNotifier">NUMPAD7</div>
+            <div id="numpad8" class="eventNotifier">NUMPAD8</div>
+            <div id="numpad9" class="eventNotifier">NUMPAD9</div>
 
             <div style="clear: both;"></div>
 
@@ -216,8 +245,11 @@
         hotkeys('help', function () { $('#help').dirtyCheck(); });
         hotkeys('meta', function () { $('#meta').dirtyCheck(); });
         hotkeys('pause', function () { $('#pause').dirtyCheck(); });
-
-        hotkeys('multipliy', function () { $('#multiply').dirtyCheck(); });
+        hotkeys('multiply', function () { $('#multiply').dirtyCheck(); });
+        hotkeys('divide', function () { $('#divide').dirtyCheck(); });
+        hotkeys('subtract', function () { $('#subtract').dirtyCheck(); });
+        hotkeys('add', function () { $('#add').dirtyCheck(); });
+        hotkeys('equals', function () { $('#equals').dirtyCheck(); });
 
         hotkeys('*', function() {
             if (hotkeys.shift) { $('#shift').dirtyCheck(); }
@@ -225,16 +257,6 @@
             if (hotkeys.ctrl) { $('#ctrl').dirtyCheck(); }
             if (hotkeys.command) { $('#cmd').dirtyCheck(); }
             if (hotkeys.enter) { $('#enter').dirtyCheck(); }
-
-
-            if (hotkeys.option) {
-                // console.log('option is pressed!');
-            }
-
-            if (hotkeys.control) {
-                // console.log('control is pressed!');
-            }
-
         });
 
         //   ============= SPECIAL MODIFIERS  ===============

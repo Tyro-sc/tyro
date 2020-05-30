@@ -6,8 +6,8 @@ import sc.tyro.core.component.datagrid.Row
  * @author David Avenante
  * @since 1.0.0
  */
-public interface RowSupport {
-    public List<Row> rows()
+interface RowSupport {
+    List<Row> rows()
 
-    public Row row(String title)
+    Row row(String title)
 }

@@ -1,18 +1,18 @@
 package sc.tyro.core
 
-public class By {
-    public static ById id(String id) {
+class By {
+    static ById id(String id) {
         new ById(id)
     }
 
-    public static ByExpression expression(String expression) {
+    static ByExpression expression(String expression) {
         new ByExpression(expression)
     }
 
-    public static class ById extends By {
-        public final String id
+    static class ById extends By {
+        final String id
 
-        public ById(String id) {
+        ById(String id) {
             this.id = id
         }
 
@@ -35,10 +35,10 @@ public class By {
         }
     }
 
-    public static class ByExpression extends By {
-        public final String expression
+    static class ByExpression extends By {
+        final String expression
 
-        public ByExpression(String expression) {
+        ByExpression(String expression) {
             this.expression = expression
         }
 

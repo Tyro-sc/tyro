@@ -7,7 +7,7 @@ import sc.tyro.core.support.state.SelectSupport
  * @author David Avenante
  * @since 1.0.0
  */
-public abstract class Item extends Component implements SelectSupport, ValueSupport {
+abstract class Item extends Component implements SelectSupport, ValueSupport {
     @Override
     boolean equals(o) {
         if (this.is(o)) return true

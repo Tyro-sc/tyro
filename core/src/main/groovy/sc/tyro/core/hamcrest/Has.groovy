@@ -8,7 +8,7 @@ import org.hamcrest.Matcher
  * @author David Avenante
  * @since 1.0.0
  */
-public class Has<T> extends BaseMatcher<T> {
+class Has<T> extends BaseMatcher<T> {
     private final Matcher<T> matcher
 
     Has(Matcher<T> matcher) {

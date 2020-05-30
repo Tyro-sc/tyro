@@ -6,4 +6,4 @@ import sc.tyro.core.support.property.LengthSupport
  * @author David Avenante
  * @since 1.0.0
  */
-public abstract class PasswordField extends Field implements LengthSupport {}
+abstract class PasswordField extends Field implements LengthSupport {}

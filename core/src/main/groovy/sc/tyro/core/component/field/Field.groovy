@@ -11,5 +11,5 @@ import sc.tyro.core.support.state.ValiditySupport
  * @author David Avenante
  * @since 1.0.0
  */
-public abstract class Field extends Component implements LabelSupport, InputSupport,
+abstract class Field extends Component implements LabelSupport, InputSupport,
         ValueSupport, ValiditySupport, FocusSupport {}

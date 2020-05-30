@@ -9,4 +9,4 @@ import sc.tyro.core.support.state.CheckSupport
  * @author David Avenante
  * @since 1.0.0
  */
-public abstract class CheckBox extends Component implements CheckSupport, LabelSupport, Checkable, UnCheckable {}
+abstract class CheckBox extends Component implements CheckSupport, LabelSupport, Checkable, UnCheckable {}

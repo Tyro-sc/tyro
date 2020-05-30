@@ -6,6 +6,6 @@ import sc.tyro.core.component.Item
  * @author David Avenante
  * @since 1.0.0
  */
-public interface VisibleItemsSupport {
-    public List<Item> visibleItems()
+interface VisibleItemsSupport {
+    List<Item> visibleItems()
 }
