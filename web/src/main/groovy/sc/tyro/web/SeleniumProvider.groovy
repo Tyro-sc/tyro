@@ -43,8 +43,8 @@ class SeleniumProvider implements Provider {
 
     @Override
     <T extends Component> List<T> findBy(Class<T> clazz) {
-//        TODO: factories
-        return null
+        Components components = new Components(this, clazz, new CachedMetaData(idProvider: new DomIdProvider(By.expression("*"), false)))
+        components.list()
     }
 
     @Override
@@ -130,6 +130,16 @@ class SeleniumProvider implements Provider {
     }
 
     @Override
+    void open(String url) {
+        webDriver.get(url)
+    }
+
+    @Override
+    void navigateTo(String url) {
+        webDriver.navigate().to(url)
+    }
+
+    @Override
     void back() {
         webDriver.navigate().back()
     }
@@ -156,22 +166,17 @@ class SeleniumProvider implements Provider {
 
     @Override
     void closeWindow(String id) {
+        webDriver.switchTo().window(id).close()
+    }
+
+    @Override
+    Set getWindowIds() {
         webDriver.windowHandles
     }
 
     @Override
-    void open(String url) {
-        webDriver.get(url)
-    }
-
-    @Override
-    List getWindowIds() {
-        return List.of()
-    }
-
-    @Override
-    void switchToWindow(String windowId) {
-        // TODO switch window
+    void switchToWindow(String id) {
+        webDriver.switchTo().window(id)
     }
 
     @Override

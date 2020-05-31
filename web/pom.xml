@@ -18,7 +18,7 @@
 
         <!-- Tests -->
         <slf4j-simple.verion>1.7.28</slf4j-simple.verion>
-        <testcontainer.version>1.13.0</testcontainer.version>
+        <testcontainer.version>1.14.3</testcontainer.version>
         <javalin.version>3.8.0</javalin.version>
         <webdrivermanager.version>4.0.0</webdrivermanager.version>
     </properties>

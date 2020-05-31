@@ -26,10 +26,18 @@ class BrowserTest {
 
     @Test
     @DisplayName("Should Open an URL")
-    void navigate() {
+    void open() {
         browser.open('http://shouldItestprivatemethods.com')
 
         verify(provider, times(1)).open('http://shouldItestprivatemethods.com')
+    }
+
+    @Test
+    @DisplayName("Should Navigate to")
+    void navigate() {
+        browser.navigateTo('http://someUrl')
+
+        verify(provider, times(1)).navigateTo('http://someUrl')
     }
 
     @Test
@@ -75,7 +83,7 @@ class BrowserTest {
     @Test
     @DisplayName("Should get all windows")
     void windows() {
-        when(provider.windowIds).thenReturn(List.of('id_1', 'id_2', 'id_3'))
+        when(provider.windowIds).thenReturn(Set.of('id_1', 'id_2', 'id_3'))
 
         assertThat(browser.windows, hasSize(3))
     }

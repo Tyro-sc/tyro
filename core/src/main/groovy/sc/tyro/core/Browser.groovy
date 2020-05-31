@@ -12,6 +12,8 @@ class Browser {
 
     void open(String url) { provider.open(url) }
 
+    void navigateTo(String  url) { provider.navigateTo(url) }
+
     void back() { provider.back() }
 
     void forward() { provider.forward() }

@@ -3,6 +3,7 @@ package sc.tyro.bundle.html5
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.condition.DisabledIfSystemProperty
 import org.junit.jupiter.api.extension.ExtendWith
 import sc.tyro.bundle.html5.input.InputTypeText
 import sc.tyro.core.component.Component
@@ -164,25 +165,33 @@ class KeyboardTest {
     }
 
     @Test
-    @DisplayName("Should use Key Modifiers")
-    void keyModifiers() {
+    @DisplayName("Should type text")
+    void text() {
         browser().refresh()
-
         InputTypeText textField = $('#textfield') as InputTypeText
 
         assert textField.value() == ''
         clickOn textField
-        type(SHIFT + 'tyro')
+        type SHIFT + 'tyro'
         textField.should { have value('TYRO') }
 
         textField.clear()
         textField.should { have value('') }
-        type('~!@#$%^&*()_+')
+        type '~!@#$%^&*()_+'
         textField.should { have value('~!@#$%^&*()_+') }
+    }
+
+    @Test
+    @DisplayName("Should use Key Modifiers")
+    @DisabledIfSystemProperty(named = "driver", matches = "FirefoxDriver") // https://github.com/mozilla/geckodriver/issues/944
+    void keyModifiers() {
+        browser().refresh()
+        InputTypeText textField = $('#textfield') as InputTypeText
 
         textField.clear()
         textField.should { have value('') }
-        type(SHIFT + '`1234567890-=')
+        type SHIFT + '`1234567890-='
         textField.should { have value('~!@#$%^&*()_+') }
     }
+
 }

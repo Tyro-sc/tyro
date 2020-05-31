@@ -33,6 +33,8 @@ interface Provider {
     // Navigation
     void open(String url)
 
+    void navigateTo(String url)
+
     void back()
 
     void forward()
@@ -46,9 +48,9 @@ interface Provider {
     // Windows
     void closeWindow(String id)
 
-    List<String> getWindowIds()
+    Set<String> getWindowIds()
 
-    void switchToWindow(String windowId)
+    void switchToWindow(String id)
 
     // Execution
     String eval(String id, String expr)

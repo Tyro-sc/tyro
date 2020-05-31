@@ -24,17 +24,17 @@ Tyro is a library to write functional tests. Functional tests means **SPECIFICAT
 As a **SPECIFIER**, I want to express my test (intention) *BEFORE* UI is coded. So, if the intention is to have
 a page with two radio buttons to select the gender (male or female), the test can be expressed like this :
 
-----
-include::{spec}/gender.spec[]
-----
+//----
+//include::{spec}/gender.spec[]
+//----
 
 The Tyro syntax to express this specification is:
 
-[source,groovy,indent=0]
-[subs="verbatim,attributes"]
-----
-include::{code}/SpecTest.groovy[tag=gender-spec]
-----
+//[source,groovy,indent=0]
+//[subs="verbatim,attributes"]
+//----
+//include::{code}/SpecTest.groovy[tag=gender-spec]
+//----
 
 So we can see that *Tyro is close to the natural language.*
 
