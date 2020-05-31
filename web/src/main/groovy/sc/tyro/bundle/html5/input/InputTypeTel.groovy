@@ -1,6 +1,5 @@
 package sc.tyro.bundle.html5.input
 
-
 import sc.tyro.core.component.field.PhoneField
 import sc.tyro.web.CssIdentifier
 

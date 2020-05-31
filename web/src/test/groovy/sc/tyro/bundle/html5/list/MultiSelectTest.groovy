@@ -34,11 +34,11 @@ class MultiSelectTest {
 
         ListBox cities = $('#cities') as MultiSelect
 
-        assert cities.label() == 'Cities list'
-        assert cities.items().size() == 6
-        assert cities.visibleItems().size() == 3
-
-        assert cities
+        cities.should {
+            have label('Cities list')
+            have 6.items
+            have 3.visibleItems
+        }
 
         Item montreal = cities.item('Montreal')
         Item quebec = cities.item('Quebec')
@@ -47,57 +47,50 @@ class MultiSelectTest {
         Item casablanca = cities.item('Casablanca')
         Item munich = cities.item('Munich')
 
-        assert montreal.selected()
-        assert montpellier.enabled()
-        assert cities.item('Montreal').selected()
+        montreal.should { be selected }
+        montpellier.should {
+            be enabled
+            be unselected
+        }
+        quebec.should {
+            be disabled
+            be unselected
+        }
+        newYork.should { be unselected }
+        casablanca.should { be unselected }
+        munich.should { be unselected }
 
-        assert !quebec.selected()
-        assert !quebec.enabled()
-        assert !cities.item('Quebec').selected()
-
-        assert !montpellier.selected()
-        assert !cities.item('Montpellier').selected()
-
-        assert !newYork.selected()
-        assert !cities.item('New York').selected()
-
-        assert !casablanca.selected()
-        assert !cities.item('Casablanca').selected()
-
-        assert !munich.selected()
-        assert !cities.item('Munich').selected()
-
-        assert cities.selectedItems().containsAll(montreal)
+        // TODO: cities.should { have selectedItem(montreal) }
+        cities.should { have selectedItems(montreal) }
 
         cities.unselect(montreal)
         cities.select(newYork, munich)
 
-        assert cities.selectedItems().containsAll(newYork, munich)
+        cities.should { have selectedItems(newYork, munich) }
 
         cities.select('Montpellier', 'Montreal')
-        assert cities.item('Montpellier').selected()
-        assert cities.item('Montreal').selected()
-        assert cities.selectedItems().containsAll(newYork, munich, montpellier, montreal)
+        cities.should { have selectedItems('Montreal', 'Montpellier', 'New York', 'Munich') }
+        cities.should { have selectedItems(montreal, montpellier, newYork, munich) }
 
         cities.unselect(montreal)
         cities.unselect(montpellier)
 
-        assert !cities.item('Montreal').selected()
-        assert !cities.item('Montpellier').selected()
-        assert cities.item('New York').selected()
-        assert cities.item('Munich').selected()
+        montpellier.should { be unselected }
+        montpellier.should { be unselected }
+        newYork.should { be selected }
+        munich.should { be selected }
 
         cities.select(montreal, montpellier)
-        assert cities.item('Montreal').selected()
-        assert cities.item('Montpellier').selected()
-        assert cities.item('New York').selected()
-        assert cities.item('Munich').selected()
+        montreal.should { be selected }
+        montpellier.should { be selected }
+        newYork.should { be selected }
+        munich.should { be selected }
 
         montpellier.click() // Now just Montpellier is selected
-        assert montpellier.selected()
-        assert !montreal.selected()
-        assert !newYork.selected()
-        assert !munich.selected()
+        montpellier.should { be selected }
+        montreal.should { be unselected }
+        newYork.should { be unselected }
+        munich.should { be unselected }
 
         Exception ex = assertThrows(ComponentException, { cities.select(quebec) })
         assert ex.message == 'Option Quebec is disabled and cannot be selected'
@@ -112,21 +105,27 @@ class MultiSelectTest {
         assert ex.message == 'Option Montpellier is already selected and cannot be selected'
 
         MultiSelect planets = $('#planets') as MultiSelect
-        assert planets.visibleItems().size() == 5
-        assert planets.groups().size() == 2
-        assert planets.groups()[0].value() == 'Cat-1'
-        assert planets.group('Cat-1').value() == 'Cat-1'
+        planets.should {
+            have 8.items
+            have 5.visibleItems
+            have 2.groups
+        }
+
+        planets.groups()[0].should { have value('Cat-1') }
+        planets.groups()[1].should { have value('Cat-2') }
 
         Item venus = planets.item('Venus')
         Item saturn = planets.item('Saturn')
 
-        assert planets.selectedItems().size() == 0
+        planets.should { have 0.selectedItems }
         planets.select('Venus', 'Saturn')
-
-        assert planets.selectedItems().size() == 2
-        assert planets.selectedItems().containsAll(venus, saturn)
+        planets.should {
+            have 2.selectedItems
+            have 6.unSelectedItems
+            selectedItems(venus, saturn)
+        }
 
         planets.unselect('Venus', 'Saturn')
-        assert planets.selectedItems().size() == 0
+        planets.should { have 0.selectedItems }
     }
 }

@@ -1,6 +1,5 @@
 package sc.tyro.bundle.html5.input
 
-import sc.tyro.bundle.html5.helper.RangeHelper
 import sc.tyro.core.component.field.DateField
 import sc.tyro.web.CssIdentifier
 
@@ -17,21 +16,22 @@ class InputTypeDate extends DateField implements Input {
 
     @Override
     Object minimum() {
-        RangeHelper.minimum(this)
+        provider.eval(id(), "it.prop('min')")
     }
 
     @Override
     Object maximum() {
-        RangeHelper.maximum(this)
+        provider.eval(id(), "it.prop('max')")
     }
 
     @Override
     Object step() {
-        RangeHelper.step(this)
+        Object value = provider.eval(id(), "it.prop('step')")
+        return  (value) ? value as BigDecimal : 0
     }
 
     @Override
     boolean inRange() {
-        RangeHelper.inRange(this)
+        !(provider.check(id(), "it[0].validity.rangeUnderflow") || provider.check(id(), "it[0].validity.rangeOverflow"))
     }
 }

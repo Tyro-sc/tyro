@@ -1,6 +1,5 @@
 package sc.tyro.bundle.html5.input
 
-import sc.tyro.bundle.html5.helper.RangeHelper
 import sc.tyro.core.ComponentException
 import sc.tyro.core.component.field.NumberField
 import sc.tyro.web.CssIdentifier
@@ -21,21 +20,22 @@ class InputTypeNumber extends NumberField implements Input {
 
     @Override
     Number minimum() {
-        RangeHelper.minimum(this) as BigDecimal
+        provider.eval(id(), "it.prop('min')") as BigDecimal
     }
 
     @Override
     Number maximum() {
-        RangeHelper.maximum(this) as BigDecimal
+        provider.eval(id(), "it.prop('max')") as BigDecimal
     }
 
     @Override
     Number step() {
-        RangeHelper.step(this)
+        Object value = provider.eval(id(), "it.prop('step')")
+        return  (value) ? value as BigDecimal : 0
     }
 
     @Override
     boolean inRange() {
-        RangeHelper.inRange(this)
+        !(provider.check(id(), "it[0].validity.rangeUnderflow") || provider.check(id(), "it[0].validity.rangeOverflow"))
     }
 }

@@ -1,4 +1,4 @@
-package sc.tyro.bundle.html5.helper
+package sc.tyro.bundle.html5.input
 
 import sc.tyro.core.Config
 import sc.tyro.core.component.Component
@@ -7,7 +7,7 @@ import sc.tyro.core.component.Component
  * @author David Avenante
  * @since 1.0.0
  */
-class LabelHelper {
+class Label {
     private static final String expr =
         "function() {" +
             "   var label = \$('label[for=' + it.attr('id') + ']');" +
@@ -17,7 +17,7 @@ class LabelHelper {
             "   return it.parent().text().trim();" +
             "}()"
 
-    static String label(Component c) {
+    static String findFor(Component c) {
         Config.provider.eval(c.id(), expr).trim()
     }
 }

@@ -89,6 +89,14 @@ class GroovyExtensions {
         new VisibleItemsSizeMatcher(number)
     }
 
+    static PropertyMatcher getSelectedItems(Integer number) {
+        new SelectedItemsSizeMatcher(number)
+    }
+
+    static PropertyMatcher getUnSelectedItems(Integer number) {
+        new UnSelectedItemsSizeMatcher(number)
+    }
+
     static PropertyMatcher getGroups(Integer number) {
         new GroupSizeMatcher(number)
     }

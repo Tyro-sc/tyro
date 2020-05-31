@@ -4,6 +4,7 @@ import org.hamcrest.Description
 import org.hamcrest.StringDescription
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -17,6 +18,7 @@ import static sc.tyro.core.Tyro.*
  * @author David Avenante
  * @since 1.0.0
  */
+@Disabled
 @ExtendWith(TyroWebTestExtension)
 @DisplayName("Wait Tests")
 class WaitTest {

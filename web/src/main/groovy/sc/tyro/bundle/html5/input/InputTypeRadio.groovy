@@ -1,8 +1,9 @@
 package sc.tyro.bundle.html5.input
 
-import sc.tyro.bundle.html5.helper.LabelHelper
 import sc.tyro.core.component.Radio
 import sc.tyro.web.CssIdentifier
+
+import static sc.tyro.bundle.html5.input.Label.findFor
 
 /**
  * @author David Avenante
@@ -17,6 +18,6 @@ class InputTypeRadio extends Radio {
 
     @Override
     String label() {
-        LabelHelper.label(this)
+        findFor(this)
     }
 }

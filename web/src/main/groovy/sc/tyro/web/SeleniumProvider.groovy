@@ -107,7 +107,10 @@ class SeleniumProvider implements Provider {
 
     @Override
     void dragAndDrop(Component from, Component to) {
-        new Actions(webDriver).dragAndDrop(webDriver.findElement(org.openqa.selenium.By.id(from.id())), webDriver.findElement(org.openqa.selenium.By.id(to.id()))).perform()
+        new Actions(webDriver).dragAndDrop(webDriver.findElement(org.openqa.selenium.By.id(from.id())),
+                webDriver.findElement(org.openqa.selenium.By.id(to.id())))
+                .build()
+                .perform()
     }
 
     @Override
