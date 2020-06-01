@@ -32,8 +32,12 @@
             background-color: #0ca2ff
         }
 
-        #drag-drop {
+        #drag {
             touch-action: none;
+            touch-action: none;
+            user-select: none;
+        }
+
         }
     </style>
 
@@ -65,12 +69,10 @@
             <hr/>
 
             <div id="drop-zone" class="jumbotron">
-                <div class="container">
-                    <h1>Drop here</h1>
-                </div>
+                <h1>Drop here</h1>
             </div>
 
-            <div id="drag-drop" class="panel panel-default">
+            <div id="drag" class="panel panel-default">
                 <div class="panel-body">
                     Drag me to my target ;)
                 </div>
@@ -106,47 +108,12 @@
     </div>
 </div>
 <script>
-    function dragMoveListener(event) {
-        let target = event.target
-        let x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
-        let y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
-
-        target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
-        target.setAttribute('data-x', x)
-        target.setAttribute('data-y', y)
-    }
-
-    window.dragMoveListener = dragMoveListener;
-
-    interact('#drop-zone')
-        .dropzone({
-            accept: '#drag-drop',
-            overlap: 0.75,
-            ondrop: function (e) {
-                $('#drop-zone h1').html("Dropped!");
-            }
-        });
-
-    interact('#drag-drop')
-        .draggable({
-            inertia: true,
-            modifiers: [
-                interact.modifiers.restrictRect({
-                    restriction: 'parent',
-                    endOnly: true
-                })
-            ],
-            autoScroll: true,
-            listeners: {move: dragMoveListener}
-        })
-
-
     $.fn.dirtyCheck = function () {
         this.addClass('dirty');
         this.append('<span id="span' + this.attr('id') + '" style="display:none"/>');
     };
 
-    (function ($) {
+    $(document).ready(function () {
         // ==================== MOUSE ===================
         $('#button_1').on('click', function (e) {
             e.preventDefault();
@@ -186,7 +153,51 @@
                 if (e.ctrlKey && e.shiftKey) $('#_Ctrl_Shift_mouseleft').dirtyCheck();
             }
         });
-    }(jQuery));
+
+        //   ============= DRAG AND DROP =============================
+        interact('#drop-zone')
+            .dropzone({
+                accept: '#drag',
+                overlap: 0.75,
+                ondrop: function () {
+                    $('#drop-zone h1').html("Dropped!");
+                }
+            });
+
+        interact('#drag')
+            .draggable({
+                inertia: false,
+                modifiers: [
+                    interact.modifiers.restrictRect({
+                        restriction: 'parent',
+                        endOnly: true
+                    })
+                ],
+                autoScroll: true,
+                onmove: function (event) {
+                    const target = event.target;
+
+                    const dataX = target.getAttribute('data-x');
+                    const dataY = target.getAttribute('data-y');
+                    const initialX = parseFloat(dataX) || 0;
+                    const initialY = parseFloat(dataY) || 0;
+
+                    const deltaX = event.dx;
+                    const deltaY = event.dy;
+
+                    const newX = initialX + deltaX;
+                    const newY = initialY + deltaY;
+
+                    target
+                        .style
+                        .transform = `translate(${newX}px, ${newY}px)`;
+
+                    target.setAttribute('data-x', newX);
+                    target.setAttribute('data-y', newY);
+                }
+
+            })
+    });
 </script>
 </body>
 </html>

@@ -107,7 +107,7 @@ class MouseTest {
         DropPanel dropPanel = $('#drop-zone') as DropPanel
         dropPanel.should { have title('Drop here') }
 
-        Div dragPanel = $('#drag-drop') as Div
+        Div dragPanel = $('#drag') as Div
         drag dragPanel on dropPanel
         dropPanel.should { have title('Dropped!') }
 
@@ -116,7 +116,7 @@ class MouseTest {
         dropPanel = $('#drop-zone') as DropPanel
         dropPanel.should { have title('Drop here') }
 
-        dragPanel = $('#drag-drop') as Div
+        dragPanel = $('#drag') as Div
         dragPanel.drag().on(dropPanel)
         dropPanel.should { have title('Dropped!') }
     }

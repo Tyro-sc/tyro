@@ -3,6 +3,7 @@ package sc.tyro.bundle.html5.list
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.condition.DisabledIfSystemProperty
 import org.junit.jupiter.api.extension.ExtendWith
 import sc.tyro.core.ComponentException
 import sc.tyro.core.component.Item
@@ -26,6 +27,7 @@ class MultiSelectTest {
 
     @Test
     @DisplayName("Should have expected behaviours for MultiSelect")
+    @DisabledIfSystemProperty(named = "driver", matches = "FirefoxDriver") // https://github.com/mozilla/geckodriver/issues/944
     void multiSelect() {
         assert MultiSelect in ListBox
 
