@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Tyro Rocks</title>
+
+    <meta name="description" content="Tyro Rocks">
+    <meta name="author" content="ovea">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <style>
+        * {
+            font-family: Helvetica, Verdana, Arial, sans-serif;
+            font-size: 0.95em
+        }
+
+        .eventNotifier {
+            width: 100px;
+            float: left;
+            color: navy;
+            border: dotted 1px navy;
+            padding: 4px;
+            background-color: white;
+            margin: 3px
+        }
+
+        .dirty {
+            border: solid 1px #0ca2ff;
+            color: white;
+            background-color: #0ca2ff
+        }
+
+        #drag {
+            touch-action: none;
+            touch-action: none;
+            user-select: none;
+        }
+
+        }
+    </style>
+
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/interact-1.9.17.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">Tyro Mouse Tests</a>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <input type="button" id="button_1" class="btn btn-primary" value="Button"/>
+            <br/>
+            <input type="button" id="button_2" class="btn btn-primary" value="Button"/>
+            <br/>
+            <input type="button" id="button_3" class="btn btn-primary" value="Button"/>
+            <br/>
+            <input type="button" id="button_4" class="btn btn-primary" value="Button"/>
+            <br/>
+            <input type="button" id="button_5" class="btn btn-primary" value="Button"/>
+
+            <hr/>
+
+            <div id="drop-zone" class="jumbotron">
+                <h1>Drop here</h1>
+            </div>
+
+            <div id="drag" class="panel panel-default">
+                <div class="panel-body">
+                    Drag me to my target ;)
+                </div>
+            </div>
+
+            <hr/>
+
+            <h2>Special Modifiers + Mouse</h2>
+
+            <div style="clear: both;"></div>
+            <div id="_Ctrl_mouseleft" class="eventNotifier">Ctrl+mouseleft</div>
+            <div style="clear: both;"></div>
+
+            <div id="_Shift_mouseleft" class="eventNotifier">Shift+mouseleft</div>
+            <div style="clear:both;"></div>
+
+            <div id="_Ctrl_mouseright" class="eventNotifier">Ctrl+mouseright</div>
+            <div style="clear: both;"></div>
+
+            <div id="_Shift_mouseright" class="eventNotifier">Shift+mouseright</div>
+            <div style="clear:both;"></div>
+
+            <div id="_Alt_Shift_mouseleft" class="eventNotifier">Alt+Shift+mouseleft</div>
+            <div style="clear: both;"></div>
+
+            <div id="_Ctrl_Shift_mouseleft" class="eventNotifier">Ctrl+Shift+mouseleft</div>
+            <div style="clear: both;"></div>
+
+            <div id="_Ctrl_Shift_mouseright" class="eventNotifier">Ctrl+Shift+mouseright</div>
+            <div style="clear: both;"></div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+<script>
+    $.fn.dirtyCheck = function () {
+        this.addClass('dirty');
+        this.append('<span id="span' + this.attr('id') + '" style="display:none"/>');
+    };
+
+    $(document).ready(function () {
+        // ==================== MOUSE ===================
+        $('#button_1').on('click', function (e) {
+            e.preventDefault();
+            $(this).attr('value', 'Button Clicked!');
+        });
+
+        $('#button_2').on('dblclick', function (e) {
+            e.preventDefault();
+            $(this).attr('value', 'Button Double Clicked!');
+        });
+
+        $('#button_3').on('mouseover', function (e) {
+            e.preventDefault();
+            $(this).attr('value', 'Button Mouse Over!');
+        });
+
+        $('#button_4').on('mouseout', function (e) {
+            e.preventDefault();
+            $(this).attr('value', 'Button Mouse Out!');
+        });
+
+        $('#button_5').on('contextmenu', function (e) {
+            e.preventDefault();
+            $(this).attr('value', 'Button Right Clicked!');
+        });
+
+        //   ============= SPECIAL MODIFIERS AND MOUSE ===============
+        $(document).on('click', function (e) {
+            if (e.button === 2) {
+                if (e.ctrlKey) $('#_Ctrl_mouseright').dirtyCheck();
+                if (e.shiftKey) $('#_Shift_mouseright').dirtyCheck();
+                if (e.shiftKey && e.altKey) $('#_Alt_Shift_mouseright').dirtyCheck();
+            } else {
+                if (e.ctrlKey) $('#_Ctrl_mouseleft').dirtyCheck();
+                if (e.shiftKey) $('#_Shift_mouseleft').dirtyCheck();
+                if (e.altKey && e.shiftKey) $('#_Alt_Shift_mouseleft').dirtyCheck();
+                if (e.ctrlKey && e.shiftKey) $('#_Ctrl_Shift_mouseleft').dirtyCheck();
+            }
+        });
+
+        //   ============= DRAG AND DROP =============================
+        interact('#drop-zone')
+            .dropzone({
+                accept: '#drag',
+                overlap: 0.75,
+                ondrop: function () {
+                    $('#drop-zone h1').html("Dropped!");
+                }
+            });
+
+        interact('#drag')
+            .draggable({
+                inertia: false,
+                modifiers: [
+                    interact.modifiers.restrictRect({
+                        restriction: 'parent',
+                        endOnly: true
+                    })
+                ],
+                autoScroll: true,
+                onmove: function (event) {
+                    const target = event.target;
+
+                    const dataX = target.getAttribute('data-x');
+                    const dataY = target.getAttribute('data-y');
+                    const initialX = parseFloat(dataX) || 0;
+                    const initialY = parseFloat(dataY) || 0;
+
+                    const deltaX = event.dx;
+                    const deltaY = event.dy;
+
+                    const newX = initialX + deltaX;
+                    const newY = initialY + deltaY;
+
+                    target
+                        .style
+                        .transform = `translate(${newX}px, ${newY}px)`;
+
+                    target.setAttribute('data-x', newX);
+                    target.setAttribute('data-y', newY);
+                }
+
+            })
+    });
+</script>
+</body>
+</html>

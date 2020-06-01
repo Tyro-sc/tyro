@@ -1,0 +1,11 @@
+= Tyro Documentation
+:author: David Avenante, Stephanie Parisot
+:homepage: https://www.tyro.sc
+:desc: The Tyro documentation
+:imagesdir: images
+
+image::logo-white.svg[Tyro,align="center",width="50%"]
+
+include::introduction.adoc[]
+
+

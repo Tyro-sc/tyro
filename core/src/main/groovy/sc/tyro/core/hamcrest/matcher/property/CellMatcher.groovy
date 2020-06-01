@@ -1,0 +1,52 @@
+package sc.tyro.core.hamcrest.matcher.property
+
+import org.hamcrest.Description
+import sc.tyro.core.component.datagrid.Cell
+import sc.tyro.core.hamcrest.PropertyMatcher
+import sc.tyro.core.hamcrest.matcher.property.dummy.DummyCell
+import sc.tyro.core.support.property.CellSupport
+
+/**
+ * @author David Avenante
+ * @since 1.0.0
+ */
+class CellMatcher extends PropertyMatcher<CellSupport> {
+    private List<String> values = new ArrayList<>()
+    private List<Cell> cells = new ArrayList<>()
+
+    CellMatcher(String... values) {
+        this.values = values
+    }
+
+    CellMatcher(Cell... cells) {
+        this.cells = cells
+    }
+
+    @Override
+    protected boolean matchesSafely(CellSupport component) {
+        if (values) {
+            cells.clear()
+            values.each { cells.add(new DummyCell(it)) }
+        }
+        values.clear()
+        cells.each { values.add(String.valueOf(it.value())) }
+        component.cells().size() == cells.size() && component.cells().containsAll(cells)
+    }
+
+    @Override
+    void describeTo(Description description) {
+        List<String> expectedCells = new ArrayList<>()
+        cells.each { expectedCells.add(String.valueOf(it.value())) }
+        description.appendText('cell(s) ')
+        description.appendValueList('[', ', ', ']', expectedCells)
+    }
+
+    @Override
+    protected void describeMismatchSafely(CellSupport component, Description mismatchDescription) {
+        List<String> componentCells = new ArrayList<>()
+        component.cells().each { componentCells.add(String.valueOf(it.value())) }
+
+        mismatchDescription.appendText('has cell(s) ')
+        mismatchDescription.appendValueList('[', ', ', ']', componentCells)
+    }
+}
