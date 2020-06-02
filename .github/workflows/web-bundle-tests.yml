@@ -17,4 +17,4 @@ jobs:
       - name: Build and Tests for Chrome
         run: ./mvnw -B clean install --file core/pom.xml -DskipTests && ./mvnw -B clean test --file web/pom.xml
       - name: Build and Tests for Firefox
-        run: ./mvnw -B clean install --file core/pom.xml -DskipTests && ./mvnw -B clean test --file web/pom.xml -Dbrowser=firefox
+        run: ./mvnw -B clean test --file web/pom.xml -Dbrowser=firefox
