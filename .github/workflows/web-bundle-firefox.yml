@@ -1,4 +1,4 @@
-name: Web Bundle Tests
+name: Firefox Web Bundle Tests
 on:
   push:
     branches: [ master ]

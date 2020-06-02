@@ -1,4 +1,4 @@
-name: Web Bundle Tests
+name: Chrome Web Bundle Tests
 on:
   push:
     branches: [ master ]
