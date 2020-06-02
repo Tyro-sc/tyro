@@ -30,7 +30,7 @@ class SeleniumProviderTest {
     @DisplayName("Should be able to register scripts")
     void registerScripts() {
         // Page with jquery missing
-        visit 'http://localhost:8080/popup.html'
+        visit BASE_URL + 'popup.html'
 
         InputTypeText field = $('[id="first.name"]') as InputTypeText
         Div error = $('#firstname_blur') as Div
@@ -44,7 +44,7 @@ class SeleniumProviderTest {
         Config.provider.registerScripts("function A_test() { \$('#firstname_blur').show()  }; A_test()")
         Config.provider.registerScripts("function B_test() { \$('[id=\"first.name\"]').val('Joe') }; B_test()")
 
-        visit 'http://localhost:8080/popup.html'
+        visit BASE_URL + 'popup.html'
 
         field = $('[id="first.name"]') as InputTypeText
         error = $('#firstname_blur') as Div
@@ -53,7 +53,7 @@ class SeleniumProviderTest {
         assert error.visible()
 
         // Page with jquery already available
-        visit 'http://localhost:8080/index.html'
+        visit BASE_URL + 'index.html'
 
         Div created = $('#created') as Div
         created.should { be missing }
@@ -63,7 +63,7 @@ class SeleniumProviderTest {
         Config.provider.registerScripts("function create() { var element = document.createElement('div'); " +
                 "element.id = 'created'; document.body.appendChild(element);}; create()")
 
-        visit 'http://localhost:8080/index.html'
+        visit BASE_URL + 'index.html'
 
         created = $('#created') as Div
         created.should { be available }
