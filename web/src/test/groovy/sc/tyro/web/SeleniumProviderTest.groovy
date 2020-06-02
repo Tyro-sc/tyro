@@ -8,6 +8,7 @@ import sc.tyro.bundle.html5.input.InputTypeText
 import sc.tyro.core.Config
 
 import static sc.tyro.core.Tyro.*
+import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 
 /**
  * @author David Avenante
@@ -20,7 +21,7 @@ class SeleniumProviderTest {
     @DisplayName("Should add jquery if missing")
     void jquery() {
         // Page with jquery missing
-        visit 'http://localhost:8080/popup.html'
+        visit BASE_URL + 'popup.html'
 
         assert 'Joe' == Config.provider.eval(null, "\$('#last_name').val('Joe').val()")
     }

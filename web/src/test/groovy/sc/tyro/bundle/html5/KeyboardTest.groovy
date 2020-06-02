@@ -11,6 +11,7 @@ import sc.tyro.web.TyroWebTestExtension
 
 import static sc.tyro.core.Tyro.*
 import static sc.tyro.core.input.Key.*
+import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 
 /**
  * @author David Avenante
@@ -21,7 +22,7 @@ import static sc.tyro.core.input.Key.*
 class KeyboardTest {
     @BeforeAll
     static void before() {
-        visit 'http://localhost:8080/keyboard.html'
+        visit BASE_URL + 'keyboard.html'
     }
 
     @Test

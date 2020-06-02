@@ -19,6 +19,7 @@ import static sc.tyro.core.input.Key.ALT
 import static sc.tyro.core.input.Key.CTRL
 import static sc.tyro.core.input.MouseModifiers.DOUBLE
 import static sc.tyro.core.input.MouseModifiers.RIGHT
+import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 
 /**
  * @author David Avenante
@@ -29,7 +30,7 @@ import static sc.tyro.core.input.MouseModifiers.RIGHT
 class ErrorsTest {
     @BeforeAll
     static void before() {
-        visit 'http://localhost:8080/errors.html'
+        visit BASE_URL + 'errors.html'
     }
 
     @Test

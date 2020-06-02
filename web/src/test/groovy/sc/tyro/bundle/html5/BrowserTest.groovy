@@ -13,6 +13,7 @@ import static sc.tyro.core.Tyro.browser
 import static sc.tyro.core.Tyro.clickOn
 import static sc.tyro.core.Tyro.visit
 import static sc.tyro.core.Tyro.waitUntil
+import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 
 /**
  * @author David Avenante
@@ -23,7 +24,7 @@ import static sc.tyro.core.Tyro.waitUntil
 class BrowserTest {
     @BeforeAll
     static void before() {
-        visit 'http://localhost:8080/index.html'
+        visit BASE_URL + 'index.html'
     }
 
     @Test

@@ -13,6 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.hasSize
 import static sc.tyro.core.Tyro.findBy
 import static sc.tyro.core.Tyro.visit
+import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 
 @ExtendWith(TyroWebTestExtension)
 @DisplayName("Components Factory Tests")
@@ -20,7 +21,7 @@ class ComponentsFactoryTest {
     @BeforeAll
     static void before() {
 //        visit 'http://localhost:8080/factory.html'
-        visit 'http://localhost:8080/components.html'
+        visit BASE_URL + 'components.html'
     }
 
     @Disabled
