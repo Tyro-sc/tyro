@@ -15,6 +15,6 @@ jobs:
         with:
           java-version: 11
       - name: Build and Tests for Chrome
-        run: ./mvnw -B clean install --file core/pom.xml -DskipTests && ./mvnw -B clean test --file web/pom.xml
+        run: ./mvnw -B clean install -DskipTests && ./mvnw -B clean test --file web/pom.xml
       - name: Build and Tests for Firefox
         run: ./mvnw -B clean test --file web/pom.xml -Dbrowser=firefox
