@@ -31,25 +31,25 @@ class BrowserTest {
     @DisplayName("Should have expected properties")
     void properties() {
         browser().title == 'Tyro Rocks'
-        browser().url == 'http://localhost:8080/index.html'
+        browser().url == BASE_URL + ' index.html'
     }
 
     @Test
     @DisplayName("Should navigate")
     void navigate() {
-        browser().url == 'http://localhost:8080/index.html'
+        browser().url == BASE_URL + 'index.html'
 
-        browser().navigateTo('http://localhost:8080/keyboard.html')
-        browser().url == 'http://localhost:8080/index.html'
+        browser().navigateTo(BASE_URL + 'keyboard.html')
+        browser().url == BASE_URL + 'index.html'
 
         browser().back()
-        browser().url == 'http://localhost:8080/index.html'
+        browser().url == BASE_URL + 'index.html'
 
         browser().forward()
-        browser().url == 'http://localhost:8080/index.html'
+        browser().url == BASE_URL + 'index.html'
 
         browser().refresh()
-        browser().url == 'http://localhost:8080/index.html'
+        browser().url == BASE_URL + 'index.html'
     }
 
     @Test
