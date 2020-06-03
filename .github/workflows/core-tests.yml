@@ -22,4 +22,4 @@ jobs:
         with:
           coverageCommand: ./mvnw -B verify --file core/pom.xml
           coverageLocations: |
-            ${{github.workspace}}/tyro/tests/target/site/jacoco-aggregate/jacoco.xml:jacoco
+            ./tests/target/site/jacoco-aggregate/jacoco.xml:jacoco
