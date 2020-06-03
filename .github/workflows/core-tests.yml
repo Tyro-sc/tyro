@@ -20,6 +20,5 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:
-          coverageCommand: ./mvnw jacoco:report
           coverageLocations: |
             ${{github.workspace}}/tyro/tests/target/site/jacoco-aggregate/jacoco.xml:jacoco
