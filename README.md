@@ -1,5 +1,6 @@
-![Core](https://github.com/actions/Tyro-sc/workflows/tests/badge.svg)
-
+![](https://github.com/Tyro-sc/tyro/workflows/Core%20Tests/badge.svg)
+![](https://github.com/Tyro-sc/tyro/workflows/Chrome%20Web%20Bundle%20Tests/badge.svg)
+![](https://github.com/Tyro-sc/tyro/workflows/Firefox%20Web%20Bundle%20Tests/badge.svg)
 
 # tyro
 
