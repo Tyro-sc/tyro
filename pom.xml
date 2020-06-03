@@ -29,6 +29,7 @@
         <module>core</module>
         <module>web</module>
         <module>documentation</module>
+        <module>tests</module>
     </modules>
 
     <properties>
@@ -49,6 +50,8 @@
         <!-- Plugins -->
         <gmavenplus-plugin.version>1.8.1</gmavenplus-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
+        <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
+        <jacoco.reportPath>${project.basedir}/../target/jacoco.exec</jacoco.reportPath>
     </properties>
 
     <licenses>
@@ -59,43 +62,17 @@
         </license>
     </licenses>
 
-    <developers>
-        <developer>
-            <id>stephi</id>
-            <name>Stephanie Parisot</name>
-            <email>stephanie.parisot@gmail.com</email>
-            <organization>Ovea</organization>
-            <organizationUrl>http://www.tyro.sc/</organizationUrl>
-            <timezone>-5</timezone>
-            <roles>
-                <role>product owner</role>
-            </roles>
-        </developer>
-        <developer>
-            <id>altus34</id>
-            <name>David Avenante</name>
-            <email>altus34@gmail.com</email>
-            <organization>Ovea</organization>
-            <organizationUrl>http://www.tyro.sc/</organizationUrl>
-            <timezone>-5</timezone>
-            <roles>
-                <role>developer</role>
-            </roles>
-        </developer>
-        <developer>
-            <id>mathieucarbou</id>
-            <name>Mathieu Carbou</name>
-            <email>mathieu.carbou@gmail.com</email>
-            <organization>Ovea</organization>
-            <organizationUrl>http://www.tyro.sc/</organizationUrl>
-            <timezone>-5</timezone>
-            <roles>
-                <role>developer</role>
-            </roles>
-        </developer>
-    </developers>
-
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${jacoco-maven-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -128,6 +105,18 @@
                         <type>pom</type>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

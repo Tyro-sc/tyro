@@ -2,17 +2,15 @@
 ![](https://github.com/Tyro-sc/tyro/workflows/Chrome%20Web%20Bundle%20Tests/badge.svg)
 ![](https://github.com/Tyro-sc/tyro/workflows/Firefox%20Web%20Bundle%20Tests/badge.svg)
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/c091b16c5832c890a59b/maintainability)](https://codeclimate.com/github/Tyro-sc/tyro/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/c091b16c5832c890a59b/test_coverage)](https://codeclimate.com/github/Tyro-sc/tyro/test_coverage)
+
 # tyro
-
-TODO:
-- [] private vs public
-
 
 DOC:
 ClickOn Tyro base + Mouse => 95% use case
 Collection of Key + click => groovy extension
-Si custom  low level use Config.provider
-
+If custom low level use Config.provider
 
 Wait:
  if change time out don't forget to change it at this end of test
