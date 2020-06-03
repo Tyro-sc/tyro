@@ -7,6 +7,7 @@ on:
 
 jobs:
   test:
+    name: tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -14,8 +15,12 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-#      - name: Build and Tests
-#        run: ./mvnw -B verify --file core/pom.xml
+      - name: Build and Tests
+        run: ./mvnw -B verify --file core/pom.xml
+  coverage:
+    needs: [ test ]
+    name: coverage
+    steps:
       - uses: paambaati/codeclimate-action@v2.5.7
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
