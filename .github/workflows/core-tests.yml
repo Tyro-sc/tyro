@@ -21,5 +21,3 @@ jobs:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:
           coverageCommand: ./mvnw -B verify --file core/pom.xml
-          coverageLocations: |
-            ./tests/target/site/jacoco-aggregate/jacoco.xml:jacoco
