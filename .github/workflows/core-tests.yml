@@ -14,11 +14,12 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Build and Tests
-        run: ./mvnw -B verify --file core/pom.xml
+#      - name: Build and Tests
+#        run: ./mvnw -B verify --file core/pom.xml
       - uses: paambaati/codeclimate-action@v2.5.7
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:
+          coverageCommand: ./mvnw -B verify --file core/pom.xml
           coverageLocations: |
             ${{github.workspace}}/tyro/tests/target/site/jacoco-aggregate/jacoco.xml:jacoco
