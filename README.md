@@ -1,3 +1,6 @@
+![Core](https://github.com/actions/Tyro-sc/workflows/tests/badge.svg)
+
+
 # tyro
 
 TODO:
@@ -20,3 +23,5 @@ datetime-local instead of type="datetime" see https://developer.mozilla.org/fr/d
  
  On switch window don't forget ton switch to old windows (page never closed) or add close all windows in afterAll
  
+ 
+docker run --rm -ti --name zalenium -p 4444:4444 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/videos:/home/david/Videos --privileged dosel/zalenium start

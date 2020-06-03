@@ -13,6 +13,7 @@ import sc.tyro.web.TyroWebTestExtension
 
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static sc.tyro.core.Tyro.*
+import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 
 /**
  * @author David Avenante
@@ -25,7 +26,7 @@ class WaitTest {
     @BeforeAll
     static void before() {
         Config.waitUntil = 10.seconds
-        visit 'http://localhost:8080/wait.html'
+        visit BASE_URL + 'wait.html'
     }
 
     @AfterAll

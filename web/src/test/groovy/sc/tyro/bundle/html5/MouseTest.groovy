@@ -9,6 +9,7 @@ import sc.tyro.web.TyroWebTestExtension
 
 import static sc.tyro.core.input.Key.*
 import static sc.tyro.core.Tyro.*
+import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 
 /**
  * @author David Avenante
@@ -19,7 +20,7 @@ import static sc.tyro.core.Tyro.*
 class MouseTest {
     @BeforeAll
     static void before() {
-        visit 'http://localhost:8080/mouse.html'
+        visit BASE_URL + 'mouse.html'
     }
 
     @Test

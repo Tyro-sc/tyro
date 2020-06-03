@@ -1,9 +1,9 @@
-name: Tests
+name: Core Tests
 on:
   push:
-    branches: [ master, CI ]
+    branches: [ master ]
   pull_request:
-    branches: [ master, CI ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -14,6 +14,5 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Build with Maven
-        run: mvn -B clean test --file core/pom.xml
-
+      - name: Build and Tests
+        run: ./mvnw -B clean test --file core/pom.xml
