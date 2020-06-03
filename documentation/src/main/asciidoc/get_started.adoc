@@ -22,12 +22,19 @@ The following installation if for JUnit. For another test runner, adapt the firs
     <scope>test</scope>
 </dependency>
 <dependency>
-   <groupId>org.tyro</groupId>
+   <groupId>sc.tyro</groupId>
    <artifactId>tyro</artifactId>
    <version>{tyro-version}</version>
    <scope>test</scope>
 </dependency>
 -------------------------------------------------------------------------------
+
+
+ou : (complet avec explications ? TODO) :
+
+<1> tyro core (Objets du Domaine + Langage)
+<2> Le module Html5 de tyro
+<3> Un plugin pour récupérer les binaires webdriver
 
 === A first UI test example with JUnit
 '''

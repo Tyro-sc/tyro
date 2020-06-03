@@ -1,0 +1,24 @@
+[#Button]
+=== Bouton
+
+image::../images/components/Button.png[Button]
+
+Un bouton est un composant d'interface graphique opéré par pointer-et-cliquer.
+Un bouton porte un texte qui décrit l'opération attachée au bouton.
+
+[cols="3,3,3", options="header"]
+|===
+|States
+|Properties
+|Intentions
+
+|
+|text
+|
+|===
+
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{codepath}/../../../../test/groovy/sc/tyro/doc/componentsTest.groovy[tags=button]
+----

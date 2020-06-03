@@ -1,0 +1,333 @@
+== Components
+'''
+
+[options="header"]
+|===
+|States shared by all Tyro components
+|enabled, disabled, available, missing, hidden, visible, contains, displays
+|===
+
+=== Html5 - Tyro equivalence
+
+[NOTE]
+====
+for input html5 components : see next section
+====
+
+[cols="3,1,3,3,2", options="header"]
+|===
+|Html tag
+|Tyro component
+|States
+|Properties
+|Intentions
+
+|button
+|<<Button>>
+|
+|text
+|
+
+|select
+|<<DropDown>>
+|
+|label, _number of items_, items, _number of groups_, groups, selectedItem
+|select
+
+|select (multiple)
+|<<ListBox>>
+|
+|label, _number of items_, items, selectedItems, _number of visible items_
+|select
+
+|textarea
+|<<TextField>>
+|empty, filled, readOnly, required, optional, valid, invalid
+|text,label, placeholder, value, length
+|fill, clear
+
+|optgroup
+|<<Group>>
+|
+|value, items
+|
+
+|option
+|<<Item>>
+|selected, unselected
+|value
+|select, unselect
+
+|form
+|<<Form>>
+|valid, invalid
+|
+|reset, submit
+
+|h1, h2, h3, h4, h5, h6
+|<<Heading>>
+|
+|text
+|
+
+|img
+|<<Image>>
+|
+|reference
+|
+
+|a
+|<<Link>>
+|
+|text, reference
+|
+
+|ul
+|<<ListView>>
+|
+|items, _number of items_
+|
+
+|ol
+|<<ListView>>
+|
+|items, _number of items_
+|
+
+|li
+|<<Item>>
+|
+|value
+|
+
+|div
+|<<Panel>>
+|
+|title
+|
+
+|?
+|CollapsablePanel
+|TODO
+|title, TODO
+|TODO
+
+|table
+|<<Datagrid>>
+|
+|rows, columns
+|
+
+|th
+|<<Column>>
+|
+|cells, title
+|
+
+|tr
+|<<Row>>
+|
+|cells, title
+|
+
+|td
+|<<Cell>>
+|
+|value
+|
+
+|article
+|Component
+|
+|paragraphs
+|
+
+|aside
+|Component
+|
+|
+|
+
+|header
+|Component
+|
+|
+|
+
+|footer
+|Component
+|
+|
+|
+
+|label
+|Label
+|
+|text
+|
+
+|p
+|Component
+|
+|text
+|
+
+|section
+|Section
+|
+|paragraphs, articles
+|
+
+|span
+|Component
+|
+|text
+|
+
+|===
+
+==== Html5 input - Tyro equivalence
+
+[cols="2,2,4,4,2", options="header"]
+|===
+|Html input type
+|Tyro component
+|States
+|Properties
+|Intentions
+
+|checkbox
+|<<CheckBox>>
+|checked, unchecked
+|label
+|check, uncheck
+
+|radio
+|<<Radio>>
+|checked, unchecked
+|label
+|check
+
+2+|
+3+|*Shared by all Tyro Field components*
+2+|All below components inherit from <<Field>>
+|*empty, filled, readOnly, required, optional, valid, invalid*
+|*text,label, placeholder, value*
+|*fill, clear*
+
+|text
+|<<TextField>>
+|
+|length
+|
+
+|color
+|<<ColorField>>
+|
+|
+|
+
+|datetime
+|<<DateTimeField>>
+|
+|
+|
+
+|date
+|<<DateField>>
+|inRange, outOfRange
+|maximum, minimum, step
+|set
+
+|time
+|<<TimeField>>
+|
+|
+|
+
+|month
+|<<MonthField>>
+|
+|
+|
+
+|week
+|<<WeekField>>
+|
+|
+|
+|email
+|<<EmailField>>
+|
+|length
+|
+
+|password
+|<<PasswordField>>
+|
+|length
+|
+
+|number
+|<<NumberField>>
+| inRange, outOfRange
+| maximum, minimum, step
+|
+
+|range
+|<<RangeField>>
+|inRange, outOfRange
+|maximum, minimum, step
+|set
+
+|tel
+|<<PhoneField>>
+|
+|
+|
+
+|search
+|<<SearchField>>
+|
+|
+|
+
+|url
+|<<URLField>>
+|
+|
+|
+
+|===
+
+==== Details of each Tyro component
+
+include::components/button.adoc[]
+
+include::components/checkbox.adoc[]
+
+include::components/radio.adoc[]
+
+include::components/dropdown.adoc[]
+
+include::components/group.adoc[]
+
+include::components/listbox.adoc[]
+
+include::components/item.adoc[]
+
+include::components/fields.adoc[]
+
+include::components/form.adoc[]
+
+include::components/heading.adoc[]
+
+include::components/image.adoc[]
+
+include::components/link.adoc[]
+
+include::components/listview.adoc[]
+
+include::components/panel.adoc[]
+
+include::components/datagrid.adoc[]
