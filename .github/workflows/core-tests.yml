@@ -15,20 +15,10 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Build and Tests
-        run: ./mvnw -B verify --file core/pom.xml
-  coverage:
-    needs: [ test ]
-    name: coverage
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 11
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
+      - name: Test and Coverage
       - uses: paambaati/codeclimate-action@v2.5.7
-        env:
-          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
-        with:
-          coverageCommand: ./mvnw -B verify --file core/pom.xml
+          env:
+            CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+          with:
+            coverageCommand: ./mvnw verify --file core/pom.xml
+            coverageLocations: ${{github.workspace}}/tests/target/site/jacoco-aggregate/jacoco.xml:jacoco
