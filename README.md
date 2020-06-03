@@ -1,4 +1,4 @@
-![Core](https://github.com/actions/Tyro-sc/workflows/core-tests/badge.svg)
+![Core](https://github.com/actions/Tyro-sc/workflows/tests/badge.svg)
 
 
 # tyro
