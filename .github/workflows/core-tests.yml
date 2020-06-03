@@ -22,4 +22,4 @@ jobs:
         with:
           coverageCommand: ./mvnw jacoco:report
           coverageLocations: |
-            ${{github.workspace}}/tyro/tests/target/site/jacoco.xml
+            ${{github.workspace}}/tyro/tests/target/site/jacoco.xml:jacoco
