@@ -1,0 +1,56 @@
+== Tyro language
+
+Tyro allows you to manipulate the User Interface and to interact with the components :
+
+* by using the classical <<interactions>> with elements such as keyboard and mouse,
+* or by using states, properties and intentions provided on each component.
+
+=== States
+Tyro components have *states* that can be tested with the function *'be'*  :
+
+[NOTE]
+====
+*component.should { be _state_ }*
+
+_examples_ :
+
+- radio_button.should { be unchecked }
+
+- text_field.should { be empty }
+
+- form.should { be valid }
+
+====
+
+=== Properties
+Tyro component have *properties* that can be tested with the function *'have'* :
+
+[NOTE]
+====
+*component.should { have _property (xxxx)_ }*
+
+_examples_ :
+
+- first_button.should { have label ('Submit') }
+
+- country_list.should { have selectedItem ('CANADA') }
+
+- ident_text_field.should { have placeholder ('T999-9999') }
+
+====
+=== Intentions
+Tyro components are linked to *intentions* that can be invoked :
+
+[NOTE]
+====
+*_intention_ component*   _or_   *on component _intention xxxx_*
+
+_examples_ :
+
+- clear ident_text_field
+
+- check radio_bouton
+
+- on country_list select 'CANADA'
+
+====

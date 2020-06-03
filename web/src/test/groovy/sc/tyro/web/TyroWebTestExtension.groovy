@@ -26,11 +26,11 @@ class TyroWebTestExtension implements BeforeAllCallback, AfterAllCallback {
             config -> config.addStaticFiles("/webapp")
         }).start(8080)
 
-        firefoxdriver().setup()
-        driver = new FirefoxDriver()
+//        firefoxdriver().setup()
+//        driver = new FirefoxDriver()
 
-//        chromedriver().setup()
-//        driver = new ChromeDriver()
+        chromedriver().setup()
+        driver = new ChromeDriver()
 
         System.getProperties().setProperty("driver", driver.class.simpleName)
         WebBundle.init(driver)

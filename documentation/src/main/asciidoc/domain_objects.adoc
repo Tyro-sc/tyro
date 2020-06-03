@@ -1,0 +1,56 @@
+== Domain Objects
+'''
+
+Tyro provides a set of UI Domain Objects.
+With them, you have the most useful objects to write a UI test.
+
+These objects are the following :
+
+[cols="3*", options="header"]
+|===
+3+|Component name
+
+|Form
+|Panel
+|Heading
+
+|Radio
+|<<Button>>
+|Checkbox
+
+|Dropdown
+|Group
+|ListBox
+
+|Item
+|ListView
+|
+
+|DataGrid
+|Row
+|Column
+
+|Cell
+|Link
+|Image
+
+|TextField
+|EmailField
+|PasswordField
+
+|ColorField
+|SearchField
+|URLField
+
+|DateField
+|MonthField
+|WeekField
+
+|NumberField
+|PhoneField
+|RangeField
+
+|TimeField
+|
+|
+|===
