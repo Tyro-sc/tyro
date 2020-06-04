@@ -21,4 +21,4 @@ jobs:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:
           coverageCommand: ./mvnw test jacoco:report --file core/pom.xml
-          coverageLocations: ./target/site/jacoco/jacoco.xml:jacoco
+          coverageLocations: ./core/target/site/jacoco/jacoco.xml:jacoco
