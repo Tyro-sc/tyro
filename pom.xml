@@ -29,7 +29,6 @@
         <module>core</module>
         <module>web</module>
         <module>documentation</module>
-        <module>tests</module>
     </modules>
 
     <properties>
@@ -109,9 +108,10 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-maven-plugin.version}</version>
                 <executions>
                     <execution>
-                        <id>prepare-agent</id>
+                        <id>report-aggregate</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>

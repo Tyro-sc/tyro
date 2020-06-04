@@ -15,4 +15,4 @@ jobs:
         with:
           java-version: 11
       - name: Build and Tests for Chrome
-        run: ./mvnw clean install -DskipTests && ./mvnw clean verify --file web/pom.xml
+        run: ./mvnw install -DskipTests && ./mvnw clean verify --file web/pom.xml

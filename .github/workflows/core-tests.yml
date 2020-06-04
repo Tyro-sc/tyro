@@ -20,5 +20,5 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:
-          coverageCommand: ./mvnw verify --file core/pom.xml
-          coverageLocations: ${{github.workspace}}/tests/target/site/jacoco-aggregate/jacoco.xml:jacoco
+          coverageCommand: ./mvnw test jacoco:report --file core/pom.xml
+          coverageLocations: ./target/site/jacoco/jacoco.xml:jacoco
