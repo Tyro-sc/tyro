@@ -2,7 +2,7 @@
 
 *Group* is used for groups of items in dropDowns.
 
-image::../images/components/DropDown.png[DropDown]
+image::../images/components/DropDown.png[DropDown, role=thumb]
 
 [cols="3*", options="header"]
 |===

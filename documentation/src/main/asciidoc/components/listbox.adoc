@@ -1,10 +1,11 @@
 === ListBox
-
-image:../images/components/ListBox_1.png[ListBox] image:../images/components/ListBox_2.png[ListBox]
+[.thumb]
+image:../images/components/ListBox_1.png[ListBox]
+image:../images/components/ListBox_2.png[ListBox]
 
 [IMPORTANT]
 ====
-*The second image show all the items available in the ListBox.*
+*The second image shows all the items available in the ListBox.*
 ====
 
 "a *listBox* allows the user to select one or more items from a list contained within a static, multiple line
@@ -39,6 +40,7 @@ in order to make multiple selections. "Control-clicking" an item that has alread
 
 |===
 
+Usage example : TODO
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----

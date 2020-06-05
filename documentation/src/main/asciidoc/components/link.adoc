@@ -1,7 +1,9 @@
 === Link
-
+[.thumb]
+---
 image::../images/components/Link-1.png[Link-1]
 image::../images/components/Link-2.png[Link-2]
+---
 
 _Definition_:  a *link* allows the user to navigate from page to page.
 
@@ -19,6 +21,7 @@ _Definition_:  a *link* allows the user to navigate from page to page.
 
 |===
 
+Usage examples : TODO
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----

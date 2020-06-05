@@ -1,8 +1,10 @@
 === Item
 
-*Item* is used for dropDowns and listBoxes.
+*Item* is used for the elements listed in dropDowns and listBoxes. (Listview ? TODO)
 
-image:../images/components/DropDown.png[DropDown] image:../images/components/ListBox_2.png[ListBox]
+[.thumb]
+image:../images/components/DropDown.png[DropDown, 150]
+image:../images/components/ListBox_2.png[ListBox]
 
 [cols="3*", options="header"]
 |===

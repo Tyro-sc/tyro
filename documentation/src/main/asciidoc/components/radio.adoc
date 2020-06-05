@@ -1,6 +1,6 @@
 === Radio
 
-image::../images/components/Radio.png[Radio]
+image::../images/components/Radio.png[Radio, 150, 150, role=thumb]
 
 "a *radio button* allows the user to choose only one of a predefined set of options. Radio buttons are
 arranged in groups of two or more and displayed on screen as, for example, a list of circular holes that can contain
@@ -24,6 +24,7 @@ same group becomes deselected (making it so only one can be selected)."
 |
 |===
 
+Usage example : TODO
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----

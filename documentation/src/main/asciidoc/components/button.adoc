@@ -1,10 +1,10 @@
-[#Button]
-=== Bouton
+=== Button
 
-image::../images/components/Button.png[Button]
+image::../images/components/Button.png[Button, role=thumb]
 
-Un bouton est un composant d'interface graphique opéré par pointer-et-cliquer.
-Un bouton porte un texte qui décrit l'opération attachée au bouton.
+"a *button* refers to any graphical control element that provides the user a simple way to trigger an event,
+like searching for a query at a search engine, or to interact with dialog boxes, like confirming an action."
+-- Wikipedia definition
 
 [cols="3,3,3", options="header"]
 |===
@@ -17,6 +17,7 @@ Un bouton porte un texte qui décrit l'opération attachée au bouton.
 |
 |===
 
+Usage example :
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----

@@ -5,8 +5,9 @@ import sc.tyro.core.component.Button
 import sc.tyro.core.component.Image
 import sc.tyro.core.component.Panel
 import sc.tyro.core.component.field.TextField
+import sc.tyro.bundle.html5.input.TextArea
 
-import java.awt.TextArea
+
 
 class ComponentsTest {
     @Test
@@ -44,7 +45,6 @@ class ComponentsTest {
     @Test
     void test_text_area() {
         // tag::text_area[]
-
         TextField textarea = $('') as TextArea
         textarea.should {have length(350)}
         // end::text_area[]

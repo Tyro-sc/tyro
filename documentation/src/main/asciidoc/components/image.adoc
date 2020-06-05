@@ -1,6 +1,6 @@
 === Image
 
-image::../images/components/Image.png[Image]
+image::../images/components/Image.png[Image, 500]
 
 _Definition_:  an *image* allows the user to insert an image (gif, jpg, png,...) from a source file
 
@@ -14,6 +14,7 @@ _Definition_:  an *image* allows the user to insert an image (gif, jpg, png,...)
 
 |===
 
+Usage example : TODO
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----

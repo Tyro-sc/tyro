@@ -6,8 +6,6 @@
 
 image::logo-white.svg[Tyro,align="center",width="50%"]
 
-include::references.adoc[]
-
 include::introduction.adoc[]
 
 include::design_and_architecture.adoc[]
@@ -23,6 +21,9 @@ include::domain_objects.adoc[]
 include::language.adoc[]
 
 include::content_interaction.adoc[]
+
+include::references.adoc[]
+
 
 
 

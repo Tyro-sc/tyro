@@ -1,6 +1,6 @@
 === Heading
 
-image::../images/components/Heading.png[Heading]
+image::../images/components/Heading.png[Heading, role=thumb]
 
 _Definition_:  a *heading* allows the user to put a title for a page or a paragraph.
 
