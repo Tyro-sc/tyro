@@ -10,47 +10,47 @@ These objects are the following :
 |===
 3+|Component name
 
-|Form
-|Panel
-|Heading
+|<<Form>>
+|<<Panel>>
+|<<Heading>>
 
-|Radio
+|<<Radio>>
 |<<Button>>
-|Checkbox
+|<<CheckBox>>
 
-|Dropdown
-|Group
-|ListBox
+|<<DropDown>>
+|<<Group>>
+|<<ListBox>>
 
-|Item
-|ListView
+|<<Item>>
+|<<ListView>>
 |
 
-|DataGrid
-|Row
-|Column
+|<<Datagrid>>
+|<<Row>>
+|<<Column>>
 
-|Cell
-|Link
-|Image
+|<<Cell>>
+|<<Link>>
+|<<Image>>
 
-|TextField
-|EmailField
-|PasswordField
+|<<TextField>>
+|<<EmailField>>
+|<<PasswordField>>
 
-|ColorField
-|SearchField
-|URLField
+|<<ColorField>>
+|<<SearchField>>
+|<<URLField>>
 
-|DateField
-|MonthField
-|WeekField
+|<<DateField>>
+|<<MonthField>>
+|<<WeekField>>
 
-|NumberField
-|PhoneField
-|RangeField
+|<<NumberField>>
+|<<PhoneField>>
+|<<RangeField>>
 
-|TimeField
-|
+|<<DateTimeField>>
+|<<TimeField>>
 |
 |===

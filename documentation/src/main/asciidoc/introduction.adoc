@@ -6,7 +6,7 @@ Tyro is a web user interface testing tool. It's the result of numerous real-worl
 Working for many years to promote the *TDD/BDD* approaches, we often faced difficulties in their implementation for the graphical layer of applications.
 
 The *"TEST FIRST"* principle excludes all scenario recorder based approaches that only allow you to write "at posteriori" tests.
-Our experience has taught us that this path is a dead-end (but we reserve this for another discussion).
+Our experience has taught us that this path is a dead-end.
 
 Another problem is UI tests are brittle and costly! We do think that this is due to the lack of abstraction in existing UI testing tools.
 
@@ -24,11 +24,14 @@ Tyro is a library to write functional tests. Functional tests means **SPECIFICAT
 As a **SPECIFIER**, I want to express my test (intention) *BEFORE* UI is coded. So, if the intention is to have
 a page with two radio buttons to select the gender (male or female), the test can be expressed like this :
 
+TODO
 //----
 //include::{spec}/gender.spec[]
 //----
 
 The Tyro syntax to express this specification is:
+
+TODO
 
 //[source,groovy,indent=0]
 //[subs="verbatim,attributes"]
@@ -37,4 +40,6 @@ The Tyro syntax to express this specification is:
 //----
 
 So we can see that *Tyro is close to the natural language.*
+
+TODO : Cucumber scenarios on Tyro
 

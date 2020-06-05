@@ -1,12 +1,8 @@
 === ListView
 
 [.thumb]
----
-image::../images/components/ListView-1.png[ListView-1]
-or
-
-image::../images/components/ListView-2.png[ListView-2]
----
+image:../images/components/ListView-1.png[ListView-1, float=left]
+image:../images/components/ListView-2.png[ListView-2, float=left]
 
 _Definition_: a *listView* allows the user to display items in a list format (with bullet points or numbers, indentation,...).
 

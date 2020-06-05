@@ -1,6 +1,7 @@
 == Design and architecture
 
 '''
+TODO : refaire completement (en jpeg)
 
 [ditaa]
 ....
