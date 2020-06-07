@@ -29,6 +29,7 @@
         <module>core</module>
         <module>web</module>
         <module>documentation</module>
+        <module>report</module>
     </modules>
 
     <properties>
@@ -50,7 +51,6 @@
         <gmavenplus-plugin.version>1.8.1</gmavenplus-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
         <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
-        <jacoco.reportPath>${project.basedir}/../target/jacoco.exec</jacoco.reportPath>
     </properties>
 
     <licenses>
@@ -62,16 +62,6 @@
     </licenses>
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.jacoco</groupId>
-                    <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>${jacoco-maven-plugin.version}</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -104,19 +94,6 @@
                         <type>pom</type>
                     </dependency>
                 </dependencies>
-            </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>${jacoco-maven-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>report-aggregate</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

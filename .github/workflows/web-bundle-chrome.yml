@@ -14,5 +14,10 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Build and Tests for Chrome
-        run: ./mvnw install -DskipTests && ./mvnw clean verify --file web/pom.xml
+      - name: Build, Test and Coverage with Chrome
+        uses: paambaati/codeclimate-action@v2.5.7
+        env:
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+        with:
+          coverageCommand: ./mvnw clean package
+          coverageLocations: ./report/site/jacoco-aggregate/jacoco.xml:jacoco

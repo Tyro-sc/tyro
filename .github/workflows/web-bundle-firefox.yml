@@ -15,4 +15,4 @@ jobs:
         with:
           java-version: 11
       - name: Build and Tests for Firefox
-        run: ./mvnw install -DskipTests && ./mvnw clean verify --file web/pom.xml -Dbrowser=firefox
+        rrun: ./mvnw clean package -Dbrowser=firefox
