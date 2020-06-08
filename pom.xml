@@ -29,7 +29,6 @@
         <module>core</module>
         <module>web</module>
         <module>documentation</module>
-        <module>report</module>
     </modules>
 
     <properties>
