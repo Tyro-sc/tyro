@@ -1,4 +1,4 @@
-name: Firefox Web Bundle Tests
+name: Chrome Tests
 on:
   push:
     branches: [ master ]
@@ -15,5 +15,9 @@ jobs:
         uses: actions/setup-java@v1.3.0
         with:
           java-version: 11
-      - name: Build and Tests for Firefox
-        run: ./mvnw clean package -Dbrowser=firefox
+      - name: Build and Tests with Chrome
+        run: ./mvnw clean package
+      - name: CodeClimate
+        env:
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+        run: .github/actions/codeclimate.sh
