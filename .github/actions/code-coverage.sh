@@ -21,4 +21,4 @@ rm jacoco.xml
 
 cd ${CURRENT_DIR}
 ./cc-test-reporter sum-coverage codeclimate.*.json -p 2
-./cc-test-reporter upload-coverage -r
+./cc-test-reporter upload-coverage
