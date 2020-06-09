@@ -1,4 +1,4 @@
-== Quick Start
+== Getting started
 
 We give you 2 ways to quickly start your Tyro project : TODO
 
@@ -7,7 +7,10 @@ We give you 2 ways to quickly start your Tyro project : TODO
 
 We also give you the Tyro application with added Cucumber scenarios
 
-=== Installation with Maven
+=== Quick start with a UI test project template
+TODO
+
+==== Installation with Maven
 '''
 
 These are the dependencies to include if you want to integrate Tyro in your Maven installation file.
@@ -36,7 +39,7 @@ ou : (complet avec explications ? TODO) :
 <2> Le module Html5 de tyro
 <3> Un plugin pour récupérer les binaires webdriver
 
-=== A first UI test example with JUnit
+==== A first UI test example
 '''
 
 [source,groovy,linenums]
@@ -52,3 +55,6 @@ ou : (complet avec explications ? TODO) :
 <3> Write you first test ($ usage is explained after)
 
 <4> At the end of the test don't forget to close the browser.
+
+=== Examples projects
+TODO
