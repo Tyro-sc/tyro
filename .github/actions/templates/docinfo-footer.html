@@ -1,0 +1,42 @@
+<script>
+  $(document).ready(function() {
+    function compare(a, b) {
+      const versiona = a.version.toUpperCase();
+      const versionb = b.version.toUpperCase();
+      return versiona > versionb ? 1 : versiona < versionb ? -1 : 0;
+    }
+    $.getJSON("../versions.json").done(data => {
+      const selectContainer = document.createElement("div");
+      selectContainer.setAttribute("id", "select-container");
+
+      const selectDropdown = document.createElement("select");
+      selectDropdown.setAttribute("id", "select-dropdown");
+
+      const currentVersionDisplayed = $("#revnumber")
+        .text()
+        .replace("version ", "");
+
+      selectContainer.append(selectDropdown);
+
+      $("#header .details").append(selectContainer);
+
+      data.sort(compare);
+      data.reverse();
+
+      $.each(data, (index, value) => {
+        selectDropdown.append(
+          new Option(
+            value.version,
+            value.version,
+            false,
+            currentVersionDisplayed === value.version
+          )
+        );
+      });
+
+      $("#select-dropdown").on("change", event => {
+        window.location.href = `../${event.target.value}`;
+      });
+    });
+  });
+</script>
