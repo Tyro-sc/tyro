@@ -4,7 +4,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/c091b16c5832c890a59b/maintainability)](https://codeclimate.com/github/Tyro-sc/tyro/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c091b16c5832c890a59b/test_coverage)](https://codeclimate.com/github/Tyro-sc/tyro/test_coverage)
 
-# tyro
+# Tyro
 
 DOC:
 ClickOn Tyro base + Mouse => 95% use case
