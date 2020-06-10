@@ -1,5 +1,6 @@
 package sc.tyro.doc
 
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import sc.tyro.core.component.Button
 import sc.tyro.core.component.Image
@@ -7,8 +8,7 @@ import sc.tyro.core.component.Panel
 import sc.tyro.core.component.field.TextField
 import sc.tyro.bundle.html5.input.TextArea
 
-
-
+@Disabled
 class ComponentsTest {
     @Test
     void should_have_expected_properties_and_states_supported_by_button() {

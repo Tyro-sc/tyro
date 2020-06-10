@@ -3,11 +3,11 @@
 :homepage: https://www.tyro.sc
 :desc: The Tyro documentation
 :imagesdir: images
-:toc: left
-:toc-title: Table des matières
-:toclevels: 2
-:numbered: true
-:doctype: book
+:toc:
+:toclevels: 3
+:docinfo1:
+:toc-title: Table of contents
+:numbered: {project-version}
 
 image::logo-white.svg[Tyro,align="left",width="30%"]
 
@@ -36,9 +36,3 @@ include::getting_help.adoc[]
 include::contributors.adoc[]
 
 include::release_notes.adoc[]
-
-
-
-
-
-

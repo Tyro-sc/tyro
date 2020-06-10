@@ -1,5 +1,6 @@
 package sc.tyro.doc
 
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import sc.tyro.core.component.Radio
@@ -8,6 +9,7 @@ import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
 import static sc.tyro.core.Tyro.*
 
+@Disabled
 class SpecTest {
     @Test
     @DisplayName("Gender spec")

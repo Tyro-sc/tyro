@@ -73,6 +73,7 @@
                         </goals>
                         <configuration>
                             <backend>html5</backend>
+                            <preserveDirectories>true</preserveDirectories>
                             <attributes>
                                 <toc>left</toc>
                                 <icons>font</icons>

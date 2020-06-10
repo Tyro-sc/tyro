@@ -4,13 +4,17 @@ import io.javalin.Javalin
 import org.junit.jupiter.api.extension.AfterAllCallback
 import org.junit.jupiter.api.extension.BeforeAllCallback
 import org.junit.jupiter.api.extension.ExtensionContext
+import org.openqa.selenium.Capabilities
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.chrome.ChromeOptions
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.firefox.FirefoxOptions
+import org.testcontainers.containers.BrowserWebDriverContainer
 
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver
 import static io.github.bonigarcia.wdm.WebDriverManager.firefoxdriver
+import static org.testcontainers.containers.BrowserWebDriverContainer.VncRecordingMode.RECORD_ALL
 
 /**
  * @author David Avenante
@@ -19,6 +23,9 @@ import static io.github.bonigarcia.wdm.WebDriverManager.firefoxdriver
 class TyroWebTestExtension implements BeforeAllCallback, AfterAllCallback {
     private static Javalin app
     private static WebDriver driver
+    private static BrowserWebDriverContainer container
+    public static String BASE_URL
+    private boolean isLocal = Boolean.valueOf(System.getProperty("local"))
 
     @Override
     void beforeAll(ExtensionContext extensionContext) throws Exception {
@@ -26,13 +33,34 @@ class TyroWebTestExtension implements BeforeAllCallback, AfterAllCallback {
             config -> config.addStaticFiles("/webapp")
         }).start(8080)
 
-//        firefoxdriver().setup()
-//        driver = new FirefoxDriver()
+        DatagramSocket socket = new DatagramSocket()
+        socket.connect(InetAddress.getByName("8.8.8.8"), 10002)
+        String host_ip = socket.getLocalAddress().getHostAddress()
+        BASE_URL = "http://${host_ip}:8080/"
 
-        chromedriver().setup()
-        driver = new ChromeDriver()
+        if (isLocal) {
+            if (System.getProperty("browser") == "firefox") {
+                firefoxdriver().setup()
+                driver = new FirefoxDriver()
+                System.getProperties().setProperty("driver", "FirefoxDriver")
+            } else {
+                chromedriver().setup()
+                driver = new ChromeDriver()
+            }
+        } else {
+            Capabilities browser = new ChromeOptions()
+            if (System.getProperty("browser") == "firefox") {
+                browser = new FirefoxOptions()
+                System.getProperties().setProperty("driver", "FirefoxDriver")
+            }
+            container = new BrowserWebDriverContainer()
+                    .withCapabilities(browser)
+                    .withRecordingMode(RECORD_ALL, new File("./target/"))
+            container.start()
 
-        System.getProperties().setProperty("driver", driver.class.simpleName)
+            driver = container.webDriver
+        }
+
         WebBundle.init(driver)
     }
 
@@ -40,5 +68,8 @@ class TyroWebTestExtension implements BeforeAllCallback, AfterAllCallback {
     void afterAll(ExtensionContext extensionContext) throws Exception {
         driver.close()
         app.stop()
+        if (!isLocal) {
+            container.stop()
+        }
     }
 }
