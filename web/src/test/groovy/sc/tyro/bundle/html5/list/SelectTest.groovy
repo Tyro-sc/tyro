@@ -9,6 +9,7 @@ import sc.tyro.core.component.Group
 import sc.tyro.web.TyroWebTestExtension
 
 import static sc.tyro.core.Tyro.*
+import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 
 /**
  * @author David Avenante
@@ -19,7 +20,7 @@ import static sc.tyro.core.Tyro.*
 class SelectTest {
     @BeforeAll
     static void before() {
-        visit 'http://localhost:8080/components.html'
+        visit BASE_URL + 'components.html'
     }
 
     // http://en.wikipedia.org/wiki/Drop-down_list

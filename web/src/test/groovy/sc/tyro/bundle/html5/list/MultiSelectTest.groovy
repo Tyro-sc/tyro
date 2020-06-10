@@ -12,6 +12,7 @@ import sc.tyro.web.TyroWebTestExtension
 
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static sc.tyro.core.Tyro.*
+import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 
 /**
  * @author David Avenante
@@ -22,7 +23,7 @@ import static sc.tyro.core.Tyro.*
 class MultiSelectTest {
     @BeforeAll
     static void before() {
-        visit 'http://localhost:8080/components.html'
+        visit BASE_URL + 'components.html'
     }
 
     @Test
