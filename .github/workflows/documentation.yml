@@ -1,8 +1,6 @@
-name: Chrome Tests
+name: Generate and publish documentation
 on:
   push:
-    branches: [ master ]
-  pull_request:
     branches: [ master ]
 
 jobs:
@@ -16,9 +14,5 @@ jobs:
         uses: actions/setup-java@v1.3.0
         with:
           java-version: 11
-      - name: Build and Tests with Chrome
-        run: ./mvnw clean package
-      - name: Coverage
-        env:
-          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
-        run: .github/actions/code-coverage.sh
+      - name: Documentation
+        run: .github/actions/documentation.sh

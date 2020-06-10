@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+. ${PWD}/.github/actions/logger.sh
+
 REPO_REMOTE_URL=$(git config --get remote.origin.url)
 POM="documentation/pom.xml"
 PROJECT_DIR=${PWD}
@@ -37,8 +39,8 @@ checkout_documentation_branch() {
     DOC_BRANCH_EXIST=$(git ls-remote --heads "${REPO_REMOTE_URL}" gh-pages | wc -l)
 
     if [[ ${DOC_BRANCH_EXIST} -eq 0 ]]; then
-        echo "Branch gh-pages not available"
-        echo "Create gh-pages branch"
+        warn "Documentation" "Branch gh-pages not available"
+        info "Documentation" "Create gh-pages branch"
         git checkout -b gh-pages
         EXIT_CODE=$?
         if [[ ${EXIT_CODE} -gt 0 ]]; then
@@ -50,14 +52,14 @@ checkout_documentation_branch() {
             rm -rf "$file"
         done
 
-        echo "Clean hidden content"
+        info "Documentation" "Clean hidden content"
         for file in .*; do
             if [[ "$file" != ".git" ]]; then
                 rm -rf "$file"
             fi
         done
-#        git commit -a -m "Clean documentation branch"
-#        git push --set-upstream origin gh-pages
+        git commit -a -m "Clean documentation branch"
+        git push --set-upstream origin gh-pages
     fi
 
     git checkout gh-pages
@@ -82,14 +84,14 @@ init_documentation_folder() {
 
     # Clean Current documentation
     if [[ -d "${GENERATED_DOC_DIRECTORY}" ]]; then
-        echo "Directory (${GENERATED_DOC_DIRECTORY}) already exist -> delete ${GENERATED_DOC_DIRECTORY} directory"
+        info "Documentation" "Directory (${GENERATED_DOC_DIRECTORY}) already exist -> delete ${GENERATED_DOC_DIRECTORY} directory"
         rm -rf "${GENERATED_DOC_DIRECTORY}"
     fi
     rm versions.json
 }
 
 copy_documentation() {
-    echo "Create documentation directory (${GENERATED_DOC_DIRECTORY})"
+    info "Documentation" "Create documentation directory (${GENERATED_DOC_DIRECTORY})"
     mkdir "${GENERATED_DOC_DIRECTORY}"
 #    cp "${DOC_TEMPLATE}/favicon.png" "${GENERATED_DOC_DIRECTORY}"
     cp -r "${PROJECT_DIR}/documentation/target/generated-docs/." "./${GENERATED_DOC_DIRECTORY}"
@@ -98,7 +100,7 @@ copy_documentation() {
 generate_current_documentation_link() {
     CURRENT_LINK="current"
     if [[ -L "${CURRENT_LINK}" ]]; then
-        info "Current link exist -> delete link"
+        info "Documentation" "Current link exist -> delete link"
         rm "${CURRENT_LINK}"
     fi
 
@@ -107,7 +109,7 @@ generate_current_documentation_link() {
     if [[ ${LINK_PATH_TARGET} == "" ]]; then
         LINK_PATH_TARGET=${GENERATED_DOC_DIRECTORY}
     fi
-    echo "Create symlink to directory ${LINK_PATH_TARGET}"
+    info "Documentation" "Create symlink to directory ${LINK_PATH_TARGET}"
     ln -s "${LINK_PATH_TARGET}" "${CURRENT_LINK}"
 }
 
@@ -123,8 +125,8 @@ generate_versions_file() {
 }
 
 push_documentation() {
-    git config --global user.name "${MACHINE_USER}"
-    git config --global user.email "${MACHINE_USER_EMAIL}"
+    git config --global user.name "altus34"
+    git config --global user.email "altus34@gmail.com"
 
     # Push the gh-pages changes
     git add .
@@ -142,4 +144,4 @@ copy_documentation
 
 generate_current_documentation_link
 generate_versions_file
-#push_documentation
+push_documentation

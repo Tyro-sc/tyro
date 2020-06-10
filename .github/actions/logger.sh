@@ -22,5 +22,5 @@ log() {
     level=$1
     id=$2
     message=$3
-    echo " 🔥 [STUDIO CI][${level}](${id}) ${message}"
+    echo " 🔥 [Tyro CI][${level}](${id}) ${message}"
 }
