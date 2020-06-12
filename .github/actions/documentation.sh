@@ -126,8 +126,8 @@ generate_versions_file() {
 }
 
 push_documentation() {
-#    hub config --global user.name "altus34"
-#    hub config --global user.email "d.avenante@gmail.com"
+    hub config --global user.name "altus34"
+    hub config --global user.email "d.avenante@gmail.com"
 
     # Push the gh-pages changes
     hub add .
