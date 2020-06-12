@@ -34,15 +34,15 @@ generate_documentation() {
 checkout_documentation_branch() {
     echo "============ ✅ Documentation Branch Initialization ==="
     # Checkout the gh-pages branch of this repository in a new folder
-    git clone "${REPO_REMOTE_URL}" ../documentation
+    hub clone "${REPO_REMOTE_URL}" ../documentation
     cd ../documentation || exit
 
-    DOC_BRANCH_EXIST=$(git ls-remote --heads "${REPO_REMOTE_URL}" gh-pages | wc -l)
+    DOC_BRANCH_EXIST=$(hub ls-remote --heads "${REPO_REMOTE_URL}" gh-pages | wc -l)
 
     if [[ ${DOC_BRANCH_EXIST} -eq 0 ]]; then
         warn "Documentation" "Branch gh-pages not available"
         info "Documentation" "Create gh-pages branch"
-        git checkout -b gh-pages
+        hub checkout -b gh-pages
         EXIT_CODE=$?
         if [[ ${EXIT_CODE} -gt 0 ]]; then
             echo "============ 🔴 Unable to create documentation branch ="
@@ -59,11 +59,11 @@ checkout_documentation_branch() {
                 rm -rf "$file"
             fi
         done
-        git commit -a -m "Clean documentation branch"
-        git push --set-upstream origin gh-pages
+        hub commit -a -m "Clean documentation branch"
+        hub push --set-upstream origin gh-pages
     fi
 
-    git checkout gh-pages
+    hub checkout gh-pages
 }
 
 init_documentation_folder() {
@@ -94,7 +94,7 @@ init_documentation_folder() {
 copy_documentation() {
     info "Documentation" "Create documentation directory (${GENERATED_DOC_DIRECTORY})"
     mkdir "${GENERATED_DOC_DIRECTORY}"
-#    cp "${DOC_TEMPLATE}/favicon.png" "${GENERATED_DOC_DIRECTORY}"
+    cp "${DOC_TEMPLATE}/favicon.png" "${GENERATED_DOC_DIRECTORY}"
     cp -r "${PROJECT_DIR}/documentation/target/generated-docs/." "./${GENERATED_DOC_DIRECTORY}"
 }
 
@@ -126,14 +126,14 @@ generate_versions_file() {
 }
 
 push_documentation() {
-    git config --global user.name "altus34"
-    git config --global user.email "d.avenante@gmail.com"
+#    hub config --global user.name "altus34"
+#    hub config --global user.email "d.avenante@gmail.com"
 
     # Push the gh-pages changes
-    git add .
-    git commit -a -m "Update Documentation [skip ci]"
-    git pull origin gh-pages
-    git push --force origin gh-pages
+    hub add .
+    hub commit -a -m "Update Documentation [skip ci]"
+    hub pull origin gh-pages
+    hub push --force origin gh-pages
 }
 
 configure_documentation
