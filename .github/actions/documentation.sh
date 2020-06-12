@@ -14,8 +14,9 @@ echo "============ Publish Documentation ============"
 
 configure_documentation() {
     # Copy header and footer
-    cp "${DOC_TEMPLATE}/docinfo.html" "${DOC_DIRECTORY}"
-    cp "${DOC_TEMPLATE}/docinfo-footer.html" "${DOC_DIRECTORY}"
+    cp "${DOC_TEMPLATE}/docinfos/docinfo.html" "${DOC_DIRECTORY}"
+    cp "${DOC_TEMPLATE}/docinfos/docinfo-footer.html" "${DOC_DIRECTORY}"
+    cp -r "${DOC_TEMPLATE}/docinfos/js" "${DOC_DIRECTORY}/js"
     echo "============ ✅ Documentation configured =============="
 }
 
