@@ -1,0 +1,69 @@
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"
+></script>
+<script src="js/tocbot-3.0.2-min.js"></script>
+<style>
+  html,
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
+  }
+  #header {
+    top: 0;
+    background: white;
+    z-index: 9;
+  }
+  #header .details {
+    padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+  }
+  #header .details #revnumber {
+    display: flex;
+    flex: 1;
+  }
+  #header .details #select-container {
+    flex: 0;
+    position: relative;
+  }
+  #header .details #select-container:after {
+    content: "▶";
+    font-size: 10px;
+    font-family: sans-serif;
+    font-weight: 500;
+    color: #a6a6a6;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    right: 12px;
+    top: 8px;
+    padding: 0 0 2px;
+    position: absolute;
+    pointer-events: none;
+  }
+  #header .details #select-container #select-dropdown {
+    display: flex;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 5px 25px 5px 10px;
+    width: auto;
+  }
+
+  #tocbot a.toc-link.node-name--H1{ font-style: italic }
+  @media screen{
+      #tocbot > ul.toc-list{ margin-bottom: 0.5em; margin-left: 0.125em }
+      #tocbot ul.sectlevel0, #tocbot a.toc-link.node-name--H1 + ul{
+          padding-left: 0 }
+      #tocbot a.toc-link{ height:100% }
+      .is-collapsible{ max-height:3000px; overflow:hidden; }
+      .is-collapsed{ max-height:0 }
+      .is-active-link{ font-weight:700 }
+  }
+  @media print{
+      #tocbot a.toc-link.node-name--H4{ display:none }
+  }
+</style>

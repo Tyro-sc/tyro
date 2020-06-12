@@ -1,0 +1,96 @@
+=== Datagrid
+
+image::../images/components/DataGrid.png[DataGrid, role=thumb]
+
+_Definition_: a *datagrid* is a component that allows user to present data in a tabular view, with cells organized in rows and columns.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|
+|rows
+|
+
+|
+|columns
+|
+|===
+
+Usage example : TODO
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{codepath}/../../../../test/groovy/sc/tyro/doc/componentsTest.groovy[tags=datagrid]
+----
+
+
+==== Column
+
+_Definition_: a *column* is the vertical element of a datagrid ; it is composed of cells and can have a title.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|
+|cells
+|
+
+|
+|title
+|
+|===
+
+Usage example : TODO
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{codepath}/../../../../test/groovy/sc/tyro/doc/componentsTest.groovy[tags=column]
+----
+
+==== Row
+
+_Definition_: a *row* is the horizontal element of a datagrid ; it is composed of cells and can have a title.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|
+|cells
+|
+
+|
+|title
+|
+|===
+
+Usage example : TODO
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{codepath}/../../../../test/groovy/sc/tyro/doc/componentsTest.groovy[tags=row]
+----
+
+==== Cell
+
+_Definition_: a *cell* is the finest element of a datagrid.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|
+|value
+|
+
+|===
+
+Usage example : TODO
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{codepath}/../../../../test/groovy/sc/tyro/doc/componentsTest.groovy[tags=cell]
+----
+

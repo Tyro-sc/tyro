@@ -1,0 +1,36 @@
+== Design and architecture
+
+'''
+TODO : refaire completement (en jpeg)
+
+[ditaa]
+....
+                 +---------------+   use   +----------+
+                 |   Tyro core   |<--------| Tyro web |
+                 | ( UI domain ) |         |   DSL    |
+                 +---------------+         +----------+
+                        ^                       ^
+                        | inherit               |  use
+                        |                       |
+                   +----------+            /---------\
+                   |  Bundle  |            |  Tests  |
+                   +----------+            |         |
+                   |  Html5   |            \---------/
+                   +----------+
+                        ^
+                        | inherit
+                        |
+          +++++++++++++++++++++++++++++++++++++++++++++++
+          |             |               |               |
+    +----------+    +---------+    +---------+     +---------+
+    |  Bundle  |    | Bundle  |    | Bundle  |     |  Bundle |
+    +----------+    +---------+    +---------+     +---------+
+    |  Angular |    | Polymer |    |Bootstrap|     |  Other  |
+    |  Material|    | Material|    |         |     |  Custom |
+    +----------+    +---------+    +---------+     +---------+
+....
+
+Tyro is built on top of http://www.seleniumhq.org/[Selenium, role="external", window="_blank"],and works with Chrome and Firefox.
+Even though Tyro provides an extra layer of convenience and productivity, it is always possible to "fallback" to the WebDriver level to do something directly, if you need to.
+
+Tyro adds a powerful DSL, while maintaining the usage of Groovy and keeps the advantages of a strongly typed language.

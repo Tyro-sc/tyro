@@ -1,11 +1,38 @@
-= Tyro Documentation
+= Tyro Reference Documentation
 :author: David Avenante, Stephanie Parisot
 :homepage: https://www.tyro.sc
 :desc: The Tyro documentation
 :imagesdir: images
+:toc:
+:toclevels: 3
+:docinfo1:
+:toc-title: Table of contents
+:numbered: {project-version}
 
-image::logo-white.svg[Tyro,align="center",width="50%"]
+image::logo-white.svg[Tyro,align="left",width="30%"]
 
-include::introduction.adoc[]
+include::overview.adoc[]
 
+include::get_started.adoc[]
 
+include::writing_tests.adoc
+
+include::domain_objects.adoc[]
+
+include::language.adoc[]
+
+include::component_selection.adoc[]
+
+include::interactions.adoc[]
+
+include::references.adoc[]
+
+include::specific_components.adoc[]
+
+include::running_tests.adoc[]
+
+include::getting_help.adoc[]
+
+include::contributors.adoc[]
+
+include::release_notes.adoc[]
