@@ -1,4 +1,4 @@
-name: Generate and publish documentation
+name: Publish documentation
 on:
   push:
     branches: [ master ]
@@ -14,7 +14,11 @@ jobs:
         uses: actions/setup-java@v1.3.0
         with:
           java-version: 11
+      - name: Build core
+        run: ./mvnw clean package -f core/pom.xml -DskipTests
+      - name: Build web
+        run: ./mvnw clean package -f web/pom.xml -DskipTests
       - name: Build documentation
-        run: ./mvnw clean package -f documentation/pom.xml
+        run: ./mvnw clean package  -f documentation/pom.xml
       - name: Publish Documentation
         run: .github/actions/documentation.sh
