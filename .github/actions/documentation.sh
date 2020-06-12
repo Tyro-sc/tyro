@@ -127,7 +127,7 @@ generate_versions_file() {
 
 push_documentation() {
     git config --global user.name "altus34"
-    git config --global user.email "altus34@gmail.com"
+    git config --global user.email "d.avenante@gmail.com"
 
     # Push the gh-pages changes
     git add .

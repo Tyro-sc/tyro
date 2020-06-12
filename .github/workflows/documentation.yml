@@ -14,9 +14,7 @@ jobs:
         uses: actions/setup-java@v1.3.0
         with:
           java-version: 11
-      - name: Build tyro
+      - name: Build Tyro
         run: ./mvnw clean install -DskipTests
-      - name: Build documentation
-        run: ./mvnw clean package -f documentation/pom.xml
       - name: Publish Documentation
         run: .github/actions/documentation.sh
