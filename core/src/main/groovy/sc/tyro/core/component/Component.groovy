@@ -90,8 +90,7 @@ class Component implements MouseSupport, Draggable {
     boolean equals(Object o) {
         if (this.is(o)) return true
         if (getClass() != o.class) return false
-        Component component = (Component) o
-        id() == component.id()
+        id() == ((Component) o).id()
     }
 
     @Override

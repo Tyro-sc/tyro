@@ -26,9 +26,15 @@ class Li extends Item {
         throw new ComponentException("${this.class.simpleName} ${this} cannot be unselected (Unsupported Operation)")
     }
 
-    boolean equals(Li o) {
+    @Override
+    boolean equals(Object o) {
         if (this.is(o)) return true
-        return value() == o.value()
+        return value() == ((Li) o).value()
+    }
+
+    @Override
+    int hashCode() {
+        return value().hashCode()
     }
 
     @Override

@@ -24,9 +24,15 @@ class Option extends Item {
         !provider.check(id(), "el.is(':disabled') || el.attr('disabled') != undefined || el.closest('select').is(':disabled')")
     }
 
-    boolean equals(Option o) {
+    @Override
+    boolean equals(Object o) {
         if (this.is(o)) return true
-        value() == o.value()
+        value() == ((Option) o).value()
+    }
+
+    @Override
+    int hashCode() {
+        return value().hashCode()
     }
 
     @Override
