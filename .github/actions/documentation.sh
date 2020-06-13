@@ -64,7 +64,7 @@ checkout_documentation_branch() {
             fi
         done
         git commit -a -m "Clean documentation branch"
-        git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" --set-upstream origin gh-pages
+        git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
     fi
 
     git checkout gh-pages
