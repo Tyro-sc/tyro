@@ -33,6 +33,11 @@ class Li extends Item {
     }
 
     @Override
+    int hashCode() {
+        return value().hashCode()
+    }
+
+    @Override
     String toString() {
         return value()
     }
