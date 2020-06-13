@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-java@v1.3.0
         with:
           java-version: 11
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build Tyro
         run: ./mvnw clean install -DskipTests
       - name: Publish Documentation

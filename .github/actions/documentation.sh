@@ -133,8 +133,7 @@ push_documentation() {
     git add .
     git commit -a -m "Update Documentation [skip ci]"
     git pull origin gh-pages
-    git push "https://altus34:${repo-token}@github.com/Tyro-sc/tyro.git" --force origin gh-pages
-    git push --force origin gh-pages
+    git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" --force origin gh-pages
 }
 
 configure_documentation
