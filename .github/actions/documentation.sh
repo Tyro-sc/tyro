@@ -13,6 +13,10 @@ VERSION=$(./mvnw -q -Dexec.executable=echo -Dexec.args='${project.version}' --no
 
 echo "============ Publish Documentation ============"
 
+git config --global user.name "altus34"
+git config --global user.email "d.avenante@gmail.com"
+git config pull.ff only
+
 configure_documentation() {
     # Copy header and footer
     cp "${DOC_TEMPLATE}/docinfos/docinfo.html" "${DOC_DIRECTORY}"
@@ -127,10 +131,6 @@ generate_versions_file() {
 }
 
 push_documentation() {
-    git config --global user.name "altus34"
-    git config --global user.email "d.avenante@gmail.com"
-    git config pull.ff only
-
     # Push the gh-pages changes
     git add .
     git commit -a -m "Update Documentation [skip ci]"
