@@ -15,7 +15,6 @@ echo "============ Publish Documentation ============"
 
 git config --global user.name "altus34"
 git config --global user.email "d.avenante@gmail.com"
-git config pull.ff only
 
 configure_documentation() {
     # Copy header and footer
