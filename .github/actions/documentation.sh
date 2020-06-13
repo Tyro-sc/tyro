@@ -2,7 +2,7 @@
 
 . ${PWD}/.github/actions/logger.sh
 
-GITHUB_TOKEN: $1
+GITHUB_TOKEN=$1
 REPO_REMOTE_URL=$(git config --get remote.origin.url)
 POM="documentation/pom.xml"
 PROJECT_DIR=${PWD}
