@@ -35,15 +35,15 @@ generate_documentation() {
 checkout_documentation_branch() {
     echo "============ ✅ Documentation Branch Initialization ==="
     # Checkout the gh-pages branch of this repository in a new folder
-    hub clone "${REPO_REMOTE_URL}" ../documentation
+    git clone "${REPO_REMOTE_URL}" ../documentation
     cd ../documentation || exit
 
-    DOC_BRANCH_EXIST=$(hub ls-remote --heads "${REPO_REMOTE_URL}" gh-pages | wc -l)
+    DOC_BRANCH_EXIST=$(git ls-remote --heads "${REPO_REMOTE_URL}" gh-pages | wc -l)
 
     if [[ ${DOC_BRANCH_EXIST} -eq 0 ]]; then
         warn "Documentation" "Branch gh-pages not available"
         info "Documentation" "Create gh-pages branch"
-        hub checkout -b gh-pages
+        git checkout -b gh-pages
         EXIT_CODE=$?
         if [[ ${EXIT_CODE} -gt 0 ]]; then
             echo "============ 🔴 Unable to create documentation branch ="
@@ -60,11 +60,11 @@ checkout_documentation_branch() {
                 rm -rf "$file"
             fi
         done
-        hub commit -a -m "Clean documentation branch"
-        hub push --set-upstream origin gh-pages
+        git commit -a -m "Clean documentation branch"
+        git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" --set-upstream origin gh-pages
     fi
 
-    hub checkout gh-pages
+    git checkout gh-pages
 }
 
 init_documentation_folder() {
@@ -129,11 +129,11 @@ generate_versions_file() {
 push_documentation() {
     git config --global user.name "altus34"
     git config --global user.email "d.avenante@gmail.com"
+    git config pull.ff only
 
     # Push the gh-pages changes
     git add .
     git commit -a -m "Update Documentation [skip ci]"
-    git pull origin gh-pages
     git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" --force origin gh-pages
 }
 
