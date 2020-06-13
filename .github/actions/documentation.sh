@@ -133,7 +133,7 @@ push_documentation() {
     # Push the gh-pages changes
     git add .
     git commit -a -m "Update Documentation [skip ci]"
-    git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" --force origin gh-pages
+    git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
 }
 
 configure_documentation
