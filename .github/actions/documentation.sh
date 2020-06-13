@@ -2,6 +2,7 @@
 
 . ${PWD}/.github/actions/logger.sh
 
+GITHUB_TOKEN=$1
 REPO_REMOTE_URL=$(git config --get remote.origin.url)
 POM="documentation/pom.xml"
 PROJECT_DIR=${PWD}
@@ -11,6 +12,9 @@ GENERATED_DOC_DIRECTORY=""
 VERSION=$(./mvnw -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
 
 echo "============ Publish Documentation ============"
+
+git config --global user.name "altus34"
+git config --global user.email "d.avenante@gmail.com"
 
 configure_documentation() {
     # Copy header and footer
@@ -60,7 +64,7 @@ checkout_documentation_branch() {
             fi
         done
         git commit -a -m "Clean documentation branch"
-        git push --set-upstream origin gh-pages
+        git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
     fi
 
     git checkout gh-pages
@@ -94,7 +98,7 @@ init_documentation_folder() {
 copy_documentation() {
     info "Documentation" "Create documentation directory (${GENERATED_DOC_DIRECTORY})"
     mkdir "${GENERATED_DOC_DIRECTORY}"
-#    cp "${DOC_TEMPLATE}/favicon.png" "${GENERATED_DOC_DIRECTORY}"
+    cp "${DOC_TEMPLATE}/favicon.png" "${GENERATED_DOC_DIRECTORY}"
     cp -r "${PROJECT_DIR}/documentation/target/generated-docs/." "./${GENERATED_DOC_DIRECTORY}"
 }
 
@@ -126,14 +130,10 @@ generate_versions_file() {
 }
 
 push_documentation() {
-    git config --global user.name "altus34"
-    git config --global user.email "d.avenante@gmail.com"
-
     # Push the gh-pages changes
     git add .
     git commit -a -m "Update Documentation [skip ci]"
-    git pull origin gh-pages
-    git push --force origin gh-pages
+    git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
 }
 
 configure_documentation

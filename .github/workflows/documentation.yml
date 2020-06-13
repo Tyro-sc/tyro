@@ -17,4 +17,4 @@ jobs:
       - name: Build Tyro
         run: ./mvnw clean install -DskipTests
       - name: Publish Documentation
-        run: .github/actions/documentation.sh
+        run: .github/actions/documentation.sh ${{ secrets.GITHUB_TOKEN }}
