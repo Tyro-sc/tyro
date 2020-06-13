@@ -126,14 +126,15 @@ generate_versions_file() {
 }
 
 push_documentation() {
-    hub config --global user.name "altus34"
-    hub config --global user.email "d.avenante@gmail.com"
+    git config --global user.name "altus34"
+    git config --global user.email "d.avenante@gmail.com"
 
     # Push the gh-pages changes
-    hub add .
-    hub commit -a -m "Update Documentation [skip ci]"
-    hub pull origin gh-pages
-    hub push --force origin gh-pages
+    git add .
+    git commit -a -m "Update Documentation [skip ci]"
+    git pull origin gh-pages
+    git push "https://altus34:${repo-token}@github.com/Tyro-sc/tyro.git" --force origin gh-pages
+    git push --force origin gh-pages
 }
 
 configure_documentation
