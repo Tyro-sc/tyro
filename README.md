@@ -23,8 +23,8 @@
  -[ ] First part of doc oriented on tyro-core
  -[ ] Core domain (separate by themes) + recapture screenshot with good css
  -[ ] Core DSL
- -[ ] Core interaction
- -[ ] Core intention
+ -[X] Core interaction
+ -[X] Core intention
 
 ### Second part (Web)
  -[ ] Web Bundle
