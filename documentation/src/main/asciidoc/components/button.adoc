@@ -1,4 +1,4 @@
-=== Button
+==== Button
 
 image::../images/components/Button.png[Button, role=thumb]
 

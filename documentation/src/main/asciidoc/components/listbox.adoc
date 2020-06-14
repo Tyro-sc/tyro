@@ -1,4 +1,4 @@
-=== ListBox
+==== ListBox
 [.thumb]
 image:../images/components/ListBox_1.png[ListBox]
 image:../images/components/ListBox_2.png[ListBox]

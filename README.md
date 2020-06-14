@@ -40,7 +40,7 @@
 
 ### Appendices
  -[ ] Table component/state/properties
- -[ ] Comunity
+ -[ ] Community
 
 DOC:
 ClickOn Tyro base + Mouse => 95% use case

@@ -1,4 +1,4 @@
-=== CheckBox
+==== CheckBox
 
 image::../images/components/CheckBox.png[CheckBox, 110, role=thumb]
 

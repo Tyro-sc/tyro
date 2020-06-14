@@ -1,4 +1,4 @@
-=== DropDown
+==== DropDown
 
 image::../images/components/DropDown.png[DropDown, role = thumb]
 

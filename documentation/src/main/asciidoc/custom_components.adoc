@@ -1,6 +1,6 @@
-== Create a specific component
+== Create a custom component
 '''
-Tyro provides components for most common html tags but it also allows to create specific components.
+Tyro provides components for most common html tags but it also allows to create custom components.
 
 === Creation of the component
 TODO
@@ -9,7 +9,7 @@ TODO
 
 The created components can be used as Tyro core component and Tyro web Component, as shown in the following example
 
-==== Example of use of specific component DisplayedValue
+==== Example of use of custom component DisplayedValue
 
 to match with the 6th span with class "cell-inner" :
 
@@ -18,7 +18,7 @@ static DisplayedValue getName_Clicable_Header() {
     $('span.cell-inner:eq(5)') as DisplayedValue
 }
 
-=== Examples of specific components
+=== Examples of custom components
 
 ==== Span with title and text
 

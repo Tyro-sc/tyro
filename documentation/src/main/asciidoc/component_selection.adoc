@@ -1,10 +1,10 @@
-== Component selection
+=== Component selection
 '''
 
 The fonctional objets used in the tests are instances of Tyro or specific Components.
 Here are the different ways of building these objects dependently of html tag and attribute.
 
-=== The $ function
+==== The $ function
 
 The $ function is the access point for fetching component on the page. The $ function accepts a CSS3 selector to target your component.
 The signature of the $ function is showed in the following examples.
@@ -43,7 +43,7 @@ the shortcut *# cannot be used for ids with '.' inside* (_not supported by JQuer
 
 |===
 
-==== Other examples
+===== Other examples
 
 *the second input with type = 'text'*
 [subs="quotes"]
@@ -95,7 +95,7 @@ This is the magic of Tyro. We will see later how it works and how to override th
 The $ function *NEEDS* to target a *UNIQUE* component. If you want to work with a list of components you need to use the $$ function.
 ====
 
-=== The $$ function
+==== The $$ function
 
 The following code fails because through the selector expression, we try to target a list of items (options) of a select to evaluate their visibility.
 [source, groovy]
@@ -106,7 +106,7 @@ assert item.visible()
 
 TODO
 
-=== The find function
+==== The find function
 TODO
 The find function is used when building specific components
 

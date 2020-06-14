@@ -1,0 +1,205 @@
+== Web bundle
+'''
+Tyro comes with a bunch of predefined HTML components. These components are not only the standard representation of HTML elements,
+but also a powerful base to build your own components.
+
+Each component supports States and Properties. One of the strengths of Tyro is the ability to add support for new States and Properties and to override existing States and Properties, on existing or new components.
+[options="header"]
+|===
+|States shared by all Tyro components
+|enabled, disabled, available, missing, hidden, visible, contains, displays
+|===
+
+=== Html5 - Tyro equivalence
+
+[NOTE]
+====
+for input html5 tags : see next section
+====
+
+[cols="1,1,1", options="header"]
+|===
+|Html tag
+|Tyro core component
+|TODO : remove column
+
+|button
+|<<Button>>
+|Button
+
+|select
+|<<DropDown>>
+|Select
+
+|select (multiple)
+|<<ListBox>>
+|*MultiSelect*
+
+|textarea
+|<<TextField>>
+|TextArea
+
+|optgroup
+|<<Group>>
+|*OptionGroup*
+
+|option
+|<<Item>>
+|Option
+
+|form
+|<<Form>>
+|Form
+
+|h1, h2, h3, h4, h5, h6
+|<<Heading>>
+|H1, H2,H3, H4, H5, H6
+
+|img
+|<<Image>>
+|Img
+
+|a
+|<<Link>>
+|A
+
+|ul
+|<<ListView>>
+|Ul
+
+|ol
+|<<ListView>>
+|Ol
+
+|li
+|<<Item>>
+|Li
+
+|div
+|<<Panel>>
+|Div
+
+|table
+|<<Datagrid>>
+|Table
+
+|th
+|<<Column>>
+|Th
+
+|tr
+|<<Row>>
+|Tr
+
+|td
+|<<Cell>>
+|Td
+
+|article
+|Component
+|Article
+
+|aside
+|Component
+|Aside
+
+|header
+|Component
+|Header
+
+|footer
+|Component
+|Footer
+
+|label
+|Component
+|Label
+
+|p
+|Component
+|P
+
+|section
+|Component
+|Section
+
+|span
+|Component
+|Span
+
+|===
+
+==== Html5 input tags
+
+[cols="1,1,1", options="header"]
+|===
+|Html input type
+|Tyro component
+|TODO : remove column
+
+|checkbox
+|<<CheckBox>>
+|InputTypeCheckBox
+
+|radio
+|<<Radio>>
+|InputTypeRadio
+
+
+|text
+|<<TextField>>
+|InputTypeText
+
+|color
+|<<ColorField>>
+|InputTypeColor
+
+|datetime-local
+|<<DateTimeField>>
+|InputTypeDateTime
+
+|date
+|<<DateField>>
+|InputTypeDate
+
+|time
+|<<TimeField>>
+|InputTypeTime
+
+|month
+|<<MonthField>>
+|InputTypeMonth
+
+|week
+|<<WeekField>>
+|InputTypeWeek
+
+|email
+|<<EmailField>>
+|InputTypeEmail
+
+|password
+|<<PasswordField>>
+|InputTypePassword
+
+|number
+|<<NumberField>>
+|InputTypeNumber
+
+|range
+|<<RangeField>>
+|InputTypeRange
+
+|tel
+|<<PhoneField>>
+|InputTypeTel
+
+|search
+|<<SearchField>>
+|InputTypeSearch
+
+|url
+|<<URLField>>
+|InputTypeURL
+
+|===

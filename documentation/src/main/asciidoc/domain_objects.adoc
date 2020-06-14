@@ -4,53 +4,45 @@
 Tyro provides a set of UI Domain Objects.
 With them, you have the most useful objects to write a UI test.
 
-These objects are the following :
+[NOTE]
+====
+.The following states are shared by all Tyro components :
+enabled, disabled, available, missing, hidden, visible, contains, displays
+====
 
-[cols="3*", options="header"]
-|===
-3+|Component name
+=== Tyro components to choose items or lauch action
 
-|<<Form>>
-|<<Panel>>
-|<<Heading>>
+include::components/button.adoc[]
 
-|<<Radio>>
-|<<Button>>
-|<<CheckBox>>
+include::components/checkbox.adoc[]
 
-|<<DropDown>>
-|<<Group>>
-|<<ListBox>>
+include::components/radio.adoc[]
 
-|<<Item>>
-|<<ListView>>
-|
+include::components/dropdown.adoc[]
 
-|<<Datagrid>>
-|<<Row>>
-|<<Column>>
+include::components/group.adoc[]
 
-|<<Cell>>
-|<<Link>>
-|<<Image>>
+include::components/listbox.adoc[]
 
-|<<TextField>>
-|<<EmailField>>
-|<<PasswordField>>
+include::components/item.adoc[]
 
-|<<ColorField>>
-|<<SearchField>>
-|<<URLField>>
+include::components/link.adoc[]
 
-|<<DateField>>
-|<<MonthField>>
-|<<WeekField>>
+=== Tyro components to enter or display data
 
-|<<NumberField>>
-|<<PhoneField>>
-|<<RangeField>>
+include::components/form.adoc[]
 
-|<<DateTimeField>>
-|<<TimeField>>
-|
-|===
+include::components/fields.adoc[]
+
+=== Tyro components to display data
+
+include::components/heading.adoc[]
+
+include::components/image.adoc[]
+
+include::components/listview.adoc[]
+
+include::components/panel.adoc[]
+
+include::components/datagrid.adoc[]
+

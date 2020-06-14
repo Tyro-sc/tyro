@@ -1,0 +1,203 @@
+== Appendices
+
+=== States - properties - intentions resume
+
+[options="header"]
+|===
+|States shared by all Tyro components
+|enabled, disabled, available, missing, hidden, visible, contains, displays
+|===
+
+
+[cols="1,3,3,2", options="header"]
+|===
+|Component
+|States
+|Properties
+|Intentions
+
+|<<Button>>
+|
+|text
+|
+
+|<<DropDown>>
+|
+|label, _number of items_, items, _number of groups_, groups, selectedItem
+|select
+
+|<<ListBox>>
+|
+|label, _number of items_, items, selectedItems, _number of visible items_
+|select
+
+|<<TextField>>
+|empty, filled, readOnly, required, optional, valid, invalid
+|text,label, placeholder, value, length
+|fill, clear
+
+|<<Group>>
+|
+|value, items
+|
+
+|<<Item>>
+|selected, unselected
+|value
+|select, unselect
+
+|<<Form>>
+|valid, invalid
+|
+|reset, submit
+
+|<<Heading>>
+|
+|text
+|
+
+|<<Image>>
+|
+|reference
+|
+
+|<<Link>>
+|
+|text, reference
+|
+
+|<<ListView>>
+|
+|items, _number of items_
+|
+
+|<<Item>>
+|
+|value
+|
+
+|<<Panel>>
+|
+|title
+|
+
+|<<Datagrid>>
+|
+|rows, columns
+|
+
+|<<Column>>
+|
+|cells, title
+|
+
+|<<Row>>
+|
+|cells, title
+|
+
+|<<Cell>>
+|
+|value
+|
+
+|===
+
+==== input components
+
+[cols="1,3,3,2", options="header"]
+|===
+|Component
+|States
+|Properties
+|Intentions
+
+|<<CheckBox>>
+|checked, unchecked
+|label
+|check, uncheck
+
+|<<Radio>>
+|checked, unchecked
+|label
+|check
+
+4+|*_Shared by all Tyro Field components_*
+1+|All below components inherit from <<Field>>
+|*empty, filled, readOnly, required, optional, valid, invalid*
+|*text,label, placeholder, value*
+|*fill, clear*
+
+
+|<<TextField>>
+|
+|length
+|
+
+|<<ColorField>>
+|
+|
+|
+
+|<<DateTimeField>>
+|
+|
+|
+
+|<<DateField>>
+|inRange, outOfRange
+|maximum, minimum, step
+|set
+
+|<<TimeField>>
+|
+|
+|
+
+|<<MonthField>>
+|
+|
+|
+
+|<<WeekField>>
+|
+|
+|
+
+|<<EmailField>>
+|
+|length
+|
+
+|<<PasswordField>>
+|
+|length
+|
+
+|<<NumberField>>
+| inRange, outOfRange
+| maximum, minimum, step
+|
+
+|<<RangeField>>
+|inRange, outOfRange
+|maximum, minimum, step
+|set
+
+|<<PhoneField>>
+|
+|
+|
+
+|<<SearchField>>
+|
+|
+|
+
+|<<URLField>>
+|
+|
+|
+
+|===
+

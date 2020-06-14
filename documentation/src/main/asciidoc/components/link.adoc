@@ -1,4 +1,4 @@
-=== Link
+==== Link
 [.thumb]
 ---
 image::../images/components/Link-1.png[Link-1]

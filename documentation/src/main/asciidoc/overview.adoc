@@ -5,7 +5,7 @@
 The goal of this document is to provide comprehensive reference documentation for all people (analysts or developers) who want to write User Interface fonctional tests with Tyro, to run theses tests and to see the reporting results.
 It also explains how to write UI Testing Scenarios with Cucumber, based on Tyro components.
 
-=== What is Tyro ?
+=== Introduction
 
 Tyro is a web user interface testing tool providing a framework to test any html5 application.
 What makes it stand out from the crowd is its beautiful and highly expressive language.
@@ -13,8 +13,11 @@ Tyro provides, on one hand, an abstraction of the UI business domain through an 
 With Tyro, you can therefore write tests with a seldom achieved level of expressiveness and make those tests INDEPENDENT of the underlying technology.
 Based on WebServer (Selenium) ..... TODO
 compatibility with Firefox and Chrome .... TODO
+integration avec Cucumber ..... TODO
+docker containers .... TODO
+Saucelab, Browser-stack .... TODO
 
-=== Why is Tyro unique ?
+=== Why Tyro is unique
 
 Tyro is the result of numerous real-world observations of developers in the trenches in the area of GUI testing.
 Working for many years to promote the *TDD/BDD* approaches, we often faced difficulties in their implementation for the graphical layer of applications.
@@ -115,19 +118,3 @@ In any case you can fallback to native webdriver like this:
 -------------------------------------------------------------------------------
 WebDriver webdriver = config.evaluator.driver
 -------------------------------------------------------------------------------
-
-=== Supported IDE
-
-TODO
-
-Tyro is written in Groovy .... TODO : est ecrit en Groovy avec un usage intensif du typage fort. La partie dynamique du langage
-n'est utilisée que pour créer le DSL. Ainsi Tyro est supporté part tous les outils supportant le
-langage Groovy.
-
-==== IntelliJ
-
-IntelliJ a un très bon niveau de support du langage Groovy mais ne détecte pas naturellement un projet maven avec du grooy.
-Ajouter le plugin suivant a votre IDE favori vous facilitera grandement la tâche.
-
-TODO => ajouter gmaven plugin de intellij + gmven plus dans pom.xml
-faire un lien vers l'installation

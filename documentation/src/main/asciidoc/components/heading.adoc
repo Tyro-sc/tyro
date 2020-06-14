@@ -1,4 +1,4 @@
-=== Heading
+==== Heading
 
 image::../images/components/Heading.png[Heading, role=thumb]
 

@@ -1,4 +1,4 @@
-=== ListView
+==== ListView
 
 [.thumb]
 image:../images/components/ListView-1.png[ListView-1, float=left]

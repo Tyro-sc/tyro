@@ -3,14 +3,14 @@
 Tyro allows you to manipulate the User Interface and to interact with the components :
 
 * by using the classical <<interactions>> with elements such as keyboard and mouse,
-* or by using states, properties and intentions provided on each component.
+* or by using *states*, *properties* and *intentions* provided on each component.
 
 === States
 Tyro components have *states* that can be tested with the function *'be'*  :
 
 [NOTE]
 ====
-*component.should { be _state_ }*
+.*component.should { be _state_ }*
 
 _examples_ :
 
@@ -27,7 +27,7 @@ Tyro component have *properties* that can be tested with the function *'have'* :
 
 [NOTE]
 ====
-*component.should { have _property (xxxx)_ }*
+.*component.should { have _property (xxxx)_ }*
 
 _examples_ :
 
@@ -43,7 +43,7 @@ Tyro components are linked to *intentions* that can be invoked :
 
 [NOTE]
 ====
-*_intention_ component*   _or_   *on component _intention xxxx_*
+.*_intention_ component*   _or_   *on component _intention xxxx_*
 
 _examples_ :
 

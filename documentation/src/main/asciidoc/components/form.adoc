@@ -1,4 +1,4 @@
-=== Form
+==== Form
 
 image::../images/components/Form.png[Form, role=thumb]
 

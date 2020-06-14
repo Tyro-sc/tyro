@@ -5,8 +5,6 @@ We give you 2 ways to quickly start your Tyro project : TODO
 - an empty template to start from scratch
 - a test application built from this template to see examples and best practices
 
-We also give you the Tyro application with added Cucumber scenarios
-
 === Quick start with a UI test project template
 TODO
 

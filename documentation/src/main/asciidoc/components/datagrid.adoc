@@ -1,4 +1,4 @@
-=== Datagrid
+==== Datagrid
 
 image::../images/components/DataGrid.png[DataGrid, role=thumb]
 
