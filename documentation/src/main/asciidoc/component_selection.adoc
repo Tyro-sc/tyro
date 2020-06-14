@@ -74,7 +74,7 @@ Our experience demonstrated that *we never need complex selector.* If you write 
 carried by the tested component. In the code, this is reflected by a custom tag, the sequence in the page, a role
 attribute, or an id. In all these cases, a css3 selector is more than enough.
 
-//TODO : examples (custom tag : with Angular Directive or Web Components)
+// TODO : examples (custom tag : with Angular Directive or Web Components)
 
 TODO : PARTIE A REVISER
 

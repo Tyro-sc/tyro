@@ -15,7 +15,7 @@ include::overview.adoc[]
 
 include::get_started.adoc[]
 
-include::writing_tests.adoc
+include::writing_tests.adoc[]
 
 include::domain_objects.adoc[]
 

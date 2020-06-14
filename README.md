@@ -6,6 +6,42 @@
 
 # Tyro
 
+## Api
+ -[ ] Factory methods - DA
+ -[ ] Transverse API - DA
+
+## Documentation
+ -[ ] Review Overview - DA
+ -[ ] Architecture Schema - DA
+ -[ ] Project getting started - DA
+ -[ ] 1 template with only Tyro - DA
+ -[ ] 1 template with Tyro + cucumber - DA
+ -[ ] 1 template with docker containers - DA
+ -[ ] 1 template with Saucelab, Browser-stack ... - DA
+ 
+### First part (Core)
+ -[ ] First part of doc oriented on tyro-core
+ -[ ] Core domain (separate by themes) + recapture screenshot with good css
+ -[ ] Core DSL
+ -[ ] Core interaction
+ -[ ] Core intention
+
+### Second part (Web)
+ -[ ] Web Bundle
+ -[ ] html5-core equivalence
+ -[ ] Factories Pattern
+ -[ ] $ et $$ + css3 selector
+ -[ ] selector shortcut (button('Ok'))
+ -[ ] Transverse API - DA
+ -[ ] How to create a custom component - DA
+ -[ ] How to share a custom component (in the road of Design System) - DA
+  
+### Third part (Native)
+
+### Appendices
+ -[ ] Table component/state/properties
+ -[ ] Comunity
+
 DOC:
 ClickOn Tyro base + Mouse => 95% use case
 Collection of Key + click => groovy extension
