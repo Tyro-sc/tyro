@@ -9,6 +9,7 @@
 ## Api
  -[ ] Factory methods - DA
  -[ ] Transverse API - DA
+ -[ ] Release
 
 ## Documentation
  -[ ] Review Overview - DA
