@@ -21,7 +21,6 @@
         <connection>scm:git:git@github.com:Tyro-sc/tyro.git</connection>
         <developerConnection>scm:git:git@github.com:Tyro-sc/tyro.git</developerConnection>
         <url>https://github.com/Tyro-sc/tyro</url>
-        <tag>tyro-pom-0.1.0</tag>
     </scm>
 
     <modules>
