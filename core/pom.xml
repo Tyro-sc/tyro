@@ -4,7 +4,7 @@
 
     <parent>
         <groupId>sc.tyro</groupId>
-        <artifactId>tyro-pom</artifactId>
+        <artifactId>tyro</artifactId>
         <version>0.1.0</version>
     </parent>
 
