@@ -5,7 +5,7 @@
 
     <groupId>sc.tyro</groupId>
     <artifactId>tyro-pom</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Tyro</name>
@@ -21,7 +21,7 @@
         <connection>scm:git:git@github.com:Tyro-sc/tyro.git</connection>
         <developerConnection>scm:git:git@github.com:Tyro-sc/tyro.git</developerConnection>
         <url>https://github.com/Tyro-sc/tyro</url>
-        <tag>tyro-pom-0.1.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <modules>
