@@ -48,6 +48,8 @@
         <gmavenplus-plugin.version>1.8.1</gmavenplus-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
         <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
+        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+        <build-helper-maven-plugin.version>3.2.0</build-helper-maven-plugin.version>
     </properties>
 
     <licenses>
@@ -91,6 +93,29 @@
                         <type>pom</type>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>${maven-gpg-plugin.version}</version>
+                <configuration>
+                    <useAgent>false</useAgent>
+                    <keyname>F82FA7FE</keyname>
+                    <passphrase>${ovea_gpg_passphrase}</passphrase>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
