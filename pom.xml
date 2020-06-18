@@ -5,7 +5,7 @@
 
     <groupId>sc.tyro</groupId>
     <artifactId>tyro</artifactId>
-    <version>0.1.1-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Tyro</name>
@@ -15,6 +15,7 @@
         <name>Tyro</name>
     </organization>
 
+    <description>A functional UI testing API</description>
     <url>http://www.tyro.sc</url>
 
     <scm>
@@ -51,6 +52,7 @@
         <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <build-helper-maven-plugin.version>3.2.0</build-helper-maven-plugin.version>
+        <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
     </properties>
 
     <licenses>
@@ -60,6 +62,31 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
+
+    <developers>
+        <developer>
+            <id>altus34</id>
+            <name>David Avenante</name>
+            <email>altus34@gamil.com</email>
+            <organization>Ovea</organization>
+            <organizationUrl>http://www.ovea.com/</organizationUrl>
+            <timezone>-5</timezone>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <id>mathieucarbou</id>
+            <name>Mathieu Carbou</name>
+            <email>mathieu.carbou@gmail.com</email>
+            <organization>Ovea</organization>
+            <organizationUrl>http://www.ovea.com/</organizationUrl>
+            <timezone>-5</timezone>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
 
     <build>
         <plugins>
@@ -108,6 +135,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
