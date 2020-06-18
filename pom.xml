@@ -5,7 +5,7 @@
 
     <groupId>sc.tyro</groupId>
     <artifactId>tyro</artifactId>
-    <version>0.1.1-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Tyro</name>
@@ -51,8 +51,7 @@
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
         <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
-        <build-helper-maven-plugin.version>3.2.0</build-helper-maven-plugin.version>
-        <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
+        <groovydoc-maven-plugin.version>2.1</groovydoc-maven-plugin.version>
     </properties>
 
     <licenses>
@@ -133,15 +132,15 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${maven-javadoc-plugin.version}</version>
+                <groupId>com.bluetrainsoftware.maven</groupId>
+                <artifactId>groovydoc-maven-plugin</artifactId>
+                <version>${groovydoc-maven-plugin.version}</version>
                 <executions>
                     <execution>
-                        <id>attach-javadocs</id>
+                        <id>attach-docs</id>
                         <phase>package</phase>
                         <goals>
-                            <goal>jar</goal>
+                            <goal>attach-docs</goal>
                         </goals>
                     </execution>
                 </executions>
