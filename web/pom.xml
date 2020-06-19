@@ -5,7 +5,7 @@
     <parent>
         <groupId>sc.tyro</groupId>
         <artifactId>tyro</artifactId>
-        <version>0.1.0</version>
+        <version>0.1.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>tyro-web</artifactId>
@@ -51,7 +51,7 @@
         <dependency>
             <groupId>sc.tyro</groupId>
             <artifactId>tyro-core</artifactId>
-            <version>0.1.0</version>
+            <version>0.1.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
