@@ -5,7 +5,7 @@
 
     <groupId>sc.tyro</groupId>
     <artifactId>tyro</artifactId>
-    <version>0.1.1-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Tyro</name>
@@ -125,11 +125,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
                 <version>${maven-gpg-plugin.version}</version>
-                <configuration>
-                    <useAgent>false</useAgent>
-                    <keyname>F82FA7FE</keyname>
-                    <passphrase>${ovea_gpg_passphrase}</passphrase>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>com.bluetrainsoftware.maven</groupId>
