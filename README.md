@@ -19,6 +19,7 @@
  -[ ] 1 template with Tyro + cucumber - DA
  -[ ] 1 template with docker containers - DA
  -[ ] 1 template with Saucelab, Browser-stack ... - DA
+ -[ ] Custom Component https://gridjs.io/
  
 ### First part (Core)
  -[ ] First part of doc oriented on tyro-core
@@ -39,6 +40,12 @@
   
 ### Third part (Native)
 
+### Bootstrap Bundle
+
+ -[x] Init repository
+ -[ ] Create Html page of components
+ -[ ] Implements components
+ 
 ### Appendices
  -[ ] Table component/state/properties
  -[ ] Community
