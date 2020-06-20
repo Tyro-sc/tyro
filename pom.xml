@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>sc.tyro</groupId>
-    <artifactId>tyro-pom</artifactId>
-    <version>0.1.1-SNAPSHOT</version>
+    <artifactId>tyro</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Tyro</name>
@@ -15,14 +15,15 @@
         <name>Tyro</name>
     </organization>
 
+    <description>A functional UI testing API</description>
     <url>http://www.tyro.sc</url>
 
     <scm>
         <connection>scm:git:git@github.com:Tyro-sc/tyro.git</connection>
         <developerConnection>scm:git:git@github.com:Tyro-sc/tyro.git</developerConnection>
         <url>https://github.com/Tyro-sc/tyro</url>
-        <tag>HEAD</tag>
-    </scm>
+      <tag>HEAD</tag>
+  </scm>
 
     <modules>
         <module>core</module>
@@ -49,6 +50,8 @@
         <gmavenplus-plugin.version>1.8.1</gmavenplus-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
         <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
+        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+        <groovydoc-maven-plugin.version>2.1</groovydoc-maven-plugin.version>
     </properties>
 
     <licenses>
@@ -58,6 +61,31 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
+
+    <developers>
+        <developer>
+            <id>altus34</id>
+            <name>David Avenante</name>
+            <email>altus34@gamil.com</email>
+            <organization>Ovea</organization>
+            <organizationUrl>http://www.ovea.com/</organizationUrl>
+            <timezone>-5</timezone>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <id>mathieucarbou</id>
+            <name>Mathieu Carbou</name>
+            <email>mathieu.carbou@gmail.com</email>
+            <organization>Ovea</organization>
+            <organizationUrl>http://www.ovea.com/</organizationUrl>
+            <timezone>-5</timezone>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
 
     <build>
         <plugins>
@@ -92,6 +120,34 @@
                         <type>pom</type>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>${maven-gpg-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.bluetrainsoftware.maven</groupId>
+                <artifactId>groovydoc-maven-plugin</artifactId>
+                <version>${groovydoc-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-docs</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attach-docs</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
