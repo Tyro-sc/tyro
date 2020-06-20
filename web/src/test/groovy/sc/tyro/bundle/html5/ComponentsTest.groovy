@@ -262,11 +262,11 @@ class ComponentsTest {
         assert InputTypeRadio in Radio
 
         Radio radio = $('#radio_1') as InputTypeRadio
-        assert radio.label() == 'Radio checked'
+        assert radio.label() == 'checked'
         assert radio.checked()
 
         radio = $('#radio_2') as InputTypeRadio
-        assert radio.label() == 'Radio unchecked'
+        assert radio.label() == 'unchecked'
         assert !radio.checked()
         radio.click()
         assert radio.checked()

@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
     <title>Tyro Rocks</title>
 
+    <meta charset="utf-8">
     <meta name="description" content="Tyro Rocks">
-    <meta name="author" content="ovea">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <link href="css/bootstrap-4.5.0.min.css" rel="stylesheet" media="screen">
+
     <script src="js/jquery-3.1.1.min.js"></script>
 </head>
 <body>
 
-<nav class="navbar navbar-default" role="navigation">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="#">Tyro Components Tests</a>
-    </div>
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">Tyro Components Tests</a>
 </nav>
 
 <div class="container-fluid">
@@ -26,11 +24,11 @@
 
             <hr/>
 
-            <h1>Link</h1>
+            <h3>Link</h3>
             <a id="link" href="https://www.google.ca">Link external page</a>
             <hr/>
 
-            <h1>Button</h1>
+            <h3>Button</h3>
             <input type="button" id="button" class="btn btn-primary" value="Button"/>
             <input type="submit" id="submit" class="btn btn-primary" disabled="disabled" value="Submit"/>
             <input type="reset" id="reset" class="btn btn-primary" value="Reset"/>
@@ -38,37 +36,32 @@
 
             <hr/>
 
-            <h1>Checkbox</h1>
-            <label class="checkbox">
+            <h3>Checkbox</h3>
+            <label>
                 <input type="checkbox" id="checkbox">Check me out
             </label>
-
-            <h1>Disabled Checkbox</h1>
-            <label class="checkbox">
+            <label>
                 <input type="checkbox" id="disabled_checkbox" disabled>Disabled
             </label>
 
             <hr/>
 
-            <h1>Radio</h1>
-            <label class="radio">
+            <h3>Radio</h3>
+            <label>
                 <input type="radio" id="radio_1" name="radio" value="value_1" checked>
-                Radio checked
+                checked
             </label>
-            <label class="radio">
+            <label>
                 <input type="radio" id="radio_2" name="radio" value="value_2">
-                Radio unchecked
+                unchecked
             </label>
-            <hr/>
-
-            <h1>Disabled Radio</h1>
-            <label class="radio">
+            <label>
                 <input type="radio" id="disabled_radio" disabled>Disabled
             </label>
 
             <hr/>
 
-            <h1>TextFieds</h1>
+            <h3>Text Fields</h3>
 
             <div class="row">
                 <div class="col-md-6">
@@ -161,7 +154,7 @@
 
             <hr/>
 
-            <h1>DropDown</h1>
+            <h3>DropDown</h3>
             <label class="control-label" for="empty_select">Empty</label>
 
             <div class="controls">
@@ -218,7 +211,8 @@
             </div>
 
             <hr/>
-            <h1>ListBox</h1>
+
+            <h3>ListBox</h3>
 
             <label class="control-label" for="empty_multi_select">Empty</label>
             <div class="controls">
@@ -283,12 +277,12 @@
             </ol>
 
             <hr/>
-            <h1>Image</h1>
+            <h3>Image</h3>
             <img id="image" src="img/Montpellier.jpg"/>
 
             <hr/>
 
-            <h1>Panel</h1>
+            <h3>Panel</h3>
 
             <div id="panel"></div>
             <div id="disabled-panel" disabled></div>
@@ -306,42 +300,42 @@
 
             <hr/>
 
-            <h1>DataGrid</h1>
+            <h3>DataGrid</h3>
 
             <table id="empty_data_grid" class="table">
             </table>
 
-            <table id="data_grid" class="table">
-                <thead>
+            <table id="data_grid" class="table table-striped table-bordered">
+                <thead class="thead-dark">
                 <tr>
-                    <th></th>
-                    <th>Column 1 title</th>
-                    <th>Column 2 title</th>
-                    <th>Column 3 title</th>
+                    <th scope="col"></th>
+                    <th scope="col">Column 1 title</th>
+                    <th scope="col">Column 2 title</th>
+                    <th scope="col">Column 3 title</th>
                 </tr>
                 </thead>
 
                 <tbody>
                 <tr>
-                    <th>Row 1</th>
+                    <th scope="row">Row 1</th>
                     <td>cell 11</td>
                     <td>cell 12</td>
                     <td>cell 13</td>
                 </tr>
                 <tr>
-                    <th>Row 2</th>
+                    <th scope="row">Row 2</th>
                     <td>cell 21</td>
                     <td>cell 22</td>
                     <td>cell 23</td>
                 </tr>
                 <tr>
-                    <th>Row 3</th>
+                    <th scope="row">Row 3</th>
                     <td>cell 31</td>
                     <td>cell 32</td>
                     <td>cell 33</td>
                 </tr>
                 <tr>
-                    <th>Row 4</th>
+                    <th scope="row">Row 4</th>
                     <td>cell 41</td>
                     <td>cell 42</td>
                     <td>cell 43</td>
@@ -350,7 +344,7 @@
 
                 <tfoot>
                 <tr>
-                    <th></th>
+                    <th scope="row"></th>
                     <td>footer 1</td>
                     <td>footer 2</td>
                     <td>footer 3</td>
@@ -361,7 +355,7 @@
 
             <hr/>
 
-            <h1>Section, Article, Header, Footer, Aside</h1>
+            <h3>Section, Article, Header, Footer, Aside</h3>
 
             <div>
                 <header id="header">
@@ -387,7 +381,7 @@
 
             <hr/>
 
-            <h1>Form</h1>
+            <h3>Form</h3>
             <form id="form">
                 <div class="alert alert-success">The form was submitted <span>0</span> time(s)</div>
                 <div class="form-group">
@@ -411,7 +405,7 @@
 
             <hr/>
 
-            <h1>Inheritance</h1>
+            <h3>Inheritance</h3>
             <div>
                 <button id="btn_default" type="button" class="btn btn-default">Default</button>
                 <button id="btn_primary" type="button" class="btn btn-primary">Primary</button>

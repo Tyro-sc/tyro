@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
     <title>Tyro Rocks</title>
 
+    <meta charset="utf-8">
     <meta name="description" content="Tyro Rocks">
-    <meta name="author" content="ovea">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <link href="css/bootstrap-4.5.0.min.css" rel="stylesheet" media="screen">
 
     <style>
         * {
@@ -17,7 +16,7 @@
         }
 
         .eventNotifier {
-            width: 100px;
+            width: 150px;
             float: left;
             color: navy;
             border: dotted 1px navy;
@@ -37,8 +36,6 @@
             touch-action: none;
             user-select: none;
         }
-
-        }
     </style>
 
     <script src="js/jquery-3.1.1.min.js"></script>
@@ -46,40 +43,45 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default" role="navigation">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="#">Tyro Mouse Tests</a>
-    </div>
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">Tyro Mouse Tests</a>
 </nav>
 
 <div class="container-fluid">
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-md-2"></div>
         <div class="col-md-8">
-            <input type="button" id="button_1" class="btn btn-primary" value="Button"/>
-            <br/>
-            <input type="button" id="button_2" class="btn btn-primary" value="Button"/>
-            <br/>
-            <input type="button" id="button_3" class="btn btn-primary" value="Button"/>
-            <br/>
-            <input type="button" id="button_4" class="btn btn-primary" value="Button"/>
-            <br/>
-            <input type="button" id="button_5" class="btn btn-primary" value="Button"/>
-
+            <div class="btn-group-vertical">
+                <input type="button" id="button_1" class="btn btn-primary" value="Button"/>
+                <input type="button" id="button_2" class="btn btn-primary" value="Button"/>
+                <input type="button" id="button_3" class="btn btn-primary" value="Button"/>
+                <input type="button" id="button_4" class="btn btn-primary" value="Button"/>
+                <input type="button" id="button_5" class="btn btn-primary" value="Button"/>
+            </div>
             <hr/>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
 
+    <div class="row mt-3">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
             <div id="drop-zone" class="jumbotron">
                 <h1>Drop here</h1>
             </div>
 
-            <div id="drag" class="panel panel-default">
-                <div class="panel-body">
-                    Drag me to my target ;)
-                </div>
+            <div id="drag" class="alert alert-success">
+                Drag me to my target ;)
             </div>
 
             <hr/>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
 
+    <div class="row mt-3">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
             <h2>Special Modifiers + Mouse</h2>
 
             <div style="clear: both;"></div>
