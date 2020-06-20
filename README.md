@@ -5,6 +5,7 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c091b16c5832c890a59b/test_coverage)](https://codeclimate.com/github/Tyro-sc/tyro/test_coverage)
 
 # Tyro
+ -[x] Add html5 missing Nav Element
 
 ## Api
  -[ ] Factory methods - DA

@@ -310,6 +310,16 @@ class ComponentsTest {
         assert label.text() == 'Password'
     }
 
+    @Test
+    @DisplayName("Should have expected behaviours for Nav")
+    void nav() {
+        assert Nav in Component
+
+        Nav nav = $('#nav') as Nav
+
+        assert nav.links().size() == 3
+    }
+
     @CssIdentifier('div')
     class Message extends Panel {
         @Override
