@@ -10,7 +10,7 @@
 ## Api
  -[ ] Factory methods - DA
  -[ ] Transverse API - DA
- -[ ] Release
+ -[x] Release
 
 ## Documentation
  -[ ] Review Overview - DA
