@@ -177,7 +177,10 @@
                             <header>com/mycila/maven/plugin/license/templates/APACHE-2.txt</header>
                             <excludes>
                                 <exclude>**/README</exclude>
+                                <exclude>**/LICENCE</exclude>
                                 <exclude>**/*.yml</exclude>
+                                <exclude>mvn*</exclude>
+                                <exclude>.mvn/**</exclude>
                                 <exclude>**/*.adoc</exclude>
                                 <exclude>**/*.spec</exclude>
                                 <exclude>src/test/resources/**</exclude>
