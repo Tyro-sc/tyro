@@ -27,7 +27,6 @@ import sc.tyro.core.Tyro
 import sc.tyro.core.component.*
 import sc.tyro.core.component.field.RangeField
 import sc.tyro.core.component.field.TextField
-import sc.tyro.core.input.Mouse
 import sc.tyro.core.input.MouseModifiers
 import sc.tyro.core.support.Clearable
 
@@ -35,8 +34,6 @@ import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.containsString
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.Mockito.*
-import static sc.tyro.core.Config.provider
-import static sc.tyro.core.Config.provider
 import static sc.tyro.core.Config.provider
 import static sc.tyro.core.Tyro.*
 import static sc.tyro.core.input.Key.*

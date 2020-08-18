@@ -212,7 +212,7 @@ class Tyro {
     // Generic Component Factory
     static Browser browser() { new Browser(provider) }
 
-    static Button button(String text) { provider.findBy(Button).find { it.text() == text } }
+    static Button button(String text) { findByText(Button, text) }
 
     static Radio radio(String label) { provider.findBy(Radio).find { it.label() == label } }
 
@@ -226,11 +226,11 @@ class Tyro {
 
     static Item item(String value) { provider.findBy(Item).find { it.value() == value } }
 
-    static Heading heading(String text) { provider.findBy(Heading).find { it.text() == text } }
+    static Heading heading(String text) { findByText(Heading, text) }
 
     static Panel panel(String title) { provider.findBy(Panel).find { it.title() == title } }
 
-    static Link link(String text) { provider.findBy(Link).find { it.text() == text } }
+    static Link link(String text) { findByText(Link, text) }
 
     static PasswordField passwordField(String label) { provider.findBy(PasswordField).find { it.label() == label } }
 
@@ -276,5 +276,29 @@ class Tyro {
         void to(Object value) {
             input.value(value)
         }
+    }
+
+    private static <T extends Component> T unique(Collection<T> components) {
+        if(components.size() == 1 ) {
+            return components.first()
+        }
+        throw new IllegalStateException("")
+
+    }
+
+    protected static <T extends Component> T findByLabel(T clazz, String label) {
+        Collection<T> components = provider.findBy(clazz).findAll { it.label() == label }
+        if(components.size() == 1 ) {
+            return components.first()
+        }
+        throw new IllegalStateException("Find many components ${clazz.simpleName} with label '${label}'.")
+    }
+
+    protected static <T extends Component> T findByText(Class clazz , String text) {
+        Collection<T> components = provider.findBy(clazz).findAll { it.text() == text }
+        if(components.size() == 1 ) {
+            return components.first()
+        }
+        throw new IllegalStateException("Find many components ${clazz.simpleName} with text '${text}'.")
     }
 }
