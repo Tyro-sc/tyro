@@ -33,11 +33,6 @@ Tyro is a library to write functional tests. Functional tests means **SPECIFICAT
 
 === Philosophy
 
-
-
-
-
-
 Tyro is a strongly opinionated tool. There is no anonymous "WebElement". Everything needs to be a *COMPONENT*.
 Tyro is a typed UI component tool.
 
