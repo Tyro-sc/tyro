@@ -115,14 +115,14 @@ class InputFieldTest {
     @Test
     @DisplayName("Should have expected behaviours for DateTime")
     void dateTimeField() {
-        InputTypeDateTime in DateTimeField
-        InputTypeDateTime in Input
+        InputTypeDateTimeLocal in DateTimeField
+        InputTypeDateTimeLocal in Input
 
-        DateTimeField dateTime = $('#datetime_field') as InputTypeDateTime
+        DateTimeField dateTime = $('#datetime_field') as InputTypeDateTimeLocal
 
         assert dateTime.value() == ''
-        dateTime.value('2010-06-25')
-        dateTime.should { have value('2010-06-25') }
+        dateTime.value('2010-06-25T10:15')
+        dateTime.should { have value('2010-06-25T10:15') }
     }
 
     @Test
