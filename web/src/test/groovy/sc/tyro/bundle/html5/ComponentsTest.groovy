@@ -394,6 +394,62 @@ class ComponentsTest {
         assert dialog.available()
     }
 
+    @Test
+    @DisplayName("Should have expected behaviours for summary")
+    void summary() {
+        assert Summary in TextSupport
+
+        Summary summary = $('summary') as Summary
+
+        assert summary.text() == 'Details'
+    }
+
+    @Test
+    @DisplayName("Should have expected behaviours for details")
+    void details() {
+        assert Details in TextSupport
+
+        Details details = $('details') as Details
+
+        assert details.text() == 'Something small enough to escape casual notice.'
+        assert details.summary().text() == 'Details'
+    }
+
+    @Test
+    @DisplayName("Should have expected behaviours for legend")
+    void legend() {
+        assert Legend in TextSupport
+
+        Legend legend = $('legend') as Legend
+
+        assert legend.text() == 'Choose your favorite monster'
+    }
+
+    @Test
+    @DisplayName("Should have expected behaviours for fieldset")
+    void fieldset() {
+        FieldSet fieldSet = $('fieldset') as FieldSet
+
+        fieldSet.legend().text() == 'Choose your favorite monster'
+    }
+
+    @Test
+    @DisplayName("Should have expected behaviours for abbr")
+    void abbr() {
+        Abbr abbr = $('abbr') as Abbr
+
+        abbr.text() == 'CSS'
+        abbr.title() == 'Cascading Style Sheets'
+    }
+
+    @Test
+    @DisplayName("Should have expected behaviours for cite")
+    void cite() {
+        Cite cite = $('cite') as Cite
+
+        cite.text() == 'Nineteen Eighty-Four'
+    }
+
     @CssIdentifier('div')
     class Message extends Panel {
         @Override

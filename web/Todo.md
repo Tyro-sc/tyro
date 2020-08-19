@@ -1,5 +1,7 @@
 TODO
 
+<caption>
+
 <blockquote>
 <dd>
 <dl>
@@ -7,20 +9,11 @@ TODO
 <figcaption>
 <figure>
 
-<abbr>
-<bdi>
-<bdo>
-<cite>
-<code>
-<data>
-<dfn>
 <em>
-<kbd>
 <mark>
 <q>
 <sub>
 <sup>
-<time>
 <var> 	
 <wbr>
 
@@ -32,13 +25,4 @@ TODO
 <track>
 <video>
 
-
 <datalist>
-<fieldset>
-<legend>
-
-
-<details>
-<menu> 	
-<menuitem>
-<summary>
