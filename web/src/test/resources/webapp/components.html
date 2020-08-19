@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="utf-8">
     <title>Tyro Rocks</title>
 
-    <meta charset="utf-8">
     <meta name="description" content="Tyro Rocks">
+    <meta name="author" content="ovea">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link href="css/bootstrap-4.5.0.min.css" rel="stylesheet" media="screen">
-
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <script src="js/jquery-3.1.1.min.js"></script>
 </head>
 <body>
 
-<nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="#">Tyro Components Tests</a>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">Tyro Components Tests</a>
+    </div>
 </nav>
 
 <div class="container-fluid">
@@ -24,11 +26,11 @@
 
             <hr/>
 
-            <h3>Link</h3>
+            <h1>Link</h1>
             <a id="link" href="https://www.google.ca">Link external page</a>
             <hr/>
 
-            <h3>Button</h3>
+            <h1>Button</h1>
             <input type="button" id="button" class="btn btn-primary" value="Button"/>
             <input type="submit" id="submit" class="btn btn-primary" disabled="disabled" value="Submit"/>
             <input type="reset" id="reset" class="btn btn-primary" value="Reset"/>
@@ -36,32 +38,37 @@
 
             <hr/>
 
-            <h3>Checkbox</h3>
-            <label>
+            <h1>Checkbox</h1>
+            <label class="checkbox">
                 <input type="checkbox" id="checkbox">Check me out
             </label>
-            <label>
+
+            <h1>Disabled Checkbox</h1>
+            <label class="checkbox">
                 <input type="checkbox" id="disabled_checkbox" disabled>Disabled
             </label>
 
             <hr/>
 
-            <h3>Radio</h3>
-            <label>
+            <h1>Radio</h1>
+            <label class="radio">
                 <input type="radio" id="radio_1" name="radio" value="value_1" checked>
-                checked
+                Radio checked
             </label>
-            <label>
+            <label class="radio">
                 <input type="radio" id="radio_2" name="radio" value="value_2">
-                unchecked
+                Radio unchecked
             </label>
-            <label>
+            <hr/>
+
+            <h1>Disabled Radio</h1>
+            <label class="radio">
                 <input type="radio" id="disabled_radio" disabled>Disabled
             </label>
 
             <hr/>
 
-            <h3>Text Fields</h3>
+            <h1>TextFieds</h1>
 
             <div class="row">
                 <div class="col-md-6">
@@ -137,7 +144,7 @@
 
                     <label class="control-label" for="datetime_field">DateTime</label>
                     <div class="controls">
-                        <input type="datetime" id="datetime_field" placeholder="DateTime">
+                        <input type="datetime-local" id="datetime_field" placeholder="DateTime">
                     </div>
 
                     <label class="control-label" for="read_only_and_filled">Field ReadOnly and Filled</label>
@@ -154,7 +161,7 @@
 
             <hr/>
 
-            <h3>DropDown</h3>
+            <h1>DropDown</h1>
             <label class="control-label" for="empty_select">Empty</label>
 
             <div class="controls">
@@ -211,8 +218,7 @@
             </div>
 
             <hr/>
-
-            <h3>ListBox</h3>
+            <h1>ListBox</h1>
 
             <label class="control-label" for="empty_multi_select">Empty</label>
             <div class="controls">
@@ -277,12 +283,13 @@
             </ol>
 
             <hr/>
-            <h3>Image</h3>
+
+            <h1>Image</h1>
             <img id="image" src="img/Montpellier.jpg"/>
 
             <hr/>
 
-            <h3>Panel</h3>
+            <h1>Panel</h1>
 
             <div id="panel"></div>
             <div id="disabled-panel" disabled></div>
@@ -300,42 +307,42 @@
 
             <hr/>
 
-            <h3>DataGrid</h3>
+            <h1>DataGrid</h1>
 
             <table id="empty_data_grid" class="table">
             </table>
 
-            <table id="data_grid" class="table table-striped table-bordered">
-                <thead class="thead-dark">
+            <table id="data_grid" class="table">
+                <thead>
                 <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Column 1 title</th>
-                    <th scope="col">Column 2 title</th>
-                    <th scope="col">Column 3 title</th>
+                    <th></th>
+                    <th>Column 1 title</th>
+                    <th>Column 2 title</th>
+                    <th>Column 3 title</th>
                 </tr>
                 </thead>
 
                 <tbody>
                 <tr>
-                    <th scope="row">Row 1</th>
+                    <th>Row 1</th>
                     <td>cell 11</td>
                     <td>cell 12</td>
                     <td>cell 13</td>
                 </tr>
                 <tr>
-                    <th scope="row">Row 2</th>
+                    <th>Row 2</th>
                     <td>cell 21</td>
                     <td>cell 22</td>
                     <td>cell 23</td>
                 </tr>
                 <tr>
-                    <th scope="row">Row 3</th>
+                    <th>Row 3</th>
                     <td>cell 31</td>
                     <td>cell 32</td>
                     <td>cell 33</td>
                 </tr>
                 <tr>
-                    <th scope="row">Row 4</th>
+                    <th>Row 4</th>
                     <td>cell 41</td>
                     <td>cell 42</td>
                     <td>cell 43</td>
@@ -344,7 +351,7 @@
 
                 <tfoot>
                 <tr>
-                    <th scope="row"></th>
+                    <th></th>
                     <td>footer 1</td>
                     <td>footer 2</td>
                     <td>footer 3</td>
@@ -355,19 +362,19 @@
 
             <hr/>
 
-            <h3>Section, Article, Header, Footer, Aside, Nav</h3>
+            <h1>Section, Article, Header, Footer, Aside</h1>
 
             <div>
-                <nav id="nav">
-                    <a href="">Link 1</a>
-                    <a href="">Link 2</a>
-                    <a href="">Link 3</a>
-                </nav>
-                <header id="header"></header>
+                <header id="header">
+                </header>
+
                 <section id="section">
+
                     <p id="p_1">Paragraph 1</p>
+
                     <article id="article">
                         <p id="p_2">Paragraph 2</p>
+
                         <p id="p_3">Paragraph 3</p>
                     </article>
                 </section>
@@ -381,7 +388,7 @@
 
             <hr/>
 
-            <h3>Form</h3>
+            <h1>Form</h1>
             <form id="form">
                 <div class="alert alert-success">The form was submitted <span>0</span> time(s)</div>
                 <div class="form-group">
@@ -405,7 +412,11 @@
 
             <hr/>
 
-            <h3>Inheritance</h3>
+            <progress max="100" value="70">70%</progress>
+
+            <hr/>
+
+            <h1>Inheritance</h1>
             <div>
                 <button id="btn_default" type="button" class="btn btn-default">Default</button>
                 <button id="btn_primary" type="button" class="btn btn-primary">Primary</button>
@@ -418,6 +429,43 @@
             <hr/>
 
             <span id="span">A span</span>
+
+            <hr/>
+
+            <address>
+                You can contact author at...
+            </address>
+
+            <main></main>
+            <pre>
+                 y
+                YYY
+                 y
+            </pre>
+
+            <dialog></dialog>
+
+            <details>
+                <summary>Details</summary>
+                Something small enough to escape casual notice.
+            </details>
+
+            <fieldset>
+                <legend>Choose your favorite monster</legend>
+
+                <input type="radio" id="kraken" name="monster">
+                <label for="kraken">Kraken</label><br/>
+
+                <input type="radio" id="sasquatch" name="monster">
+                <label for="sasquatch">Sasquatch</label><br/>
+
+                <input type="radio" id="mothman" name="monster">
+                <label for="mothman">Mothman</label>
+            </fieldset>
+
+            <p>You can use <abbr title="Cascading Style Sheets">CSS</abbr> to style your HTML.</p>
+
+            <cite><a href="http://www.george-orwell.org/1984/0.html">Nineteen Eighty-Four</a></cite>
 
         </div>
         <div class="col-md-2"></div>

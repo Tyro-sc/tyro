@@ -1,3 +1,18 @@
+/**
+ * Copyright © 2020 Ovea (d.avenante@gmail.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package sc.tyro.core
 
 import org.hamcrest.Matcher
@@ -197,53 +212,53 @@ class Tyro {
     // Generic Component Factory
     static Browser browser() { new Browser(provider) }
 
-    static Button button(String text) { provider.findBy(Button).find { it.text() == text } }
+    static Button button(String text) { findByText(Button, text) }
 
-    static Radio radio(String label) { provider.findBy(Radio).find { it.label() == label } }
+    static Radio radio(String label) { findByLabel(Radio, label) }
 
-    static CheckBox checkbox(String label) { provider.findBy(CheckBox).find { it.label() == label } }
+    static CheckBox checkbox(String label) { findByLabel(CheckBox, label) }
 
-    static Dropdown dropdown(String label) { provider.findBy(Dropdown).find { it.label() == label } }
+    static Dropdown dropdown(String label) { findByLabel(Dropdown, label) }
 
-    static ListBox listBox(String label) { provider.findBy(ListBox).find { it.label() == label } }
+    static ListBox listBox(String label) { findByLabel(ListBox, label) }
 
-    static Group group(String value) { provider.findBy(Group).find { it.value() == value } }
+    static Group group(String value) { findByValue(Group, value) }
 
-    static Item item(String value) { provider.findBy(Item).find { it.value() == value } }
+    static Item item(String value) { findByValue(Item, value) }
 
-    static Heading heading(String text) { provider.findBy(Heading).find { it.text() == text } }
+    static Heading heading(String text) { findByText(Heading, text) }
 
-    static Panel panel(String title) { provider.findBy(Panel).find { it.title() == title } }
+    static Panel panel(String title) { findByTitle(Panel, title)  }
 
-    static Link link(String text) { provider.findBy(Link).find { it.text() == text } }
+    static Link link(String text) { findByText(Link, text) }
 
-    static PasswordField passwordField(String label) { provider.findBy(PasswordField).find { it.label() == label } }
+    static PasswordField passwordField(String label) { findByLabel(PasswordField, label) }
 
-    static TextField textField(String label) { provider.findBy(TextField).find { it.label() == label } }
+    static TextField textField(String label) { findByLabel(TextField, label) }
 
-    static SearchField searchField(String label) { provider.findBy(SearchField).find { it.label() == label } }
+    static SearchField searchField(String label) { findByLabel(SearchField, label) }
 
-    static EmailField emailField(String label) { provider.findBy(EmailField).find { it.label() == label } }
+    static EmailField emailField(String label) { findByLabel(EmailField, label) }
 
-    static URLField urlField(String label) { provider.findBy(URLField).find { it.label() == label } }
+    static URLField urlField(String label) { findByLabel(URLField, label) }
 
-    static NumberField numberField(String label) { provider.findBy(NumberField).find { it.label() == label } }
+    static NumberField numberField(String label) { findByLabel(NumberField, label) }
 
-    static RangeField rangeField(String label) { provider.findBy(RangeField).find { it.label() == label } }
+    static RangeField rangeField(String label) { findByLabel(RangeField, label) }
 
-    static DateField dateField(String label) { provider.findBy(DateField).find { it.label() == label } }
+    static DateField dateField(String label) { findByLabel(DateField, label) }
 
-    static ColorField colorField(String label) { provider.findBy(ColorField).find { it.label() == label } }
+    static ColorField colorField(String label) { findByLabel(ColorField, label) }
 
-    static DateTimeField dateTimeField(String label) { provider.findBy(DateTimeField).find { it.label() == label } }
+    static DateTimeField dateTimeField(String label) { findByLabel(DateTimeField, label) }
 
-    static MonthField monthField(String label) { provider.findBy(MonthField).find { it.label() == label } }
+    static MonthField monthField(String label) { findByLabel(MonthField, label) }
 
-    static PhoneField phoneField(String label) { provider.findBy(PhoneField).find { it.label() == label } }
+    static PhoneField phoneField(String label) { findByLabel(PhoneField, label) }
 
-    static TimeField timeField(String label) { provider.findBy(TimeField).find { it.label() == label } }
+    static TimeField timeField(String label) { findByLabel(TimeField, label) }
 
-    static WeekField weekField(String label) { provider.findBy(WeekField).find { it.label() == label } }
+    static WeekField weekField(String label) { findByLabel(WeekField, label) }
 
     static void waitUntil(Closure c, Matcher what = null) { wait.waitUntil(c, what) }
 
@@ -261,5 +276,37 @@ class Tyro {
         void to(Object value) {
             input.value(value)
         }
+    }
+
+    static <T extends Component> T findByLabel(Class clazz, String label) {
+        Collection<T> components = provider.findBy(clazz).findAll { it.label() == label }
+        if (components.size() == 1) {
+            return components.first()
+        }
+        throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with label '${label}'.")
+    }
+
+    static <T extends Component> T findByText(Class clazz, String text) {
+        Collection<T> components = provider.findBy(clazz).findAll { it.text() == text }
+        if (components.size() == 1) {
+            return components.first()
+        }
+        throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with text '${text}'.")
+    }
+
+    static <T extends Component> T findByValue(Class clazz, String value) {
+        Collection<T> components = provider.findBy(clazz).findAll { it.value() == value }
+        if (components.size() == 1) {
+            return components.first()
+        }
+        throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with value '${value}'.")
+    }
+
+    static <T extends Component> T findByTitle(Class clazz, String title) {
+        Collection<T> components = provider.findBy(clazz).findAll { it.title() == title }
+        if (components.size() == 1) {
+            return components.first()
+        }
+        throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with title '${title}'.")
     }
 }

@@ -1,9 +1,27 @@
+/**
+ * Copyright © 2020 Ovea (d.avenante@gmail.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package sc.tyro.bundle.html5
 
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import sc.tyro.bundle.html5.Button
+import sc.tyro.bundle.html5.Form
+import sc.tyro.bundle.html5.Label
 import sc.tyro.bundle.html5.heading.*
 import sc.tyro.bundle.html5.input.InputTypeCheckBox
 import sc.tyro.bundle.html5.input.InputTypeEmail
@@ -12,7 +30,9 @@ import sc.tyro.bundle.html5.input.InputTypeRadio
 import sc.tyro.core.ComponentException
 import sc.tyro.core.component.*
 import sc.tyro.core.component.field.EmailField
+import sc.tyro.core.support.property.MaximumSupport
 import sc.tyro.core.support.property.TextSupport
+import sc.tyro.core.support.property.ValueSupport
 import sc.tyro.web.CssIdentifier
 import sc.tyro.web.TyroWebTestExtension
 
@@ -262,11 +282,11 @@ class ComponentsTest {
         assert InputTypeRadio in Radio
 
         Radio radio = $('#radio_1') as InputTypeRadio
-        assert radio.label() == 'checked'
+        assert radio.label() == 'Radio checked'
         assert radio.checked()
 
         radio = $('#radio_2') as InputTypeRadio
-        assert radio.label() == 'unchecked'
+        assert radio.label() == 'Radio unchecked'
         assert !radio.checked()
         radio.click()
         assert radio.checked()
@@ -311,13 +331,123 @@ class ComponentsTest {
     }
 
     @Test
-    @DisplayName("Should have expected behaviours for Nav")
+    @DisplayName("Should have expected behaviours for address")
+    void address() {
+        assert Address in TextSupport
+
+        Address address = $('address') as Address
+
+        assert address.text() == 'You can contact author at...'
+    }
+
+    @Test
+    @DisplayName("Should have expected behaviours for hr")
+    void hr() {
+        Hr hr = $('hr:first') as Hr
+
+        assert hr.visible()
+    }
+
+    @Test
+    @DisplayName("Should have expected behaviours for nav")
     void nav() {
-        assert Nav in Component
+        Nav nav = $('nav.navbar') as Nav
 
-        Nav nav = $('#nav') as Nav
+        assert nav.visible()
+    }
 
-        assert nav.links().size() == 3
+    @Test
+    @DisplayName("Should have expected behaviours for main")
+    void main() {
+        Main main = $('main') as Main
+
+        assert main.visible()
+    }
+
+    @Test
+    @DisplayName("Should have expected behaviours for pre")
+    void pre() {
+        assert Pre in TextSupport
+
+        Pre pre = $('pre') as Pre
+
+        assert pre.text() == '                 y\n                YYY\n                 y\n            '
+    }
+
+    @Test
+    @DisplayName("Should have expected behaviours for progress")
+    void progress() {
+        assert Progress in MaximumSupport
+        assert Progress in ValueSupport
+
+        Progress progress = $('progress') as Progress
+
+        assert progress.maximum() == 100
+        assert progress.value() == 70
+    }
+
+    @Test
+    @DisplayName("Should have expected behaviours for dialog")
+    void dialog() {
+        Dialog dialog = $('dialog') as Dialog
+
+        assert dialog.available()
+    }
+
+    @Test
+    @DisplayName("Should have expected behaviours for summary")
+    void summary() {
+        assert Summary in TextSupport
+
+        Summary summary = $('summary') as Summary
+
+        assert summary.text() == 'Details'
+    }
+
+    @Test
+    @DisplayName("Should have expected behaviours for details")
+    void details() {
+        assert Details in TextSupport
+
+        Details details = $('details') as Details
+
+        assert details.text() == 'Something small enough to escape casual notice.'
+        assert details.summary().text() == 'Details'
+    }
+
+    @Test
+    @DisplayName("Should have expected behaviours for legend")
+    void legend() {
+        assert Legend in TextSupport
+
+        Legend legend = $('legend') as Legend
+
+        assert legend.text() == 'Choose your favorite monster'
+    }
+
+    @Test
+    @DisplayName("Should have expected behaviours for fieldset")
+    void fieldset() {
+        FieldSet fieldSet = $('fieldset') as FieldSet
+
+        fieldSet.legend().text() == 'Choose your favorite monster'
+    }
+
+    @Test
+    @DisplayName("Should have expected behaviours for abbr")
+    void abbr() {
+        Abbr abbr = $('abbr') as Abbr
+
+        abbr.text() == 'CSS'
+        abbr.title() == 'Cascading Style Sheets'
+    }
+
+    @Test
+    @DisplayName("Should have expected behaviours for cite")
+    void cite() {
+        Cite cite = $('cite') as Cite
+
+        cite.text() == 'Nineteen Eighty-Four'
     }
 
     @CssIdentifier('div')

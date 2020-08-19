@@ -1,3 +1,18 @@
+/**
+ * Copyright © 2020 Ovea (d.avenante@gmail.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package sc.tyro.dsl
 
 import org.junit.jupiter.api.BeforeEach
@@ -12,7 +27,6 @@ import sc.tyro.core.Tyro
 import sc.tyro.core.component.*
 import sc.tyro.core.component.field.RangeField
 import sc.tyro.core.component.field.TextField
-import sc.tyro.core.input.Mouse
 import sc.tyro.core.input.MouseModifiers
 import sc.tyro.core.support.Clearable
 
@@ -20,8 +34,6 @@ import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.containsString
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.Mockito.*
-import static sc.tyro.core.Config.provider
-import static sc.tyro.core.Config.provider
 import static sc.tyro.core.Config.provider
 import static sc.tyro.core.Tyro.*
 import static sc.tyro.core.input.Key.*
