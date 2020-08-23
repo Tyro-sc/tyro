@@ -15,7 +15,7 @@
  */
 package sc.tyro.core
 
-import com.google.common.reflect.ClassPath
+import io.github.classgraph.ClassGraph
 import sc.tyro.core.component.Component
 
 import java.time.Duration
@@ -39,10 +39,11 @@ class Config {
     final static Collection<Class<Component>> componentTypes = new HashSet<>()
 
     static void scan(String... packageNames) {
+        componentTypes.clear()
         componentTypes.addAll(packageNames
-                .collect { ClassPath.from(Thread.currentThread().contextClassLoader).getTopLevelClassesRecursive(it) }
+                .collect {new ClassGraph().whitelistPackages(it).scan().getSubclasses(Component.name) }
                 .flatten()
-                .collect { it.load() }
+                .collect {it.loadClass() }
                 .findAll { Component.isAssignableFrom(it) && identifiers.hasIdentifier(it) })
     }
 }

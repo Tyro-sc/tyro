@@ -15,7 +15,6 @@
  */
 package sc.tyro.bundle.html5
 
-import sc.tyro.bundle.html5.table.Tr
 import sc.tyro.core.By
 import sc.tyro.core.component.Component
 import sc.tyro.core.support.property.TextSupport
