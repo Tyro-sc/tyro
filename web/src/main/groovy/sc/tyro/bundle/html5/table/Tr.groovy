@@ -27,7 +27,7 @@ import sc.tyro.web.CssIdentifier
 class Tr extends Row {
     @Override
     List<Td> cells() {
-        provider.findAll(By.expression("\$('[id=\"${id()}\"]').find('td')"), Td)
+        provider.findAll(Td, By.expression("\$('[id=\"${id()}\"]').find('td')"))
     }
 
     @Override

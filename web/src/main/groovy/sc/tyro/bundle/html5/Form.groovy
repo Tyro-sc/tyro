@@ -29,7 +29,7 @@ import sc.tyro.web.CssIdentifier
 class Form extends sc.tyro.core.component.Form {
     @Override
     void reset() {
-        Button reset_button = provider.find(By.expression('#' + id() + ' [type=reset]:first'), Button)
+        Button reset_button = provider.find(Button, By.expression('#' + id() + ' [type=reset]:first'))
         if (reset_button && reset_button.available())
             reset_button.click()
         else
@@ -38,7 +38,7 @@ class Form extends sc.tyro.core.component.Form {
 
     @Override
     void submit() {
-        Button submit_button = provider.find(By.expression('#' + id() + ' [type=submit]:first'), Button)
+        Button submit_button = provider.find(Button, By.expression('#' + id() + ' [type=submit]:first'))
         if (submit_button && submit_button.available())
             submit_button.click()
         else
@@ -47,7 +47,7 @@ class Form extends sc.tyro.core.component.Form {
 
     @Override
     boolean valid() {
-        provider.findAll(By.expression('#' + id() + ' input'), Component).findAll { input ->
+        provider.findAll(Component, By.expression('#' + id() + ' input')).findAll { input ->
             provider.check(input.id(), "it.is(':invalid')")
         }.empty
     }
