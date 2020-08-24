@@ -265,8 +265,7 @@ class ComponentsTest {
     @Test
     @DisplayName("Should have expected behaviours for Paragraph")
     void paragraph() {
-        assert P in Component
-        assert P in TextSupport
+        assert P in Paragraph
 
         P paragraph = $('#p_1') as P
 
