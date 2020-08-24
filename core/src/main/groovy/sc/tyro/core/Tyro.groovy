@@ -40,15 +40,15 @@ import static sc.tyro.core.input.Key.CTRL
  */
 class Tyro {
     static Component $(String expression) {
-        provider.find(By.expression(expression), Component)
+        provider.find(Component, By.expression(expression))
     }
 
     static <T extends Component> List<T> $$(String expression, Class<T> clazz = Component) {
-        provider.findAll(By.expression(expression), clazz)
+        provider.findAll(clazz, By.expression(expression))
     }
 
-    static <T extends Component> List<T> findBy(Class<T> clazz = Component) {
-        provider.findBy(clazz)
+    static <T extends Component> List<T> findAll(Class<T> clazz = Component) {
+        provider.findAll(clazz)
     }
 
     static mouse = new Mouse()
@@ -279,7 +279,7 @@ class Tyro {
     }
 
     static <T extends Component> T findByLabel(Class clazz, String label) {
-        Collection<T> components = provider.findBy(clazz).findAll { it.label() == label }
+        Collection<T> components = provider.findAll(clazz).findAll { it.label() == label }
         if (components.size() == 1) {
             return components.first()
         }
@@ -287,7 +287,7 @@ class Tyro {
     }
 
     static <T extends Component> T findByText(Class clazz, String text) {
-        Collection<T> components = provider.findBy(clazz).findAll { it.text() == text }
+        Collection<T> components = provider.findAll(clazz).findAll { it.text() == text }
         if (components.size() == 1) {
             return components.first()
         }
@@ -295,7 +295,7 @@ class Tyro {
     }
 
     static <T extends Component> T findByValue(Class clazz, String value) {
-        Collection<T> components = provider.findBy(clazz).findAll { it.value() == value }
+        Collection<T> components = provider.findAll(clazz).findAll { it.value() == value }
         if (components.size() == 1) {
             return components.first()
         }
@@ -303,7 +303,7 @@ class Tyro {
     }
 
     static <T extends Component> T findByTitle(Class clazz, String title) {
-        Collection<T> components = provider.findBy(clazz).findAll { it.title() == title }
+        Collection<T> components = provider.findAll(clazz).findAll { it.title() == title }
         if (components.size() == 1) {
             return components.first()
         }

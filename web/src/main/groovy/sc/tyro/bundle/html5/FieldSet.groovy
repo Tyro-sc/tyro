@@ -26,6 +26,6 @@ import sc.tyro.web.CssIdentifier
 @CssIdentifier('fieldset')
 class FieldSet extends Component {
     Legend legend() {
-        provider.find(By.expression('#' + id() + ' legend'), Legend)
+        provider.find(Legend, By.expression('#' + id() + ' legend'))
     }
 }

@@ -73,7 +73,7 @@ class FactoryTest {
         Button button_2 = mock(Button)
         when(button_2.text()).thenReturn('!Ok')
 
-        when(provider.findBy(Button)).thenReturn(List.of(button_1, button_2))
+        when(provider.findAll(Button)).thenReturn(List.of(button_1, button_2))
 
         button("Ok").should { be available }
 
@@ -93,7 +93,7 @@ class FactoryTest {
         Heading heading_2 = mock(Heading)
         when(heading_2.text()).thenReturn('!Title')
 
-        when(provider.findBy(Heading)).thenReturn(List.of(heading_1, heading_2))
+        when(provider.findAll(Heading)).thenReturn(List.of(heading_1, heading_2))
 
         heading("Title").should { be available }
 
@@ -113,7 +113,7 @@ class FactoryTest {
         Link link_2 = mock(Link)
         when(link_2.text()).thenReturn('!Link')
 
-        when(provider.findBy(Link)).thenReturn(List.of(link_1, link_2))
+        when(provider.findAll(Link)).thenReturn(List.of(link_1, link_2))
 
         link("Link").should { be available }
 
@@ -134,7 +134,7 @@ class FactoryTest {
         Radio radio_2 = mock(Radio)
         when(radio_2.label()).thenReturn('!Label')
 
-        when(provider.findBy(Radio)).thenReturn(List.of(radio_1, radio_2))
+        when(provider.findAll(Radio)).thenReturn(List.of(radio_1, radio_2))
 
         // Should fail if more than on match
         when(radio_2.label()).thenReturn('Label')
@@ -151,7 +151,7 @@ class FactoryTest {
         CheckBox checkBox_2 = mock(CheckBox)
         when(checkBox_2.label()).thenReturn('!Label')
 
-        when(provider.findBy(CheckBox)).thenReturn(List.of(checkBox_1, checkBox_2))
+        when(provider.findAll(CheckBox)).thenReturn(List.of(checkBox_1, checkBox_2))
 
         // Should fail if more than on match
         when(checkBox_2.label()).thenReturn('Label')
@@ -168,7 +168,7 @@ class FactoryTest {
         Dropdown dropdown_2 = mock(Dropdown)
         when(dropdown_2.label()).thenReturn('!Label')
 
-        when(provider.findBy(Dropdown)).thenReturn(List.of(dropdown_1, dropdown_2))
+        when(provider.findAll(Dropdown)).thenReturn(List.of(dropdown_1, dropdown_2))
 
         // Should fail if more than on match
         when(dropdown_2.label()).thenReturn('Label')
@@ -185,7 +185,7 @@ class FactoryTest {
         ListBox listBox_2 = mock(ListBox)
         when(listBox_2.label()).thenReturn('!Label')
 
-        when(provider.findBy(ListBox)).thenReturn(List.of(listBox_1, listBox_2))
+        when(provider.findAll(ListBox)).thenReturn(List.of(listBox_1, listBox_2))
 
         // Should fail if more than on match
         when(listBox_2.label()).thenReturn('Label')
@@ -202,7 +202,7 @@ class FactoryTest {
         PasswordField passwordField_2 = mock(PasswordField)
         when(passwordField_2.label()).thenReturn('!Label')
 
-        when(provider.findBy(PasswordField)).thenReturn(List.of(passwordField_1, passwordField_2))
+        when(provider.findAll(PasswordField)).thenReturn(List.of(passwordField_1, passwordField_2))
 
         // Should fail if more than on match
         when(passwordField_2.label()).thenReturn('Label')
@@ -219,7 +219,7 @@ class FactoryTest {
         TextField textField_2 = mock(TextField)
         when(textField_2.label()).thenReturn('!Label')
 
-        when(provider.findBy(TextField)).thenReturn(List.of(textField_1, textField_2))
+        when(provider.findAll(TextField)).thenReturn(List.of(textField_1, textField_2))
 
         // Should fail if more than on match
         when(textField_2.label()).thenReturn('Label')
@@ -236,7 +236,7 @@ class FactoryTest {
         SearchField searchField_2 = mock(SearchField)
         when(searchField_2.label()).thenReturn('!Label')
 
-        when(provider.findBy(SearchField)).thenReturn(List.of(searchField_1, searchField_2))
+        when(provider.findAll(SearchField)).thenReturn(List.of(searchField_1, searchField_2))
 
         // Should fail if more than on match
         when(searchField_2.label()).thenReturn('Label')
@@ -253,7 +253,7 @@ class FactoryTest {
         EmailField emailField_2 = mock(EmailField)
         when(emailField_2.label()).thenReturn('!Label')
 
-        when(provider.findBy(EmailField)).thenReturn(List.of(emailField_1, emailField_2))
+        when(provider.findAll(EmailField)).thenReturn(List.of(emailField_1, emailField_2))
 
         // Should fail if more than on match
         when(emailField_2.label()).thenReturn('Label')
@@ -270,7 +270,7 @@ class FactoryTest {
         URLField urlField_2 = mock(URLField)
         when(urlField_2.label()).thenReturn('!Label')
 
-        when(provider.findBy(URLField)).thenReturn(List.of(urlField_1, urlField_2))
+        when(provider.findAll(URLField)).thenReturn(List.of(urlField_1, urlField_2))
 
         // Should fail if more than on match
         when(urlField_2.label()).thenReturn('Label')
@@ -287,7 +287,7 @@ class FactoryTest {
         NumberField numberField_2 = mock(NumberField)
         when(numberField_2.label()).thenReturn('!Label')
 
-        when(provider.findBy(NumberField)).thenReturn(List.of(numberField_1, numberField_2))
+        when(provider.findAll(NumberField)).thenReturn(List.of(numberField_1, numberField_2))
 
         // Should fail if more than on match
         when(numberField_2.label()).thenReturn('Label')
@@ -304,7 +304,7 @@ class FactoryTest {
         RangeField rangeField_2 = mock(RangeField)
         when(rangeField_2.label()).thenReturn('!Label')
 
-        when(provider.findBy(RangeField)).thenReturn(List.of(rangeField_1, rangeField_2))
+        when(provider.findAll(RangeField)).thenReturn(List.of(rangeField_1, rangeField_2))
 
         // Should fail if more than on match
         when(rangeField_2.label()).thenReturn('Label')
@@ -321,7 +321,7 @@ class FactoryTest {
         DateField dateField_2 = mock(DateField)
         when(dateField_2.label()).thenReturn('!Label')
 
-        when(provider.findBy(DateField)).thenReturn(List.of(dateField_1, dateField_2))
+        when(provider.findAll(DateField)).thenReturn(List.of(dateField_1, dateField_2))
 
         // Should fail if more than on match
         when(dateField_2.label()).thenReturn('Label')
@@ -338,7 +338,7 @@ class FactoryTest {
         ColorField colorField_2 = mock(ColorField)
         when(colorField_2.label()).thenReturn('!Label')
 
-        when(provider.findBy(ColorField)).thenReturn(List.of(colorField_1, colorField_2))
+        when(provider.findAll(ColorField)).thenReturn(List.of(colorField_1, colorField_2))
 
         // Should fail if more than on match
         when(colorField_2.label()).thenReturn('Label')
@@ -355,7 +355,7 @@ class FactoryTest {
         DateTimeField dateTimeField_2 = mock(DateTimeField)
         when(dateTimeField_2.label()).thenReturn('!Label')
 
-        when(provider.findBy(DateTimeField)).thenReturn(List.of(dateTimeField_1, dateTimeField_2))
+        when(provider.findAll(DateTimeField)).thenReturn(List.of(dateTimeField_1, dateTimeField_2))
 
         // Should fail if more than on match
         when(dateTimeField_2.label()).thenReturn('Label')
@@ -372,7 +372,7 @@ class FactoryTest {
         MonthField monthField_2 = mock(MonthField)
         when(monthField_2.label()).thenReturn('!Label')
 
-        when(provider.findBy(MonthField)).thenReturn(List.of(monthField_1, monthField_2))
+        when(provider.findAll(MonthField)).thenReturn(List.of(monthField_1, monthField_2))
 
         // Should fail if more than on match
         when(monthField_2.label()).thenReturn('Label')
@@ -389,7 +389,7 @@ class FactoryTest {
         PhoneField phoneField_2 = mock(PhoneField)
         when(phoneField_2.label()).thenReturn('!Label')
 
-        when(provider.findBy(PhoneField)).thenReturn(List.of(phoneField_1, phoneField_2))
+        when(provider.findAll(PhoneField)).thenReturn(List.of(phoneField_1, phoneField_2))
 
         // Should fail if more than on match
         when(phoneField_2.label()).thenReturn('Label')
@@ -406,7 +406,7 @@ class FactoryTest {
         TimeField timeField_2 = mock(TimeField)
         when(timeField_2.label()).thenReturn('!Label')
 
-        when(provider.findBy(TimeField)).thenReturn(List.of(timeField_1, timeField_2))
+        when(provider.findAll(TimeField)).thenReturn(List.of(timeField_1, timeField_2))
 
         // Should fail if more than on match
         when(timeField_2.label()).thenReturn('Label')
@@ -423,7 +423,7 @@ class FactoryTest {
         WeekField weekField_2 = mock(WeekField)
         when(weekField_2.label()).thenReturn('!Label')
 
-        when(provider.findBy(WeekField)).thenReturn(List.of(weekField_1, weekField_2))
+        when(provider.findAll(WeekField)).thenReturn(List.of(weekField_1, weekField_2))
 
         // Should fail if more than on match
         when(weekField_2.label()).thenReturn('Label')
@@ -442,7 +442,7 @@ class FactoryTest {
         Group group_2 = mock(Group)
         when(group_2.value()).thenReturn('!Value')
 
-        when(provider.findBy(Group)).thenReturn(List.of(group_1, group_2))
+        when(provider.findAll(Group)).thenReturn(List.of(group_1, group_2))
 
         // Should fail if more than on match
         when(group_2.value()).thenReturn('Value')
@@ -459,7 +459,7 @@ class FactoryTest {
         Item item_2 = mock(Item)
         when(item_2.value()).thenReturn('!Value')
 
-        when(provider.findBy(Item)).thenReturn(List.of(item_1, item_2))
+        when(provider.findAll(Item)).thenReturn(List.of(item_1, item_2))
 
         // Should fail if more than on match
         when(item_2.value()).thenReturn('Value')
@@ -478,7 +478,7 @@ class FactoryTest {
         Panel panel_2 = mock(Panel)
         when(panel_2.title()).thenReturn('!Title')
 
-        when(provider.findBy(Panel)).thenReturn(List.of(panel_1, panel_2))
+        when(provider.findAll(Panel)).thenReturn(List.of(panel_1, panel_2))
 
         // Should fail if more than on match
         when(panel_2.title()).thenReturn('Title')

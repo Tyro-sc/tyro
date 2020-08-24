@@ -29,7 +29,7 @@ import static sc.tyro.bundle.html5.input.Label.findFor
 class MultiSelect extends ListBox {
     @Override
     List<Option> items() {
-        provider.findAll(By.expression('#' + id() + ' option'), Option)
+        provider.findAll(Option, By.expression('#' + id() + ' option'))
     }
 
     @Override
@@ -45,7 +45,7 @@ class MultiSelect extends ListBox {
 
     @Override
     List<OptionGroup> groups() {
-        provider.findAll(By.expression('#' + id() + ' optgroup'), OptionGroup)
+        provider.findAll(OptionGroup, By.expression('#' + id() + ' optgroup'))
     }
 
     @Override

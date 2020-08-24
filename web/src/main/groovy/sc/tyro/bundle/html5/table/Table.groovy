@@ -27,12 +27,12 @@ import sc.tyro.web.CssIdentifier
 class Table extends DataGrid {
     @Override
     List<Th> columns() {
-        provider.findAll(By.expression('#' + id() + ' thead tr:last th'), Th)
+        provider.findAll(Th, By.expression('#' + id() + ' thead tr:last th'))
     }
 
     @Override
     List<Tr> rows() {
-        provider.findAll(By.expression('#' + id() + ' tbody tr'), Tr)
+        provider.findAll(Tr, By.expression('#' + id() + ' tbody tr'))
     }
 
     @Override

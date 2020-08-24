@@ -41,27 +41,27 @@ class TyroTest {
     }
 
     @Test
-    @DisplayName("Should expose a convenient's method to find a component by expression")
+    @DisplayName("Should expose a convenient method to find a component by expression")
     void findOneWith$() {
         $('expression')
 
-        verify(provider, times(1)).find(By.expression('expression'), Component)
+        verify(provider, times(1)).find(Component, By.expression('expression'))
     }
 
     @Test
-    @DisplayName("Should expose a convenient's method to find a list of components by expression")
+    @DisplayName("Should expose a convenient method to find a list of components by expression")
     void findManyWith$$() {
         $$('expression', Button)
 
-        verify(provider, times(1)).findAll(By.expression('expression'), Button)
+        verify(provider, times(1)).findAll(Button, By.expression('expression'))
     }
 
     @Test
     @DisplayName("Should find all components by type")
-    void findByType() {
-        findBy(Button)
+    void findAll() {
+        findAll(Button)
 
-        verify(provider, times(1)).findBy(Button)
+        verify(provider, times(1)).findAll(Button)
     }
 
     @Test
@@ -72,7 +72,7 @@ class TyroTest {
         Button button_2 = mock(Button)
         when(button_2.text()).thenReturn('Ko')
 
-        when(provider.findBy(Button)).thenReturn([button_1, button_2])
+        when(provider.findAll(Button)).thenReturn([button_1, button_2])
 
         Button button = button('Ok')
 
@@ -87,7 +87,7 @@ class TyroTest {
         Radio radio_2 = mock(Radio)
         when(radio_2.label()).thenReturn('lab')
 
-        when(provider.findBy(Radio)).thenReturn([radio_1, radio_2])
+        when(provider.findAll(Radio)).thenReturn([radio_1, radio_2])
 
         Radio radio = radio('label')
 
@@ -102,7 +102,7 @@ class TyroTest {
         CheckBox checkBox2 = mock(CheckBox)
         when(checkBox2.label()).thenReturn('lab')
 
-        when(provider.findBy(CheckBox)).thenReturn([checkBox1, checkBox2])
+        when(provider.findAll(CheckBox)).thenReturn([checkBox1, checkBox2])
 
         CheckBox checkBox = checkbox('label')
 
@@ -117,7 +117,7 @@ class TyroTest {
         Dropdown dropdown_2 = mock(Dropdown)
         when(dropdown_2.label()).thenReturn('lab')
 
-        when(provider.findBy(Dropdown)).thenReturn([dropdown_1, dropdown_2])
+        when(provider.findAll(Dropdown)).thenReturn([dropdown_1, dropdown_2])
 
         Dropdown dropdown = dropdown('label')
 
@@ -132,7 +132,7 @@ class TyroTest {
         ListBox listBox_2 = mock(ListBox)
         when(listBox_2.label()).thenReturn('lab')
 
-        when(provider.findBy(ListBox)).thenReturn([listBox_1, listBox_2])
+        when(provider.findAll(ListBox)).thenReturn([listBox_1, listBox_2])
 
         ListBox listBox = listBox('label')
 
@@ -147,7 +147,7 @@ class TyroTest {
         Group group_2 = mock(Group)
         when(group_2.value()).thenReturn('val')
 
-        when(provider.findBy(Group)).thenReturn([group_1, group_2])
+        when(provider.findAll(Group)).thenReturn([group_1, group_2])
 
         Group group = group('value')
 
@@ -162,7 +162,7 @@ class TyroTest {
         Item item_2 = mock(Item)
         when(item_2.value()).thenReturn('val')
 
-        when(provider.findBy(Item)).thenReturn([item_1, item_2])
+        when(provider.findAll(Item)).thenReturn([item_1, item_2])
 
         Item item = item('value')
 
@@ -177,7 +177,7 @@ class TyroTest {
         Heading heading_2 = mock(Heading)
         when(heading_2.text()).thenReturn('txt')
 
-        when(provider.findBy(Heading)).thenReturn([heading_1, heading_2])
+        when(provider.findAll(Heading)).thenReturn([heading_1, heading_2])
 
         Heading heading = heading('text')
 
@@ -192,7 +192,7 @@ class TyroTest {
         Panel panel_2 = mock(Panel)
         when(panel_2.title()).thenReturn('')
 
-        when(provider.findBy(Panel)).thenReturn([panel_1, panel_2])
+        when(provider.findAll(Panel)).thenReturn([panel_1, panel_2])
 
         Panel panel = panel('title')
 
@@ -207,7 +207,7 @@ class TyroTest {
         Link link_2 = mock(Link)
         when(link_2.text()).thenReturn('txt')
 
-        when(provider.findBy(Link)).thenReturn([link_1, link_2])
+        when(provider.findAll(Link)).thenReturn([link_1, link_2])
 
         Link link = link('text')
 
@@ -222,7 +222,7 @@ class TyroTest {
         PasswordField passwordField_2 = mock(PasswordField)
         when(passwordField_2.label()).thenReturn("lab")
 
-        when(provider.findBy(PasswordField)).thenReturn([passwordField_1, passwordField_2])
+        when(provider.findAll(PasswordField)).thenReturn([passwordField_1, passwordField_2])
 
         PasswordField passwordField = passwordField('label')
 
@@ -237,7 +237,7 @@ class TyroTest {
         TextField textField_2 = mock(TextField)
         when(textField_2.label()).thenReturn("lab")
 
-        when(provider.findBy(TextField)).thenReturn([textField_1, textField_2])
+        when(provider.findAll(TextField)).thenReturn([textField_1, textField_2])
 
         TextField textField = textField('label')
 
@@ -252,7 +252,7 @@ class TyroTest {
         SearchField searchField_2 = mock(SearchField)
         when(searchField_2.label()).thenReturn("lab")
 
-        when(provider.findBy(SearchField)).thenReturn([searchField_1, searchField_2])
+        when(provider.findAll(SearchField)).thenReturn([searchField_1, searchField_2])
 
         SearchField searchField = searchField('label')
 
@@ -267,7 +267,7 @@ class TyroTest {
         EmailField emailField_2 = mock(EmailField)
         when(emailField_2.label()).thenReturn("lab")
 
-        when(provider.findBy(EmailField)).thenReturn([emailField_1, emailField_2])
+        when(provider.findAll(EmailField)).thenReturn([emailField_1, emailField_2])
 
         EmailField emailField = emailField('label')
 
@@ -282,7 +282,7 @@ class TyroTest {
         URLField urlField_2 = mock(URLField)
         when(urlField_2.label()).thenReturn("lab")
 
-        when(provider.findBy(URLField)).thenReturn([urlField_1, urlField_2])
+        when(provider.findAll(URLField)).thenReturn([urlField_1, urlField_2])
 
         URLField urlField = urlField('label')
 
@@ -297,7 +297,7 @@ class TyroTest {
         NumberField numberField_2 = mock(NumberField)
         when(numberField_2.label()).thenReturn("lab")
 
-        when(provider.findBy(NumberField)).thenReturn([numberField_1, numberField_2])
+        when(provider.findAll(NumberField)).thenReturn([numberField_1, numberField_2])
 
         NumberField numberField = numberField('label')
 
@@ -312,7 +312,7 @@ class TyroTest {
         RangeField rangeField_2 = mock(RangeField)
         when(rangeField_2.label()).thenReturn("lab")
 
-        when(provider.findBy(RangeField)).thenReturn([rangeField_1, rangeField_2])
+        when(provider.findAll(RangeField)).thenReturn([rangeField_1, rangeField_2])
 
         RangeField rangeField = rangeField('label')
 
@@ -327,7 +327,7 @@ class TyroTest {
         DateField dateField_2 = mock(DateField)
         when(dateField_2.label()).thenReturn("lab")
 
-        when(provider.findBy(DateField)).thenReturn([dateField_1, dateField_2])
+        when(provider.findAll(DateField)).thenReturn([dateField_1, dateField_2])
 
         DateField dateField = dateField('label')
 
@@ -342,7 +342,7 @@ class TyroTest {
         ColorField colorField_2 = mock(ColorField)
         when(colorField_2.label()).thenReturn("lab")
 
-        when(provider.findBy(ColorField)).thenReturn([colorField_1,colorField_2])
+        when(provider.findAll(ColorField)).thenReturn([colorField_1,colorField_2])
 
         ColorField colorField = colorField('label')
 
@@ -357,7 +357,7 @@ class TyroTest {
         DateTimeField dateTimeField_2 = mock(DateTimeField)
         when(dateTimeField_2.label()).thenReturn("lab")
 
-        when(provider.findBy(DateTimeField)).thenReturn([dateTimeField_1, dateTimeField_2])
+        when(provider.findAll(DateTimeField)).thenReturn([dateTimeField_1, dateTimeField_2])
 
         DateTimeField dateTimeField = dateTimeField('label')
 
@@ -372,7 +372,7 @@ class TyroTest {
         MonthField monthField_2 = mock(MonthField)
         when(monthField_2.label()).thenReturn("lab")
 
-        when(provider.findBy(MonthField)).thenReturn([monthField_1, monthField_2])
+        when(provider.findAll(MonthField)).thenReturn([monthField_1, monthField_2])
 
         MonthField monthField = monthField('label')
 
@@ -387,7 +387,7 @@ class TyroTest {
         PhoneField phoneField_2 = mock(PhoneField)
         when(phoneField_2.label()).thenReturn("lab")
 
-        when(provider.findBy(PhoneField)).thenReturn([phoneField_1, phoneField_2])
+        when(provider.findAll(PhoneField)).thenReturn([phoneField_1, phoneField_2])
 
         PhoneField phoneField = phoneField('label')
 
@@ -402,7 +402,7 @@ class TyroTest {
         TimeField timeField_2 = mock(TimeField)
         when(timeField_2.label()).thenReturn("lab")
 
-        when(provider.findBy(TimeField)).thenReturn([timeField_1, timeField_2])
+        when(provider.findAll(TimeField)).thenReturn([timeField_1, timeField_2])
 
         TimeField timeField = timeField('label')
 
@@ -417,7 +417,7 @@ class TyroTest {
         WeekField weekField_2 = mock(WeekField)
         when(weekField_2.label()).thenReturn("lab")
 
-        when(provider.findBy(WeekField)).thenReturn([weekField_1, weekField_2])
+        when(provider.findAll(WeekField)).thenReturn([weekField_1, weekField_2])
 
         WeekField weekField = weekField('label')
 
