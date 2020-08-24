@@ -10,3 +10,5 @@ TODO
 
 remove all factories on files to juste use one field('label')
 Verify the type to see how is it set.
+
+Add in doc functional vs UI/UX

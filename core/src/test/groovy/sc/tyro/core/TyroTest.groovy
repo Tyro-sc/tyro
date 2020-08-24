@@ -19,10 +19,13 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import sc.tyro.core.component.*
-import sc.tyro.core.component.field.*
+import sc.tyro.core.component.field.EmailField
+import sc.tyro.core.component.field.Field
+import sc.tyro.core.component.field.PasswordField
 
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.is
+import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.Mockito.*
 import static sc.tyro.core.Tyro.*
 
@@ -64,363 +67,208 @@ class TyroTest {
         verify(provider, times(1)).findAll(Button)
     }
 
+    // =================  By Text   ======================
+
     @Test
-    @DisplayName("Should find Button by text")
+    @DisplayName("Should find button by text")
     void findButtonByText() {
         Button button_1 = mock(Button)
         when(button_1.text()).thenReturn('Ok')
         Button button_2 = mock(Button)
-        when(button_2.text()).thenReturn('Ko')
+        when(button_2.text()).thenReturn('!Ok')
 
-        when(provider.findAll(Button)).thenReturn([button_1, button_2])
+        when(provider.findAll(Button)).thenReturn(List.of(button_1, button_2))
 
-        Button button = button('Ok')
+        button("Ok").should { be available }
 
-        assertThat(button.text(), is('Ok'))
+        // Should fail if more than on match
+        when(button_2.text()).thenReturn('Ok')
+
+
+        IllegalStateException error = assertThrows(IllegalStateException, { button("Ok").should { be available } })
+        assertThat(error.message, is("Find 2 component(s) Button with text 'Ok'."))
     }
 
     @Test
-    @DisplayName("Should find Radio by label")
-    void findRadioByLabel() {
-        Radio radio_1 = mock(Radio)
-        when(radio_1.label()).thenReturn('label')
-        Radio radio_2 = mock(Radio)
-        when(radio_2.label()).thenReturn('lab')
-
-        when(provider.findAll(Radio)).thenReturn([radio_1, radio_2])
-
-        Radio radio = radio('label')
-
-        assertThat(radio.label(), is('label'))
-    }
-
-    @Test
-    @DisplayName("Should find CheckBox by label")
-    void findCheckBoxByLabel() {
-        CheckBox checkBox1 = mock(CheckBox)
-        when(checkBox1.label()).thenReturn('label')
-        CheckBox checkBox2 = mock(CheckBox)
-        when(checkBox2.label()).thenReturn('lab')
-
-        when(provider.findAll(CheckBox)).thenReturn([checkBox1, checkBox2])
-
-        CheckBox checkBox = checkbox('label')
-
-        assertThat(checkBox.label(), is('label'))
-    }
-
-    @Test
-    @DisplayName("Should find Dropdown by label")
-    void findDropdownByLabel() {
-        Dropdown dropdown_1 = mock(Dropdown)
-        when(dropdown_1.label()).thenReturn('label')
-        Dropdown dropdown_2 = mock(Dropdown)
-        when(dropdown_2.label()).thenReturn('lab')
-
-        when(provider.findAll(Dropdown)).thenReturn([dropdown_1, dropdown_2])
-
-        Dropdown dropdown = dropdown('label')
-
-        assertThat(dropdown.label(), is('label'))
-    }
-
-    @Test
-    @DisplayName("Should find ListBox by label")
-    void findListBoxByLabel() {
-        ListBox listBox_1 = mock(ListBox)
-        when(listBox_1.label()).thenReturn('label')
-        ListBox listBox_2 = mock(ListBox)
-        when(listBox_2.label()).thenReturn('lab')
-
-        when(provider.findAll(ListBox)).thenReturn([listBox_1, listBox_2])
-
-        ListBox listBox = listBox('label')
-
-        assertThat(listBox.label(), is('label'))
-    }
-
-    @Test
-    @DisplayName("Should find Group by value")
-    void findGroupByValue() {
-        Group group_1 = mock(Group)
-        when(group_1.value()).thenReturn('value')
-        Group group_2 = mock(Group)
-        when(group_2.value()).thenReturn('val')
-
-        when(provider.findAll(Group)).thenReturn([group_1, group_2])
-
-        Group group = group('value')
-
-        assertThat(group.value(), is('value'))
-    }
-
-    @Test
-    @DisplayName("Should find Item by value")
-    void findItemByValue() {
-        Item item_1 = mock(Item)
-        when(item_1.value()).thenReturn('value')
-        Item item_2 = mock(Item)
-        when(item_2.value()).thenReturn('val')
-
-        when(provider.findAll(Item)).thenReturn([item_1, item_2])
-
-        Item item = item('value')
-
-        assertThat(item.value(), is('value'))
-    }
-
-    @Test
-    @DisplayName("Should find Heading by text")
+    @DisplayName("Should find heading by text")
     void findHeadingByText() {
         Heading heading_1 = mock(Heading)
-        when(heading_1.text()).thenReturn('text')
+        when(heading_1.text()).thenReturn('Title')
         Heading heading_2 = mock(Heading)
-        when(heading_2.text()).thenReturn('txt')
+        when(heading_2.text()).thenReturn('!Title')
 
-        when(provider.findAll(Heading)).thenReturn([heading_1, heading_2])
+        when(provider.findAll(Heading)).thenReturn(List.of(heading_1, heading_2))
 
-        Heading heading = heading('text')
+        heading("Title").should { be available }
 
-        assertThat(heading.text(), is('text'))
+        // Should fail if more than on match
+        when(heading_2.text()).thenReturn('Title')
+
+
+        IllegalStateException error = assertThrows(IllegalStateException, { heading("Title").should { be available } })
+        assertThat(error.message, is("Find 2 component(s) Heading with text 'Title'."))
     }
 
     @Test
-    @DisplayName("Should find Panel by title")
-    void findPanelByTitle() {
-        Panel panel_1 = mock(Panel)
-        when(panel_1.title()).thenReturn('title')
-        Panel panel_2 = mock(Panel)
-        when(panel_2.title()).thenReturn('')
-
-        when(provider.findAll(Panel)).thenReturn([panel_1, panel_2])
-
-        Panel panel = panel('title')
-
-        assertThat(panel.title(), is('title'))
-    }
-
-    @Test
-    @DisplayName("Should find Link by text")
+    @DisplayName("Should find link by text")
     void findLinkByText() {
         Link link_1 = mock(Link)
-        when(link_1.text()).thenReturn('text')
+        when(link_1.text()).thenReturn('Link')
         Link link_2 = mock(Link)
-        when(link_2.text()).thenReturn('txt')
+        when(link_2.text()).thenReturn('!Link')
 
-        when(provider.findAll(Link)).thenReturn([link_1, link_2])
+        when(provider.findAll(Link)).thenReturn(List.of(link_1, link_2))
 
-        Link link = link('text')
+        link("Link").should { be available }
 
-        assertThat(link.text(), is('text'))
+        // Should fail if more than on match
+        when(link_2.text()).thenReturn('Link')
+
+        IllegalStateException error = assertThrows(IllegalStateException, { link("Link").should { be available } })
+        assertThat(error.message, is("Find 2 component(s) Link with text 'Link'."))
+    }
+
+    // =================  By Label / Placeholder  ======================
+
+    @Test
+    @DisplayName("Should find radio by label")
+    void findRadioByLabel() {
+        Radio radio_1 = mock(Radio)
+        when(radio_1.label()).thenReturn('Label')
+        Radio radio_2 = mock(Radio)
+        when(radio_2.label()).thenReturn('!Label')
+
+        when(provider.findAll(Radio)).thenReturn(List.of(radio_1, radio_2))
+
+        // Should fail if more than on match
+        when(radio_2.label()).thenReturn('Label')
+
+        IllegalStateException error = assertThrows(IllegalStateException, { radio("Label").should { be available } })
+        assertThat(error.message, is("Find 2 component(s) Radio with label 'Label'."))
     }
 
     @Test
-    @DisplayName("Should find PasswordField by label")
-    void findPasswordFieldByLabel() {
-        PasswordField passwordField_1 = mock(PasswordField)
-        when(passwordField_1.label()).thenReturn("label")
-        PasswordField passwordField_2 = mock(PasswordField)
-        when(passwordField_2.label()).thenReturn("lab")
+    @DisplayName("Should find checkbox by label")
+    void findCheckBoxByLabel() {
+        CheckBox checkBox_1 = mock(CheckBox)
+        when(checkBox_1.label()).thenReturn('Label')
+        CheckBox checkBox_2 = mock(CheckBox)
+        when(checkBox_2.label()).thenReturn('!Label')
 
-        when(provider.findAll(PasswordField)).thenReturn([passwordField_1, passwordField_2])
+        when(provider.findAll(CheckBox)).thenReturn(List.of(checkBox_1, checkBox_2))
 
-        PasswordField passwordField = passwordField('label')
+        // Should fail if more than on match
+        when(checkBox_2.label()).thenReturn('Label')
 
-        assertThat(passwordField.label(), is('label'))
+        IllegalStateException error = assertThrows(IllegalStateException, { checkbox("Label").should { be available } })
+        assertThat(error.message, is("Find 2 component(s) CheckBox with label 'Label'."))
     }
 
     @Test
-    @DisplayName("Should find TextField by label")
-    void findTextFieldByLabel() {
-        TextField textField_1 = mock(TextField)
-        when(textField_1.label()).thenReturn("label")
-        TextField textField_2 = mock(TextField)
-        when(textField_2.label()).thenReturn("lab")
+    @DisplayName("Should find listBox by label")
+    void findListBoxByLabel() {
+        ListBox listBox_1 = mock(ListBox)
+        when(listBox_1.label()).thenReturn('Label')
+        ListBox listBox_2 = mock(ListBox)
+        when(listBox_2.label()).thenReturn('!Label')
 
-        when(provider.findAll(TextField)).thenReturn([textField_1, textField_2])
+        when(provider.findAll(ListBox)).thenReturn(List.of(listBox_1, listBox_2))
 
-        TextField textField = textField('label')
+        // Should fail if more than on match
+        when(listBox_2.label()).thenReturn('Label')
 
-        assertThat(textField.label(), is('label'))
+        IllegalStateException error = assertThrows(IllegalStateException, { listBox("Label").should { be available } })
+        assertThat(error.message, is("Find 2 component(s) ListBox with label 'Label'."))
     }
 
     @Test
-    @DisplayName("Should find SearchField by label")
-    void findSearchFieldByLabel() {
-        SearchField searchField_1 = mock(SearchField)
-        when(searchField_1.label()).thenReturn("label")
-        SearchField searchField_2 = mock(SearchField)
-        when(searchField_2.label()).thenReturn("lab")
+    @DisplayName("Should find dropdown by label")
+    void findDropdownByLabel() {
+        Dropdown dropdown_1 = mock(Dropdown)
+        when(dropdown_1.label()).thenReturn('Label')
+        Dropdown dropdown_2 = mock(Dropdown)
+        when(dropdown_2.label()).thenReturn('!Label')
 
-        when(provider.findAll(SearchField)).thenReturn([searchField_1, searchField_2])
+        when(provider.findAll(Dropdown)).thenReturn(List.of(dropdown_1, dropdown_2))
 
-        SearchField searchField = searchField('label')
+        // Should fail if more than on match
+        when(dropdown_2.label()).thenReturn('Label')
 
-        assertThat(searchField.label(), is('label'))
+        IllegalStateException error = assertThrows(IllegalStateException, { dropdown("Label").should { be available } })
+        assertThat(error.message, is("Find 2 component(s) Dropdown with label 'Label'."))
     }
 
     @Test
-    @DisplayName("Should find EmailField by label")
-    void findEmailFieldByLabel() {
-        EmailField emailField_1 = mock(EmailField)
-        when(emailField_1.label()).thenReturn("label")
-        EmailField emailField_2 = mock(EmailField)
-        when(emailField_2.label()).thenReturn("lab")
+    @DisplayName("Should find field by label or placeholder")
+    void findFieldByLabel() {
+        PasswordField password = mock(PasswordField)
+        when(password.label()).thenReturn('Label')
+        EmailField email = mock(EmailField)
+        when(email.placeholder()).thenReturn('!Label')
 
-        when(provider.findAll(EmailField)).thenReturn([emailField_1, emailField_2])
+        when(provider.findAll(Field)).thenReturn(List.of(password, email))
 
-        EmailField emailField = emailField('label')
+        field('Label').should { be available }
 
-        assertThat(emailField.label(), is('label'))
+        // Should fail if more than on match
+        when(email.placeholder()).thenReturn('Label')
+
+        IllegalStateException error = assertThrows(IllegalStateException, { field("Label").should { be available } })
+        assertThat(error.message, is("Find 2 component(s) Field with label 'Label'."))
+    }
+
+    // =================  By Value  ======================
+
+    @Test
+    @DisplayName("Should find group by value")
+    void findGroupByValue() {
+        Group group_1 = mock(Group)
+        when(group_1.value()).thenReturn('Value')
+        Group group_2 = mock(Group)
+        when(group_2.value()).thenReturn('!Value')
+
+        when(provider.findAll(Group)).thenReturn(List.of(group_1, group_2))
+
+        // Should fail if more than on match
+        when(group_2.value()).thenReturn('Value')
+
+        IllegalStateException error = assertThrows(IllegalStateException, { group("Value").should { be available } })
+        assertThat(error.message, is("Find 2 component(s) Group with value 'Value'."))
     }
 
     @Test
-    @DisplayName("Should find URLField by label")
-    void findURLFieldByLabel() {
-        URLField urlField_1 = mock(URLField)
-        when(urlField_1.label()).thenReturn("label")
-        URLField urlField_2 = mock(URLField)
-        when(urlField_2.label()).thenReturn("lab")
+    @DisplayName("Should find item by value")
+    void findItemByValue() {
+        Item item_1 = mock(Item)
+        when(item_1.value()).thenReturn('Value')
+        Item item_2 = mock(Item)
+        when(item_2.value()).thenReturn('!Value')
 
-        when(provider.findAll(URLField)).thenReturn([urlField_1, urlField_2])
+        when(provider.findAll(Item)).thenReturn(List.of(item_1, item_2))
 
-        URLField urlField = urlField('label')
+        // Should fail if more than on match
+        when(item_2.value()).thenReturn('Value')
 
-        assertThat(urlField.label(), is('label'))
+        IllegalStateException error = assertThrows(IllegalStateException, { item("Value").should { be available } })
+        assertThat(error.message, is("Find 2 component(s) Item with value 'Value'."))
     }
 
-    @Test
-    @DisplayName("Should find NumberField by label")
-    void findNumberFieldByLabel() {
-        NumberField numberField_1 = mock(NumberField)
-        when(numberField_1.label()).thenReturn("label")
-        NumberField numberField_2 = mock(NumberField)
-        when(numberField_2.label()).thenReturn("lab")
-
-        when(provider.findAll(NumberField)).thenReturn([numberField_1, numberField_2])
-
-        NumberField numberField = numberField('label')
-
-        assertThat(numberField.label(), is('label'))
-    }
+    // =================  By Title  ======================
 
     @Test
-    @DisplayName("Should find RangeField by label")
-    void findRangeFieldByLabel() {
-        RangeField rangeField_1 = mock(RangeField)
-        when(rangeField_1.label()).thenReturn("label")
-        RangeField rangeField_2 = mock(RangeField)
-        when(rangeField_2.label()).thenReturn("lab")
+    @DisplayName("Should find panel by title")
+    void findPanelByTitle() {
+        Panel panel_1 = mock(Panel)
+        when(panel_1.title()).thenReturn('Title')
+        Panel panel_2 = mock(Panel)
+        when(panel_2.title()).thenReturn('!Title')
 
-        when(provider.findAll(RangeField)).thenReturn([rangeField_1, rangeField_2])
+        when(provider.findAll(Panel)).thenReturn(List.of(panel_1, panel_2))
 
-        RangeField rangeField = rangeField('label')
+        // Should fail if more than on match
+        when(panel_2.title()).thenReturn('Title')
 
-        assertThat(rangeField.label(), is('label'))
-    }
-
-    @Test
-    @DisplayName("Should find DateField by label")
-    void findDateFieldByLabel() {
-        DateField dateField_1 = mock(DateField)
-        when(dateField_1.label()).thenReturn("label")
-        DateField dateField_2 = mock(DateField)
-        when(dateField_2.label()).thenReturn("lab")
-
-        when(provider.findAll(DateField)).thenReturn([dateField_1, dateField_2])
-
-        DateField dateField = dateField('label')
-
-        assertThat(dateField.label(), is('label'))
-    }
-
-    @Test
-    @DisplayName("Should find ColorField by label")
-    void findColorFieldByLabel() {
-        ColorField colorField_1 = mock(ColorField)
-        when(colorField_1.label()).thenReturn("label")
-        ColorField colorField_2 = mock(ColorField)
-        when(colorField_2.label()).thenReturn("lab")
-
-        when(provider.findAll(ColorField)).thenReturn([colorField_1,colorField_2])
-
-        ColorField colorField = colorField('label')
-
-        assertThat(colorField.label(), is('label'))
-    }
-
-    @Test
-    @DisplayName("Should find DateTimeField by label")
-    void findDateTimeFieldByLabel() {
-        DateTimeField dateTimeField_1 = mock(DateTimeField)
-        when(dateTimeField_1.label()).thenReturn("label")
-        DateTimeField dateTimeField_2 = mock(DateTimeField)
-        when(dateTimeField_2.label()).thenReturn("lab")
-
-        when(provider.findAll(DateTimeField)).thenReturn([dateTimeField_1, dateTimeField_2])
-
-        DateTimeField dateTimeField = dateTimeField('label')
-
-        assertThat(dateTimeField.label(), is('label'))
-    }
-
-    @Test
-    @DisplayName("Should find MonthField by label")
-    void findMonthFieldByLabel() {
-        MonthField monthField_1 = mock(MonthField)
-        when(monthField_1.label()).thenReturn("label")
-        MonthField monthField_2 = mock(MonthField)
-        when(monthField_2.label()).thenReturn("lab")
-
-        when(provider.findAll(MonthField)).thenReturn([monthField_1, monthField_2])
-
-        MonthField monthField = monthField('label')
-
-        assertThat(monthField.label(), is('label'))
-    }
-
-    @Test
-    @DisplayName("Should find PhoneField by label")
-    void findPhoneFieldByLabel() {
-        PhoneField phoneField_1 = mock(PhoneField)
-        when(phoneField_1.label()).thenReturn("label")
-        PhoneField phoneField_2 = mock(PhoneField)
-        when(phoneField_2.label()).thenReturn("lab")
-
-        when(provider.findAll(PhoneField)).thenReturn([phoneField_1, phoneField_2])
-
-        PhoneField phoneField = phoneField('label')
-
-        assertThat(phoneField.label(), is('label'))
-    }
-
-    @Test
-    @DisplayName("Should find TimeField by label")
-    void findTimeFieldByLabel() {
-        TimeField timeField_1 = mock(TimeField)
-        when(timeField_1.label()).thenReturn("label")
-        TimeField timeField_2 = mock(TimeField)
-        when(timeField_2.label()).thenReturn("lab")
-
-        when(provider.findAll(TimeField)).thenReturn([timeField_1, timeField_2])
-
-        TimeField timeField = timeField('label')
-
-        assertThat(timeField.label(), is('label'))
-    }
-
-    @Test
-    @DisplayName("Should find WeekField by label")
-    void findWeekFieldByLabel() {
-        WeekField weekField_1 = mock(WeekField)
-        when(weekField_1.label()).thenReturn("label")
-        WeekField weekField_2 = mock(WeekField)
-        when(weekField_2.label()).thenReturn("lab")
-
-        when(provider.findAll(WeekField)).thenReturn([weekField_1, weekField_2])
-
-        WeekField weekField = weekField('label')
-
-        assertThat(weekField.label(), is('label'))
+        IllegalStateException error = assertThrows(IllegalStateException, { panel("Title").should { be available } })
+        assertThat(error.message, is("Find 2 component(s) Panel with title 'Title'."))
     }
 }
