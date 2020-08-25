@@ -253,7 +253,7 @@ class Tyro {
 
     static <T extends Component> T findByLabel(Class clazz, String label) {
         Collection<T> components = provider.findAll(clazz).findAll {
-            it.label() == label ||  (it instanceof Field ? it.placeholder() == label : false)
+            it.label() == label || it.placeholder() == label
         }
         if (components.size() == 1) {
             return components.first()
