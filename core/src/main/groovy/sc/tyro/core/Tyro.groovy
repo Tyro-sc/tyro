@@ -20,7 +20,7 @@ import sc.tyro.core.component.*
 import sc.tyro.core.component.datagrid.Cell
 import sc.tyro.core.component.datagrid.Column
 import sc.tyro.core.component.datagrid.Row
-import sc.tyro.core.component.field.*
+import sc.tyro.core.component.field.Field
 import sc.tyro.core.hamcrest.matcher.property.*
 import sc.tyro.core.hamcrest.matcher.state.*
 import sc.tyro.core.input.DragBuilder
@@ -233,27 +233,27 @@ class Tyro {
     // Generic Component Factory
     static Browser browser() { new Browser(provider) }
 
-    static Button button(String text) { findByText(Button, text) }
+    static Button button(String text) { findByText(text, Button) }
 
-    static Radio radio(String label) { findByLabel(Radio, label) }
+    static Radio radio(String label) { findByLabel(label, Radio) }
 
-    static Field field(String label) {findByLabel(Field, label)}
+    static Field field(String label, Class clazz = Field) { findByLabel(label, clazz) }
 
-    static CheckBox checkbox(String label) { findByLabel(CheckBox, label) }
+    static CheckBox checkbox(String label) { findByLabel(label, CheckBox) }
 
-    static Dropdown dropdown(String label) { findByLabel(Dropdown, label) }
+    static Dropdown dropdown(String label) { findByLabel(label, Dropdown) }
 
-    static ListBox listBox(String label) { findByLabel(ListBox, label) }
+    static ListBox listBox(String label) { findByLabel(label, ListBox) }
 
-    static Group group(String value) { findByValue(Group, value) }
+    static Group group(String value) { findByValue(value, Group) }
 
-    static Item item(String value) { findByValue(Item, value) }
+    static Item item(String value) { findByValue(value, Item) }
 
-    static Heading heading(String text) { findByText(Heading, text) }
+    static Heading heading(String text) { findByText(text, Heading) }
 
-    static Panel panel(String title) { findByTitle(Panel, title)  }
+    static Panel panel(String title) { findByTitle(title, Panel) }
 
-    static Link link(String text) { findByText(Link, text) }
+    static Link link(String text) { findByText(text, Link) }
 
     static void waitUntil(Closure c, Matcher what = null) { wait.waitUntil(c, what) }
 
@@ -273,7 +273,7 @@ class Tyro {
         }
     }
 
-    static <T extends Component> T findByLabel(Class clazz, String label) {
+    static <T extends Component> T findByLabel(String label, Class clazz) {
         Collection<T> components = provider.findAll(clazz).findAll {
             it.label() == label || it.placeholder() == label
         }
@@ -283,7 +283,7 @@ class Tyro {
         throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with label '${label}'.")
     }
 
-    static <T extends Component> T findByText(Class clazz, String text) {
+    static <T extends Component> T findByText(String text, Class clazz) {
         Collection<T> components = provider.findAll(clazz).findAll { it.text() == text }
         if (components.size() == 1) {
             return components.first()
@@ -291,7 +291,7 @@ class Tyro {
         throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with text '${text}'.")
     }
 
-    static <T extends Component> T findByValue(Class clazz, String value) {
+    static <T extends Component> T findByValue(String value, Class clazz) {
         Collection<T> components = provider.findAll(clazz).findAll { it.value() == value }
         if (components.size() == 1) {
             return components.first()
@@ -299,7 +299,7 @@ class Tyro {
         throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with value '${value}'.")
     }
 
-    static <T extends Component> T findByTitle(Class clazz, String title) {
+    static <T extends Component> T findByTitle(String title, Class clazz) {
         Collection<T> components = provider.findAll(clazz).findAll { it.title() == title }
         if (components.size() == 1) {
             return components.first()

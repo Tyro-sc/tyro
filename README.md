@@ -7,7 +7,6 @@
 # Tyro
 
 TODO
-
 remove all factories on files to juste use one field('label')
 Verify the type to see how is it set.
 
