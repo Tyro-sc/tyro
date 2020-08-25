@@ -29,7 +29,6 @@ import sc.tyro.core.input.Keyboard
 import sc.tyro.core.input.Mouse
 import sc.tyro.core.internal.Wait
 import sc.tyro.core.support.*
-import sc.tyro.core.support.property.InputSupport
 
 import static sc.tyro.core.Config.provider
 import static sc.tyro.core.input.Key.CTRL
@@ -187,9 +186,9 @@ class Tyro {
 
     static <T extends Component> T on(Component c) { c as T }
 
-    static final FillAction fill(InputSupport c) { new FillAction(c) }
+    static final FillAction fill(Field c) { new FillAction(c) }
 
-    static final FillAction set(InputSupport c) { new FillAction(c) }
+    static final FillAction set(Field c) { new FillAction(c) }
 
     // Delegate to Mouse
     static void clickOn(Component c) { mouse.clickOn(c) }
@@ -237,9 +236,9 @@ class Tyro {
     static void waitUntil(Closure c, Matcher what = null) { wait.waitUntil(c, what) }
 
     private static class FillAction {
-        private InputSupport input
+        private Field input
 
-        FillAction(InputSupport input) {
+        FillAction(Field input) {
             this.input = input
         }
 

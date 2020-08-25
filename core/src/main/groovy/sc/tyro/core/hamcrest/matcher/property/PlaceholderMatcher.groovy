@@ -17,7 +17,6 @@ package sc.tyro.core.hamcrest.matcher.property
 
 import org.hamcrest.Description
 import sc.tyro.core.hamcrest.PropertyMatcher
-import sc.tyro.core.support.property.InputSupport
 import sc.tyro.core.support.property.PlaceholderSupport
 
 /**
