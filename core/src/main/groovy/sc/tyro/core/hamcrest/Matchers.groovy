@@ -22,7 +22,6 @@ import sc.tyro.core.component.Item
 import sc.tyro.core.component.datagrid.Cell
 import sc.tyro.core.component.datagrid.Column
 import sc.tyro.core.component.datagrid.Row
-import sc.tyro.core.component.field.Field
 import sc.tyro.core.hamcrest.matcher.property.*
 import sc.tyro.core.hamcrest.matcher.state.*
 import sc.tyro.core.support.property.*
@@ -68,6 +67,10 @@ class Matchers {
 
     static Matcher<SelectSupport> unselected() { new UnSelectedMatcher() }
 
+    static Matcher<SwitchSupport> on() { new SwitchedOnMatcher() }
+
+    static Matcher<SwitchSupport> off() { new SwitchedOffMatcher() }
+
     static Matcher<RangeSupport> inRange() { new InRangeMatcher() }
 
     static Matcher<RangeSupport> outOfRange() { new OutOfRangeMatcher() }
@@ -76,9 +79,7 @@ class Matchers {
 
     static Matcher<ValiditySupport> invalid() { new InvalidMatcher() }
 
-    static Matcher<Component> contain(Component... components) {
-        new ContainMatcher(components)
-    }
+    static Matcher<Component> contain(Component... components) { new ContainMatcher(components) }
 
     static Matcher<CollapseSupport> expanded() { new ExpandedMatcher() }
 

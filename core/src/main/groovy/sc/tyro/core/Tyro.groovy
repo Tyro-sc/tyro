@@ -79,6 +79,8 @@ class Tyro {
     static Class focused = FocusedMatcher
     static Class expanded = ExpandedMatcher
     static Class collapsed = CollapsedMatcher
+    static Class on = SwitchedOnMatcher
+    static Class off = SwitchedOffMatcher
 
     /**
      * Properties
@@ -152,6 +154,26 @@ class Tyro {
                 throw new ComponentException("${it.class.simpleName} ${it} is disabled and cannot be unchecked")
             if (!it.checked())
                 throw new ComponentException("${it.class.simpleName} ${it} is already unchecked and cannot be unchecked")
+            it.click()
+        }
+    }
+
+    static void switchOn(Switchable... switchables) {
+        switchables.each {
+            if (!it.enabled())
+                throw new ComponentException("${it.class.simpleName} ${it} is disabled and cannot be switched on")
+            if (it.on())
+                throw new ComponentException("${it.class.simpleName} ${it} is already switched on and cannot be switched on")
+            it.click()
+        }
+    }
+
+    static void switchOff(UnSwitchable... unSwitchables) {
+        unSwitchables.each {
+            if (!it.enabled())
+                throw new ComponentException("${it.class.simpleName} ${it} is disabled and cannot be switched off")
+            if (!it.on())
+                throw new ComponentException("${it.class.simpleName} ${it} is already switched off and cannot be switched off")
             it.click()
         }
     }
