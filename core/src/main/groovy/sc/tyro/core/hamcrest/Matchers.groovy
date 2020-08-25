@@ -22,6 +22,7 @@ import sc.tyro.core.component.Item
 import sc.tyro.core.component.datagrid.Cell
 import sc.tyro.core.component.datagrid.Column
 import sc.tyro.core.component.datagrid.Row
+import sc.tyro.core.component.field.Field
 import sc.tyro.core.hamcrest.matcher.property.*
 import sc.tyro.core.hamcrest.matcher.state.*
 import sc.tyro.core.support.property.*
@@ -86,7 +87,7 @@ class Matchers {
     // Properties
     static Matcher<LabelSupport> label(String label) { new LabelMatcher(label) }
 
-    static Matcher<InputSupport> placeholder(String placeholder) { new PlaceholderMatcher(placeholder) }
+    static Matcher<PlaceholderSupport> placeholder(String placeholder) { new PlaceholderMatcher(placeholder) }
 
     static Matcher<MaximumSupport> maximum(Object maximum) { new MaximumMatcher(maximum) }
 

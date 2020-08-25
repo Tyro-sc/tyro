@@ -29,7 +29,6 @@ import sc.tyro.core.input.Keyboard
 import sc.tyro.core.input.Mouse
 import sc.tyro.core.internal.Wait
 import sc.tyro.core.support.*
-import sc.tyro.core.support.property.InputSupport
 
 import static sc.tyro.core.Config.provider
 import static sc.tyro.core.input.Key.CTRL
@@ -187,9 +186,9 @@ class Tyro {
 
     static <T extends Component> T on(Component c) { c as T }
 
-    static final FillAction fill(InputSupport c) { new FillAction(c) }
+    static final FillAction fill(Field c) { new FillAction(c) }
 
-    static final FillAction set(InputSupport c) { new FillAction(c) }
+    static final FillAction set(Field c) { new FillAction(c) }
 
     // Delegate to Mouse
     static void clickOn(Component c) { mouse.clickOn(c) }
@@ -216,6 +215,8 @@ class Tyro {
 
     static Radio radio(String label) { findByLabel(Radio, label) }
 
+    static Field field(String label) {findByLabel(Field, label)}
+
     static CheckBox checkbox(String label) { findByLabel(CheckBox, label) }
 
     static Dropdown dropdown(String label) { findByLabel(Dropdown, label) }
@@ -232,40 +233,12 @@ class Tyro {
 
     static Link link(String text) { findByText(Link, text) }
 
-    static PasswordField passwordField(String label) { findByLabel(PasswordField, label) }
-
-    static TextField textField(String label) { findByLabel(TextField, label) }
-
-    static SearchField searchField(String label) { findByLabel(SearchField, label) }
-
-    static EmailField emailField(String label) { findByLabel(EmailField, label) }
-
-    static URLField urlField(String label) { findByLabel(URLField, label) }
-
-    static NumberField numberField(String label) { findByLabel(NumberField, label) }
-
-    static RangeField rangeField(String label) { findByLabel(RangeField, label) }
-
-    static DateField dateField(String label) { findByLabel(DateField, label) }
-
-    static ColorField colorField(String label) { findByLabel(ColorField, label) }
-
-    static DateTimeField dateTimeField(String label) { findByLabel(DateTimeField, label) }
-
-    static MonthField monthField(String label) { findByLabel(MonthField, label) }
-
-    static PhoneField phoneField(String label) { findByLabel(PhoneField, label) }
-
-    static TimeField timeField(String label) { findByLabel(TimeField, label) }
-
-    static WeekField weekField(String label) { findByLabel(WeekField, label) }
-
     static void waitUntil(Closure c, Matcher what = null) { wait.waitUntil(c, what) }
 
     private static class FillAction {
-        private InputSupport input
+        private Field input
 
-        FillAction(InputSupport input) {
+        FillAction(Field input) {
             this.input = input
         }
 
@@ -279,7 +252,9 @@ class Tyro {
     }
 
     static <T extends Component> T findByLabel(Class clazz, String label) {
-        Collection<T> components = provider.findAll(clazz).findAll { it.label() == label }
+        Collection<T> components = provider.findAll(clazz).findAll {
+            it.label() == label || it.placeholder() == label
+        }
         if (components.size() == 1) {
             return components.first()
         }

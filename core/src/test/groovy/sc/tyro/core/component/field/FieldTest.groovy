@@ -18,9 +18,9 @@ package sc.tyro.core.component.field
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import sc.tyro.core.component.Component
-import sc.tyro.core.support.property.InputSupport
 import sc.tyro.core.support.property.LabelSupport
 import sc.tyro.core.support.property.LengthSupport
+import sc.tyro.core.support.property.PlaceholderSupport
 import sc.tyro.core.support.property.ValueSupport
 import sc.tyro.core.support.state.FocusSupport
 import sc.tyro.core.support.state.RangeSupport
@@ -37,7 +37,7 @@ class FieldTest {
     void inheritance() {
         assert Field in Component
         assert Field in LabelSupport
-        assert Field in InputSupport
+        assert Field in PlaceholderSupport
         assert Field in ValueSupport
         assert Field in ValiditySupport
         assert Field in FocusSupport

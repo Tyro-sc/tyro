@@ -17,13 +17,13 @@ package sc.tyro.core.hamcrest.matcher.property
 
 import org.hamcrest.Description
 import sc.tyro.core.hamcrest.PropertyMatcher
-import sc.tyro.core.support.property.InputSupport
+import sc.tyro.core.support.property.PlaceholderSupport
 
 /**
  * @author David Avenante
  * @since 1.0.0
  */
-class PlaceholderMatcher extends PropertyMatcher<InputSupport> {
+class PlaceholderMatcher extends PropertyMatcher<PlaceholderSupport> {
     private String placeholder
 
     PlaceholderMatcher(String placeholder) {
@@ -31,7 +31,7 @@ class PlaceholderMatcher extends PropertyMatcher<InputSupport> {
     }
 
     @Override
-    protected boolean matchesSafely(InputSupport component) {
+    protected boolean matchesSafely(PlaceholderSupport component) {
         component.placeholder() == placeholder
     }
 
@@ -41,7 +41,7 @@ class PlaceholderMatcher extends PropertyMatcher<InputSupport> {
     }
 
     @Override
-    protected void describeMismatchSafely(InputSupport component, Description mismatchDescription) {
+    protected void describeMismatchSafely(PlaceholderSupport component, Description mismatchDescription) {
         mismatchDescription.appendText('has placeholder ').appendValue(component.placeholder())
     }
 }

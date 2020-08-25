@@ -17,7 +17,7 @@ package sc.tyro.core.hamcrest.matcher.property
 
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import sc.tyro.core.support.property.InputSupport
+import sc.tyro.core.component.field.Field
 
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.is
@@ -36,7 +36,7 @@ class PlaceholderMatcherTest {
     @Test
     @DisplayName("Should support matcher Placeholder")
     void matcher() {
-        InputSupport cmp = mock(InputSupport)
+        Field cmp = mock(Field)
 
         when(cmp.placeholder()).thenReturn('MyPlaceholder')
         assertThat(cmp, has(placeholder('MyPlaceholder')))
