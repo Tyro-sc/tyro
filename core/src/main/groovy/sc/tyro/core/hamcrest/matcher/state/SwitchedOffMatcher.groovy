@@ -13,22 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package sc.tyro.core.component
+package sc.tyro.core.hamcrest.matcher.state
 
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
-import sc.tyro.core.support.property.TextSupport
+import org.hamcrest.Description
+import sc.tyro.core.hamcrest.StateMatcher
+import sc.tyro.core.support.state.SwitchSupport
 
 /**
  * @author David Avenante
  * @since 1.0.0
  */
-@DisplayName("Paragraph Component Tests")
-class ParagraphTest {
-    @Test
-    @DisplayName("Should have expected Inheritance")
-    void inheritance() {
-        assert Paragraph in Component
-        assert Paragraph in TextSupport
+class SwitchedOffMatcher extends StateMatcher<SwitchSupport> {
+    @Override
+    protected boolean matchesSafely(SwitchSupport component, Description mismatchDescription) {
+        mismatchDescription.appendText('is on')
+        !component.on()
+    }
+
+    @Override
+    void describeTo(Description description) {
+        description.appendText('off')
     }
 }

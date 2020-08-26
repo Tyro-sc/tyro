@@ -36,9 +36,12 @@ class Config {
 
     static Identifiers identifiers
 
+    static String[] scannedPackages
+
     final static Collection<Class<Component>> componentTypes = new HashSet<>()
 
     static void scan(String... packageNames) {
+        scannedPackages = packageNames
         componentTypes.clear()
         componentTypes.addAll(packageNames
                 .collect {new ClassGraph().whitelistPackages(it).scan().getSubclasses(Component.name) }

@@ -15,35 +15,35 @@
  */
 package sc.tyro.core.hamcrest.matcher.state
 
+import org.hamcrest.MatcherAssert
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import sc.tyro.core.support.state.CollapseSupport
+import sc.tyro.core.support.state.SwitchSupport
 
 import static org.hamcrest.MatcherAssert.assertThat
-
 import static org.hamcrest.Matchers.is
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
-import static sc.tyro.core.hamcrest.Matchers.collapsed
+import static sc.tyro.core.hamcrest.Matchers.off
 
 /**
  * @author David Avenante
  * @since 1.0.0
  */
-@DisplayName("Collapsed State Matcher")
-class CollapsedMatcherTest {
+@DisplayName("Switched State Matcher")
+class SwitchedOffMatcherTest {
     @Test
-    @DisplayName("Should support matcher Collapsed")
+    @DisplayName("Should support matcher Switched Off")
     void matcher() {
-        CollapseSupport cmp = mock(CollapseSupport)
+        SwitchSupport cmp = mock(SwitchSupport)
 
-        when(cmp.collapsed()).thenReturn(true)
-        assertThat(cmp, is(collapsed()))
+        when(cmp.on()).thenReturn(false)
+        assertThat(cmp, is(off()))
 
-        when(cmp.collapsed()).thenReturn(false)
+        when(cmp.on()).thenReturn(true)
 
-        Error error = assertThrows(AssertionError, { assertThat(cmp, is(collapsed())) })
-        assertThat(error.message, is('\nExpected: is collapsed\n     but: is expanded'))
+        Error error = assertThrows(AssertionError, { assertThat(cmp, is(off())) })
+        MatcherAssert.assertThat(error.message, is('\nExpected: is off\n     but: is on'))
     }
 }

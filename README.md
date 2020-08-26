@@ -5,10 +5,3 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c091b16c5832c890a59b/test_coverage)](https://codeclimate.com/github/Tyro-sc/tyro/test_coverage)
 
 # Tyro
-
-TODO
-
-remove all factories on files to juste use one field('label')
-Verify the type to see how is it set.
-
-Add in doc functional vs UI/UX
