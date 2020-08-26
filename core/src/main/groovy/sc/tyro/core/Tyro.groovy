@@ -273,7 +273,7 @@ class Tyro {
         }
     }
 
-    static <T extends Component> T findByLabel(String label, Class clazz) {
+    static <T extends Component> T findByLabel(String label, Class<T> clazz) {
         Collection<T> components = provider.findAll(clazz).findAll {
             it.label() == label || it.placeholder() == label
         }
@@ -283,7 +283,7 @@ class Tyro {
         throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with label '${label}'.")
     }
 
-    static <T extends Component> T findByText(String text, Class clazz) {
+    static <T extends Component> T findByText(String text, Class<T> clazz) {
         Collection<T> components = provider.findAll(clazz).findAll { it.text() == text }
         if (components.size() == 1) {
             return components.first()
@@ -291,7 +291,7 @@ class Tyro {
         throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with text '${text}'.")
     }
 
-    static <T extends Component> T findByValue(String value, Class clazz) {
+    static <T extends Component> T findByValue(String value, Class<T> clazz) {
         Collection<T> components = provider.findAll(clazz).findAll { it.value() == value }
         if (components.size() == 1) {
             return components.first()
@@ -299,7 +299,7 @@ class Tyro {
         throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with value '${value}'.")
     }
 
-    static <T extends Component> T findByTitle(String title, Class clazz) {
+    static <T extends Component> T findByTitle(String title, Class<T> clazz) {
         Collection<T> components = provider.findAll(clazz).findAll { it.title() == title }
         if (components.size() == 1) {
             return components.first()
