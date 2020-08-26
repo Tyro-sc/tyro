@@ -15,15 +15,22 @@
  */
 package sc.tyro.bundle.html5
 
+import org.codehaus.groovy.runtime.typehandling.GroovyCastException
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import sc.tyro.core.By
+import sc.tyro.core.component.field.EmailField
+import sc.tyro.core.component.field.Field
+import sc.tyro.core.component.field.PasswordField
 import sc.tyro.web.TyroWebTestExtension
 
+import static org.hamcrest.MatcherAssert.assertThat
+import static org.hamcrest.Matchers.*
+import static org.junit.jupiter.api.Assertions.assertThrows
 import static sc.tyro.core.Config.provider
-import static sc.tyro.core.Tyro.visit
+import static sc.tyro.core.Tyro.*
 import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 
 /**
@@ -66,5 +73,32 @@ class FactoryTest {
         List<Button> componentFromConcrete = provider.findAll(Button)
 
         assert componentFromConcrete.size() == 5
+    }
+
+    @Test
+    @DisplayName("Should find fields components with expected type")
+    void fieldWithExpectedType() {
+        List<Field> fields = findAll(Field)
+
+        assert fields.size() == 2
+
+        Field field_1 = field('Email')
+
+        assert field_1.label() == 'Email'
+
+        field_1 = field('Password')
+
+        assert field_1.label() == 'Password'
+
+        EmailField email = field("Email", EmailField)
+
+        assert email.label() == 'Email'
+
+        IllegalStateException error = assertThrows(IllegalStateException, { field("Email", PasswordField) })
+        assertThat(error.message, is('Find 0 component(s) PasswordField with label \'Email\'.'))
+
+        ClassCastException classCastError = assertThrows(GroovyCastException, { PasswordField password = field("Email", EmailField) })
+        assertThat(classCastError.message, startsWith("Cannot cast object 'InputTypeEmail"))
+        assertThat(classCastError.message, endsWith("with class 'sc.tyro.bundle.html5.input.InputTypeEmail' to class 'sc.tyro.core.component.field.PasswordField'"))
     }
 }

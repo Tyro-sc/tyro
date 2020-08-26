@@ -33,6 +33,7 @@ import sc.tyro.web.internal.DomIdProvider
 import java.lang.annotation.Annotation
 import java.lang.reflect.Modifier
 
+import static sc.tyro.core.Config.scannedPackages
 import static sc.tyro.core.input.MouseModifiers.*
 import static sc.tyro.web.KeyConverter.convert
 
@@ -330,7 +331,14 @@ class SeleniumProvider implements Provider {
             if (!Modifier.isAbstract(clazz.modifiers)) {
                 matchingClasses.add(clazz)
             }
-            matchingClasses.addAll(new ClassGraph().enableClassInfo().scan().getSubclasses(clazz.name).loadClasses())
+            matchingClasses.addAll(
+                    new ClassGraph()
+                            .enableClassInfo()
+                            .whitelistPackages(scannedPackages)
+                            .scan()
+                            .getSubclasses(clazz.name).filter {
+                        !it.isInterface() && !it.isAbstract()
+                    }.loadClasses())
             cachedComponents.put(clazz, matchingClasses)
         }
 

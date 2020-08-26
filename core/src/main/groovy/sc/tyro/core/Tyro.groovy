@@ -237,7 +237,7 @@ class Tyro {
 
     static Radio radio(String label) { findByLabel(label, Radio) }
 
-    static Field field(String label, Class clazz = Field) { findByLabel(label, clazz) }
+    static <T extends Component> T field(String label, Class<T> clazz = Field) { findByLabel(label, clazz) }
 
     static CheckBox checkbox(String label) { findByLabel(label, CheckBox) }
 
