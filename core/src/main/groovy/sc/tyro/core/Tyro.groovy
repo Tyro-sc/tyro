@@ -29,6 +29,7 @@ import sc.tyro.core.input.Keyboard
 import sc.tyro.core.input.Mouse
 import sc.tyro.core.internal.Wait
 import sc.tyro.core.support.*
+import sc.tyro.core.support.property.*
 
 import static sc.tyro.core.Config.provider
 import static sc.tyro.core.input.Key.CTRL
@@ -274,17 +275,18 @@ class Tyro {
     }
 
     static <T extends Component> T findByLabel(String label, Class<T> clazz) {
+        boolean hasPlaceholderSupport =  PlaceholderSupport.isAssignableFrom(clazz);
         Collection<T> components = provider.findAll(clazz).findAll {
-            it.label() == label || it.placeholder() == label
+            (LabelSupport.isAssignableFrom(clazz) ? it.label() == label : false) || (hasPlaceholderSupport ? it.placeholder() == label : false)
         }
         if (components.size() == 1) {
             return components.first()
         }
-        throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with label '${label}'.")
+        throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with label${hasPlaceholderSupport ? ' or placeholder' : ''} '${label}'.")
     }
 
     static <T extends Component> T findByText(String text, Class<T> clazz) {
-        Collection<T> components = provider.findAll(clazz).findAll { it.text() == text }
+        Collection<T> components = provider.findAll(clazz).findAll { (TextSupport.isAssignableFrom(clazz) ? it.text() == text : false) }
         if (components.size() == 1) {
             return components.first()
         }
@@ -292,7 +294,7 @@ class Tyro {
     }
 
     static <T extends Component> T findByValue(String value, Class<T> clazz) {
-        Collection<T> components = provider.findAll(clazz).findAll { it.value() == value }
+        Collection<T> components = provider.findAll(clazz).findAll { (ValueSupport.isAssignableFrom(clazz) ? it.value() == value : false) }
         if (components.size() == 1) {
             return components.first()
         }
@@ -300,7 +302,9 @@ class Tyro {
     }
 
     static <T extends Component> T findByTitle(String title, Class<T> clazz) {
-        Collection<T> components = provider.findAll(clazz).findAll { it.title() == title }
+        Collection<T> components = provider.findAll(clazz).findAll {
+            (TitleSupport.isAssignableFrom(clazz) ? it.title() == title : false)
+        }
         if (components.size() == 1) {
             return components.first()
         }

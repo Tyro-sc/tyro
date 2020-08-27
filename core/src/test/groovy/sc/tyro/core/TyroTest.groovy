@@ -214,7 +214,7 @@ class TyroTest {
         when(email.placeholder()).thenReturn('Label')
 
         IllegalStateException error = assertThrows(IllegalStateException, { field("Label").should { be available } })
-        assertThat(error.message, is("Find 2 component(s) Field with label 'Label'."))
+        assertThat(error.message, is("Find 2 component(s) Field with label or placeholder 'Label'."))
     }
 
     // =================  By Value  ======================
