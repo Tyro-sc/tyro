@@ -95,7 +95,7 @@ class FactoryTest {
         assert email.label() == 'Email'
 
         IllegalStateException error = assertThrows(IllegalStateException, { field("Email", PasswordField) })
-        assertThat(error.message, is('Find 0 component(s) PasswordField with label \'Email\'.'))
+        assertThat(error.message, is('Find 0 component(s) PasswordField or placeholder with label \'Email\'.'))
 
         ClassCastException classCastError = assertThrows(GroovyCastException, { PasswordField password = field("Email", EmailField) })
         assertThat(classCastError.message, startsWith("Cannot cast object 'InputTypeEmail"))
