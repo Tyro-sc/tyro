@@ -22,7 +22,7 @@
     <parent>
         <groupId>sc.tyro</groupId>
         <artifactId>tyro</artifactId>
-        <version>1.0.0.RC2-SNAPSHOT</version>
+        <version>1.0.0.RC2</version>
     </parent>
 
     <artifactId>tyro-web</artifactId>
@@ -68,7 +68,7 @@
         <dependency>
             <groupId>sc.tyro</groupId>
             <artifactId>tyro-core</artifactId>
-            <version>1.0.0.RC2-SNAPSHOT</version>
+            <version>1.0.0.RC2</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
