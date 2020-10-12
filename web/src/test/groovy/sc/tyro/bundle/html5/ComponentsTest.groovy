@@ -19,9 +19,6 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import sc.tyro.bundle.html5.Button
-import sc.tyro.bundle.html5.Form
-import sc.tyro.bundle.html5.Label
 import sc.tyro.bundle.html5.heading.*
 import sc.tyro.bundle.html5.input.InputTypeCheckBox
 import sc.tyro.bundle.html5.input.InputTypeEmail
@@ -268,8 +265,7 @@ class ComponentsTest {
     @Test
     @DisplayName("Should have expected behaviours for Paragraph")
     void paragraph() {
-        assert P in Component
-        assert P in TextSupport
+        assert P in Paragraph
 
         P paragraph = $('#p_1') as P
 

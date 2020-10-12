@@ -13,30 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package sc.tyro.bundle.html5.list
+package sc.tyro.core.component
 
-import sc.tyro.core.By
-import sc.tyro.core.component.ListView
-import sc.tyro.web.CssIdentifier
+import sc.tyro.core.support.Switchable
+import sc.tyro.core.support.UnSwitchable
+import sc.tyro.core.support.property.LabelSupport
+import sc.tyro.core.support.state.SwitchSupport
 
 /**
  * @author David Avenante
  * @since 1.0.0
  */
-@CssIdentifier('ul')
-class Ul extends ListView {
-    @Override
-    List<Li> items() {
-        provider.findAll(Li, By.expression('#' + id() + ' li'))
-    }
-
-    @Override
-    Li item(String value) {
-        items().find { it.value() == value }
-    }
-
-    @Override
-    boolean empty() {
-        items().empty
-    }
-}
+abstract class Switch extends Component implements LabelSupport, SwitchSupport, Switchable, UnSwitchable {}

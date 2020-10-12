@@ -16,22 +16,24 @@
 package sc.tyro.web
 
 import groovy.json.JsonSlurper
+import io.github.classgraph.ClassGraph
 import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.interactions.Actions
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import sc.tyro.core.By
-import sc.tyro.core.MetaDataProvider
-import sc.tyro.core.MetaInfo
-import sc.tyro.core.Provider
+import sc.tyro.core.*
 import sc.tyro.core.component.Component
 import sc.tyro.core.input.Key
 import sc.tyro.core.input.MouseModifiers
 import sc.tyro.web.internal.CachedMetaData
 import sc.tyro.web.internal.DomIdProvider
 
+import java.lang.annotation.Annotation
+import java.lang.reflect.Modifier
+
+import static sc.tyro.core.Config.scannedPackages
 import static sc.tyro.core.input.MouseModifiers.*
 import static sc.tyro.web.KeyConverter.convert
 
@@ -42,6 +44,7 @@ import static sc.tyro.web.KeyConverter.convert
 class SeleniumProvider implements Provider {
     private static final Logger LOGGER = LoggerFactory.getLogger(SeleniumProvider)
     private final List<String> registeredScripts = new ArrayList<>()
+    private static Map<Class, List<Class>> cachedComponents = new HashMap<>()
 
     private final WebDriver webDriver
     private final JavascriptExecutor js
@@ -52,18 +55,20 @@ class SeleniumProvider implements Provider {
     }
 
     @Override
-    <T extends Component> T find(By by, Class<T> clazz) {
+    <T extends Component> T find(Class<T> clazz, By by) {
         (T) new Component(this, new CachedMetaData(idProvider: new DomIdProvider(convertToExpression(by), true))).asType(clazz)
     }
 
     @Override
-    <T extends Component> List<T> findBy(Class<T> clazz) {
-        Components components = new Components(this, clazz, new CachedMetaData(idProvider: new DomIdProvider(By.expression("*"), false)))
-        components.list()
+    <T extends Component> List<T> findAll(Class<T> clazz) {
+        findSelectorsFor(clazz).collectMany {
+            Components components = new Components(this, it.key, new CachedMetaData(idProvider: new DomIdProvider(By.expression(it.value), false)))
+            components.list()
+        } as List<T>
     }
 
     @Override
-    List findAll(By by, Class clazz) {
+    List findAll(Class clazz, By by) {
         Components components = new Components(this, clazz, new CachedMetaData(idProvider: new DomIdProvider(convertToExpression(by), false)))
         components.list()
     }
@@ -316,5 +321,34 @@ class SeleniumProvider implements Provider {
             }
             return Collections.unmodifiableList(components)
         }
+    }
+
+    private static Map<Class, String> findSelectorsFor(Class clazz) {
+        Map<Class, String> selectors = new HashMap<>()
+
+        if (!cachedComponents.get(clazz)) {
+            List<Class> matchingClasses = new ArrayList<>();
+            if (!Modifier.isAbstract(clazz.modifiers)) {
+                matchingClasses.add(clazz)
+            }
+            matchingClasses.addAll(
+                    new ClassGraph()
+                            .enableClassInfo()
+                            .whitelistPackages(scannedPackages)
+                            .scan()
+                            .getSubclasses(clazz.name).filter {
+                        !it.isInterface() && !it.isAbstract()
+                    }.loadClasses())
+            cachedComponents.put(clazz, matchingClasses)
+        }
+
+        cachedComponents.get(clazz).each {
+            Annotation annotation = it.declaredAnnotations.find { it.annotationType().isAnnotationPresent(Identifier) }
+            if (annotation == null) {
+                throw new ComponentException("Unable to find any component definition for: " + clazz)
+            }
+            selectors.put(it, annotation.value())
+        }
+        selectors
     }
 }

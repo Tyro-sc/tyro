@@ -15,8 +15,7 @@
  */
 package sc.tyro.bundle.html5
 
-import sc.tyro.core.component.Component
-import sc.tyro.core.support.property.TextSupport
+import sc.tyro.core.component.Paragraph
 import sc.tyro.web.CssIdentifier
 
 /**
@@ -24,7 +23,7 @@ import sc.tyro.web.CssIdentifier
  * @since 1.0.0
  */
 @CssIdentifier('p')
-class P extends Component implements TextSupport {
+class P extends Paragraph {
     @Override
     String text() {
         provider.eval(id(), "it.text()")

@@ -22,7 +22,7 @@
     <parent>
         <groupId>sc.tyro</groupId>
         <artifactId>tyro</artifactId>
-        <version>1.0.1.RC1-SNAPSHOT</version>
+        <version>1.0.0.RC3-SNAPSHOT</version>
     </parent>
 
     <artifactId>tyro-core</artifactId>
@@ -74,10 +74,6 @@
         <dependency>
             <groupId>io.github.classgraph</groupId>
             <artifactId>classgraph</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>

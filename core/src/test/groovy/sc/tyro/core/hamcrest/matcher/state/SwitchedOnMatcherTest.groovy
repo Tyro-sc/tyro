@@ -13,35 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package sc.tyro.core.hamcrest.matcher.property
+package sc.tyro.core.hamcrest.matcher.state
 
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import sc.tyro.core.component.field.Field
+import sc.tyro.core.support.state.SwitchSupport
 
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.is
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
-import static sc.tyro.core.hamcrest.Matchers.has
-import static sc.tyro.core.hamcrest.Matchers.placeholder
+import static sc.tyro.core.hamcrest.Matchers.on
 
 /**
  * @author David Avenante
  * @since 1.0.0
  */
-@DisplayName("Placeholder Property Matcher")
-class PlaceholderMatcherTest {
+@DisplayName("Switched State Matcher")
+class SwitchedOnMatcherTest {
     @Test
-    @DisplayName("Should support matcher Placeholder")
+    @DisplayName("Should support matcher Switched On")
     void matcher() {
-        Field cmp = mock(Field)
+        SwitchSupport cmp = mock(SwitchSupport)
 
-        when(cmp.placeholder()).thenReturn('MyPlaceholder')
-        assertThat(cmp, has(placeholder('MyPlaceholder')))
+        when(cmp.on()).thenReturn(true)
+        assertThat(cmp, is(on()))
 
-        Error error = assertThrows(AssertionError, { assertThat(cmp, has(placeholder('OtherPlaceholder'))) })
-        assertThat(error.message, is('\nExpected: has placeholder "OtherPlaceholder"\n     but: has placeholder "MyPlaceholder"'))
+        when(cmp.on()).thenReturn(false)
+
+        Error error = assertThrows(AssertionError, { assertThat(cmp, is(on())) })
+        assertThat(error.message, is('\nExpected: is on\n     but: is off'))
     }
 }

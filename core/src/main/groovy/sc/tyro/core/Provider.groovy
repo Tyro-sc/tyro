@@ -23,11 +23,11 @@ import sc.tyro.core.input.MouseModifiers
  * @since 1.0.0
  */
 interface Provider {
-    def <T extends Component> T find(By by, Class<T> clazz)
+    def <T extends Component> T find(Class<T> clazz, By by)
 
-    def <T extends Component>  List<T> findAll(By by, Class<T> clazz)
+    def <T extends Component>  List<T> findAll(Class<T> clazz, By by)
 
-    def <T extends Component> List<T> findBy(Class<T> clazz)
+    def <T extends Component> List<T> findAll(Class<T> clazz)
 
     List<MetaInfo> metaInfo(By.ByExpression expression)
 

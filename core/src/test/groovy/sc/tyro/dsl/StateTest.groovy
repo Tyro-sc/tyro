@@ -21,6 +21,7 @@ import sc.tyro.core.Provider
 import sc.tyro.core.component.CheckBox
 import sc.tyro.core.component.Component
 import sc.tyro.core.component.Item
+import sc.tyro.core.component.Switch
 import sc.tyro.core.component.field.RangeField
 import sc.tyro.core.component.field.TextField
 import sc.tyro.core.support.state.CollapseSupport
@@ -66,13 +67,28 @@ class StateTest {
     void checkedUnchecked() {
         CheckBox checkbox = spy(CheckBox)
         doReturn(true).when(checkbox).enabled()
+        doReturn(true).when(checkbox).checked()
+
+        checkbox.should { be checked }
+
         doReturn(false).when(checkbox).checked()
 
         checkbox.should { be unchecked }
 
-        doReturn(true).when(checkbox).checked()
+    }
 
-        checkbox.should { be checked }
+    @Test
+    @DisplayName("Should support on and off")
+    void onOff() {
+        Switch aSwitch = spy(Switch)
+        doReturn(true).when(aSwitch).enabled()
+        doReturn(true).when(aSwitch).on()
+
+        aSwitch.should { be on }
+
+        doReturn(false).when(aSwitch).on()
+
+        aSwitch.should { be off }
     }
 
     @Test

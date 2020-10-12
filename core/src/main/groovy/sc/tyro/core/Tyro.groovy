@@ -20,7 +20,7 @@ import sc.tyro.core.component.*
 import sc.tyro.core.component.datagrid.Cell
 import sc.tyro.core.component.datagrid.Column
 import sc.tyro.core.component.datagrid.Row
-import sc.tyro.core.component.field.*
+import sc.tyro.core.component.field.Field
 import sc.tyro.core.hamcrest.matcher.property.*
 import sc.tyro.core.hamcrest.matcher.state.*
 import sc.tyro.core.input.DragBuilder
@@ -29,7 +29,7 @@ import sc.tyro.core.input.Keyboard
 import sc.tyro.core.input.Mouse
 import sc.tyro.core.internal.Wait
 import sc.tyro.core.support.*
-import sc.tyro.core.support.property.InputSupport
+import sc.tyro.core.support.property.*
 
 import static sc.tyro.core.Config.provider
 import static sc.tyro.core.input.Key.CTRL
@@ -40,15 +40,15 @@ import static sc.tyro.core.input.Key.CTRL
  */
 class Tyro {
     static Component $(String expression) {
-        provider.find(By.expression(expression), Component)
+        provider.find(Component, By.expression(expression))
     }
 
     static <T extends Component> List<T> $$(String expression, Class<T> clazz = Component) {
-        provider.findAll(By.expression(expression), clazz)
+        provider.findAll(clazz, By.expression(expression))
     }
 
-    static <T extends Component> List<T> findBy(Class<T> clazz = Component) {
-        provider.findBy(clazz)
+    static <T extends Component> List<T> findAll(Class<T> clazz = Component) {
+        provider.findAll(clazz)
     }
 
     static mouse = new Mouse()
@@ -80,6 +80,8 @@ class Tyro {
     static Class focused = FocusedMatcher
     static Class expanded = ExpandedMatcher
     static Class collapsed = CollapsedMatcher
+    static Class on = SwitchedOnMatcher
+    static Class off = SwitchedOffMatcher
 
     /**
      * Properties
@@ -157,6 +159,26 @@ class Tyro {
         }
     }
 
+    static void switchOn(Switchable... switchables) {
+        switchables.each {
+            if (!it.enabled())
+                throw new ComponentException("${it.class.simpleName} ${it} is disabled and cannot be switched on")
+            if (it.on())
+                throw new ComponentException("${it.class.simpleName} ${it} is already switched on and cannot be switched on")
+            it.click()
+        }
+    }
+
+    static void switchOff(UnSwitchable... unSwitchables) {
+        unSwitchables.each {
+            if (!it.enabled())
+                throw new ComponentException("${it.class.simpleName} ${it} is disabled and cannot be switched off")
+            if (!it.on())
+                throw new ComponentException("${it.class.simpleName} ${it} is already switched off and cannot be switched off")
+            it.click()
+        }
+    }
+
     static void select(Item... items) {
         items.each {
             if (!it.enabled())
@@ -187,9 +209,9 @@ class Tyro {
 
     static <T extends Component> T on(Component c) { c as T }
 
-    static final FillAction fill(InputSupport c) { new FillAction(c) }
+    static final FillAction fill(Field c) { new FillAction(c) }
 
-    static final FillAction set(InputSupport c) { new FillAction(c) }
+    static final FillAction set(Field c) { new FillAction(c) }
 
     // Delegate to Mouse
     static void clickOn(Component c) { mouse.clickOn(c) }
@@ -212,60 +234,34 @@ class Tyro {
     // Generic Component Factory
     static Browser browser() { new Browser(provider) }
 
-    static Button button(String text) { findByText(Button, text) }
+    static Button button(String text) { findByText(text, Button) }
 
-    static Radio radio(String label) { findByLabel(Radio, label) }
+    static Radio radio(String label) { findByLabel(label, Radio) }
 
-    static CheckBox checkbox(String label) { findByLabel(CheckBox, label) }
+    static <T extends Field> T field(String label, Class<T> clazz = Field) { findByLabel(label, clazz) }
 
-    static Dropdown dropdown(String label) { findByLabel(Dropdown, label) }
+    static CheckBox checkbox(String label) { findByLabel(label, CheckBox) }
 
-    static ListBox listBox(String label) { findByLabel(ListBox, label) }
+    static Dropdown dropdown(String label) { findByLabel(label, Dropdown) }
 
-    static Group group(String value) { findByValue(Group, value) }
+    static ListBox listBox(String label) { findByLabel(label, ListBox) }
 
-    static Item item(String value) { findByValue(Item, value) }
+    static Group group(String value) { findByValue(value, Group) }
 
-    static Heading heading(String text) { findByText(Heading, text) }
+    static Item item(String value) { findByValue(value, Item) }
 
-    static Panel panel(String title) { findByTitle(Panel, title)  }
+    static Heading heading(String text) { findByText(text, Heading) }
 
-    static Link link(String text) { findByText(Link, text) }
+    static Panel panel(String title) { findByTitle(title, Panel) }
 
-    static PasswordField passwordField(String label) { findByLabel(PasswordField, label) }
-
-    static TextField textField(String label) { findByLabel(TextField, label) }
-
-    static SearchField searchField(String label) { findByLabel(SearchField, label) }
-
-    static EmailField emailField(String label) { findByLabel(EmailField, label) }
-
-    static URLField urlField(String label) { findByLabel(URLField, label) }
-
-    static NumberField numberField(String label) { findByLabel(NumberField, label) }
-
-    static RangeField rangeField(String label) { findByLabel(RangeField, label) }
-
-    static DateField dateField(String label) { findByLabel(DateField, label) }
-
-    static ColorField colorField(String label) { findByLabel(ColorField, label) }
-
-    static DateTimeField dateTimeField(String label) { findByLabel(DateTimeField, label) }
-
-    static MonthField monthField(String label) { findByLabel(MonthField, label) }
-
-    static PhoneField phoneField(String label) { findByLabel(PhoneField, label) }
-
-    static TimeField timeField(String label) { findByLabel(TimeField, label) }
-
-    static WeekField weekField(String label) { findByLabel(WeekField, label) }
+    static Link link(String text) { findByText(text, Link) }
 
     static void waitUntil(Closure c, Matcher what = null) { wait.waitUntil(c, what) }
 
     private static class FillAction {
-        private InputSupport input
+        private Field input
 
-        FillAction(InputSupport input) {
+        FillAction(Field input) {
             this.input = input
         }
 
@@ -278,32 +274,37 @@ class Tyro {
         }
     }
 
-    static <T extends Component> T findByLabel(Class clazz, String label) {
-        Collection<T> components = provider.findBy(clazz).findAll { it.label() == label }
+    static <T extends Component> T findByLabel(String label, Class<T> clazz) {
+        boolean hasPlaceholderSupport =  PlaceholderSupport.isAssignableFrom(clazz);
+        Collection<T> components = provider.findAll(clazz).findAll {
+            (LabelSupport.isAssignableFrom(clazz) ? it.label() == label : false) || (hasPlaceholderSupport ? it.placeholder() == label : false)
+        }
         if (components.size() == 1) {
             return components.first()
         }
-        throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with label '${label}'.")
+        throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with label${hasPlaceholderSupport ? ' or placeholder' : ''} '${label}'.")
     }
 
-    static <T extends Component> T findByText(Class clazz, String text) {
-        Collection<T> components = provider.findBy(clazz).findAll { it.text() == text }
+    static <T extends Component> T findByText(String text, Class<T> clazz) {
+        Collection<T> components = provider.findAll(clazz).findAll { (TextSupport.isAssignableFrom(clazz) ? it.text() == text : false) }
         if (components.size() == 1) {
             return components.first()
         }
         throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with text '${text}'.")
     }
 
-    static <T extends Component> T findByValue(Class clazz, String value) {
-        Collection<T> components = provider.findBy(clazz).findAll { it.value() == value }
+    static <T extends Component> T findByValue(String value, Class<T> clazz) {
+        Collection<T> components = provider.findAll(clazz).findAll { (ValueSupport.isAssignableFrom(clazz) ? it.value() == value : false) }
         if (components.size() == 1) {
             return components.first()
         }
         throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with value '${value}'.")
     }
 
-    static <T extends Component> T findByTitle(Class clazz, String title) {
-        Collection<T> components = provider.findBy(clazz).findAll { it.title() == title }
+    static <T extends Component> T findByTitle(String title, Class<T> clazz) {
+        Collection<T> components = provider.findAll(clazz).findAll {
+            (TitleSupport.isAssignableFrom(clazz) ? it.title() == title : false)
+        }
         if (components.size() == 1) {
             return components.first()
         }

@@ -67,6 +67,10 @@ class Matchers {
 
     static Matcher<SelectSupport> unselected() { new UnSelectedMatcher() }
 
+    static Matcher<SwitchSupport> on() { new SwitchedOnMatcher() }
+
+    static Matcher<SwitchSupport> off() { new SwitchedOffMatcher() }
+
     static Matcher<RangeSupport> inRange() { new InRangeMatcher() }
 
     static Matcher<RangeSupport> outOfRange() { new OutOfRangeMatcher() }
@@ -75,9 +79,7 @@ class Matchers {
 
     static Matcher<ValiditySupport> invalid() { new InvalidMatcher() }
 
-    static Matcher<Component> contain(Component... components) {
-        new ContainMatcher(components)
-    }
+    static Matcher<Component> contain(Component... components) { new ContainMatcher(components) }
 
     static Matcher<CollapseSupport> expanded() { new ExpandedMatcher() }
 
@@ -86,7 +88,7 @@ class Matchers {
     // Properties
     static Matcher<LabelSupport> label(String label) { new LabelMatcher(label) }
 
-    static Matcher<InputSupport> placeholder(String placeholder) { new PlaceholderMatcher(placeholder) }
+    static Matcher<PlaceholderSupport> placeholder(String placeholder) { new PlaceholderMatcher(placeholder) }
 
     static Matcher<MaximumSupport> maximum(Object maximum) { new MaximumMatcher(maximum) }
 

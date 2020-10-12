@@ -174,6 +174,66 @@ class ActionTest {
     }
 
     @Test
+    @DisplayName("Should switch on a switchable component")
+    void switchOn() {
+        Switch switch_1 = mock(Switch)
+        when(switch_1.enabled()).thenReturn(true)
+        when(switch_1.on()).thenReturn(false)
+
+        Switch switch_2 = mock(Switch)
+        when(switch_2.enabled()).thenReturn(true)
+        when(switch_2.on()).thenReturn(false)
+
+        switchOn switch_1, switch_2
+
+        verify(switch_1, times(1)).click()
+        verify(switch_2, times(1)).click()
+
+        // Cannot switch on disabled component
+        when(switch_1.enabled()).thenReturn(false)
+
+        Exception ex = assertThrows(ComponentException, { switchOn switch_1 })
+        assertThat(ex.message, containsString('is disabled and cannot be switched on'))
+
+        // Cannot switch on already switch on component
+        when(switch_1.enabled()).thenReturn(true)
+        when(switch_1.on()).thenReturn(true)
+
+        ex = assertThrows(ComponentException, { switchOn switch_1 })
+        assertThat(ex.message, containsString('is already switched on and cannot be switched on'))
+    }
+
+    @Test
+    @DisplayName("Should switch off a un-switchable component")
+    void switchOff() {
+        Switch switch_1 = mock(Switch)
+        when(switch_1.enabled()).thenReturn(true)
+        when(switch_1.on()).thenReturn(true)
+
+        Switch switch_2 = mock(Switch)
+        when(switch_2.enabled()).thenReturn(true)
+        when(switch_2.on()).thenReturn(true)
+
+        switchOff switch_1, switch_2
+
+        verify(switch_1, times(1)).click()
+        verify(switch_2, times(1)).click()
+
+        // Cannot switch off disabled component
+        when(switch_1.enabled()).thenReturn(false)
+
+        Exception ex = assertThrows(ComponentException, { switchOff switch_1 })
+        assertThat(ex.message, containsString('is disabled and cannot be switched off'))
+
+        // Cannot switch off already switch off component
+        when(switch_1.enabled()).thenReturn(true)
+        when(switch_1.on()).thenReturn(false)
+
+        ex = assertThrows(ComponentException, { switchOff switch_1 })
+        assertThat(ex.message, containsString('is already switched off and cannot be switched off'))
+    }
+
+    @Test
     @DisplayName("Should select an Item")
     void select() {
         Item item_1 = mock(Item)
@@ -239,8 +299,8 @@ class ActionTest {
     }
 
     @Test
-    @DisplayName("Should select items in Listbox")
-    void selectItemsInListbox() {
+    @DisplayName("Should select items in ListBox")
+    void selectItemsInListBox() {
         ListBox listBox = mock(ListBox)
 
         Item item_1 = mock(Item)
@@ -273,8 +333,8 @@ class ActionTest {
     }
 
     @Test
-    @DisplayName("Should unselect items in Listbox")
-    void unselectItemsInListbox() {
+    @DisplayName("Should unselect items in ListBox")
+    void unselectItemsInListBox() {
         ListBox listBox = mock(ListBox)
 
         Item item_1 = mock(Item)

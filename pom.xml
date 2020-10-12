@@ -22,7 +22,7 @@
 
     <groupId>sc.tyro</groupId>
     <artifactId>tyro</artifactId>
-    <version>1.0.1.RC1-SNAPSHOT</version>
+    <version>1.0.0.RC3-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Tyro</name>
@@ -39,8 +39,8 @@
         <connection>scm:git:git@github.com:Tyro-sc/tyro.git</connection>
         <developerConnection>scm:git:git@github.com:Tyro-sc/tyro.git</developerConnection>
         <url>https://github.com/Tyro-sc/tyro</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <modules>
         <module>core</module>
@@ -55,7 +55,6 @@
 
         <groovy.version>2.5.11</groovy.version>
         <classgraph.version>4.8.78</classgraph.version>
-        <guava.version>27.1-jre</guava.version>
         <slf4j.version>1.7.30</slf4j.version>
 
         <!-- Tests -->
@@ -140,34 +139,6 @@
                 </dependencies>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>${maven-gpg-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>com.bluetrainsoftware.maven</groupId>
-                <artifactId>groovydoc-maven-plugin</artifactId>
-                <version>${groovydoc-maven-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>attach-docs</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>attach-docs</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
                 <version>${license-maven-plugin.version}</version>
@@ -227,11 +198,6 @@
                 <version>${classgraph.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${guava.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
@@ -265,4 +231,47 @@
             <uniqueVersion>false</uniqueVersion>
         </snapshotRepository>
     </distributionManagement>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${maven-gpg-plugin.version}</version>
+                        <configuration>
+                            <executable>${gpg.executable}</executable>
+                            <keyname>${gpg.keyname}</keyname>
+                            <passphrase>${gpg.passphrase}</passphrase>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>com.bluetrainsoftware.maven</groupId>
+                        <artifactId>groovydoc-maven-plugin</artifactId>
+                        <version>${groovydoc-maven-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-docs</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>attach-docs</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

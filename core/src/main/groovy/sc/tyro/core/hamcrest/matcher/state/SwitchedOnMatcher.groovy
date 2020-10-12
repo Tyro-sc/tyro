@@ -13,35 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package sc.tyro.core.hamcrest.matcher.property
+package sc.tyro.core.hamcrest.matcher.state
 
 import org.hamcrest.Description
-import sc.tyro.core.hamcrest.PropertyMatcher
-import sc.tyro.core.support.property.PlaceholderSupport
+import sc.tyro.core.hamcrest.StateMatcher
+import sc.tyro.core.support.state.SwitchSupport
 
 /**
  * @author David Avenante
  * @since 1.0.0
  */
-class PlaceholderMatcher extends PropertyMatcher<PlaceholderSupport> {
-    private String placeholder
-
-    PlaceholderMatcher(String placeholder) {
-        this.placeholder = placeholder
-    }
-
+class SwitchedOnMatcher extends StateMatcher<SwitchSupport> {
     @Override
-    protected boolean matchesSafely(PlaceholderSupport component) {
-        component.placeholder() == placeholder
+    protected boolean matchesSafely(SwitchSupport component, Description mismatchDescription) {
+        mismatchDescription.appendText('is off')
+        component.on()
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendText('placeholder ').appendValue(placeholder)
-    }
-
-    @Override
-    protected void describeMismatchSafely(PlaceholderSupport component, Description mismatchDescription) {
-        mismatchDescription.appendText('has placeholder ').appendValue(component.placeholder())
+        description.appendText('on')
     }
 }
