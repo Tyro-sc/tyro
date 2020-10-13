@@ -1,13 +1,8 @@
 ==== Item
 
-*Item* is used for the elements listed in dropDowns, listBoxes and listViews
+*Item* is used for the elements listed in Dropdown, ListBox and ListView
 
-[.thumb]
-image:../images/components/DropDown.png[DropDown, 150]
-image:../images/components/ListBox_2.png[ListBox]
-image:../images/components/ListView-2.png[ListView-2]
-
-==== Item in ListBox or DropDown
+==== Item in ListBox or Dropdown
 [cols="3*", options="header"]
 |===
 |States|Properties|Intentions
@@ -21,6 +16,14 @@ image:../images/components/ListView-2.png[ListView-2]
 |unselect
 
 |===
+
+Usage:
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=item,indent=0]
+----
+
 ==== Item in ListView
 [cols="3*", options="header"]
 |===
@@ -30,13 +33,11 @@ image:../images/components/ListView-2.png[ListView-2]
 |value
 |
 
-|
-|
-|
-
 |===
+
+Usage:
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----
-include::{codepath}/../../../../test/groovy/sc/tyro/doc/componentsTest.groovy[tags=item]
+include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=item-listview,indent=0]
 ----

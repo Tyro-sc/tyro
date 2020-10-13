@@ -1,58 +1,73 @@
 == Getting started
 
-We give you 2 ways to quickly start your Tyro project : TODO
+=== Quick start from a template
 
-- an empty template to start from scratch
-- a test application built from this template to see examples and best practices
+*Tyro* comes with a https://github.com/Tyro-sc/tyro-starters[bunch of starters] with different combinations of testing tools (*JUnit4, JUni5, Cucumber...*).
 
-=== Quick start with a UI test project template
-TODO
+These starters give you a good taste of the power and flexibility of *Tyro*.
 
-==== Installation with Maven
-'''
+== Sample examples
 
-These are the dependencies to include if you want to integrate Tyro in your Maven installation file.
-The following installation if for JUnit. For another test runner, adapt the first dependency.
+Let's have a look at some samples cases on *Tyro* usage.
 
-[source, xml, subs="normal"]
--------------------------------------------------------------------------------
-<dependency>
-    <groupId>junit</groupId>
-    <artifactId>junit</artifactId>
-    <version>4.12</version>
-    <scope>test</scope>
-</dependency>
-<dependency>
-   <groupId>sc.tyro</groupId>
-   <artifactId>tyro</artifactId>
-   <version>{tyro-version}</version>
-   <scope>test</scope>
-</dependency>
--------------------------------------------------------------------------------
+=== A simple specification test
 
+A simple form like this
 
-ou : (complet avec explications ? TODO) :
+image::sample_1.png[Specification,align="left"]
 
-<1> tyro core (Objets du Domaine + Langage)
-<2> Le module Html5 de tyro
-<3> Un plugin pour récupérer les binaires webdriver
-
-==== A first UI test example
-'''
+can be specified like this
 
 [source,groovy,linenums]
 [subs="verbatim,attributes"]
 ----
-//include::{basepath}/test/groovy/doc/junit/JunitStarterTest.groovy[]
+include::{sourcedir}/test/groovy/sc/tyro/doc/SampleTest.groovy[tags=sample_1,indent=0]
 ----
 
-<1> The browser is launched through a Webdriver Wraper (WebDriverEvaluator).
+=== A simple functional test
 
-<2> Visit the page to be tested: Tyro is ready.
+image::sample_2.png[Functional,align="left"]
 
-<3> Write you first test ($ usage is explained after)
+[source,groovy,linenums]
+[subs="verbatim,attributes"]
+----
+include::{sourcedir}/test/groovy/sc/tyro/doc/SampleTest.groovy[tags=sample_2,indent=0]
+----
 
-<4> At the end of the test don't forget to close the browser.
+== Functional vs Specification tests
 
-=== Examples projects
-TODO
+In the UI test area you need to face with two type of tests:
+
+=== The Functional tests
+
+This type of tests describe the user intention.
+
+For example:
+
+    - As a user I want to log in my application
+    - As a user I want to send a message
+
+These tests focus on the interaction between the user and the UI.
+
+In the case of a login scenario you want toi describe something like.
+
+    - User fill his my username.
+    - User fill his password.
+    - User click on login button.
+
+Generally it's a black box testing.
+You have a state before the action and a state after.
+The well-known pattern on it is the famous https://en.wikipedia.org/wiki/Cucumber_(software)#Gherkin_language[Gherkin language] *Given-When-Then*
+
+=== The Specification tests
+
+This type of test describe the design language between the user and the application.
+
+For example:
+
+    - A field should be visible
+    - A field should be disabled by default
+    - A field should have expected label
+    - ...
+
+This type of tests are very useful to check the expected state of the screen.

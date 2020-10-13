@@ -15,7 +15,8 @@
     limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -27,6 +28,20 @@
 
     <artifactId>tyro-documentation</artifactId>
     <name>Tyro::documentation</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
+
+        <groovy.version>2.5.13</groovy.version>
+
+        <!-- Tests -->
+        <junit.version>5.6.2</junit.version>
+        <tyro-web.version>${project.version}</tyro-web.version>
+        <webdrivermanager.version>4.1.0</webdrivermanager.version>
+        <selenium-java.version>3.141.59</selenium-java.version>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -42,14 +57,25 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-junit-jupiter</artifactId>
+            <groupId>sc.tyro</groupId>
+            <artifactId>tyro-web</artifactId>
+            <version>${tyro-web.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>sc.tyro</groupId>
-            <artifactId>tyro-web</artifactId>
-            <version>1.0.0.RC3-SNAPSHOT</version>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>${webdrivermanager.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.javalin</groupId>
+            <artifactId>javalin</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -59,42 +85,25 @@
             <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
-                <version>1.5.8</version>
+                <version>2.1.0</version>
                 <configuration>
-                    <sourceHighlighter>coderay</sourceHighlighter>
+                    <preserveDirectories>true</preserveDirectories>
                     <attributes>
-                        <encoding>UTF-*8</encoding>
-                        <project-version>${project.version}</project-version>
-                        <spec>${project.basedir}/src/test/spec</spec>
-                        <code>${project.basedir}/src/test/groovy/sc/tyro/doc</code>
+                        <encoding>UTF-8</encoding>
+                        <source-highlighter>coderay</source-highlighter>
+                        <sourcedir>${project.basedir}/src</sourcedir>
+                        <toc>left</toc>
+                        <icons>font</icons>
+                        <linkcss>true</linkcss>
                     </attributes>
-                    <requires>
-                        <require>asciidoctor-diagram</require>
-                    </requires>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.asciidoctor</groupId>
-                        <artifactId>asciidoctorj-diagram</artifactId>
-                        <version>2.0.1</version>
-                    </dependency>
-                </dependencies>
                 <executions>
                     <execution>
-                        <id>generate-doc</id>
-                        <phase>prepare-package</phase>
+                        <id>html</id>
+                        <phase>generate-resources</phase>
                         <goals>
                             <goal>process-asciidoc</goal>
                         </goals>
-                        <configuration>
-                            <backend>html5</backend>
-                            <preserveDirectories>true</preserveDirectories>
-                            <attributes>
-                                <toc>left</toc>
-                                <icons>font</icons>
-                                <linkcss>true</linkcss>
-                            </attributes>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>

@@ -1,0 +1,87 @@
+//=== Philosophy
+//
+//Tyro is a strongly opinionated tool. There is no anonymous "WebElement". Everything needs to be a *COMPONENT*.
+//Tyro is a typed UI component tool.
+//
+//In the previous sample the line:
+//[source, groovy]
+//-----------------------------------------------------
+//TextField search = $('#lst-ib') as InputTypeText
+//-----------------------------------------------------
+//expressed that we try to find an *HTML5 input of type text with id: 'lst-ib'* but we want to use it
+//as a formal TextField
+//
+//The associated imports are :
+//[source, groovy]
+//-----------------------------------------------------
+//import sc.tyro.core.component.field.TextField
+//import sc.tyro.bundle.html5.input.InputTypeText
+//-----------------------------------------------------
+//
+//[NOTE]
+//(TODO : a discuter) The challenge is to avoid imports on a bundle (everything in the package sc.tyro.bundle) and to have only imports
+//from core (sc.tyro.core.component). The core package is like an Universal UI Domain definition.
+//
+//[IMPORTANT]
+//====
+//Tyro provides by default the *HTML5* bundle to interact with basic HTML5 components - see <<Html5 - Tyro equivalence>>
+//====
+
+//=== Design and Architecture
+//
+//schema : TODO
+//
+//Tyro is built on top of http://www.seleniumhq.org/[Selenium, role="external", window="_blank"],and works with Chrome and Firefox.
+//Even though Tyro provides an extra layer of convenience and productivity, it is always possible to "fallback" to the WebDriver level to do something directly, if you need to.
+//
+//Tyro adds a powerful DSL, while maintaining the usage of Groovy and keeps the advantages of a strongly typed language.
+//
+//=== Compatibility
+//
+//Tyro is based on Selenium 3 and definitely turned to the future.
+//But for the moment all the vendor driver are not at the same level and it's an on going process.
+//We take care to be 100% compatible with all browser to offer you a full abstraction of Selenium. But for the moment only th 2 major browsers are supported :
+//
+//==== Chrome
+//
+//Fully compatible. We strongly encourage to use it as your default test Browser.
+//
+//==== Firefox
+//
+//Not fully - TODO (key modifiers ?)
+//
+//1. Selenium Actions are not implemented see: https://github.com/mozilla/geckodriver/issues/233
+//2. FF don't have the focus on the browser when page is opened: https://github.com/mozilla/geckodriver/issues/394
+//
+//In any case you can fallback to native webdriver like this:
+//
+//[source, groovy]
+//-------------------------------------------------------------------------------
+//WebDriver webdriver = config.evaluator.driver
+//-------------------------------------------------------------------------------
+
+
+
+//include::domain_objects.adoc[]
+//
+//include::interactions.adoc[]
+//
+//include::language.adoc[]
+//
+//include::html5-core.adoc[]
+//
+//include::factories_pattern.adoc[]
+//
+//include::component_selection.adoc[]
+//
+//include::selector_shorcut.adoc[]
+//
+//include::custom_components.adoc[]
+//
+//include::writing_tests.adoc[]
+//
+//include::running_tests.adoc[]
+//
+//include::component_properties_resume.adoc[]
+//
+//include::community.adoc[]

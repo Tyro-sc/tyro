@@ -61,6 +61,8 @@
         <junit.jupiter.version>5.6.1</junit.jupiter.version>
         <mockito-junit.version>3.3.3</mockito-junit.version>
         <hamcrest.version>2.2</hamcrest.version>
+        <javalin.version>3.8.0</javalin.version>
+        <slf4j-simple.verion>1.7.28</slf4j-simple.verion>
 
         <!-- Plugins -->
         <gmavenplus-plugin.version>1.8.1</gmavenplus-plugin.version>
@@ -203,6 +205,11 @@
                 <version>${slf4j.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>${slf4j-simple.verion}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter</artifactId>
                 <version>${junit.jupiter.version}</version>
@@ -216,6 +223,11 @@
                 <groupId>org.hamcrest</groupId>
                 <artifactId>hamcrest</artifactId>
                 <version>${hamcrest.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.javalin</groupId>
+                <artifactId>javalin</artifactId>
+                <version>${javalin.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

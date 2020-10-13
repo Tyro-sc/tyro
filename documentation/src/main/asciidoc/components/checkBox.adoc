@@ -1,8 +1,8 @@
 ==== CheckBox
 
-image::../images/components/CheckBox.png[CheckBox, 110, role=thumb]
+image::components/CheckBox.png[CheckBox]
 
-"a *checkbox* is a small box that, when selected by the user, shows that a particular feature has been enabled
+"a *checkBox* is a small box that, when selected by the user, shows that a particular feature has been enabled
   or a particular option chosen. Check boxes are commonly used when more than one option may need to be selected."
 -- inspired from Oxford dictionaries definition
 
@@ -19,9 +19,9 @@ image::../images/components/CheckBox.png[CheckBox, 110, role=thumb]
 |uncheck
 |===
 
-Usage example : TODO
+Usage:
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----
-include::{codepath}/../../../../test/groovy/sc/tyro/doc/componentsTest.groovy[tags=checkbox]
+include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=checkBox,indent=0]
 ----

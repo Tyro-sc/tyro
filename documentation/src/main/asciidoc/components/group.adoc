@@ -2,7 +2,7 @@
 
 *Group* is used for groups of items in dropDowns.
 
-image::../images/components/DropDown.png[DropDown, role=thumb]
+image::components/Group.png[Group]
 
 [cols="3*", options="header"]
 |===
@@ -18,8 +18,9 @@ image::../images/components/DropDown.png[DropDown, role=thumb]
 |
 |===
 
+Usage:
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----
-include::{codepath}/../../../../test/groovy/sc/tyro/doc/componentsTest.groovy[tags=group]
+include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=group,indent=0]
 ----

@@ -1,12 +1,6 @@
 ==== ListBox
-[.thumb]
-image:../images/components/ListBox_1.png[ListBox]
-image:../images/components/ListBox_2.png[ListBox]
 
-[IMPORTANT]
-====
-*The second image shows all the items available in the ListBox.*
-====
+image:components/ListBox.png[ListBox]
 
 "a *listBox* allows the user to select one or more items from a list contained within a static, multiple line
 text box. The user clicks inside the box on an item to select it, sometimes in combination with the ⇧ Shift or Ctrl
@@ -23,10 +17,6 @@ in order to make multiple selections. "Control-clicking" an item that has alread
 |select
 
 |
-|_number of items_
-|
-
-|
 |items
 |
 
@@ -35,15 +25,15 @@ in order to make multiple selections. "Control-clicking" an item that has alread
 |
 
 |
-|_number of visible items_
+|visibleItems
 |
 
 |===
 
-Usage example : TODO
+Usage:
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----
-include::{codepath}/../../../../test/groovy/sc/tyro/doc/componentsTest.groovy[tags=listbox]
+include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=listBox,indent=0]
 ----
 

@@ -1,6 +1,6 @@
 ==== Form
 
-image::../images/components/Form.png[Form, role=thumb]
+image::components/Form.png[Form]
 
 _Definition_:  a *form* allows the user to collect user input.
 Form elements are filled with different types of input elements, checkboxes, radio buttons, submit buttons, and more.
@@ -19,11 +19,11 @@ Form elements are filled with different types of input elements, checkboxes, rad
 
 |===
 
-Usage example : TODO
+Usage:
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----
-include::{codepath}/../../../../test/groovy/sc/tyro/doc/componentsTest.groovy[tags=form]
+include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=form,indent=0]
 ----
 
 

@@ -1,0 +1,5 @@
+== Interacting with components
+
+=== The imperative way
+
+=== The functional way

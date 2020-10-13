@@ -15,26 +15,8 @@ include::overview.adoc[]
 
 include::get_started.adoc[]
 
-include::domain_objects.adoc[]
+include::finding_components.adoc[]
 
-include::interactions.adoc[]
+include::interacting_with_components.adoc[]
 
-include::language.adoc[]
-
-include::html5-core.adoc[]
-
-include::factories_pattern.adoc[]
-
-include::component_selection.adoc[]
-
-include::selector_shorcut.adoc[]
-
-include::custom_components.adoc[]
-
-include::writing_tests.adoc[]
-
-include::running_tests.adoc[]
-
-include::component_properties_resume.adoc[]
-
-include::community.adoc[]
+include::domain_components.adoc[]

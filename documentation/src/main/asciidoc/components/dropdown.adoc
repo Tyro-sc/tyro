@@ -1,9 +1,9 @@
-==== DropDown
+==== Dropdown
 
-image::../images/components/DropDown.png[DropDown, role = thumb]
+image::components/Dropdown.png[Dropdown]
 
-"a *dropDown* allows the user to choose one value from a list. When a dropdown is inactive, it displays a
-single value. When activated, it displays (drops down) a list of values, that can be eventually grouped by theme, from which the user may select one.
+"a *dropdown* allows the user to choose one value from a list. When a dropdown is inactive, it displays a
+single value. When activated, it displays (drops down) a list of values, that can be eventually grouped by a theme, from which the user may select one.
 When the user selects a new value, the control reverts to its inactive state, displaying the selected value."
 -- inspired from Wikipedia definition
 
@@ -16,15 +16,7 @@ When the user selects a new value, the control reverts to its inactive state, di
 |select
 
 |
-|_number of items_
-|
-
-|
 |items
-|
-
-|
-|_number of groups_
 |
 
 |
@@ -33,11 +25,11 @@ When the user selects a new value, the control reverts to its inactive state, di
 
 |===
 
-Usage example : TODO
+Usage:
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----
-include::{codepath}/../../../../test/groovy/sc/tyro/doc/componentsTest.groovy[tags=dropdown]
+include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=dropdown,indent=0]
 ----
 
 

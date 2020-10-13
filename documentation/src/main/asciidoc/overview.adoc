@@ -2,22 +2,22 @@
 
 '''
 
-The goal of this document is to provide comprehensive reference documentation for developers who want to write User Interface tests with Tyro.
+The goal of this document is to provide comprehensive reference documentation for developers who want to write User Interface tests with *Tyro*.
 It also explains how to write Good UI tests scenarios.
 
 === Introduction
 
-Tyro is a web user interface testing tool providing a framework to test any html5 application.
+*Tyro* is a web user interface testing tool providing a framework to test any html5 application.
 What makes it stand out from the crowd is its beautiful and highly expressive language.
-Tyro provides, on one hand, an abstraction of the UI business domain through an expressive API and, on the other hand, a way to express this domain via a DSL (a button semantically stays a button, whatever the technology).
-With Tyro, you can therefore write tests with a seldom achieved level of expressiveness and make those tests INDEPENDENT of the underlying technology.
+*Tyro* provides, on one hand, an abstraction of the UI business domain through an expressive API and, on the other hand, a way to express this domain via a DSL (a button semantically stays a button, whatever the technology).
+With *Tyro*, you can therefore write tests with a seldom achieved level of expressiveness and make those tests INDEPENDENT of the underlying technology.
 
-Tyro is build on top of the https://www.selenium.dev/[WebDriver] browser automation library, which means that Tyro can work with any browser that WebDriver support.
-Tyro plays very well with https://junit.org/junit5/[JUnit], https://cucumber.io/[Cucumber], https://gauge.org/[Gauge] et many others testing tools.
+*Tyro* is build on top of the https://www.selenium.dev/[WebDriver] browser automation library, which means that Tyro can work with any browser that WebDriver support.
+*Tyro* plays very well with https://junit.org/junit5/[JUnit], https://cucumber.io/[Cucumber], https://gauge.org/[Gauge] et many others testing tools.
 
 === Why Tyro is unique
 
-Tyro is the result of numerous real-world observations of developers in the trenches in the area of GUI testing.
+*Tyro* is the result of numerous real-world observations of developers in the trenches in the area of GUI testing.
 Working for many years to promote the *TDD/BDD* approaches, we often faced difficulties in their implementation for the graphical layer of applications.
 
 The *"TEST FIRST"* principle excludes all scenario recorder based approaches that only allow you to write "at posteriori" tests.
@@ -25,70 +25,6 @@ Our experience has taught us that this path is a dead-end.
 
 Another problem is UI tests are brittle and costly! We do think that this is due to the lack of abstraction in existing UI testing tools.
 
-Therefore, Tyro can transform tests in real assets, present throughout the life of the application and always in tune with the latest version of the application.
+Therefore, *Tyro* can transform tests in real assets, present throughout the life of the application and always in tune with the latest version of the application.
 
-Tyro is an opinionated tool. It forces the user to see and use the domain layer as a composition and aggregation of UI components (in Tyro, everything is a UI component).
-
-Tyro is a library to write functional tests. Functional tests means **SPECIFICATIONS**.
-
-=== Philosophy
-
-Tyro is a strongly opinionated tool. There is no anonymous "WebElement". Everything needs to be a *COMPONENT*.
-Tyro is a typed UI component tool.
-
-In the previous sample the line:
-[source, groovy]
------------------------------------------------------
-TextField search = $('#lst-ib') as InputTypeText
------------------------------------------------------
-expressed that we try to find an *HTML5 input of type text with id: 'lst-ib'* but we want to use it
-as a formal TextField
-
-The associated imports are :
-[source, groovy]
------------------------------------------------------
-import sc.tyro.core.component.field.TextField
-import sc.tyro.bundle.html5.input.InputTypeText
------------------------------------------------------
-
-[NOTE]
-(TODO : a discuter) The challenge is to avoid imports on a bundle (everything in the package sc.tyro.bundle) and to have only imports
-from core (sc.tyro.core.component). The core package is like an Universal UI Domain definition.
-
-[IMPORTANT]
-====
-Tyro provides by default the *HTML5* bundle to interact with basic HTML5 components - see <<Html5 - Tyro equivalence>>
-====
-
-=== Design and Architecture
-
-schema : TODO
-
-Tyro is built on top of http://www.seleniumhq.org/[Selenium, role="external", window="_blank"],and works with Chrome and Firefox.
-Even though Tyro provides an extra layer of convenience and productivity, it is always possible to "fallback" to the WebDriver level to do something directly, if you need to.
-
-Tyro adds a powerful DSL, while maintaining the usage of Groovy and keeps the advantages of a strongly typed language.
-
-=== Compatibility
-
-Tyro is based on Selenium 3 and definitely turned to the future.
-But for the moment all the vendor driver are not at the same level and it's an on going process.
-We take care to be 100% compatible with all browser to offer you a full abstraction of Selenium. But for the moment only th 2 major browsers are supported :
-
-==== Chrome
-
-Fully compatible. We strongly encourage to use it as your default test Browser.
-
-==== Firefox
-
-Not fully - TODO (key modifiers ?)
-
-1. Selenium Actions are not implemented see: https://github.com/mozilla/geckodriver/issues/233
-2. FF don't have the focus on the browser when page is opened: https://github.com/mozilla/geckodriver/issues/394
-
-In any case you can fallback to native webdriver like this:
-
-[source, groovy]
--------------------------------------------------------------------------------
-WebDriver webdriver = config.evaluator.driver
--------------------------------------------------------------------------------
+*Tyro* is an opinionated tool. It forces the user to see and use the domain layer as a composition and aggregation of UI components (in Tyro, everything is a UI component).
