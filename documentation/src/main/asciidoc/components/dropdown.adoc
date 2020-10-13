@@ -1,4 +1,4 @@
-==== Dropdown
+=== Dropdown
 
 image::components/Dropdown.png[Dropdown]
 

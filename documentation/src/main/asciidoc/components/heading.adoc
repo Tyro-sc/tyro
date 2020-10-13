@@ -1,6 +1,6 @@
-==== Heading
+=== Heading
 
-image::../images/components/Heading.png[Heading, role=thumb]
+image::components/Heading.png[Heading]
 
 _Definition_:  a *heading* allows the user to put a title for a page or a paragraph.
 
@@ -17,7 +17,7 @@ _Definition_:  a *heading* allows the user to put a title for a page or a paragr
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----
-include::{codepath}/../../../../test/groovy/sc/tyro/doc/componentsTest.groovy[tags=heading]
+include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=heading,indent=0]
 ----
 
 

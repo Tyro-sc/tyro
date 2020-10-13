@@ -1,4 +1,4 @@
-==== Group
+=== Group
 
 *Group* is used for groups of items in dropDowns.
 

@@ -10,8 +10,6 @@ With them, you have the most useful objects to write a UI test.
 enabled, disabled, available, missing, hidden, visible, contains, displays
 ====
 
-=== Components
-
 include::components/button.adoc[]
 
 include::components/checkBox.adoc[]
@@ -33,3 +31,11 @@ include::components/link.adoc[]
 include::components/form.adoc[]
 
 include::components/fields.adoc[]
+
+include::components/panel.adoc[]
+
+include::components/image.adoc[]
+
+include::components/heading.adoc[]
+
+include::components/datagrid.adoc[]

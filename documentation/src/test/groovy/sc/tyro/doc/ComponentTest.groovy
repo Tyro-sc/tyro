@@ -20,10 +20,12 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import sc.tyro.bundle.html5.A
+import sc.tyro.bundle.html5.Img
 import sc.tyro.bundle.html5.input.InputTypeRange
 import sc.tyro.bundle.html5.list.Ul
-import sc.tyro.core.Tyro
+import sc.tyro.bundle.html5.table.Table
 import sc.tyro.core.component.*
+import sc.tyro.core.component.datagrid.DataGrid
 import sc.tyro.core.component.field.RangeField
 import sc.tyro.core.component.field.TextField
 
@@ -212,7 +214,7 @@ class ComponentTest {
     }
 
     @Test
-    @DisplayName("Should have expected states and properties supported by FoTextFieldrm")
+    @DisplayName("Should have expected states and properties supported by TextField")
     void textField() {
         TextField textField = field('Name')
         // tag::textField[]
@@ -233,6 +235,48 @@ class ComponentTest {
             be inRange
         }
         // end::rangeField[]
+    }
+
+    @Test
+    @DisplayName("Should have expected states and properties supported by Image")
+    void image() {
+        Image image = $('#image') as Img
+        // tag::image[]
+        image.should { have reference('http://localhost:8080/img/seahorse.jpg')}
+        // end::image[]
+    }
+
+
+    @Test
+    @DisplayName("Should have expected states and properties supported by DataGrid")
+    void dataGrid() {
+        DataGrid dataGrid = $('#datagrid') as Table
+        // tag::dataGrid[]
+        dataGrid.should {
+            have 3.columns
+            have 3.rows
+        }
+        // end::dataGrid[]
+
+        // tag::column[]
+        dataGrid.columns()[1].should {
+            have title('Firstname')
+            have 3.cells
+        }
+        // end::column[]
+
+        // tag::row[]
+        dataGrid.rows()[1].should {
+            have title('2')
+            have 2.cells
+        }
+        // end::row[]
+
+        // tag::cell[]
+        dataGrid.rows()[0].cells()[1].should {
+            have value('Black')
+        }
+        // end::cell[]
     }
 
     // ========================================================

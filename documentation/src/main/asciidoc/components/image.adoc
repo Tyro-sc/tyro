@@ -1,6 +1,6 @@
-==== Image
+=== Image
 
-image::../images/components/Image.png[Image, 500]
+image::components/Image.png[Image]
 
 _Definition_:  an *image* allows the user to insert an image (gif, jpg, png,...) from a source file
 
@@ -14,11 +14,11 @@ _Definition_:  an *image* allows the user to insert an image (gif, jpg, png,...)
 
 |===
 
-Usage example : TODO
+Usage:
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----
-include::{codepath}/../../../../test/groovy/sc/tyro/doc/componentsTest.groovy[tags=image]
+include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=image,indent=0]
 ----
 
 
