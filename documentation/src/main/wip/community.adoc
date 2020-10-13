@@ -1,9 +1,0 @@
-== Getting Help
-
-TODO
-(stack overflow ? Gitter ?)
-
-
-== Contributors
-
-TODO
