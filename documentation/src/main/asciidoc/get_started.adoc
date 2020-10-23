@@ -2,21 +2,21 @@
 
 === Quick start from a template
 
-*Tyro* comes with a https://github.com/Tyro-sc/tyro-starters[bunch of starters] with different combinations of testing tools (*JUnit4, JUni5, Cucumber...*).
+*Tyro* comes with a https://github.com/Tyro-sc/tyro-starters[bunch of starters] for different combinations of testing tools (*JUnit4, JUni5, Cucumber...*).
 
 These starters give you a good taste of the power and flexibility of *Tyro*.
 
-== Sample examples
+== First examples
 
-Let's have a look at some samples cases on *Tyro* usage.
+Let's have a look at some simple examples of *Tyro* use.
 
 === A simple specification test
 
-A simple form like this
+A simple form like this :
 
 image::sample_1.png[Specification,align="left"]
 
-can be specified like this
+can be specified like this :
 
 [source,groovy,linenums]
 [subs="verbatim,attributes"]
@@ -26,7 +26,11 @@ include::{sourcedir}/test/groovy/sc/tyro/doc/SampleTest.groovy[tags=sample_1,ind
 
 === A simple functional test
 
+The check/uncheck behavior of the following choice :
+
 image::sample_2.png[Functional,align="left"]
+
+can be tested like this :
 
 [source,groovy,linenums]
 [subs="verbatim,attributes"]
@@ -36,11 +40,11 @@ include::{sourcedir}/test/groovy/sc/tyro/doc/SampleTest.groovy[tags=sample_2,ind
 
 == Functional vs Specification tests
 
-In the UI test area you need to face with two type of tests:
+In the UI test area you need to face with two type of tests: Functional tests and Specification tests.
 
 === The Functional tests
 
-This type of tests describe the user intention.
+This type of tests describes the user intention.
 
 For example:
 
@@ -49,11 +53,11 @@ For example:
 
 These tests focus on the interaction between the user and the UI.
 
-In the case of a login scenario you want toi describe something like.
+In the case of a login scenario you want to describe something like :
 
-    - User fill his my username.
-    - User fill his password.
-    - User click on login button.
+    - User fills his my username.
+    - User fills his password.
+    - User clicks on login button.
 
 Generally it's a black box testing.
 You have a state before the action and a state after.
@@ -61,7 +65,7 @@ The well-known pattern on it is the famous https://en.wikipedia.org/wiki/Cucumbe
 
 === The Specification tests
 
-This type of test describe the design language between the user and the application.
+This type of test describes the design language between the user and the application.
 
 For example:
 

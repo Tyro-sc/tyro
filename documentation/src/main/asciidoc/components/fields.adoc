@@ -40,7 +40,7 @@ This is the base component for all types of fields.
 *All following types of fields inherit these states, properties and intentions.*
 ====
 
-==== TextField and all the variations (TextField, EmailField, PasswordField, URLField, SearchField, PhoneField, DateTimeField, MonthField, WeekField, TimeField, ColorField)
+==== TextField and all its variations (EmailField, PasswordField, URLField, SearchField)
 
 image::components/TextField.png[TextField]
 
@@ -59,7 +59,7 @@ of input may be required."
 
 |===
 
-Usage:
+*_Usage_*:
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----
@@ -67,7 +67,7 @@ include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=textField
 ----
 
 
-==== RangeField and all the variations (DateField, NumberField)
+==== RangeField and its variations (DateField, NumberField)
 
 image::components/RangeField.png[RangeField]
 
@@ -79,7 +79,7 @@ _Definition_: a *rangeField* is used for fields that must contain a value within
 
 |inRange
 |maximum
-|
+|set
 
 |outOfRange
 |minimum
@@ -91,9 +91,14 @@ _Definition_: a *rangeField* is used for fields that must contain a value within
 
 |===
 
-Usage:
+*_Usage_*:
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----
 include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=rangeField,indent=0]
 ----
+
+==== Other fields (ColorField, DateTimeField, MonthField, WeekField, TimeField, PhoneField)
+
+No specific states, properties or intentions for these ones.
+

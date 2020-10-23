@@ -15,7 +15,7 @@ _Definition_: a *listView* allows the user to display items in a list format (wi
 
 |===
 
-Usage:
+*_Usage_*:
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----

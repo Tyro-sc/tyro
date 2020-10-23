@@ -17,7 +17,7 @@
 
 |===
 
-Usage:
+*_Usage_*:
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----
@@ -35,7 +35,7 @@ include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=item,inde
 
 |===
 
-Usage:
+*_Usage_*:
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----

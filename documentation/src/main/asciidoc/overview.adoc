@@ -2,17 +2,21 @@
 
 '''
 
-The goal of this document is to provide comprehensive reference documentation for developers who want to write User Interface tests with *Tyro*.
-It also explains how to write Good UI tests scenarios.
+The goal of this document is to provide comprehensive reference documentation for developers, analysts or QA who want to write User Interface tests with *Tyro*.
+It also explains how to write good UI tests scenarios.
 
 === Introduction
 
 *Tyro* is a web user interface testing tool providing a framework to test any html5 application.
+
 What makes it stand out from the crowd is its beautiful and highly expressive language.
+
 *Tyro* provides, on one hand, an abstraction of the UI business domain through an expressive API and, on the other hand, a way to express this domain via a DSL (a button semantically stays a button, whatever the technology).
+
 With *Tyro*, you can therefore write tests with a seldom achieved level of expressiveness and make those tests INDEPENDENT of the underlying technology.
 
-*Tyro* is build on top of the https://www.selenium.dev/[WebDriver] browser automation library, which means that Tyro can work with any browser that WebDriver support.
+*Tyro* is built on top of the https://www.selenium.dev/[WebDriver] browser automation library, which means that Tyro can work with any browser that WebDriver supports.
+
 *Tyro* plays very well with https://junit.org/junit5/[JUnit], https://cucumber.io/[Cucumber], https://gauge.org/[Gauge] et many others testing tools.
 
 === Why Tyro is unique

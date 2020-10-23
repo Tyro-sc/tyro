@@ -17,7 +17,7 @@ _Definition_: a *datagrid* is a component that allows user to present data in a 
 |
 |===
 
-Usage:
+*_Usage_*:
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----
@@ -42,7 +42,7 @@ _Definition_: a *column* is the vertical element of a datagrid ; it is composed 
 |
 |===
 
-Usage:
+*_Usage_*:
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----
@@ -66,7 +66,7 @@ _Definition_: a *row* is the horizontal element of a datagrid ; it is composed o
 |
 |===
 
-Usage:
+*_Usage_*:
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----
@@ -87,7 +87,7 @@ _Definition_: a *cell* is the finest element of a datagrid.
 
 |===
 
-Usage:
+*_Usage_*:
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----

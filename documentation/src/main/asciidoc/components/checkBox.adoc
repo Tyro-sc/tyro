@@ -19,7 +19,7 @@ image::components/CheckBox.png[CheckBox]
 |uncheck
 |===
 
-Usage:
+*_Usage_*:
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----

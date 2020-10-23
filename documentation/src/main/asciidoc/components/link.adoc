@@ -18,7 +18,7 @@ _Definition_:  a *link* allows the user to navigate from page to page.
 
 |===
 
-Usage:
+*_Usage_*:
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----

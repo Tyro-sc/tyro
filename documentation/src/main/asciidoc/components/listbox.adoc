@@ -30,7 +30,7 @@ in order to make multiple selections. "Control-clicking" an item that has alread
 
 |===
 
-Usage:
+*_Usage_*:
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----

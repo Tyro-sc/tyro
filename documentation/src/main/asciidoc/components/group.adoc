@@ -18,7 +18,7 @@ image::components/Group.png[Group]
 |
 |===
 
-Usage:
+*_Usage_*:
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----

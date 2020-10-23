@@ -14,6 +14,7 @@ _Definition_:  a *heading* allows the user to put a title for a page or a paragr
 
 |===
 
+*_Usage_*:
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----

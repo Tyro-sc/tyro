@@ -24,7 +24,7 @@ same group becomes deselected (making it so only one can be selected)."
 |
 |===
 
-Usage:
+*_Usage_*:
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----

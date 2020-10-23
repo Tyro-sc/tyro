@@ -2,7 +2,7 @@
 '''
 
 *Tyro* provides a set of UI Domain Objects.
-With them, you have the most useful objects to write a UI test.
+With them, you have the most useful components to write a UI test.
 
 [NOTE]
 ====
