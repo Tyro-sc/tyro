@@ -1,0 +1,41 @@
+== Domain Components
+'''
+
+*Tyro* provides a set of UI Domain Objects.
+With them, you have the most useful components to write a UI test.
+
+[NOTE]
+====
+.The following states are shared by all Tyro components :
+enabled, disabled, available, missing, hidden, visible, contains, displays
+====
+
+include::components/button.adoc[]
+
+include::components/checkBox.adoc[]
+
+include::components/radio.adoc[]
+
+include::components/dropdown.adoc[]
+
+include::components/group.adoc[]
+
+include::components/listbox.adoc[]
+
+include::components/listview.adoc[]
+
+include::components/item.adoc[]
+
+include::components/link.adoc[]
+
+include::components/form.adoc[]
+
+include::components/fields.adoc[]
+
+include::components/panel.adoc[]
+
+include::components/image.adoc[]
+
+include::components/heading.adoc[]
+
+include::components/datagrid.adoc[]

@@ -1,0 +1,104 @@
+=== Field
+
+This is the base component for all types of fields.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|empty
+|text
+|fill
+
+|filled
+|label
+|clear
+
+|readOnly
+|placeholder
+|
+
+|required
+|value
+|
+
+|optional
+|
+|
+
+|valid
+|
+|
+
+|invalid
+|
+|
+|===
+
+[IMPORTANT]
+====
+*All following types of fields inherit these states, properties and intentions.*
+====
+
+==== TextField and all its variations (EmailField, PasswordField, URLField, SearchField)
+
+image::components/TextField.png[TextField]
+
+"a *textfield* allows the user to enter text information to be used by the program.
+It can be a single-line text box when only one line of input is required, and a multi-lines text box if more than one line
+of input may be required."
+-- inspired from Wikipedia definition
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|
+|length
+|
+
+|===
+
+*_Usage_*:
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=textField,indent=0]
+----
+
+
+==== RangeField and its variations (DateField, NumberField)
+
+image::components/RangeField.png[RangeField]
+
+_Definition_: a *rangeField* is used for fields that must contain a value within a range.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|inRange
+|maximum
+|set
+
+|outOfRange
+|minimum
+|
+
+|
+|step
+|
+
+|===
+
+*_Usage_*:
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=rangeField,indent=0]
+----
+
+==== Other fields (ColorField, DateTimeField, MonthField, WeekField, TimeField, PhoneField)
+
+No specific states, properties or intentions for these ones.
+

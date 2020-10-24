@@ -1,0 +1,24 @@
+=== Image
+
+image::components/Image.png[Image]
+
+_Definition_:  an *image* allows the user to insert an image (gif, jpg, png,...) from a source file
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|
+|reference
+|
+
+|===
+
+*_Usage_*:
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=image,indent=0]
+----
+
+

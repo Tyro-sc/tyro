@@ -1,0 +1,96 @@
+=== Datagrid
+
+image::components/DataGrid.png[DataGrid]
+
+_Definition_: a *datagrid* is a component that allows user to present data in a tabular view, with cells organized in rows and columns.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|
+|rows
+|
+
+|
+|columns
+|
+|===
+
+*_Usage_*:
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=dataGrid,indent=0]
+----
+
+
+==== Column
+
+_Definition_: a *column* is the vertical element of a datagrid ; it is composed of cells and can have a title.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|
+|cells
+|
+
+|
+|title
+|
+|===
+
+*_Usage_*:
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=column,indent=0]
+----
+
+==== Row
+
+_Definition_: a *row* is the horizontal element of a datagrid ; it is composed of cells and can have a title.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|
+|cells
+|
+
+|
+|title
+|
+|===
+
+*_Usage_*:
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=row,indent=0]
+----
+
+==== Cell
+
+_Definition_: a *cell* is the finest element of a datagrid.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|
+|value
+|
+
+|===
+
+*_Usage_*:
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=cell,indent=0]
+----
+

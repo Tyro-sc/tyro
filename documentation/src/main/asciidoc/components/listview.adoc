@@ -1,0 +1,23 @@
+=== ListView
+
+image:components/ListView.png[ListView]
+
+_Definition_: a *listView* allows the user to display items in a list format (with bullet points or numbers, indentation,...).
+
+[cols="3*", options="header"]
+|===
+
+|States|Properties|Intentions
+
+|
+|items
+|
+
+|===
+
+*_Usage_*:
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=listView,indent=0]
+----

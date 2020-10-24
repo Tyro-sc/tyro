@@ -1,0 +1,341 @@
+== Html5 - Tyro equivalence
+'''
+[cols="1",options="header"]
+|===
+|Reminder : States shared by all Tyro components
+|enabled, disabled, available, missing, hidden, visible, contains, displays
+|===
+
+=== Html5 - Tyro equivalence
+
+[NOTE]
+====
+for input html5 tags : see next section
+====
+
+[cols="1,1,1,2,1,1", options="header"]
+|===
+|Html tag
+|Tyro core component
+|State
+|Properties
+|Intentions
+|Tyro web component
+
+|button
+|<<Button>>
+|
+|text
+|
+|Button
+
+|select
+|<<DropDown>>
+|
+|label, _number of items_, items, _number of groups_, groups, selectedItem
+|select
+|Select
+
+|select (multiple)
+|<<ListBox>>
+|
+|label, _number of items_, items, selectedItem, _number of visible items_
+|select
+|MultiSelect
+
+|textarea
+|<<TextField>>
+|empty, filled, readOnly, required, optional, valid, invalid
+|text, label, placeholder, value, length
+|fill, clear
+|TextArea
+
+|optgroup
+|<<Group>>
+|
+|value, items
+|
+|OptionGroup
+
+|option
+|<<Item>>
+|selected, unselected
+|value
+|select, unselect
+|Option
+
+|form
+|<<Form>>
+|valid, invalid
+|
+|reset, submit
+|Form
+
+|h1, h2, h3, h4, h5, h6
+|<<Heading>>
+|
+|text
+|
+|H1, H2,H3, H4, H5, H6
+
+|img
+|<<Image>>
+|
+|reference
+|
+|Img
+
+|a
+|<<Link>>
+|
+|text, reference
+|
+|A
+
+|ul
+|<<ListView>>
+|
+|items, _number of items_
+|
+|Ul
+
+|ol
+|<<ListView>>
+|
+|items, _number of items_
+|
+|Ol
+
+|li
+|<<Item>>
+|
+|value
+|
+|Li
+
+|div
+|<<Panel>>
+|
+|title
+|
+|Div
+
+|table
+|<<Datagrid>>
+|
+|rows, columns
+|
+|Table
+
+|th
+|<<Column>>
+|
+|cells, title
+|
+|Th
+
+|tr
+|<<Row>>
+|
+|cells, title
+|
+|Tr
+
+|td
+|<<Cell>>
+|
+|value
+|
+|Td
+
+|article
+|Component
+|
+|paragraphs
+|
+|Article
+
+|aside
+|Component
+|
+|
+|
+|Aside
+
+|header
+|Component
+|
+|
+|
+|Header
+
+|footer
+|Component
+|
+|
+|
+|Footer
+
+|label
+|Component
+|
+|text
+|
+|Label
+
+|p
+|Component
+|
+|text
+|
+|P
+
+|section
+|Component
+|
+|paragraphs, articles
+|
+|Section
+
+|span
+|Component
+|
+|text
+|
+|Span
+
+|===
+
+==== Html5 input tags
+
+[cols="1,1,1,2,1,1", options="header"]
+|===
+|Html tag
+|Tyro core component
+|State
+|Properties
+|Intentions
+|Tyro web component
+
+|checkbox
+|<<CheckBox>>
+|checked, unchecked
+|label
+|check, uncheck
+|InputTypeCheckBox
+
+|radio
+|<<Radio>>
+|checked, unchecked
+|label
+|check
+|InputTypeRadio
+
+2+|
+4+|*_Shared by all Tyro Field components_*
+
+2+|*All below components inherit from Field*
+|empty, filled, readOnly, required, optional, valid, invalid
+|text,label, placeholder, value
+|fill, clear
+|
+
+|text
+|<<TextField>>
+|
+|length
+|
+|InputTypeText
+
+|color
+|<<ColorField>>
+|
+|
+|
+|InputTypeColor
+
+|datetime-local
+|<<DateTimeField>>
+|
+|
+|
+|InputTypeDateTime
+
+|date
+|<<DateField>>
+|inRange, outofRange
+|maximum, minimum, step
+|set
+|InputTypeDate
+
+|time
+|<<TimeField>>
+|
+|
+|
+|InputTypeTime
+
+|month
+|<<MonthField>>
+|
+|
+|
+|InputTypeMonth
+
+|week
+|<<WeekField>>
+|
+|
+|
+|InputTypeWeek
+
+|email
+|<<EmailField>>
+|
+|length
+|
+|InputTypeEmail
+
+|password
+|<<PasswordField>>
+|
+|length
+|
+|InputTypePassword
+
+|number
+|<<NumberField>>
+|inRange, outofRange
+|maximum, minimum, step
+|set
+|InputTypeNumber
+
+|range
+|<<RangeField>>
+|inRange, outofRange
+|maximum, minimum, step
+|set
+|InputTypeRange
+
+|tel
+|<<PhoneField>>
+|
+|
+|
+|InputTypeTel
+
+|search
+|<<SearchField>>
+|
+|length
+|
+|InputTypeSearch
+
+|url
+|<<URLField>>
+|
+|length
+|
+|InputTypeURL
+
+|===

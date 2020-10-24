@@ -1,0 +1,26 @@
+=== Group
+
+*Group* is used for groups of items in dropDowns.
+
+image::components/Group.png[Group]
+
+[cols="3*", options="header"]
+|===
+
+|States|Properties|Intentions
+
+|
+|value
+|
+
+|
+|items
+|
+|===
+
+*_Usage_*:
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=group,indent=0]
+----

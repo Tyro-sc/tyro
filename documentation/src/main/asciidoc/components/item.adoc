@@ -1,0 +1,43 @@
+=== Item
+
+*Item* is used for the elements listed in Dropdown, ListBox and ListView
+
+==== Item in ListBox or Dropdown
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|selected
+|value
+|select
+
+|unselected
+|
+|unselect
+
+|===
+
+*_Usage_*:
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=item,indent=0]
+----
+
+==== Item in ListView
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|
+|value
+|
+
+|===
+
+*_Usage_*:
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=item-listview,indent=0]
+----

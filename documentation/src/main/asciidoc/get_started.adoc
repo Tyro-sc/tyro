@@ -1,0 +1,77 @@
+== Getting started
+
+=== Quick start from a template
+
+*Tyro* comes with a https://github.com/Tyro-sc/tyro-starters[bunch of starters] for different combinations of testing tools (*JUnit4, JUni5, Cucumber...*).
+
+These starters give you a good taste of the power and flexibility of *Tyro*.
+
+== First examples
+
+Let's have a look at some simple examples of *Tyro* use.
+
+=== A simple specification test
+
+A simple form like this :
+
+image::sample_1.png[Specification,align="left"]
+
+can be specified like this :
+
+[source,groovy,linenums]
+[subs="verbatim,attributes"]
+----
+include::{sourcedir}/test/groovy/sc/tyro/doc/SampleTest.groovy[tags=sample_1,indent=0]
+----
+
+=== A simple functional test
+
+The check/uncheck behavior of the following choice :
+
+image::sample_2.png[Functional,align="left"]
+
+can be tested like this :
+
+[source,groovy,linenums]
+[subs="verbatim,attributes"]
+----
+include::{sourcedir}/test/groovy/sc/tyro/doc/SampleTest.groovy[tags=sample_2,indent=0]
+----
+
+== Functional vs Specification tests
+
+In the UI test area you need to face with two type of tests: Functional tests and Specification tests.
+
+=== The Functional tests
+
+This type of tests describes the user intention.
+
+For example:
+
+    - As a user I want to log in my application
+    - As a user I want to send a message
+
+These tests focus on the interaction between the user and the UI.
+
+In the case of a login scenario you want to describe something like :
+
+    - User fills his my username.
+    - User fills his password.
+    - User clicks on login button.
+
+Generally it's a black box testing.
+You have a state before the action and a state after.
+The well-known pattern on it is the famous https://en.wikipedia.org/wiki/Cucumber_(software)#Gherkin_language[Gherkin language] *Given-When-Then*
+
+=== The Specification tests
+
+This type of test describes the design language between the user and the application.
+
+For example:
+
+    - A field should be visible
+    - A field should be disabled by default
+    - A field should have expected label
+    - ...
+
+This type of tests are very useful to check the expected state of the screen.

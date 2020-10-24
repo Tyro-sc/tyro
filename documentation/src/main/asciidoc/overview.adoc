@@ -1,0 +1,34 @@
+== Overview
+
+'''
+
+The goal of this document is to provide comprehensive reference documentation for developers, analysts or QA who want to write User Interface tests with *Tyro*.
+It also explains how to write good UI tests scenarios.
+
+=== Introduction
+
+*Tyro* is a web user interface testing tool providing a framework to test any html5 application.
+
+What makes it stand out from the crowd is its beautiful and highly expressive language.
+
+*Tyro* provides, on one hand, an abstraction of the UI business domain through an expressive API and, on the other hand, a way to express this domain via a DSL (a button semantically stays a button, whatever the technology).
+
+With *Tyro*, you can therefore write tests with a seldom achieved level of expressiveness and make those tests INDEPENDENT of the underlying technology.
+
+*Tyro* is built on top of the https://www.selenium.dev/[WebDriver] browser automation library, which means that Tyro can work with any browser that WebDriver supports.
+
+*Tyro* plays very well with https://junit.org/junit5/[JUnit], https://cucumber.io/[Cucumber], https://gauge.org/[Gauge] et many others testing tools.
+
+=== Why Tyro is unique
+
+*Tyro* is the result of numerous real-world observations of developers in the trenches in the area of GUI testing.
+Working for many years to promote the *TDD/BDD* approaches, we often faced difficulties in their implementation for the graphical layer of applications.
+
+The *"TEST FIRST"* principle excludes all scenario recorder based approaches that only allow you to write "at posteriori" tests.
+Our experience has taught us that this path is a dead-end.
+
+Another problem is UI tests are brittle and costly! We do think that this is due to the lack of abstraction in existing UI testing tools.
+
+Therefore, *Tyro* can transform tests in real assets, present throughout the life of the application and always in tune with the latest version of the application.
+
+*Tyro* is an opinionated tool. It forces the user to see and use the domain layer as a composition and aggregation of UI components (in Tyro, everything is a UI component).

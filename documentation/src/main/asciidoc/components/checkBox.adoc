@@ -1,0 +1,27 @@
+=== CheckBox
+
+image::components/CheckBox.png[CheckBox]
+
+"a *checkBox* is a small box that, when selected by the user, shows that a particular feature has been enabled
+  or a particular option chosen. Check boxes are commonly used when more than one option may need to be selected."
+-- inspired from Oxford dictionaries definition
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|checked
+|label
+|check
+
+|unchecked
+|
+|uncheck
+|===
+
+*_Usage_*:
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{sourcedir}/test/groovy/sc/tyro/doc/ComponentTest.groovy[tags=checkBox,indent=0]
+----
