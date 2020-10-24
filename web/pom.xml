@@ -32,9 +32,7 @@
         <selenium-java.version>3.141.59</selenium-java.version>
 
         <!-- Tests -->
-        <slf4j-simple.verion>1.7.28</slf4j-simple.verion>
         <testcontainer.version>1.14.3</testcontainer.version>
-        <javalin.version>3.8.0</javalin.version>
         <webdrivermanager.version>4.0.0</webdrivermanager.version>
     </properties>
 
@@ -74,14 +72,12 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium-java.version}</version>
-            <scope>provided</scope>
         </dependency>
 
         <!-- Tests -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>${slf4j-simple.verion}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -92,7 +88,6 @@
         <dependency>
             <groupId>io.javalin</groupId>
             <artifactId>javalin</artifactId>
-            <version>${javalin.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>

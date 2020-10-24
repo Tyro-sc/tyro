@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
     <title>Tyro Rocks</title>
 
+    <meta charset="utf-8">
     <meta name="description" content="Tyro Rocks">
-    <meta name="author" content="ovea">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <link href="css/bootstrap-4.5.0.min.css" rel="stylesheet" media="screen">
 
     <style>
         * {
@@ -38,18 +37,15 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default" role="navigation">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="#">Tyro Keyboard Tests</a>
-    </div>
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">Tyro Keyboard Tests</a>
 </nav>
 
 <div class="container-fluid">
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-md-2"></div>
         <div class="col-md-8">
-
-            <h2>A-Z Letters</h2>
+            <h3>A-Z Letters</h3>
 
             <div id="a" class="eventNotifier">a</div>
             <div id="b" class="eventNotifier">b</div>
@@ -77,10 +73,14 @@
             <div id="x" class="eventNotifier">x</div>
             <div id="y" class="eventNotifier">y</div>
             <div id="z" class="eventNotifier">z</div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
 
-            <div style="clear: both;"></div>
-
-            <h2>0-9 Digits</h2>
+    <div class="row mt-3">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h3>0-9 Digits</h3>
 
             <div id="0" class="eventNotifier">0</div>
             <div id="1" class="eventNotifier">1</div>
@@ -92,10 +92,14 @@
             <div id="7" class="eventNotifier">7</div>
             <div id="8" class="eventNotifier">8</div>
             <div id="9" class="eventNotifier">9</div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
 
-            <div style="clear: both;"></div>
-
-            <h2>Special Keys</h2>
+    <div class="row mt-3">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h3>Special Keys</h3>
 
             <div id="backspace" class="eventNotifier">BACKSPACE</div>
             <div id="tab" class="eventNotifier">TAB</div>
@@ -133,10 +137,14 @@
             <div id="separator" class="eventNotifier">SEPARATOR</div>
             <div id="decimal" class="eventNotifier">DECIMAL</div>
             <div id="semicolon" class="eventNotifier">SEMICOLON</div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
 
-            <div style="clear: both;"></div>
-
-            <h2>Numpad</h2>
+    <div class="row mt-3">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h3>Numpad</h3>
 
             <div id="numpad0" class="eventNotifier">NUMPAD0</div>
             <div id="numpad1" class="eventNotifier">NUMPAD1</div>
@@ -147,27 +155,37 @@
             <div id="numpad6" class="eventNotifier">NUMPAD6</div>
             <div id="numpad7" class="eventNotifier">NUMPAD7</div>
             <div id="numpad8" class="eventNotifier">NUMPAD8</div>
-            <div id="numpad9" class="eventNotifier">NUMPAD9</div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
 
-            <div style="clear: both;"></div>
-
-            <h2>Keys Modifier</h2>
+    <div class="row mt-3">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h3>Keys Modifier</h3>
 
             <div id="shift" class="eventNotifier">SHIFT</div>
             <div id="alt" class="eventNotifier">ALT</div>
             <div id="ctrl" class="eventNotifier">CTRL</div>
             <div id="cmd" class="eventNotifier">COMMAND</div>
 
-            <div style="clear: both;"></div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
 
-            <h2>Input text</h2>
-
-            <div style="clear: both;"></div>
+    <div class="row mt-3">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h3>Input text</h3>
             <input id="textfield" type="text"/>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
 
-            <div style="clear: both;"></div>
-
-            <h2>Special Modifiers</h2>
+    <div class="row mt-3">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h3>Special Modifiers</h3>
 
             <div id="Ctrl_r" class="eventNotifier">Ctrl+r</div>
             <div style="clear: both;"></div>
@@ -184,7 +202,6 @@
             <div id="F10" class="eventNotifier">F10</div>
             <div id="F11" class="eventNotifier">F11</div>
             <div id="F12" class="eventNotifier">F12</div>
-
         </div>
         <div class="col-md-2"></div>
     </div>
@@ -223,40 +240,104 @@
         }
 
         //     ============= SPECIAL KEYS ===============
-        hotkeys('backspace', function () { $('#backspace').dirtyCheck(); });
-        hotkeys('tab', function () { $('#tab').dirtyCheck(); });
-        hotkeys('clear', function () { $('#clear').dirtyCheck(); });
-        hotkeys('enter', function () { $('#enter').dirtyCheck(); });
-        hotkeys('return', function () { $('#return').dirtyCheck(); });
-        hotkeys('escape', function () { $('#escape').dirtyCheck(); });
-        hotkeys('space', function () { $('#space').dirtyCheck(); });
-        hotkeys('left', function () { $('#left').dirtyCheck(); });
-        hotkeys('up', function () { $('#up').dirtyCheck(); });
-        hotkeys('right', function () { $('#right').dirtyCheck(); });
-        hotkeys('down', function () { $('#down').dirtyCheck(); });
-        hotkeys('delete', function () { $('#delete').dirtyCheck(); });
-        hotkeys('insert', function () { $('#insert').dirtyCheck(); });
-        hotkeys('home', function () { $('#home').dirtyCheck(); });
-        hotkeys('end', function () { $('#end').dirtyCheck(); });
-        hotkeys('pageup', function () { $('#pageup').dirtyCheck(); });
-        hotkeys('pagedown', function () { $('#pagedown').dirtyCheck(); });
-        hotkeys('null', function () { $('#null').dirtyCheck(); });
-        hotkeys('cancel', function () { $('#cancel').dirtyCheck(); });
-        hotkeys('help', function () { $('#help').dirtyCheck(); });
-        hotkeys('meta', function () { $('#meta').dirtyCheck(); });
-        hotkeys('pause', function () { $('#pause').dirtyCheck(); });
-        hotkeys('multiply', function () { $('#multiply').dirtyCheck(); });
-        hotkeys('divide', function () { $('#divide').dirtyCheck(); });
-        hotkeys('subtract', function () { $('#subtract').dirtyCheck(); });
-        hotkeys('add', function () { $('#add').dirtyCheck(); });
-        hotkeys('equals', function () { $('#equals').dirtyCheck(); });
+        hotkeys('backspace', function () {
+            $('#backspace').dirtyCheck();
+        });
+        hotkeys('tab', function () {
+            $('#tab').dirtyCheck();
+        });
+        hotkeys('clear', function () {
+            $('#clear').dirtyCheck();
+        });
+        hotkeys('enter', function () {
+            $('#enter').dirtyCheck();
+        });
+        hotkeys('return', function () {
+            $('#return').dirtyCheck();
+        });
+        hotkeys('escape', function () {
+            $('#escape').dirtyCheck();
+        });
+        hotkeys('space', function () {
+            $('#space').dirtyCheck();
+        });
+        hotkeys('left', function () {
+            $('#left').dirtyCheck();
+        });
+        hotkeys('up', function () {
+            $('#up').dirtyCheck();
+        });
+        hotkeys('right', function () {
+            $('#right').dirtyCheck();
+        });
+        hotkeys('down', function () {
+            $('#down').dirtyCheck();
+        });
+        hotkeys('delete', function () {
+            $('#delete').dirtyCheck();
+        });
+        hotkeys('insert', function () {
+            $('#insert').dirtyCheck();
+        });
+        hotkeys('home', function () {
+            $('#home').dirtyCheck();
+        });
+        hotkeys('end', function () {
+            $('#end').dirtyCheck();
+        });
+        hotkeys('pageup', function () {
+            $('#pageup').dirtyCheck();
+        });
+        hotkeys('pagedown', function () {
+            $('#pagedown').dirtyCheck();
+        });
+        hotkeys('null', function () {
+            $('#null').dirtyCheck();
+        });
+        hotkeys('cancel', function () {
+            $('#cancel').dirtyCheck();
+        });
+        hotkeys('help', function () {
+            $('#help').dirtyCheck();
+        });
+        hotkeys('meta', function () {
+            $('#meta').dirtyCheck();
+        });
+        hotkeys('pause', function () {
+            $('#pause').dirtyCheck();
+        });
+        hotkeys('multiply', function () {
+            $('#multiply').dirtyCheck();
+        });
+        hotkeys('divide', function () {
+            $('#divide').dirtyCheck();
+        });
+        hotkeys('subtract', function () {
+            $('#subtract').dirtyCheck();
+        });
+        hotkeys('add', function () {
+            $('#add').dirtyCheck();
+        });
+        hotkeys('equals', function () {
+            $('#equals').dirtyCheck();
+        });
 
-        hotkeys('*', function() {
-            if (hotkeys.shift) { $('#shift').dirtyCheck(); }
-            if (hotkeys.alt) { $('#alt').dirtyCheck(); }
-            if (hotkeys.ctrl) { $('#ctrl').dirtyCheck(); }
-            if (hotkeys.command) { $('#cmd').dirtyCheck(); }
-            if (hotkeys.enter) { $('#enter').dirtyCheck(); }
+        hotkeys('*', function () {
+            if (hotkeys.shift) {
+                $('#shift').dirtyCheck();
+            }
+            if (hotkeys.alt) {
+                $('#alt').dirtyCheck();
+            }
+            if (hotkeys.ctrl) {
+                $('#ctrl').dirtyCheck();
+            }
+            if (hotkeys.command) {
+                $('#cmd').dirtyCheck();
+            }
+            if (hotkeys.enter) {
+                $('#enter').dirtyCheck();
+            }
         });
 
         //   ============= SPECIAL MODIFIERS  ===============

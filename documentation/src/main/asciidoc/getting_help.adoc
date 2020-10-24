@@ -1,4 +1,0 @@
-== Getting Help
-
-TODO
-(stack overflow ? Gitter ?)

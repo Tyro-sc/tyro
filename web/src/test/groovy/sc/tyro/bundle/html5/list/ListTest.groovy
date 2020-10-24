@@ -19,15 +19,12 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import sc.tyro.bundle.html5.input.InputTypeText
 import sc.tyro.core.ComponentException
 import sc.tyro.core.component.ListView
-import sc.tyro.core.component.field.TextField
 import sc.tyro.web.TyroWebTestExtension
 
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static sc.tyro.core.Tyro.$
-import static sc.tyro.core.Tyro.fill
 import static sc.tyro.core.Tyro.visit
 import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 
