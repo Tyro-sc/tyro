@@ -56,11 +56,15 @@ class TyroWebTestExtension implements BeforeAllCallback, AfterAllCallback {
         if (isLocal) {
             if (System.getProperty("browser") == "firefox") {
                 firefoxdriver().setup()
-                driver = new FirefoxDriver()
+                FirefoxOptions options = new FirefoxOptions()
+                options.setHeadless(true)
+                driver = new FirefoxDriver(options)
                 System.getProperties().setProperty("driver", "FirefoxDriver")
             } else {
                 chromedriver().setup()
-                driver = new ChromeDriver()
+                ChromeOptions options = new ChromeOptions()
+                options.setHeadless(true)
+                driver = new ChromeDriver(options)
             }
         } else {
             Capabilities browser = new ChromeOptions()
