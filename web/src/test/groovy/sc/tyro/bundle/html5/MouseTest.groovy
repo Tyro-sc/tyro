@@ -106,6 +106,7 @@ class MouseTest {
     @Test
     @DisplayName("Should mouse out")
     void mouseOut() {
+        sleep(1000L)
         Button button = $('#button_4') as Button
         button.should { have text('Button') }
 
