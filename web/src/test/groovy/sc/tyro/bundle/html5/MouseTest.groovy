@@ -22,8 +22,8 @@ import org.junit.jupiter.api.extension.ExtendWith
 import sc.tyro.web.CssIdentifier
 import sc.tyro.web.TyroWebTestExtension
 
-import static sc.tyro.core.input.Key.*
 import static sc.tyro.core.Tyro.*
+import static sc.tyro.core.input.Key.*
 import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 
 /**
@@ -65,6 +65,7 @@ class MouseTest {
         button.should { have text('Button Double Clicked!') }
 
         browser().refresh()
+        sleep(1000L)
 
         button = $('#button_2') as Button
 

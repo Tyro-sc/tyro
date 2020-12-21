@@ -53,7 +53,6 @@ class Tyro {
 
     static mouse = new Mouse()
     static keyboard = new Keyboard()
-    static wait = new Wait()
 
     /**
      * States
@@ -256,7 +255,7 @@ class Tyro {
 
     static Link link(String text) { findByText(text, Link) }
 
-    static void waitUntil(Closure c, Matcher what = null) { wait.waitUntil(c, what) }
+    static void waitUntil(Closure c, Matcher what = null) { Wait.waitUntil(c, what) }
 
     private static class FillAction {
         private Field input
