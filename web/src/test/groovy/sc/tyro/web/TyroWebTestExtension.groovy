@@ -46,12 +46,12 @@ class TyroWebTestExtension implements BeforeAllCallback, AfterAllCallback {
     void beforeAll(ExtensionContext extensionContext) throws Exception {
         app = Javalin.create({
             config -> config.addStaticFiles("/webapp")
-        }).start(8080)
+        }).start()
 
         DatagramSocket socket = new DatagramSocket()
         socket.connect(InetAddress.getByName("8.8.8.8"), 10002)
         String host_ip = socket.getLocalAddress().getHostAddress()
-        BASE_URL = "http://${host_ip}:8080/"
+        BASE_URL = "http://${host_ip}:${app.port()}/"
 
         if (isLocal) {
             if (System.getProperty("browser") == "firefox") {
@@ -63,13 +63,15 @@ class TyroWebTestExtension implements BeforeAllCallback, AfterAllCallback {
                 driver = new ChromeDriver()
             }
         } else {
-            Capabilities browser = new ChromeOptions()
+            Capabilities options = new ChromeOptions()
+            options.setHeadless(true)
             if (System.getProperty("browser") == "firefox") {
-                browser = new FirefoxOptions()
+                options = new FirefoxOptions()
+                options.setHeadless(true)
                 System.getProperties().setProperty("driver", "FirefoxDriver")
             }
             container = new BrowserWebDriverContainer()
-                    .withCapabilities(browser)
+                    .withCapabilities(options)
                     .withRecordingMode(RECORD_ALL, new File("./target/"))
             container.start()
 
