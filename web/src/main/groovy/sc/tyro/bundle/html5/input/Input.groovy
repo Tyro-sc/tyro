@@ -63,6 +63,7 @@ trait Input {
 
     void clear() {
         this.click()
+        // Not very elegant need rework
         System.getProperty("os.name").startsWith("Mac") ? type(COMMAND + 'a') : type(CTRL + 'a')
         type(BACK_SPACE)
     }

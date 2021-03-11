@@ -53,7 +53,7 @@ class TyroWebTestExtension implements BeforeAllCallback, AfterAllCallback {
         String host_ip = socket.getLocalAddress().getHostAddress()
         BASE_URL = "http://${host_ip}:${app.port()}/"
 
-        if (true) {
+        if (isLocal) {
             if (System.getProperty("browser") == "firefox") {
                 firefoxdriver().setup()
                 driver = new FirefoxDriver()
