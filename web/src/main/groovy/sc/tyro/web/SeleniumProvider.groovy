@@ -139,7 +139,7 @@ class SeleniumProvider implements Provider {
         Collection<String> text = []
         keys.each { k ->
             if (k instanceof Key && text) throw new IllegalArgumentException('Cannot type a modifier after some text')
-            if (k instanceof Key && k in [Key.SHIFT, Key.CTRL, Key.ALT]) modifiers << k
+            if (k instanceof Key && k in [Key.SHIFT, Key.COMMAND, Key.CTRL, Key.ALT]) modifiers << k
             else text << k as String
         }
 
