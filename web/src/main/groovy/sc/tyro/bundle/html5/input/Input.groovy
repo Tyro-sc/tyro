@@ -19,9 +19,8 @@ import sc.tyro.core.ComponentException
 
 import static sc.tyro.bundle.html5.input.Label.findFor
 import static sc.tyro.core.Tyro.type
+import static sc.tyro.core.Tyro.withOsModifierType
 import static sc.tyro.core.input.Key.BACK_SPACE
-import static sc.tyro.core.input.Key.COMMAND
-import static sc.tyro.core.input.Key.CTRL
 
 /**
  * @author David Avenante
@@ -63,8 +62,7 @@ trait Input {
 
     void clear() {
         this.click()
-        // Not very elegant need rework
-        System.getProperty("os.name").startsWith("Mac") ? type(COMMAND + 'a') : type(CTRL + 'a')
+        withOsModifierType('a')
         type(BACK_SPACE)
     }
 
