@@ -88,7 +88,7 @@ class SeleniumProvider implements Provider {
     void click(Component component, Collection<MouseModifiers> mouseModifiers, Collection<?> keys) {
         WebElement element = webDriver.findElement(org.openqa.selenium.By.id(component.id()))
         // https://github.com/mozilla/geckodriver/issues/776
-        runScript("document.getElementById('${component.id()}').scrollIntoView(true);window.scrollBy(0, -window.innerHeight / 4);")
+        runScript("document.getElementById('${component.id()}').scrollIntoView({behavior:'auto',block:'center',inline:'center'});")
 
         // Temporary hack until Selenium fix
         if (optionInDropdown(component.id())) {
