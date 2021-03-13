@@ -46,7 +46,7 @@ class TyroWebTestExtension implements BeforeAllCallback, AfterAllCallback {
     void beforeAll(ExtensionContext extensionContext) throws Exception {
         app = Javalin.create({
             config -> config.addStaticFiles("/webapp")
-        }).start()
+        }).start(0)
 
         DatagramSocket socket = new DatagramSocket()
         socket.connect(InetAddress.getByName("8.8.8.8"), 10002)
