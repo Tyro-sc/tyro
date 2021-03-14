@@ -180,6 +180,7 @@ class Tyro {
     }
 
     static void select(Item... items) {
+        Keyboard.
         items.each { item ->
             if (!item.enabled())
                 throw new ComponentException("${item.class.simpleName} ${item} is disabled and cannot be selected")
@@ -324,6 +325,4 @@ class Tyro {
         else
             type(CTRL + text)
     }
-
-
 }
