@@ -43,7 +43,7 @@ class MultiSelectTest {
 
     @Test
     @DisplayName("Should have expected behaviours for MultiSelect")
-    @DisabledIfSystemProperty(named = "driver", matches = "FirefoxDriver") // https://github.com/mozilla/geckodriver/issues/944
+    @DisabledIfSystemProperty(named = "driver", matches = "FirefoxDriver") // Open a new issue see README.md
     void multiSelect() {
         assert MultiSelect in ListBox
 
