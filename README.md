@@ -5,3 +5,8 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c091b16c5832c890a59b/test_coverage)](https://codeclimate.com/github/Tyro-sc/tyro/test_coverage)
 
 # Tyro
+
+Try to get time to follow this issue:
+https://github.com/mozilla/geckodriver/issues/944
+
+Find new issue on CTRL click on option not visible in a multiselect

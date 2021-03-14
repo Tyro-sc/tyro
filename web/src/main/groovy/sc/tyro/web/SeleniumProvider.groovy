@@ -88,7 +88,7 @@ class SeleniumProvider implements Provider {
     void click(Component component, Collection<MouseModifiers> mouseModifiers, Collection<?> keys) {
         WebElement element = webDriver.findElement(org.openqa.selenium.By.id(component.id()))
         // https://github.com/mozilla/geckodriver/issues/776
-        runScript("document.getElementById('${component.id()}').scrollIntoView(true)")
+        runScript("document.getElementById('${component.id()}').scrollIntoView({behavior:'auto',block:'center',inline:'center'});")
 
         // Temporary hack until Selenium fix
         if (optionInDropdown(component.id())) {
@@ -100,7 +100,7 @@ class SeleniumProvider implements Provider {
         Collection<String> text = []
         keys.each { k ->
             if (k instanceof Key && text) throw new IllegalArgumentException('Cannot type a modifier after some text')
-            if (k instanceof Key && k in [Key.SHIFT, Key.CTRL, Key.ALT]) modifiers << k
+            if (k instanceof Key && k in [Key.SHIFT, Key.CTRL, Key.COMMAND, Key.ALT]) modifiers << k
             else text << k as String
         }
 
@@ -139,7 +139,7 @@ class SeleniumProvider implements Provider {
         Collection<String> text = []
         keys.each { k ->
             if (k instanceof Key && text) throw new IllegalArgumentException('Cannot type a modifier after some text')
-            if (k instanceof Key && k in [Key.SHIFT, Key.CTRL, Key.ALT]) modifiers << k
+            if (k instanceof Key && k in [Key.SHIFT, Key.COMMAND, Key.CTRL, Key.ALT]) modifiers << k
             else text << k as String
         }
 

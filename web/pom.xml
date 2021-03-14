@@ -32,8 +32,8 @@
         <selenium-java.version>3.141.59</selenium-java.version>
 
         <!-- Tests -->
-        <testcontainer.version>1.14.3</testcontainer.version>
-        <webdrivermanager.version>4.0.0</webdrivermanager.version>
+        <testcontainer.version>1.15.2</testcontainer.version>
+        <webdrivermanager.version>4.3.1</webdrivermanager.version>
     </properties>
 
     <build>

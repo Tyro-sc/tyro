@@ -32,6 +32,7 @@ import sc.tyro.core.support.*
 import sc.tyro.core.support.property.*
 
 import static sc.tyro.core.Config.provider
+import static sc.tyro.core.input.Key.COMMAND
 import static sc.tyro.core.input.Key.CTRL
 
 /**
@@ -179,24 +180,24 @@ class Tyro {
     }
 
     static void select(Item... items) {
-        items.each {
-            if (!it.enabled())
-                throw new ComponentException("${it.class.simpleName} ${it} is disabled and cannot be selected")
-            if (it.selected()) {
-                throw new ComponentException("${it.class.simpleName} ${it} is already selected and cannot be selected")
+        items.each { item ->
+            if (!item.enabled())
+                throw new ComponentException("${item.class.simpleName} ${item} is disabled and cannot be selected")
+            if (item.selected()) {
+                throw new ComponentException("${item.class.simpleName} ${item} is already selected and cannot be selected")
             }
-            CTRL.click it
+            withOsModifierClickOn(item)
         }
     }
 
     static void unselect(Item... items) {
-        items.each {
-            if (!it.enabled())
-                throw new ComponentException("${it.class.simpleName} ${it} is disabled and cannot be deselected")
-            if (!it.selected()) {
-                throw new ComponentException("${it.class.simpleName} ${it} is already unselected and cannot be deselected")
+        items.each { item ->
+            if (!item.enabled())
+                throw new ComponentException("${item.class.simpleName} ${item} is disabled and cannot be deselected")
+            if (!item.selected()) {
+                throw new ComponentException("${item.class.simpleName} ${item} is already unselected and cannot be deselected")
             }
-            CTRL.click it
+            withOsModifierClickOn(item)
         }
     }
 
@@ -274,7 +275,7 @@ class Tyro {
     }
 
     static <T extends Component> T findByLabel(String label, Class<T> clazz) {
-        boolean hasPlaceholderSupport =  PlaceholderSupport.isAssignableFrom(clazz);
+        boolean hasPlaceholderSupport = PlaceholderSupport.isAssignableFrom(clazz);
         Collection<T> components = provider.findAll(clazz).findAll {
             (LabelSupport.isAssignableFrom(clazz) ? it.label() == label : false) || (hasPlaceholderSupport ? it.placeholder() == label : false)
         }
@@ -308,5 +309,19 @@ class Tyro {
             return components.first()
         }
         throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with title '${title}'.")
+    }
+
+    static withOsModifierClickOn(Component c) {
+        if (System.getProperty("os.name").startsWith("Mac"))
+            COMMAND.click c
+        else
+            CTRL.click c
+    }
+
+    static withOsModifierType(String text) {
+        if (System.getProperty("os.name").startsWith("Mac"))
+            type(COMMAND + text)
+        else
+            type(CTRL + text)
     }
 }
