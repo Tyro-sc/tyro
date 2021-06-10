@@ -23,14 +23,7 @@ import sc.tyro.core.Window
 import sc.tyro.core.component.Component
 import sc.tyro.web.TyroWebTestExtension
 
-import java.time.Duration
-
-import static java.time.Duration.ofSeconds
-import static sc.tyro.core.Tyro.$
-import static sc.tyro.core.Tyro.browser
-import static sc.tyro.core.Tyro.clickOn
-import static sc.tyro.core.Tyro.visit
-import static sc.tyro.core.Tyro.waitUntil
+import static sc.tyro.core.Tyro.*
 import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 
 /**
@@ -84,7 +77,7 @@ class BrowserTest {
 
         clickOn link
 
-        waitUntil({ browser().windows.size() == 2 }, ofSeconds(2))
+        waitUntil({ browser().windows.size() == 2 })
         browser().switchTo(browser().windows[1])
         assert form.available()
 
