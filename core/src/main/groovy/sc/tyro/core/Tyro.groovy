@@ -262,7 +262,6 @@ class Tyro {
 
     static void waitUntil(Closure c, Duration duration = null) { Wait.waitUntil(c, duration) }
 
-
     private static class FillAction {
         private Field input
 
