@@ -180,6 +180,14 @@
                 <configuration>
                     <codeNarcVersion>2.1.0</codeNarcVersion>
                 </configuration>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>codenarc</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
