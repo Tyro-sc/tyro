@@ -177,6 +177,9 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>codenarc-maven-plugin</artifactId>
                 <version>0.22-1</version>
+                <configuration>
+                    <codeNarcVersion>2.1.0</codeNarcVersion>
+                </configuration>
             </plugin>
         </plugins>
     </build>
