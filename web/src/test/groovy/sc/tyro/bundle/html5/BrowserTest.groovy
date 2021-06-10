@@ -23,11 +23,7 @@ import sc.tyro.core.Window
 import sc.tyro.core.component.Component
 import sc.tyro.web.TyroWebTestExtension
 
-import static sc.tyro.core.Tyro.$
-import static sc.tyro.core.Tyro.browser
-import static sc.tyro.core.Tyro.clickOn
-import static sc.tyro.core.Tyro.visit
-import static sc.tyro.core.Tyro.waitUntil
+import static sc.tyro.core.Tyro.*
 import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 
 /**

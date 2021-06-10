@@ -25,6 +25,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 import sc.tyro.core.Config
 import sc.tyro.web.TyroWebTestExtension
 
+import static java.time.Duration.ofSeconds
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static sc.tyro.core.Tyro.*
 import static sc.tyro.web.TyroWebTestExtension.BASE_URL
@@ -68,6 +69,21 @@ class WaitTest {
 
         clickOn button
         button.should { be enabled }
+    }
+
+    @Test
+    @DisplayName("Should be able to wait xxplicitly on condition")
+    void waitExplicitlyOnCondition() {
+        browser().refresh()
+
+        Button button = $('#add-message') as Button
+        Button message = $('#msg') as Button
+
+        waitUntil({ !message.available() }, ofSeconds(1))
+
+        clickOn button
+
+        waitUntil({ message.available() }, ofSeconds(5))
     }
 
     @Test
