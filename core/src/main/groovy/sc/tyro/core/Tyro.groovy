@@ -31,6 +31,8 @@ import sc.tyro.core.internal.Wait
 import sc.tyro.core.support.*
 import sc.tyro.core.support.property.*
 
+import java.time.Duration
+
 import static sc.tyro.core.Config.provider
 import static sc.tyro.core.input.Key.COMMAND
 import static sc.tyro.core.input.Key.CTRL
@@ -256,7 +258,10 @@ class Tyro {
 
     static Link link(String text) { findByText(text, Link) }
 
-    static void waitUntil(Closure c, Matcher what = null) { Wait.waitUntil(c, what) }
+    static void waitUntil(Closure c, Matcher what, Duration duration = null) { Wait.waitUntil(c, what, duration) }
+
+    static void waitUntil(Closure c, Duration duration = null) { Wait.waitUntil(c, duration) }
+
 
     private static class FillAction {
         private Field input

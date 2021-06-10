@@ -22,6 +22,8 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import sc.tyro.core.Config
 
+import java.time.Duration
+
 /**
  * @author Mathieu Carbou
  * @since 1.0.0
@@ -29,9 +31,13 @@ import sc.tyro.core.Config
 class Wait {
     private static final Logger LOGGER = LoggerFactory.getLogger(Wait)
 
-    static void waitUntil(Closure c, Matcher what = null) {
+    static void waitUntil(Closure c, Duration duration) {
+        waitUntil(c, null, duration)
+    }
+
+    static void waitUntil(Closure c, Matcher what, Duration duration) {
         boolean success = false
-        long timeout = Config.waitUntil.toMillis()
+        long timeout = (duration != null) ? duration.toMillis() : Config.waitUntil.toMillis()
         long interval = 200
 
         LOGGER.debug("WaitUntil: " + timeout)
