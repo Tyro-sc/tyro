@@ -22,5 +22,5 @@ import sc.tyro.web.CssIdentifier
  * @author David Avenante
  * @since 1.0.0
  */
-@CssIdentifier('input[type=text]')
+@CssIdentifier('input:text')
 class InputTypeText extends TextField implements Input {}
