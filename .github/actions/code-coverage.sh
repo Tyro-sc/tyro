@@ -12,12 +12,18 @@ CURRENT_DIR=$PWD
 
 for module in "${MODULES[@]}"; do
   COVERAGE_FILE="./${module}/target/site/jacoco/jacoco.xml"
-  ./cc-test-reporter format-coverage --input-type jacoco --output "codeclimate.${module}.json"
+  ls -lisa
+  cd /${module}/target/site/jacoco/
+  ls -lisa
+
+
+#  ./cc-test-reporter format-coverage --input-type jacoco --output "codeclimate.${module}.json"
 done
 
-./cc-test-reporter sum-coverage--output codeclimate.json codeclimate.*.json
-./cc-test-reporter upload-coverage --input codeclimate.json
-./cc-test-reporter after-build --coverage-input-type jacoco --exit-code $?
+
+#./cc-test-reporter sum-coverage codeclimate.*.json -p 2 --output codeclimate.json
+#./cc-test-reporter upload-coverage --input codeclimate.json
+#./cc-test-reporter after-build --coverage-input-type jacoco --exit-code $?
 
 #
 #for module in "${MODULES[@]}"; do
