@@ -23,4 +23,4 @@ done
 cd "${CURRENT_DIR}" || exit
 ./cc-test-reporter sum-coverage codeclimate.*.json -p 2
 ./cc-test-reporter upload-coverage
-./cc-test-reporter after-build
+./cc-test-reporter after-build --coverage-input-type jacoco --exit-code $?
