@@ -22,4 +22,3 @@ cd "${GITHUB_WORKSPACE}/web/src/main/groovy" || exit
 cd "${GITHUB_WORKSPACE}" || exit
 ./cc-test-reporter sum-coverage codeclimate.*.json --parts 2 --output codeclimate.json
 ./cc-test-reporter upload-coverage --input codeclimate.json
-./cc-test-reporter after-build --coverage-input-type jacoco --exit-code $?
