@@ -246,6 +246,8 @@ class Tyro {
 
     static Dropdown dropdown(String label) { findByLabel(label, Dropdown) }
 
+    static Combobox combobox(String label) { findByLabel(label, Combobox) }
+
     static ListBox listBox(String label) { findByLabel(label, ListBox) }
 
     static Group group(String value) { findByValue(value, Group) }

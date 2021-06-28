@@ -191,11 +191,30 @@ class TyroTest {
 
         when(provider.findAll(Dropdown)).thenReturn(List.of(dropdown_1, dropdown_2))
 
+        assertThat(dropdown("Label"), is(dropdown_1))
+
         // Should fail if more than on match
         when(dropdown_2.label()).thenReturn('Label')
 
         IllegalStateException error = assertThrows(IllegalStateException, { dropdown("Label").should { be available } })
         assertThat(error.message, is("Find 2 component(s) Dropdown with label 'Label'."))
+    }
+    @Test
+    @DisplayName("Should find combobox by label")
+    void findComboboxByLabel() {
+        Combobox combobox_1 = mock(Combobox)
+        when(combobox_1.label()).thenReturn('Label')
+        Combobox combobox_2 = mock(Combobox)
+        when(combobox_2.label()).thenReturn('!Label')
+
+        when(provider.findAll(Combobox)).thenReturn(List.of(combobox_1, combobox_2))
+        assertThat(combobox("Label"), is(combobox_1))
+
+        // Should fail if more than on match
+        when(combobox_2.label()).thenReturn('Label')
+
+        IllegalStateException error = assertThrows(IllegalStateException, { combobox("Label").should { be available } })
+        assertThat(error.message, is("Find 2 component(s) Combobox with label 'Label'."))
     }
 
     @Test

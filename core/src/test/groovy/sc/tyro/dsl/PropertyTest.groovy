@@ -186,6 +186,30 @@ class PropertyTest {
     }
 
     @Test
+    @DisplayName("Should support combobox")
+    void combobox() {
+        Combobox combobox = spy(Combobox)
+
+        Item item_1 = spy(Item)
+        Item item_2 = spy(Item)
+        doReturn([item_1, item_2]).when(combobox).items()
+
+        combobox.should { have items(item_1, item_2) }
+
+        doReturn('Item 1').when(item_1).value()
+        doReturn('Item 2').when(item_2).value()
+
+        combobox.should { have items('Item 1', 'Item 2') }
+
+        doReturn(item_1).when(combobox).selectedItem()
+
+        combobox.should {
+            have selectedItem(item_1)
+            have selectedItem('Item 1')
+        }
+    }
+
+    @Test
     @DisplayName("Should support listbox")
     void listbox() {
         ListBox listBox = spy(ListBox)
