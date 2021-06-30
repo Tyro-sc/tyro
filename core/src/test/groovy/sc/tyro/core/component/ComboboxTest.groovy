@@ -2,8 +2,9 @@ package sc.tyro.core.component
 
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import sc.tyro.core.component.field.Field
 import sc.tyro.core.support.Selectable
-import sc.tyro.core.support.property.GroupSupport
+
 import sc.tyro.core.support.property.ItemSupport
 import sc.tyro.core.support.property.LabelSupport
 import sc.tyro.core.support.property.SelectedItemSupport
@@ -18,7 +19,7 @@ class ComboboxTest {
     @Test
     @DisplayName("Should have expected Inheritance")
     void inheritance() {
-        assert Combobox in Component
+        assert Combobox in Field
         assert Combobox in ItemSupport
         assert Combobox in LabelSupport
         assert Combobox in Selectable
