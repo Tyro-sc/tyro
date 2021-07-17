@@ -22,6 +22,7 @@ import sc.tyro.core.component.datagrid.Cell
 import sc.tyro.core.component.datagrid.Column
 import sc.tyro.core.component.datagrid.DataGrid
 import sc.tyro.core.component.datagrid.Row
+import sc.tyro.core.component.field.Combobox
 import sc.tyro.core.component.field.RangeField
 import sc.tyro.core.component.field.TextField
 
@@ -200,13 +201,6 @@ class PropertyTest {
         doReturn('Item 2').when(item_2).value()
 
         combobox.should { have items('Item 1', 'Item 2') }
-
-        doReturn(item_1).when(combobox).selectedItem()
-
-        combobox.should {
-            have selectedItem(item_1)
-            have selectedItem('Item 1')
-        }
     }
 
     @Test

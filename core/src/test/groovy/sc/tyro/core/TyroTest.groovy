@@ -19,6 +19,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import sc.tyro.core.component.*
+import sc.tyro.core.component.field.Combobox
 import sc.tyro.core.component.field.EmailField
 import sc.tyro.core.component.field.Field
 import sc.tyro.core.component.field.PasswordField

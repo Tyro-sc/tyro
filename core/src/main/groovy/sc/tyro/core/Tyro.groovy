@@ -20,6 +20,7 @@ import sc.tyro.core.component.*
 import sc.tyro.core.component.datagrid.Cell
 import sc.tyro.core.component.datagrid.Column
 import sc.tyro.core.component.datagrid.Row
+import sc.tyro.core.component.field.Combobox
 import sc.tyro.core.component.field.Field
 import sc.tyro.core.hamcrest.matcher.property.*
 import sc.tyro.core.hamcrest.matcher.state.*

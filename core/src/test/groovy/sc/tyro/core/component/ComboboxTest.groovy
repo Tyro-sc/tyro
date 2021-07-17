@@ -2,6 +2,7 @@ package sc.tyro.core.component
 
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import sc.tyro.core.component.field.Combobox
 import sc.tyro.core.component.field.Field
 import sc.tyro.core.support.Selectable
 
@@ -21,9 +22,6 @@ class ComboboxTest {
     void inheritance() {
         assert Combobox in Field
         assert Combobox in ItemSupport
-        assert Combobox in LabelSupport
         assert Combobox in Selectable
-        assert Combobox in SelectedItemSupport
-        assert Combobox in EmptySupport
     }
 }
