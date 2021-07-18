@@ -18,13 +18,13 @@ package sc.tyro.core.hamcrest.matcher.property
 import org.hamcrest.Description
 import sc.tyro.core.component.Item
 import sc.tyro.core.hamcrest.PropertyMatcher
-import sc.tyro.core.support.property.SelectedItemSupport
+import sc.tyro.core.support.property.ItemSupport
 
 /**
  * @author David Avenante
  * @since 1.0.0
  */
-class SelectedItemMatcher extends PropertyMatcher<SelectedItemSupport> {
+class SelectedItemMatcher extends PropertyMatcher<ItemSupport> {
     private String value
     private Item item
 
@@ -37,11 +37,11 @@ class SelectedItemMatcher extends PropertyMatcher<SelectedItemSupport> {
     }
 
     @Override
-    protected boolean matchesSafely(SelectedItemSupport component) {
+    protected boolean matchesSafely(ItemSupport component) {
         if (value) {
-            return component.selectedItem().value() == value
+            return component.items().find { item -> item.selected() }.value() == value
         }
-        component.selectedItem() == item
+        component.items().find { item -> item.selected() } == item
     }
 
     @Override
@@ -50,7 +50,7 @@ class SelectedItemMatcher extends PropertyMatcher<SelectedItemSupport> {
     }
 
     @Override
-    protected void describeMismatchSafely(SelectedItemSupport component, Description mismatchDescription) {
-        mismatchDescription.appendText('has selected item ').appendValue(component.selectedItem().value())
+    protected void describeMismatchSafely(ItemSupport component, Description mismatchDescription) {
+        mismatchDescription.appendText('has selected item ').appendValue(component.items().find { item -> item.selected() }.value())
     }
 }

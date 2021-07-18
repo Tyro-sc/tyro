@@ -21,6 +21,8 @@ import sc.tyro.core.hamcrest.PropertyMatcher
 import sc.tyro.core.hamcrest.matcher.property.dummy.DummyItem
 import sc.tyro.core.support.property.ItemSupport
 
+import static java.lang.String.valueOf
+
 /**
  * @author David Avenante
  * @since 1.0.0
@@ -44,14 +46,14 @@ class ItemMatcher extends PropertyMatcher<ItemSupport> {
             values.each { items.add(new DummyItem(it)) }
         }
         values.clear()
-        items.each { values.add(String.valueOf(it.value())) }
+        items.each { values.add(valueOf(it.value())) }
         component.items().size() == items.size() && component.items().containsAll(items)
     }
 
     @Override
     void describeTo(Description description) {
         List<String> expectedItems = new ArrayList<>()
-        items.each { expectedItems.add(String.valueOf(it.value())) }
+        items.each { expectedItems.add(valueOf(it.value())) }
 
         description.appendText('item(s) ')
         description.appendValueList('[', ', ', ']', expectedItems)
@@ -60,7 +62,7 @@ class ItemMatcher extends PropertyMatcher<ItemSupport> {
     @Override
     protected void describeMismatchSafely(ItemSupport component, Description mismatchDescription) {
         List<String> componentItems = new ArrayList<>()
-        component.items().each { componentItems.add(String.valueOf(it.value())) }
+        component.items().each { componentItems.add(valueOf(it.value())) }
 
         mismatchDescription.appendText('has item(s) ')
         mismatchDescription.appendValueList('[', ', ', ']', componentItems)

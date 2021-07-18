@@ -37,7 +37,7 @@ class MultiSelect extends ListBox {
         items().find { it.value() == value }
     }
 
-    @Override
+
     List<Option> visibleItems() {
         int size = provider.eval(id(), "it.prop('size')") as Integer
         items()[0..size - 1]

@@ -21,7 +21,6 @@ import sc.tyro.core.support.Selectable
 import sc.tyro.core.support.property.GroupSupport
 import sc.tyro.core.support.property.ItemSupport
 import sc.tyro.core.support.property.LabelSupport
-import sc.tyro.core.support.property.SelectedItemSupport
 import sc.tyro.core.support.state.EmptySupport
 
 /**
@@ -38,7 +37,6 @@ class DropdownTest {
         assert Dropdown in GroupSupport
         assert Dropdown in LabelSupport
         assert Dropdown in Selectable
-        assert Dropdown in SelectedItemSupport
         assert Dropdown in EmptySupport
     }
 }

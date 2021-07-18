@@ -110,13 +110,21 @@ class Matchers {
 
     static Matcher<ItemSupport> items(Item... items) { new ItemMatcher(items) }
 
-    static Matcher<SelectedItemSupport> selectedItem(String value) { new SelectedItemMatcher(value) }
+    static Matcher<ItemSupport> selectedItem(String value) { new SelectedItemMatcher(value) }
 
-    static Matcher<SelectedItemSupport> selectedItem(Item value) { new SelectedItemMatcher(value) }
+    static Matcher<ItemSupport> selectedItem(Item value) { new SelectedItemMatcher(value) }
 
-    static Matcher<SelectedItemsSupport> selectedItems(String... values) { new SelectedItemsMatcher(values) }
+    static Matcher<ItemSupport> selectedItems(String... values) { new SelectedItemsMatcher(values) }
 
-    static Matcher<SelectedItemsSupport> selectedItems(Item... values) { new SelectedItemsMatcher(values) }
+    static Matcher<ItemSupport> selectedItems(Item... values) { new SelectedItemsMatcher(values) }
+
+    static DisabledItemMatcher disabledItem(String item) { new DisabledItemMatcher(item) }
+
+    static DisabledItemMatcher disabledItem(Item item) { new DisabledItemMatcher(item) }
+
+    static DisabledItemsMatcher disabledItems(String... items) { new DisabledItemsMatcher(items) }
+
+    static DisabledItemsMatcher disabledItems(Item... items) { new DisabledItemsMatcher(items) }
 
     static Matcher<GroupSupport> groups(String... values) { new GroupMatcher(values) }
 

@@ -18,16 +18,18 @@ package sc.tyro.core.hamcrest.matcher.property
 import org.hamcrest.Description
 import sc.tyro.core.component.Item
 import sc.tyro.core.hamcrest.PropertyMatcher
-import sc.tyro.core.hamcrest.matcher.property.dummy.DummyItem
-import sc.tyro.core.support.property.SelectedItemsSupport
+import sc.tyro.core.support.property.ItemSupport
+
+import static java.lang.String.valueOf
 
 /**
  * @author David Avenante
  * @since 1.0.0
  */
-class SelectedItemsMatcher extends PropertyMatcher<SelectedItemsSupport> {
+class SelectedItemsMatcher extends PropertyMatcher<ItemSupport> {
     private List<String> values = new ArrayList<>()
     private List<Item> items = new ArrayList<>()
+    private List<Item> selectedItems
 
     SelectedItemsMatcher(String... values) {
         this.values = values
@@ -38,29 +40,31 @@ class SelectedItemsMatcher extends PropertyMatcher<SelectedItemsSupport> {
     }
 
     @Override
-    protected boolean matchesSafely(SelectedItemsSupport component) {
+    protected boolean matchesSafely(ItemSupport component) {
         if (values) {
             items.clear()
-            values.each { items.add(new DummyItem(it)) }
+            values.each { items.add(component.item(it)) }
         }
         values.clear()
-        items.each { values.add(String.valueOf(it.value())) }
-        component.selectedItems().size() == items.size() && component.selectedItems().containsAll(items)
+        items.each { values.add(valueOf(it.value())) }
+
+        selectedItems = component.items().findAll{ item -> item.selected() }
+        selectedItems.size() == items.size() && selectedItems.containsAll(items)
     }
 
     @Override
     void describeTo(Description description) {
         List<String> expectedItems = new ArrayList<>()
-        items.each { expectedItems.add(String.valueOf(it.value())) }
+        items.each { expectedItems.add(valueOf(it.value())) }
 
         description.appendText('selected item(s) ')
         description.appendValueList('[', ', ', ']', expectedItems)
     }
 
     @Override
-    protected void describeMismatchSafely(SelectedItemsSupport component, Description mismatchDescription) {
+    protected void describeMismatchSafely(ItemSupport component, Description mismatchDescription) {
         List<String> componentItems = new ArrayList<>()
-        component.selectedItems().each { componentItems.add(String.valueOf(it.value())) }
+        selectedItems.each { componentItems.add(valueOf(it.value())) }
 
         mismatchDescription.appendText('has selected item(s) ')
         mismatchDescription.appendValueList('[', ', ', ']', componentItems)

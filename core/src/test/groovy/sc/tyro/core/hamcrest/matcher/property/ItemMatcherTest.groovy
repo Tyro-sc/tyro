@@ -46,6 +46,8 @@ class ItemMatcherTest {
         Item item_3 = mock(Item)
         when(item_3.value()).thenReturn('item_3')
 
+        when(cmp.item('item_1')).thenReturn(item_1)
+        when(cmp.item('item_2')).thenReturn(item_2)
         when(cmp.items()).thenReturn([item_1, item_2])
 
         assertThat(cmp, has(items('item_1', 'item_2')))

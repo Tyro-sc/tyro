@@ -65,6 +65,8 @@ class MultiSelectTest {
         Item casablanca = cities.item('Casablanca')
         Item munich = cities.item('Munich')
 
+        cities.visibleItems().containsAll([montreal, quebec, montpellier])
+
         montreal.should { be selected }
         montpellier.should {
             be enabled

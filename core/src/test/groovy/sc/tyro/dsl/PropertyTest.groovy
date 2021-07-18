@@ -168,16 +168,17 @@ class PropertyTest {
 
         Item item_1 = spy(Item)
         Item item_2 = spy(Item)
+        doReturn('Item 1').when(item_1).value()
+        doReturn(true).when(item_1).selected()
+        doReturn('Item 2').when(item_2).value()
+        doReturn(true).when(item_2).selected()
+
         doReturn([item_1, item_2]).when(dropdown).items()
 
         dropdown.should { have items(item_1, item_2) }
-
-        doReturn('Item 1').when(item_1).value()
-        doReturn('Item 2').when(item_2).value()
-
         dropdown.should { have items('Item 1', 'Item 2') }
 
-        doReturn(item_1).when(dropdown).selectedItem()
+        doReturn([item_1]).when(dropdown).items()
 
         dropdown.should {
             have selectedItem(item_1)
@@ -192,8 +193,12 @@ class PropertyTest {
         Item item_1 = spy(Item)
         Item item_2 = spy(Item)
         doReturn('Item 1').when(item_1).value()
+        doReturn(true).when(item_1).selected()
+
         doReturn('Item 2').when(item_2).value()
-        doReturn([item_1, item_2]).when(listBox).selectedItems()
+        doReturn(true).when(item_2).selected()
+
+        doReturn([item_1, item_2]).when(listBox).items()
 
         listBox.should {
             have selectedItems(item_1, item_2)
