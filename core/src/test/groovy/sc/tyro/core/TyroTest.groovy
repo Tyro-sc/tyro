@@ -19,13 +19,12 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import sc.tyro.core.component.*
-import sc.tyro.core.component.field.EmailField
 import sc.tyro.core.component.field.Field
-import sc.tyro.core.component.field.PasswordField
 
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.is
 import static org.junit.jupiter.api.Assertions.assertThrows
+import static org.mockito.ArgumentMatchers.any
 import static org.mockito.Mockito.*
 import static sc.tyro.core.Tyro.*
 
@@ -72,58 +71,85 @@ class TyroTest {
     @Test
     @DisplayName("Should find button by text")
     void findButtonByText() {
-        Button button_1 = mock(Button)
-        when(button_1.text()).thenReturn('Ok')
-        Button button_2 = mock(Button)
-        when(button_2.text()).thenReturn('!Ok')
+        Button button_1 = spy(Button)
+        doReturn('Ok').when(button_1).text()
+        doReturn(true).when(button_1).available()
+        Button button_2 = spy(Button)
+        doReturn('!Ok').when(button_2).text()
+        doReturn(true).when(button_2).available()
 
         when(provider.findAll(Button)).thenReturn(List.of(button_1, button_2))
 
-        button("Ok").should { be available }
+        button('Ok').should { be available }
 
         // Should fail if more than on match
         when(button_2.text()).thenReturn('Ok')
 
-        IllegalStateException error = assertThrows(IllegalStateException, { button("Ok").should { be available } })
+        IllegalStateException error = assertThrows(IllegalStateException, { button('Ok').should { be available } })
         assertThat(error.message, is("Find 2 component(s) Button with text 'Ok'."))
+
+        Button unavailable = spy(Button)
+        doReturn(false).when(unavailable).available()
+        when(provider.find(any(), any(By))).thenReturn(unavailable)
+
+        // Should provide a none available component
+        button('Unavailable').should { be missing }
     }
 
     @Test
     @DisplayName("Should find heading by text")
     void findHeadingByText() {
-        Heading heading_1 = mock(Heading)
-        when(heading_1.text()).thenReturn('Title')
+        Heading heading_1 = spy(Heading)
+        doReturn('Title').when(heading_1).text()
+        doReturn(true).when(heading_1).available()
         Heading heading_2 = mock(Heading)
-        when(heading_2.text()).thenReturn('!Title')
+        doReturn('!Title').when(heading_2).text()
+        doReturn(true).when(heading_2).available()
 
         when(provider.findAll(Heading)).thenReturn(List.of(heading_1, heading_2))
 
-        heading("Title").should { be available }
+        heading('Title').should { be available }
 
         // Should fail if more than on match
         when(heading_2.text()).thenReturn('Title')
 
-        IllegalStateException error = assertThrows(IllegalStateException, { heading("Title").should { be available } })
+        IllegalStateException error = assertThrows(IllegalStateException, { heading('Title').should { be available } })
         assertThat(error.message, is("Find 2 component(s) Heading with text 'Title'."))
+
+        Heading unavailable = spy(Heading)
+        doReturn(false).when(unavailable).available()
+        when(provider.find(any(), any(By))).thenReturn(unavailable)
+
+        // Should provide a none available component
+        heading('Unavailable').should { be missing }
     }
 
     @Test
     @DisplayName("Should find link by text")
     void findLinkByText() {
-        Link link_1 = mock(Link)
-        when(link_1.text()).thenReturn('Link')
-        Link link_2 = mock(Link)
-        when(link_2.text()).thenReturn('!Link')
+        Link link_1 = spy(Link)
+        doReturn('Link').when(link_1).text()
+        doReturn(true).when(link_1).available()
+        Link link_2 = spy(Link)
+        doReturn('!Link').when(link_2).text()
+        doReturn(true).when(link_2).available()
 
         when(provider.findAll(Link)).thenReturn(List.of(link_1, link_2))
 
-        link("Link").should { be available }
+        link('Link').should { be available }
 
         // Should fail if more than on match
         when(link_2.text()).thenReturn('Link')
 
-        IllegalStateException error = assertThrows(IllegalStateException, { link("Link").should { be available } })
+        IllegalStateException error = assertThrows(IllegalStateException, { link('Link').should { be available } })
         assertThat(error.message, is("Find 2 component(s) Link with text 'Link'."))
+
+        Link unavailable = spy(Link)
+        doReturn(false).when(unavailable).available()
+        when(provider.find(any(), any(By))).thenReturn(unavailable)
+
+        // Should provide a none available component
+        link('Unavailable').should { be missing }
     }
 
     // =================  By Label / Placeholder  ======================
@@ -131,88 +157,142 @@ class TyroTest {
     @Test
     @DisplayName("Should find radio by label")
     void findRadioByLabel() {
-        Radio radio_1 = mock(Radio)
-        when(radio_1.label()).thenReturn('Label')
-        Radio radio_2 = mock(Radio)
-        when(radio_2.label()).thenReturn('!Label')
+        Radio radio_1 = spy(Radio)
+        doReturn('Label').when(radio_1).label()
+        doReturn(true).when(radio_1).available()
+        Radio radio_2 = spy(Radio)
+        doReturn('!Label').when(radio_2).label()
+        doReturn(true).when(radio_2).available()
 
         when(provider.findAll(Radio)).thenReturn(List.of(radio_1, radio_2))
+
+        radio('Label').should { be available }
 
         // Should fail if more than on match
         when(radio_2.label()).thenReturn('Label')
 
-        IllegalStateException error = assertThrows(IllegalStateException, { radio("Label").should { be available } })
+        IllegalStateException error = assertThrows(IllegalStateException, { radio('Label').should { be available } })
         assertThat(error.message, is("Find 2 component(s) Radio with label 'Label'."))
+
+        Radio unavailable = spy(Radio)
+        doReturn(false).when(unavailable).available()
+        when(provider.find(any(), any(By))).thenReturn(unavailable)
+
+        // Should provide a none available component
+        radio('Unavailable').should { be missing }
     }
 
     @Test
     @DisplayName("Should find checkbox by label")
     void findCheckBoxByLabel() {
-        CheckBox checkBox_1 = mock(CheckBox)
-        when(checkBox_1.label()).thenReturn('Label')
-        CheckBox checkBox_2 = mock(CheckBox)
-        when(checkBox_2.label()).thenReturn('!Label')
+        CheckBox checkBox_1 = spy(CheckBox)
+        doReturn('Label').when(checkBox_1).label()
+        doReturn(true).when(checkBox_1).available()
+        CheckBox checkBox_2 = spy(CheckBox)
+        doReturn('!Label').when(checkBox_2).label()
+        doReturn(true).when(checkBox_2).available()
 
         when(provider.findAll(CheckBox)).thenReturn(List.of(checkBox_1, checkBox_2))
+
+        checkbox('Label').should { be available }
 
         // Should fail if more than on match
         when(checkBox_2.label()).thenReturn('Label')
 
-        IllegalStateException error = assertThrows(IllegalStateException, { checkbox("Label").should { be available } })
+        IllegalStateException error = assertThrows(IllegalStateException, { checkbox('Label').should { be available } })
         assertThat(error.message, is("Find 2 component(s) CheckBox with label 'Label'."))
+
+        CheckBox unavailable = spy(CheckBox)
+        doReturn(false).when(unavailable).available()
+        when(provider.find(any(), any(By))).thenReturn(unavailable)
+
+        // Should provide a none available component
+        checkbox('Unavailable').should { be missing }
     }
 
     @Test
     @DisplayName("Should find listBox by label")
     void findListBoxByLabel() {
-        ListBox listBox_1 = mock(ListBox)
-        when(listBox_1.label()).thenReturn('Label')
-        ListBox listBox_2 = mock(ListBox)
-        when(listBox_2.label()).thenReturn('!Label')
+        ListBox listBox_1 = spy(ListBox)
+        doReturn('Label').when(listBox_1).label()
+        doReturn(true).when(listBox_1).available()
+        ListBox listBox_2 = spy(ListBox)
+        doReturn('!Label').when(listBox_2).label()
+        doReturn(true).when(listBox_2).available()
 
         when(provider.findAll(ListBox)).thenReturn(List.of(listBox_1, listBox_2))
+
+        listBox('Label').should { be available }
 
         // Should fail if more than on match
         when(listBox_2.label()).thenReturn('Label')
 
-        IllegalStateException error = assertThrows(IllegalStateException, { listBox("Label").should { be available } })
+        IllegalStateException error = assertThrows(IllegalStateException, { listBox('Label').should { be available } })
         assertThat(error.message, is("Find 2 component(s) ListBox with label 'Label'."))
+
+        ListBox unavailable = spy(ListBox)
+        doReturn(false).when(unavailable).available()
+        when(provider.find(any(), any(By))).thenReturn(unavailable)
+
+        // Should provide a none available component
+        listBox('Unavailable').should { be missing }
     }
 
     @Test
     @DisplayName("Should find dropdown by label")
     void findDropdownByLabel() {
-        Dropdown dropdown_1 = mock(Dropdown)
-        when(dropdown_1.label()).thenReturn('Label')
-        Dropdown dropdown_2 = mock(Dropdown)
-        when(dropdown_2.label()).thenReturn('!Label')
+        Dropdown dropdown_1 = spy(Dropdown)
+        doReturn('Label').when(dropdown_1).label()
+        doReturn(true).when(dropdown_1).available()
+        Dropdown dropdown_2 = spy(Dropdown)
+        doReturn('!Label').when(dropdown_2).label()
+        doReturn(true).when(dropdown_2).available()
 
         when(provider.findAll(Dropdown)).thenReturn(List.of(dropdown_1, dropdown_2))
+
+        dropdown('Label').should { be available }
 
         // Should fail if more than on match
         when(dropdown_2.label()).thenReturn('Label')
 
         IllegalStateException error = assertThrows(IllegalStateException, { dropdown("Label").should { be available } })
         assertThat(error.message, is("Find 2 component(s) Dropdown with label 'Label'."))
+
+        Dropdown unavailable = spy(Dropdown)
+        doReturn(false).when(unavailable).available()
+        when(provider.find(any(), any(By))).thenReturn(unavailable)
+
+        // Should provide a none available component
+        dropdown('Unavailable').should { be missing }
     }
 
     @Test
     @DisplayName("Should find field by label or placeholder")
     void findFieldByLabel() {
-        PasswordField password = mock(PasswordField)
-        when(password.label()).thenReturn('Label')
-        EmailField email = mock(EmailField)
-        when(email.placeholder()).thenReturn('!Label')
+        Field field_1 = spy(Field)
+        doReturn('Label').when(field_1).label()
+        doReturn(true).when(field_1).available()
+        Field field_2 = spy(Field)
+        doReturn('!Label').when(field_2).placeholder()
+        doReturn(true).when(field_2).available()
 
-        when(provider.findAll(Field)).thenReturn(List.of(password, email))
+        when(provider.findAll(Field)).thenReturn(List.of(field_1, field_2))
 
         field('Label').should { be available }
+        field('!Label').should { be available }
 
         // Should fail if more than on match
-        when(email.placeholder()).thenReturn('Label')
+        when(field_2.placeholder()).thenReturn('Label')
 
-        IllegalStateException error = assertThrows(IllegalStateException, { field("Label").should { be available } })
+        IllegalStateException error = assertThrows(IllegalStateException, { field('Label').should { be available } })
         assertThat(error.message, is("Find 2 component(s) Field with label or placeholder 'Label'."))
+
+        Field unavailable = spy(Field)
+        doReturn(false).when(unavailable).available()
+        when(provider.find(any(), any(By))).thenReturn(unavailable)
+
+        // Should provide a none available component
+        field('Unavailable').should { be missing }
     }
 
     // =================  By Value  ======================
@@ -221,34 +301,56 @@ class TyroTest {
     @DisplayName("Should find group by value")
     void findGroupByValue() {
         Group group_1 = mock(Group)
-        when(group_1.value()).thenReturn('Value')
+        doReturn('Value').when(group_1).value()
+        doReturn(true).when(group_1).available()
         Group group_2 = mock(Group)
-        when(group_2.value()).thenReturn('!Value')
+        doReturn('!Value').when(group_2).value()
+        doReturn(true).when(group_2).available()
 
         when(provider.findAll(Group)).thenReturn(List.of(group_1, group_2))
+
+        group("Value").should { be available }
 
         // Should fail if more than on match
         when(group_2.value()).thenReturn('Value')
 
         IllegalStateException error = assertThrows(IllegalStateException, { group("Value").should { be available } })
         assertThat(error.message, is("Find 2 component(s) Group with value 'Value'."))
+
+        Group unavailable = spy(Group)
+        doReturn(false).when(unavailable).available()
+        when(provider.find(any(), any(By))).thenReturn(unavailable)
+
+        // Should provide a none available component
+        group('Unavailable').should { be missing }
     }
 
     @Test
     @DisplayName("Should find item by value")
     void findItemByValue() {
         Item item_1 = mock(Item)
-        when(item_1.value()).thenReturn('Value')
+        doReturn('Value').when(item_1).value()
+        doReturn(true).when(item_1).available()
         Item item_2 = mock(Item)
-        when(item_2.value()).thenReturn('!Value')
+        doReturn('!Value').when(item_2).value()
+        doReturn(true).when(item_2).available()
 
         when(provider.findAll(Item)).thenReturn(List.of(item_1, item_2))
+
+        item("Value").should { be available }
 
         // Should fail if more than on match
         when(item_2.value()).thenReturn('Value')
 
         IllegalStateException error = assertThrows(IllegalStateException, { item("Value").should { be available } })
         assertThat(error.message, is("Find 2 component(s) Item with value 'Value'."))
+
+        Item unavailable = spy(Item)
+        doReturn(false).when(unavailable).available()
+        when(provider.find(any(), any(By))).thenReturn(unavailable)
+
+        // Should provide a none available component
+        item('Unavailable').should { be missing }
     }
 
     // =================  By Title  ======================
@@ -256,17 +358,28 @@ class TyroTest {
     @Test
     @DisplayName("Should find panel by title")
     void findPanelByTitle() {
-        Panel panel_1 = mock(Panel)
-        when(panel_1.title()).thenReturn('Title')
-        Panel panel_2 = mock(Panel)
-        when(panel_2.title()).thenReturn('!Title')
+        Panel panel_1 = spy(Panel)
+        doReturn('Title').when(panel_1).title()
+        doReturn(true).when(panel_1).available()
+        Panel panel_2 = spy(Panel)
+        doReturn('!Title').when(panel_2).title()
+        doReturn(true).when(panel_2).available()
 
         when(provider.findAll(Panel)).thenReturn(List.of(panel_1, panel_2))
+
+        panel("Title").should { be available }
 
         // Should fail if more than on match
         when(panel_2.title()).thenReturn('Title')
 
         IllegalStateException error = assertThrows(IllegalStateException, { panel("Title").should { be available } })
         assertThat(error.message, is("Find 2 component(s) Panel with title 'Title'."))
+
+        Panel unavailable = spy(Panel)
+        doReturn(false).when(unavailable).available()
+        when(provider.find(any(), any(By))).thenReturn(unavailable)
+
+        // Should provide a none available component
+        panel("Unavailable").should { be missing }
     }
 }
