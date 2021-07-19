@@ -24,28 +24,27 @@ import sc.tyro.core.support.property.ItemSupport
  * @author David Avenante
  * @since 1.0.0
  */
-class VisibleItemsSizeMatcher extends PropertyMatcher<ItemSupport> {
+class DisabledItemsSizeMatcher extends PropertyMatcher<ItemSupport> {
     private Integer number
-    private List<Item> visibleItems
+    private List<Item> disabledItems
 
-    VisibleItemsSizeMatcher(Integer number) {
+    DisabledItemsSizeMatcher(Integer number) {
         this.number = number
     }
 
     @Override
     protected boolean matchesSafely(ItemSupport component) {
-        // If visibleItems method is available use it!
-        visibleItems = component.metaClass.respondsTo(component, "visibleItems") ? component.visibleItems() : component.items().findAll{item -> item.visible() }
-        visibleItems.size() == number
+        disabledItems = component.items().findAll { !it.enabled() }
+        disabledItems.size() == number
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendText(number + ' visible item(s)')
+        description.appendText(number + ' disabled item(s)')
     }
 
     @Override
     protected void describeMismatchSafely(ItemSupport component, Description mismatchDescription) {
-        mismatchDescription.appendText('has ' + visibleItems.size()).appendText(' visible item(s)')
+        mismatchDescription.appendText('has ' + disabledItems.size()).appendText(' disabled item(s)')
     }
 }

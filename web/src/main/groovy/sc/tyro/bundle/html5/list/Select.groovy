@@ -48,11 +48,6 @@ class Select extends Dropdown {
     }
 
     @Override
-    Option selectedItem() {
-        items().find { it.selected() }
-    }
-
-    @Override
     String label() {
         findFor(this)
     }

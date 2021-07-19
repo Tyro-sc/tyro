@@ -34,9 +34,7 @@ class ListBoxTest {
         assert ListBox in Component
         assert ListBox in ItemSupport
         assert ListBox in GroupSupport
-        assert ListBox in SelectedItemsSupport
         assert ListBox in EmptySupport
-        assert ListBox in VisibleItemsSupport
         assert ListBox in LabelSupport
         assert ListBox in Selectable
         assert ListBox in UnSelectable

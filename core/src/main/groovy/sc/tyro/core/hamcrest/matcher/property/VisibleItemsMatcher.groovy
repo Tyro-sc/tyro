@@ -27,15 +27,16 @@ import static java.lang.String.valueOf
  * @author David Avenante
  * @since 1.0.0
  */
-class ItemMatcher extends PropertyMatcher<ItemSupport> {
+class VisibleItemsMatcher extends PropertyMatcher<ItemSupport> {
     private List<String> values = new ArrayList<>()
     private List<Item> items = new ArrayList<>()
+    private List<Item> visibleItems
 
-    ItemMatcher(String... values) {
+    VisibleItemsMatcher(String... values) {
         this.values = values
     }
 
-    ItemMatcher(Item... items) {
+    VisibleItemsMatcher(Item... items) {
         this.items = items
     }
 
@@ -47,7 +48,9 @@ class ItemMatcher extends PropertyMatcher<ItemSupport> {
         }
         values.clear()
         items.each { values.add(valueOf(it.value())) }
-        component.items().size() == items.size() && component.items().containsAll(items)
+
+        visibleItems = component.items().findAll{ item -> item.visible() }
+        visibleItems.size() == items.size() && visibleItems.containsAll(items)
     }
 
     @Override
@@ -55,16 +58,16 @@ class ItemMatcher extends PropertyMatcher<ItemSupport> {
         List<String> expectedItems = new ArrayList<>()
         items.each { expectedItems.add(valueOf(it.value())) }
 
-        description.appendText('item(s) ')
+        description.appendText('visible item(s) ')
         description.appendValueList('[', ', ', ']', expectedItems)
     }
 
     @Override
     protected void describeMismatchSafely(ItemSupport component, Description mismatchDescription) {
         List<String> componentItems = new ArrayList<>()
-        component.items().each { componentItems.add(valueOf(it.value())) }
+        visibleItems.each { componentItems.add(valueOf(it.value())) }
 
-        mismatchDescription.appendText('has item(s) ')
+        mismatchDescription.appendText('has visible item(s) ')
         mismatchDescription.appendValueList('[', ', ', ']', componentItems)
     }
 }

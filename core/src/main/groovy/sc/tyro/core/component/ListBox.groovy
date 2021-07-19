@@ -24,5 +24,5 @@ import sc.tyro.core.support.state.EmptySupport
  * @author David Avenante
  * @since 1.0.0
  */
-abstract class ListBox extends Component implements ItemSupport, GroupSupport, SelectedItemsSupport, EmptySupport,
-        VisibleItemsSupport, LabelSupport, Selectable, UnSelectable {}
+abstract class ListBox extends Component implements ItemSupport, GroupSupport, EmptySupport,
+        LabelSupport, Selectable, UnSelectable {}

@@ -25,8 +25,7 @@ import sc.tyro.core.component.datagrid.Row
 import sc.tyro.core.component.field.RangeField
 import sc.tyro.core.component.field.TextField
 
-import static org.mockito.Mockito.doReturn
-import static org.mockito.Mockito.spy
+import static org.mockito.Mockito.*
 import static sc.tyro.core.Tyro.*
 
 /**
@@ -70,9 +69,9 @@ class PropertyTest {
     void reference() {
         Link link = spy(Link)
 
-        doReturn('http://reference').when(link).reference()
+        doReturn('https://reference').when(link).reference()
 
-        link.should { have reference('http://reference') }
+        link.should { have reference('https://reference') }
     }
 
     @Test
@@ -168,16 +167,17 @@ class PropertyTest {
 
         Item item_1 = spy(Item)
         Item item_2 = spy(Item)
+        doReturn('Item 1').when(item_1).value()
+        doReturn(true).when(item_1).selected()
+        doReturn('Item 2').when(item_2).value()
+        doReturn(true).when(item_2).selected()
+
         doReturn([item_1, item_2]).when(dropdown).items()
 
         dropdown.should { have items(item_1, item_2) }
-
-        doReturn('Item 1').when(item_1).value()
-        doReturn('Item 2').when(item_2).value()
-
         dropdown.should { have items('Item 1', 'Item 2') }
 
-        doReturn(item_1).when(dropdown).selectedItem()
+        doReturn([item_1]).when(dropdown).items()
 
         dropdown.should {
             have selectedItem(item_1)
@@ -191,13 +191,44 @@ class PropertyTest {
         ListBox listBox = spy(ListBox)
         Item item_1 = spy(Item)
         Item item_2 = spy(Item)
+        Item item_3 = spy(Item)
+
         doReturn('Item 1').when(item_1).value()
+        doReturn(true).when(item_1).selected()
+        doReturn(true).when(item_1).enabled()
+        doReturn(true).when(item_1).visible()
+
         doReturn('Item 2').when(item_2).value()
-        doReturn([item_1, item_2]).when(listBox).selectedItems()
+        doReturn(true).when(item_2).selected()
+        doReturn(true).when(item_2).enabled()
+        doReturn(false).when(item_2).visible()
+
+        doReturn('Item 3').when(item_3).value()
+        doReturn(false).when(item_3).selected()
+        doReturn(false).when(item_3).enabled()
+        doReturn(false).when(item_3).visible()
+
+        doReturn([item_1, item_2, item_3]).when(listBox).items()
 
         listBox.should {
+            have 2.selectedItems
             have selectedItems(item_1, item_2)
             have selectedItems('Item 1', 'Item 2')
+            have 1.unSelectedItems
+            have unSelectedItem(item_3)
+            have unSelectedItem('Item 3')
+            have unSelectedItems(item_3)
+            have unSelectedItems('Item 3')
+            have 1.disabledItems
+            have disabledItem(item_3)
+            have disabledItem('Item 3')
+            have disabledItems(item_3)
+            have disabledItems('Item 3')
+            have 1.visibleItems
+            have visibleItem(item_1)
+            have visibleItem('Item 1')
+            have visibleItems(item_1)
+            have visibleItems('Item 1')
         }
     }
 }

@@ -104,6 +104,10 @@ class GroovyExtensions {
         new VisibleItemsSizeMatcher(number)
     }
 
+    static PropertyMatcher getDisabledItems(Integer number) {
+        new DisabledItemsSizeMatcher(number)
+    }
+
     static PropertyMatcher getSelectedItems(Integer number) {
         new SelectedItemsSizeMatcher(number)
     }

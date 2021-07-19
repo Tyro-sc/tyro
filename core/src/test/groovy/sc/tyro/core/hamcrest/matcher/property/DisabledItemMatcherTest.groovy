@@ -15,6 +15,7 @@
  */
 package sc.tyro.core.hamcrest.matcher.property
 
+import org.hamcrest.MatcherAssert
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import sc.tyro.core.component.Item
@@ -25,29 +26,37 @@ import static org.hamcrest.Matchers.is
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
+import static sc.tyro.core.hamcrest.Matchers.disabledItem
 import static sc.tyro.core.hamcrest.Matchers.has
+import static sc.tyro.core.hamcrest.Matchers.selectedItem
 
 /**
  * @author David Avenante
  * @since 1.0.0
  */
-@DisplayName("Visible Items Size Property Matcher")
-class VisibleItemsSizeMatcherTest {
+@DisplayName("Disabled Item Property Matcher")
+class DisabledItemMatcherTest {
     @Test
-    @DisplayName("Should support matcher Visible Size")
+    @DisplayName("Should support matcher DisabledItem")
     void matcher() {
         ItemSupport cmp = mock(ItemSupport)
         Item item_1 = mock(Item)
         Item item_2 = mock(Item)
 
-        when(item_1.visible()).thenReturn(true)
-        when(item_2.visible()).thenReturn(true)
+        when(item_1.value()).thenReturn('item_1_value')
+        when(item_1.enabled()).thenReturn(false)
+        when(item_2.value()).thenReturn('item_2_value')
+        when(item_2.enabled()).thenReturn(true)
 
         when(cmp.items()).thenReturn([item_1, item_2])
 
-        assertThat(cmp, has(2.visibleItems))
+        assertThat(cmp, has(disabledItem('item_1_value')))
+        assertThat(cmp, has(disabledItem(item_1)))
 
-        Error error = assertThrows(AssertionError, { assertThat(cmp, has(3.visibleItems)) })
-        assertThat(error.message, is('\nExpected: has 3 visible item(s)\n     but: has 2 visible item(s)'))
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(disabledItem('item_2_value'))) })
+        MatcherAssert.assertThat(error.message, is('\nExpected: has disabled item "item_2_value"\n     but: has disabled item "item_1_value"'))
+
+        error = assertThrows(AssertionError, { assertThat(cmp, has(disabledItem(item_2))) })
+        MatcherAssert.assertThat(error.message, is('\nExpected: has disabled item "item_2_value"\n     but: has disabled item "item_1_value"'))
     }
 }

@@ -18,7 +18,7 @@ package sc.tyro.core.hamcrest.matcher.property
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import sc.tyro.core.component.Item
-import sc.tyro.core.support.property.SelectedItemSupport
+import sc.tyro.core.support.property.ItemSupport
 
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.is
@@ -37,22 +37,24 @@ class SelectedItemMatcherTest {
     @Test
     @DisplayName("Should support matcher SelectedItem")
     void matcher() {
-        SelectedItemSupport cmp = mock(SelectedItemSupport)
-        Item itemSelected = mock(Item)
+        ItemSupport cmp = mock(ItemSupport)
+        Item item_1 = mock(Item)
+        Item item_2 = mock(Item)
 
-        when(itemSelected.value()).thenReturn('selected')
-        when(cmp.selectedItem()).thenReturn(itemSelected)
+        when(item_1.value()).thenReturn('item_1_value')
+        when(item_1.selected()).thenReturn(true)
+        when(item_2.value()).thenReturn('item_2_value')
+        when(item_2.selected()).thenReturn(false)
 
-        assertThat(cmp, has(selectedItem('selected')))
-        assertThat(cmp, has(selectedItem(itemSelected)))
+        when(cmp.items()).thenReturn([item_1, item_2])
 
-        Error error = assertThrows(AssertionError, { assertThat(cmp, has(selectedItem('no selected'))) })
-        assertThat(error.message, is('\nExpected: has selected item "no selected"\n     but: has selected item "selected"'))
+        assertThat(cmp, has(selectedItem('item_1_value')))
+        assertThat(cmp, has(selectedItem(item_1)))
 
-        Item item = mock(Item)
-        when(item.value()).thenReturn('no selected')
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(selectedItem('item_2_value'))) })
+        assertThat(error.message, is('\nExpected: has selected item "item_2_value"\n     but: has selected item "item_1_value"'))
 
-        error = assertThrows(AssertionError, { assertThat(cmp, has(selectedItem(item))) })
-        assertThat(error.message, is('\nExpected: has selected item "no selected"\n     but: has selected item "selected"'))
+        error = assertThrows(AssertionError, { assertThat(cmp, has(selectedItem(item_2))) })
+        assertThat(error.message, is('\nExpected: has selected item "item_2_value"\n     but: has selected item "item_1_value"'))
     }
 }

@@ -84,7 +84,6 @@ class TyroTest {
         // Should fail if more than on match
         when(button_2.text()).thenReturn('Ok')
 
-
         IllegalStateException error = assertThrows(IllegalStateException, { button("Ok").should { be available } })
         assertThat(error.message, is("Find 2 component(s) Button with text 'Ok'."))
     }
@@ -103,7 +102,6 @@ class TyroTest {
 
         // Should fail if more than on match
         when(heading_2.text()).thenReturn('Title')
-
 
         IllegalStateException error = assertThrows(IllegalStateException, { heading("Title").should { be available } })
         assertThat(error.message, is("Find 2 component(s) Heading with text 'Title'."))

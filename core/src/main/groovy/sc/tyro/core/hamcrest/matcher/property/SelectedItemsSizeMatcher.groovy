@@ -16,6 +16,7 @@
 package sc.tyro.core.hamcrest.matcher.property
 
 import org.hamcrest.Description
+import sc.tyro.core.component.Item
 import sc.tyro.core.hamcrest.PropertyMatcher
 import sc.tyro.core.support.property.ItemSupport
 
@@ -25,6 +26,7 @@ import sc.tyro.core.support.property.ItemSupport
  */
 class SelectedItemsSizeMatcher extends PropertyMatcher<ItemSupport> {
     private Integer number
+    private List<Item> selectedItems
 
     SelectedItemsSizeMatcher(Integer number) {
         this.number = number
@@ -32,7 +34,8 @@ class SelectedItemsSizeMatcher extends PropertyMatcher<ItemSupport> {
 
     @Override
     protected boolean matchesSafely(ItemSupport component) {
-        component.items().findAll { it.selected() }.size() == number
+        selectedItems = component.items().findAll { it.selected() }
+        selectedItems.size() == number
     }
 
     @Override
@@ -42,6 +45,6 @@ class SelectedItemsSizeMatcher extends PropertyMatcher<ItemSupport> {
 
     @Override
     protected void describeMismatchSafely(ItemSupport component, Description mismatchDescription) {
-        mismatchDescription.appendText('has ' + component.items().findAll { it.selected() }.size()).appendText(' selected item(s)')
+        mismatchDescription.appendText('has ' + selectedItems.size()).appendText(' selected item(s)')
     }
 }

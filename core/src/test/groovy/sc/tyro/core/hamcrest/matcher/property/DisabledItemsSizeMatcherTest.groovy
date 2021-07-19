@@ -15,6 +15,7 @@
  */
 package sc.tyro.core.hamcrest.matcher.property
 
+import org.hamcrest.MatcherAssert
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import sc.tyro.core.component.Item
@@ -31,23 +32,23 @@ import static sc.tyro.core.hamcrest.Matchers.has
  * @author David Avenante
  * @since 1.0.0
  */
-@DisplayName("Visible Items Size Property Matcher")
-class VisibleItemsSizeMatcherTest {
+@DisplayName("Disabled Items Size Property Matcher")
+class DisabledItemsSizeMatcherTest {
     @Test
-    @DisplayName("Should support matcher Visible Size")
+    @DisplayName("Should support matcher Disabled Size")
     void matcher() {
         ItemSupport cmp = mock(ItemSupport)
         Item item_1 = mock(Item)
         Item item_2 = mock(Item)
 
-        when(item_1.visible()).thenReturn(true)
-        when(item_2.visible()).thenReturn(true)
+        when(item_1.enabled()).thenReturn(false)
+        when(item_2.enabled()).thenReturn(false)
 
         when(cmp.items()).thenReturn([item_1, item_2])
 
-        assertThat(cmp, has(2.visibleItems))
+        assertThat(cmp, has(2.disabledItems))
 
-        Error error = assertThrows(AssertionError, { assertThat(cmp, has(3.visibleItems)) })
-        assertThat(error.message, is('\nExpected: has 3 visible item(s)\n     but: has 2 visible item(s)'))
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(3.disabledItems)) })
+        MatcherAssert.assertThat(error.message, is('\nExpected: has 3 disabled item(s)\n     but: has 2 disabled item(s)'))
     }
 }

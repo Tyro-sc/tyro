@@ -15,6 +15,7 @@
  */
 package sc.tyro.core.hamcrest.matcher.property
 
+import org.hamcrest.MatcherAssert
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import sc.tyro.core.component.Item
@@ -26,16 +27,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
 import static sc.tyro.core.hamcrest.Matchers.has
-import static sc.tyro.core.hamcrest.Matchers.selectedItems
+import static sc.tyro.core.hamcrest.Matchers.unSelectedItems
 
 /**
  * @author David Avenante
  * @since 1.0.0
  */
-@DisplayName("Selected Items Property Matcher")
-class SelectedItemsMatcherTest {
+@DisplayName("UnSelected Items Property Matcher")
+class UnSelectedItemsMatcherTest {
     @Test
-    @DisplayName("Should support matcher SelectedItems")
+    @DisplayName("Should support matcher UnSelectedItems")
     void matcher() {
         ItemSupport cmp = mock(ItemSupport)
         Item item_1 = mock(Item)
@@ -58,13 +59,13 @@ class SelectedItemsMatcherTest {
         when(cmp.item('item_4_value')).thenReturn(item_4)
         when(cmp.items()).thenReturn([item_1, item_2, item_3, item_4])
 
-        assertThat(cmp, has(selectedItems('item_1_value', 'item_2_value')))
-        assertThat(cmp, has(selectedItems(item_1, item_2)))
+        assertThat(cmp, has(unSelectedItems('item_3_value', 'item_4_value')))
+        assertThat(cmp, has(unSelectedItems(item_3, item_4)))
 
-        Error error = assertThrows(AssertionError, { assertThat(cmp, has(selectedItems('item_3_value', 'item_4_value'))) })
-        assertThat(error.message, is('\nExpected: has selected item(s) ["item_3_value", "item_4_value"]\n     but: has selected item(s) ["item_1_value", "item_2_value"]'))
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(unSelectedItems('item_1_value', 'item_2_value'))) })
+        MatcherAssert.assertThat(error.message, is('\nExpected: has unselected item(s) ["item_1_value", "item_2_value"]\n     but: has unselected item(s) ["item_3_value", "item_4_value"]'))
 
-        error = assertThrows(AssertionError, { assertThat(cmp, has(selectedItems(item_3, item_4))) })
-        assertThat(error.message, is('\nExpected: has selected item(s) ["item_3_value", "item_4_value"]\n     but: has selected item(s) ["item_1_value", "item_2_value"]'))
+        error = assertThrows(AssertionError, { assertThat(cmp, has(unSelectedItems(item_1, item_2))) })
+        MatcherAssert.assertThat(error.message, is('\nExpected: has unselected item(s) ["item_1_value", "item_2_value"]\n     but: has unselected item(s) ["item_3_value", "item_4_value"]'))
     }
 }

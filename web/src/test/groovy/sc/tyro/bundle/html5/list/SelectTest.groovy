@@ -65,12 +65,12 @@ class SelectTest {
         assert os.group('win32').value() == 'win32'
         assert os.group('BSD').value() == 'BSD'
 
-        assert os.selectedItem().value() == 'None'
+        assert os.items().find {it.selected() }.value() == 'None'
 
         os.select('Fedora')
-        assert os.selectedItem().value() == 'Fedora'
+        assert os.items().find {it.selected() }.value() == 'Fedora'
         os.select(os.items()[3])
-        assert os.selectedItem().value() == 'Gentoo'
+        assert os.items().find {it.selected() }.value() == 'Gentoo'
 
         Dropdown countries = $('#countries') as Select
         assert !countries.enabled()

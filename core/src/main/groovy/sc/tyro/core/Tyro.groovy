@@ -126,6 +126,30 @@ class Tyro {
 
     static SelectedItemsMatcher selectedItems(Item... items) { new SelectedItemsMatcher(items) }
 
+    static UnSelectedItemMatcher unSelectedItem(String value) { new UnSelectedItemMatcher(value) }
+
+    static UnSelectedItemMatcher unSelectedItem(Item value) { new UnSelectedItemMatcher(value) }
+
+    static UnSelectedItemsMatcher unSelectedItems(String... values) { new UnSelectedItemsMatcher(values) }
+
+    static UnSelectedItemsMatcher unSelectedItems(Item... values) { new UnSelectedItemsMatcher(values) }
+
+    static DisabledItemMatcher disabledItem(String item) { new DisabledItemMatcher(item) }
+
+    static DisabledItemMatcher disabledItem(Item item) { new DisabledItemMatcher(item) }
+
+    static DisabledItemsMatcher disabledItems(String... items) { new DisabledItemsMatcher(items) }
+
+    static DisabledItemsMatcher disabledItems(Item... items) { new DisabledItemsMatcher(items) }
+
+    static VisibleItemMatcher visibleItem(String item) { new VisibleItemMatcher(item) }
+
+    static VisibleItemMatcher visibleItem(Item item) { new VisibleItemMatcher(item) }
+
+    static VisibleItemsMatcher visibleItems(String... items) { new VisibleItemsMatcher(items) }
+
+    static VisibleItemsMatcher visibleItems(Item... items) { new VisibleItemsMatcher(items) }
+
     static StepMatcher step(object) { new StepMatcher(object) }
 
     static TextMatcher text(String text) { new TextMatcher(text) }
