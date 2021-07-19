@@ -27,16 +27,16 @@ import static java.lang.String.valueOf
  * @author David Avenante
  * @since 1.0.0
  */
-class SelectedItemsMatcher extends PropertyMatcher<ItemSupport> {
+class UnSelectedItemsMatcher extends PropertyMatcher<ItemSupport> {
     private List<String> values = new ArrayList<>()
     private List<Item> items = new ArrayList<>()
-    private List<Item> selectedItems
+    private List<Item> unSelectedItems
 
-    SelectedItemsMatcher(String... values) {
+    UnSelectedItemsMatcher(String... values) {
         this.values = values
     }
 
-    SelectedItemsMatcher(Item... items) {
+    UnSelectedItemsMatcher(Item... items) {
         this.items = items
     }
 
@@ -49,8 +49,8 @@ class SelectedItemsMatcher extends PropertyMatcher<ItemSupport> {
         values.clear()
         items.each { values.add(valueOf(it.value())) }
 
-        selectedItems = component.items().findAll{ item -> item.selected() }
-        selectedItems.size() == items.size() && selectedItems.containsAll(items)
+        unSelectedItems = component.items().findAll{ item -> !item.selected() }
+        unSelectedItems.size() == items.size() && unSelectedItems.containsAll(items)
     }
 
     @Override
@@ -58,16 +58,16 @@ class SelectedItemsMatcher extends PropertyMatcher<ItemSupport> {
         List<String> expectedItems = new ArrayList<>()
         items.each { expectedItems.add(valueOf(it.value())) }
 
-        description.appendText('selected item(s) ')
+        description.appendText('unselected item(s) ')
         description.appendValueList('[', ', ', ']', expectedItems)
     }
 
     @Override
     protected void describeMismatchSafely(ItemSupport component, Description mismatchDescription) {
         List<String> componentItems = new ArrayList<>()
-        selectedItems.each { componentItems.add(valueOf(it.value())) }
+        unSelectedItems.each { componentItems.add(valueOf(it.value())) }
 
-        mismatchDescription.appendText('has selected item(s) ')
+        mismatchDescription.appendText('has unselected item(s) ')
         mismatchDescription.appendValueList('[', ', ', ']', componentItems)
     }
 }

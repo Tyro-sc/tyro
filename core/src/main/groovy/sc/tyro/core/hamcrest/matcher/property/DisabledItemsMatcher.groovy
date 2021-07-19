@@ -3,6 +3,7 @@ package sc.tyro.core.hamcrest.matcher.property
 import org.hamcrest.Description
 import sc.tyro.core.component.Item
 import sc.tyro.core.hamcrest.PropertyMatcher
+import sc.tyro.core.hamcrest.matcher.property.dummy.DummyItem
 import sc.tyro.core.support.property.ItemSupport
 
 import static java.lang.String.valueOf
@@ -23,7 +24,7 @@ class DisabledItemsMatcher extends PropertyMatcher<ItemSupport> {
     protected boolean matchesSafely(ItemSupport component) {
         if (values) {
             items.clear()
-            values.each { items.add(component.item(it)) }
+            values.each { items.add(new DummyItem(it)) }
         }
         values.clear()
         items.each { values.add(valueOf(it.value())) }

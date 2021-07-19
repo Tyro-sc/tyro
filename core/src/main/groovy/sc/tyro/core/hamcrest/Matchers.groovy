@@ -118,6 +118,14 @@ class Matchers {
 
     static Matcher<ItemSupport> selectedItems(Item... values) { new SelectedItemsMatcher(values) }
 
+    static Matcher<ItemSupport> unSelectedItem(String value) { new UnSelectedItemMatcher(value) }
+
+    static Matcher<ItemSupport> unSelectedItem(Item value) { new UnSelectedItemMatcher(value) }
+
+    static Matcher<ItemSupport> unSelectedItems(String... values) { new UnSelectedItemsMatcher(values) }
+
+    static Matcher<ItemSupport> unSelectedItems(Item... values) { new UnSelectedItemsMatcher(values) }
+
     static DisabledItemMatcher disabledItem(String item) { new DisabledItemMatcher(item) }
 
     static DisabledItemMatcher disabledItem(Item item) { new DisabledItemMatcher(item) }
@@ -125,6 +133,14 @@ class Matchers {
     static DisabledItemsMatcher disabledItems(String... items) { new DisabledItemsMatcher(items) }
 
     static DisabledItemsMatcher disabledItems(Item... items) { new DisabledItemsMatcher(items) }
+
+    static Matcher<ItemSupport> visibleItem(String value) { new VisibleItemMatcher(value) }
+
+    static Matcher<ItemSupport> visibleItem(Item value) { new VisibleItemMatcher(value) }
+
+    static Matcher<ItemSupport> visibleItems(String... values) { new VisibleItemsMatcher(values) }
+
+    static Matcher<ItemSupport> visibleItems(Item... values) { new VisibleItemsMatcher(values) }
 
     static Matcher<GroupSupport> groups(String... values) { new GroupMatcher(values) }
 
