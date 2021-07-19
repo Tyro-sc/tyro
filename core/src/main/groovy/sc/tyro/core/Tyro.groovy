@@ -318,6 +318,7 @@ class Tyro {
         if (components.size() == 1) {
             return components.first()
         }
+
         throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with text '${text}'.")
     }
 
