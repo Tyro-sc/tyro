@@ -314,8 +314,8 @@ class Tyro {
             case 2:
                 throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with label${hasPlaceholderSupport ? ' or placeholder' : ''} '${label}'.")
             default:
-                // Non existing component to be able to test availability
-                return provider.find(clazz, By.id(randomUUID().toString()))
+                // Return none existing component to be able to test availability
+                provider.find(Config.componentTypes.find { clazz.isAssignableFrom(it) }, By.id(randomUUID().toString()))
         }
     }
 
@@ -327,8 +327,8 @@ class Tyro {
             case 2:
                 throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with text '${text}'.")
             default:
-                // Non existing component to be able to test availability
-                return provider.find(clazz, By.id(randomUUID().toString()))
+                // Return none existing component to be able to test availability
+                provider.find(Config.componentTypes.find { clazz.isAssignableFrom(it) }, By.id(randomUUID().toString()))
         }
     }
 
@@ -340,8 +340,8 @@ class Tyro {
             case 2:
                 throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with value '${value}'.")
             default:
-                // Non existing component to be able to test availability
-                return provider.find(clazz, By.id(randomUUID().toString()))
+                // Return none existing component to be able to test availability
+                provider.find(Config.componentTypes.find { clazz.isAssignableFrom(it) }, By.id(randomUUID().toString()))
         }
     }
 
@@ -355,8 +355,8 @@ class Tyro {
             case 2:
                 throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with title '${title}'.")
             default:
-                // Non existing component to be able to test availability
-                return provider.find(clazz, By.id(randomUUID().toString()))
+                // Return none existing component to be able to test availability
+                provider.find(Config.componentTypes.find { clazz.isAssignableFrom(it) }, By.id(randomUUID().toString()))
         }
     }
 
