@@ -20,17 +20,30 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import sc.tyro.core.By
+import sc.tyro.core.component.CheckBox
+import sc.tyro.core.component.Dropdown
+import sc.tyro.core.component.Group
+import sc.tyro.core.component.Heading
+import sc.tyro.core.component.Item
+import sc.tyro.core.component.Link
+import sc.tyro.core.component.ListBox
+import sc.tyro.core.component.Panel
+import sc.tyro.core.component.Radio
 import sc.tyro.core.component.field.EmailField
 import sc.tyro.core.component.field.Field
 import sc.tyro.core.component.field.PasswordField
 import sc.tyro.web.TyroWebTestExtension
 
 import static org.hamcrest.MatcherAssert.assertThat
-import static org.hamcrest.Matchers.*
+import static org.hamcrest.Matchers.endsWith
+import static org.hamcrest.Matchers.startsWith
+import static org.junit.jupiter.api.Assertions.assertArrayEquals
 import static org.junit.jupiter.api.Assertions.assertThrows
+import static sc.tyro.core.By.expression
 import static sc.tyro.core.Config.provider
 import static sc.tyro.core.Tyro.*
+import static sc.tyro.core.Tyro.radio
+import static sc.tyro.core.Tyro.radio
 import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 
 /**
@@ -48,7 +61,7 @@ class FactoryTest {
     @Test
     @DisplayName("Should find unique component by expression")
     void find() {
-        Button button = provider.find(Button, By.expression('button'))
+        Button button = provider.find(Button, expression('button'))
 
         assert button.visible()
     }
@@ -56,7 +69,7 @@ class FactoryTest {
     @Test
     @DisplayName("Should find all components by expression")
     void findAllByExpression() {
-        List<Button> buttons = provider.findAll(Button, By.expression('.btn-primary'))
+        List<Button> buttons = provider.findAll(Button, expression('.btn-primary'))
 
         assert buttons.size() == 4
     }
@@ -76,29 +89,100 @@ class FactoryTest {
     }
 
     @Test
-    @DisplayName("Should find fields components with expected type")
-    void fieldWithExpectedType() {
+    @DisplayName("Should find components by type")
+    void findByType() {
         List<Field> fields = findAll(Field)
-
         assert fields.size() == 2
 
-        Field field_1 = field('Email')
+        List<Button> buttons = findAll(Button)
+        assert buttons.size() == 5
+    }
 
+    @Test
+    @DisplayName("Should find field by label or placeholder")
+    void findField() {
+        Field field_1 = field('Email')
         assert field_1.label() == 'Email'
 
         field_1 = field('Password')
-
         assert field_1.label() == 'Password'
 
-        EmailField email = field("Email", EmailField)
-
+        EmailField email = field('Email', EmailField)
         assert email.label() == 'Email'
 
-        IllegalStateException error = assertThrows(IllegalStateException, { field("Email", PasswordField) })
-        assertThat(error.message, is('Find 0 component(s) PasswordField with label or placeholder \'Email\'.'))
+        email = field('Enter your email', EmailField)
+        assert email.placeholder() == 'Enter your email'
+
+        field('Unavailable Button').should { be missing }
 
         ClassCastException classCastError = assertThrows(GroovyCastException, { PasswordField password = field("Email", EmailField) })
         assertThat(classCastError.message, startsWith("Cannot cast object 'InputTypeEmail"))
         assertThat(classCastError.message, endsWith("with class 'sc.tyro.bundle.html5.input.InputTypeEmail' to class 'sc.tyro.core.component.field.PasswordField'"))
+    }
+
+    @Test
+    @DisplayName("Should find button by text")
+    void findButton() {
+        sc.tyro.core.component.Button button = button('Button 1')
+        assert button.text() == 'Button 1'
+    }
+
+    @Test
+    @DisplayName("Should find item by value")
+    void findItem() {
+        Item item = item('Montpellier')
+        assert item.value() == 'Montpellier'
+    }
+
+    @Test
+    @DisplayName("Should find radio by value")
+    void findRadio() {
+        Radio radio_1 = radio('Male')
+        assert radio_1.checked()
+
+        Radio radio_2 = radio('Female')
+        assert !radio_2.checked()
+    }
+
+    @Test
+    @DisplayName("Should find checkbox by label")
+    void findCheckbox() {
+        CheckBox checkBox = checkbox('Check me out')
+        assert !checkBox.checked()
+    }
+
+    @Test
+    @DisplayName("Should find dropdown by label")
+    void findDropdown() {
+        Dropdown dropdown = dropdown('Cities')
+        assert dropdown.items().size() == 2
+    }
+
+    @Test
+    @DisplayName("Should find listBox by label")
+    void findListBox() {
+        ListBox listBox = listBox('Planets')
+        assert listBox.items().size() == 3
+    }
+
+    @Test
+    @DisplayName("Should find group by label")
+    void findGroup() {
+        Group group = group("planets")
+        assert group.items().size() == 3
+    }
+
+    @Test
+    @DisplayName("Should find Heading by text")
+    void findHeading() {
+        Heading heading = heading('ListBox')
+        assert heading.text() == 'ListBox'
+    }
+
+    @Test
+    @DisplayName("Should find Link by text")
+    void findLink() {
+        Link link = link('Nineteen Eighty-Four')
+        assert link.reference() == 'https://www.george-orwell.org/1984/0.html'
     }
 }
