@@ -31,7 +31,7 @@ import sc.tyro.core.support.state.*
  * @author David Avenante
  * @since 1.0.0
  */
-class Matchers {
+class Matchers extends org.hamcrest.Matchers {
     static <T> Matcher<T> has(Matcher<T> matcher) { new Has(matcher) }
 
     // States
@@ -99,6 +99,8 @@ class Matchers {
     static Matcher<StepSupport> step(Object minimum) { new StepMatcher(minimum) }
 
     static Matcher<TextSupport> text(String text) { new TextMatcher(text) }
+
+    static Matcher<TextSupport> text(Matcher<String> matcher) { new TextMatcher(matcher) }
 
     static Matcher<ValueSupport> value(Object value) { new ValueMatcher(value) }
 
