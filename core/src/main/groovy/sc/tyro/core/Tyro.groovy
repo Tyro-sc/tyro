@@ -34,6 +34,7 @@ import sc.tyro.core.support.property.*
 import java.time.Duration
 
 import static java.util.UUID.randomUUID
+import static sc.tyro.core.By.expression
 import static sc.tyro.core.Config.provider
 import static sc.tyro.core.input.Key.COMMAND
 import static sc.tyro.core.input.Key.CTRL
@@ -308,56 +309,24 @@ class Tyro {
         Collection<T> components = provider.findAll(clazz).findAll {
             (LabelSupport.isAssignableFrom(clazz) ? it.label() == label : false) || (hasPlaceholderSupport ? it.placeholder() == label : false)
         }
-        switch (components.size()) {
-            case 1:
-                return components.first()
-            case 2:
-                throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with label${hasPlaceholderSupport ? ' or placeholder' : ''} '${label}'.")
-            default:
-                // Return none existing component to be able to test availability
-                provider.find(Config.componentTypes.find { clazz.isAssignableFrom(it) }, By.id(randomUUID().toString()))
-        }
+        createComponent(components, clazz, label, "label${hasPlaceholderSupport ? ' or placeholder' : ''}")
     }
 
     static <T extends Component> T findByText(String text, Class<T> clazz) {
         Collection<T> components = provider.findAll(clazz).findAll { (TextSupport.isAssignableFrom(clazz) ? it.text() == text : false) }
-        switch (components.size()) {
-            case 1:
-                return components.first()
-            case 2:
-                throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with text '${text}'.")
-            default:
-                // Return none existing component to be able to test availability
-                provider.find(Config.componentTypes.find { clazz.isAssignableFrom(it) }, By.id(randomUUID().toString()))
-        }
+        createComponent(components, clazz, text, 'text')
     }
 
     static <T extends Component> T findByValue(String value, Class<T> clazz) {
         Collection<T> components = provider.findAll(clazz).findAll { (ValueSupport.isAssignableFrom(clazz) ? it.value() == value : false) }
-        switch (components.size()) {
-            case 1:
-                return components.first()
-            case 2:
-                throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with value '${value}'.")
-            default:
-                // Return none existing component to be able to test availability
-                provider.find(Config.componentTypes.find { clazz.isAssignableFrom(it) }, By.id(randomUUID().toString()))
-        }
+        createComponent(components, clazz, value, 'value')
     }
 
     static <T extends Component> T findByTitle(String title, Class<T> clazz) {
         Collection<T> components = provider.findAll(clazz).findAll {
             (TitleSupport.isAssignableFrom(clazz) ? it.title() == title : false)
         }
-        switch (components.size()) {
-            case 1:
-                return components.first()
-            case 2:
-                throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with title '${title}'.")
-            default:
-                // Return none existing component to be able to test availability
-                provider.find(Config.componentTypes.find { clazz.isAssignableFrom(it) }, By.id(randomUUID().toString()))
-        }
+        createComponent(components, clazz, title, 'title')
     }
 
     static withOsModifierClickOn(Component c) {
@@ -372,5 +341,19 @@ class Tyro {
             type(COMMAND + text)
         else
             type(CTRL + text)
+    }
+
+    private static TYRO_COMPONENT_NOT_FOUND_BY_FACTORY = 'TYRO_COMPONENT_NOT_FOUND_BY_FACTORY'
+
+    private static <T extends Component> T createComponent(List<T> components, Class<T> clazz, String value, String selector) {
+        switch (components.size()) {
+            case 1:
+                return components.first()
+            case 2:
+                throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with ${selector} '${value}'.")
+            default:
+                // Return none existing component to be able to test availability
+                provider.find(Config.componentTypes.find { clazz.isAssignableFrom(it) }, expression(TYRO_COMPONENT_NOT_FOUND_BY_FACTORY.toString()))
+        }
     }
 }

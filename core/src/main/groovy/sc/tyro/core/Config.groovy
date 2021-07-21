@@ -38,7 +38,7 @@ class Config {
 
     static String[] scannedPackages
 
-    final static Collection<Class<Component>> componentTypes = new HashSet<>()
+    final static Collection<Class<Component>> componentTypes = new HashSet()
 
     static void scan(String... packageNames) {
         scannedPackages = packageNames

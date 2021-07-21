@@ -20,15 +20,8 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import sc.tyro.core.component.CheckBox
-import sc.tyro.core.component.Dropdown
-import sc.tyro.core.component.Group
-import sc.tyro.core.component.Heading
-import sc.tyro.core.component.Item
-import sc.tyro.core.component.Link
-import sc.tyro.core.component.ListBox
-import sc.tyro.core.component.Panel
-import sc.tyro.core.component.Radio
+import sc.tyro.bundle.html5.Button
+import sc.tyro.core.component.*
 import sc.tyro.core.component.field.EmailField
 import sc.tyro.core.component.field.Field
 import sc.tyro.core.component.field.PasswordField
@@ -37,13 +30,10 @@ import sc.tyro.web.TyroWebTestExtension
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.endsWith
 import static org.hamcrest.Matchers.startsWith
-import static org.junit.jupiter.api.Assertions.assertArrayEquals
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static sc.tyro.core.By.expression
 import static sc.tyro.core.Config.provider
 import static sc.tyro.core.Tyro.*
-import static sc.tyro.core.Tyro.radio
-import static sc.tyro.core.Tyro.radio
 import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 
 /**
@@ -102,18 +92,19 @@ class FactoryTest {
     @DisplayName("Should find field by label or placeholder")
     void findField() {
         Field field_1 = field('Email')
-        assert field_1.label() == 'Email'
+        field_1.should { have label('Email') }
 
-        field_1 = field('Password')
-        assert field_1.label() == 'Password'
+        field_1 = field('Password', PasswordField)
+        field_1.should { have label('Password') }
 
         EmailField email = field('Email', EmailField)
-        assert email.label() == 'Email'
+        email.should { have label('Email') }
 
         email = field('Enter your email', EmailField)
-        assert email.placeholder() == 'Enter your email'
+        email.should { have placeholder('Enter your email') }
 
-        field('Unavailable Button').should { be missing }
+        Field unavailable = field('Unavailable Button')
+        unavailable.should { be missing }
 
         ClassCastException classCastError = assertThrows(GroovyCastException, { PasswordField password = field("Email", EmailField) })
         assertThat(classCastError.message, startsWith("Cannot cast object 'InputTypeEmail"))

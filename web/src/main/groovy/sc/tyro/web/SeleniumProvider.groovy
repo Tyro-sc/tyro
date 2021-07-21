@@ -33,6 +33,7 @@ import sc.tyro.web.internal.DomIdProvider
 import java.lang.annotation.Annotation
 import java.lang.reflect.Modifier
 
+import static sc.tyro.core.By.expression
 import static sc.tyro.core.Config.scannedPackages
 import static sc.tyro.core.input.MouseModifiers.*
 import static sc.tyro.web.KeyConverter.convert
@@ -62,7 +63,7 @@ class SeleniumProvider implements Provider {
     @Override
     <T extends Component> List<T> findAll(Class<T> clazz) {
         findSelectorsFor(clazz).collectMany {
-            Components components = new Components(this, it.key, new CachedMetaData(idProvider: new DomIdProvider(By.expression(it.value), false)))
+            Components components = new Components(this, it.key, new CachedMetaData(idProvider: new DomIdProvider(expression(it.value), false)))
             components.list()
         } as List<T>
     }
@@ -247,7 +248,7 @@ class SeleniumProvider implements Provider {
             case By.ByExpression:
                 return by as By.ByExpression
             case By.ById:
-                return By.expression("#" + ((By.ById) by).id)
+                return expression("#" + ((By.ById) by).id)
             default:
                 throw new RuntimeException("Invalid By.xxx")
         }
@@ -316,7 +317,7 @@ class SeleniumProvider implements Provider {
         List<T> list() {
             if (components == null) {
                 components = meta.metaInfos().collect {
-                    new Component(provider, new CachedMetaData(idProvider: new DomIdProvider(By.expression('[id="' + it.id + '"]'), false))).asType(type)
+                    new Component(provider, new CachedMetaData(idProvider: new DomIdProvider(expression('[id="' + it.id + '"]'), false))).asType(type)
                 } as List<T>
             }
             return Collections.unmodifiableList(components)
