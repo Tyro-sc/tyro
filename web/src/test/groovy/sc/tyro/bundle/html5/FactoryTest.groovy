@@ -20,7 +20,6 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import sc.tyro.bundle.html5.Button
 import sc.tyro.core.component.*
 import sc.tyro.core.component.field.EmailField
 import sc.tyro.core.component.field.Field
