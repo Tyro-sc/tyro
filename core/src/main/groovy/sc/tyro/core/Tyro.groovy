@@ -33,7 +33,6 @@ import sc.tyro.core.support.property.*
 
 import java.time.Duration
 
-import static java.util.UUID.randomUUID
 import static sc.tyro.core.By.expression
 import static sc.tyro.core.Config.provider
 import static sc.tyro.core.input.Key.COMMAND
@@ -305,7 +304,7 @@ class Tyro {
     }
 
     static <T extends Component> T findByLabel(String label, Class<T> clazz) {
-        boolean hasPlaceholderSupport = PlaceholderSupport.isAssignableFrom(clazz);
+        boolean hasPlaceholderSupport = PlaceholderSupport.isAssignableFrom(clazz)
         Collection<T> components = provider.findAll(clazz).findAll {
             (LabelSupport.isAssignableFrom(clazz) ? it.label() == label : false) || (hasPlaceholderSupport ? it.placeholder() == label : false)
         }
