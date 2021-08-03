@@ -18,9 +18,10 @@ package sc.tyro.core.component
 import sc.tyro.core.support.Checkable
 import sc.tyro.core.support.property.LabelSupport
 import sc.tyro.core.support.state.CheckSupport
+import sc.tyro.core.support.state.ValiditySupport
 
 /**
  * @author David Avenante
  * @since 1.0.0
  */
-abstract class Radio extends Component implements LabelSupport, CheckSupport, Checkable {}
+abstract class Radio extends Component implements LabelSupport, CheckSupport, Checkable, ValiditySupport {}

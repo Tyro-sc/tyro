@@ -22,6 +22,7 @@ import sc.tyro.core.support.property.GroupSupport
 import sc.tyro.core.support.property.ItemSupport
 import sc.tyro.core.support.property.LabelSupport
 import sc.tyro.core.support.state.EmptySupport
+import sc.tyro.core.support.state.ValiditySupport
 
 /**
  * @author David Avenante
@@ -38,5 +39,6 @@ class DropdownTest {
         assert Dropdown in LabelSupport
         assert Dropdown in Selectable
         assert Dropdown in EmptySupport
+        assert Dropdown in ValiditySupport
     }
 }

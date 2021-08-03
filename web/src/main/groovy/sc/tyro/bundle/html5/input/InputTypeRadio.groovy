@@ -25,7 +25,7 @@ import static sc.tyro.bundle.html5.input.Label.findFor
  * @since 1.0.0
  */
 @CssIdentifier('input[type=radio]')
-class InputTypeRadio extends Radio {
+class InputTypeRadio extends Radio implements Validity {
     @Override
     boolean checked() {
         provider.check(id(), "it.is(':checked')")

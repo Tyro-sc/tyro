@@ -27,6 +27,7 @@ import sc.tyro.web.TyroWebTestExtension
 
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static sc.tyro.core.Tyro.*
+import static sc.tyro.core.Tyro.valid
 import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 
 /**
@@ -51,6 +52,11 @@ class MultiSelectTest {
         empty_multi_select.should { be empty }
 
         ListBox cities = $('#cities') as MultiSelect
+
+        cities.should {
+            be valid
+            have validationMessage('')
+        }
 
         cities.should {
             have label('Cities list')
