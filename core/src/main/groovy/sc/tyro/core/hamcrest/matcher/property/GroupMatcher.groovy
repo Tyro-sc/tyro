@@ -21,6 +21,8 @@ import sc.tyro.core.hamcrest.PropertyMatcher
 import sc.tyro.core.hamcrest.matcher.property.dummy.DummyGroup
 import sc.tyro.core.support.property.GroupSupport
 
+import static java.lang.String.valueOf
+
 /**
  * @author David Avenante
  * @since 1.0.0
@@ -44,14 +46,14 @@ class GroupMatcher extends PropertyMatcher<GroupSupport> {
             values.each { groups.add(new DummyGroup(it)) }
         }
         values.clear()
-        groups.each { values.add(String.valueOf(it.value())) }
+        groups.each { values.add(valueOf(it.value())) }
         component.groups().size() == groups.size() && component.groups().containsAll(groups)
     }
 
     @Override
     void describeTo(Description description) {
         List<String> expectedGroups = new ArrayList<>()
-        groups.each { expectedGroups.add(String.valueOf(it.value())) }
+        groups.each { expectedGroups.add(valueOf(it.value())) }
 
         description.appendText('group(s) ')
         description.appendValueList('[', ', ', ']', expectedGroups)
@@ -60,7 +62,7 @@ class GroupMatcher extends PropertyMatcher<GroupSupport> {
     @Override
     protected void describeMismatchSafely(GroupSupport component, Description mismatchDescription) {
         List<String> componentGroups = new ArrayList<>()
-        component.groups().each { componentGroups.add(String.valueOf(it.value())) }
+        component.groups().each { componentGroups.add(valueOf(it.value())) }
 
         mismatchDescription.appendText('has group(s) ')
         mismatchDescription.appendValueList('[', ', ', ']', componentGroups)

@@ -161,6 +161,8 @@ class Tyro {
 
     static TitleMatcher title(String title) { new TitleMatcher(title) }
 
+    static ValidationMessageMatcher validationMessage(String message) { new ValidationMessageMatcher(message) }
+
     /**
      * Actions
      */

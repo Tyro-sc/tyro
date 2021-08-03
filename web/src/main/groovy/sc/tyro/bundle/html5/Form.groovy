@@ -15,10 +15,8 @@
  */
 package sc.tyro.bundle.html5
 
-
 import sc.tyro.core.By
 import sc.tyro.core.ComponentException
-import sc.tyro.core.component.Component
 import sc.tyro.web.CssIdentifier
 
 /**
@@ -47,8 +45,11 @@ class Form extends sc.tyro.core.component.Form {
 
     @Override
     boolean valid() {
-        provider.findAll(Component, By.expression('#' + id() + ' input')).findAll { input ->
-            provider.check(input.id(), "it.is(':invalid')")
-        }.empty
+        provider.check(id(), "it[0].reportValidity()")
+    }
+
+    @Override
+    String validationMessage() {
+        return ""
     }
 }

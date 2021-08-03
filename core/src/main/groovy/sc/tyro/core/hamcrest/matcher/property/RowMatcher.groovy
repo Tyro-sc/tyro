@@ -21,6 +21,8 @@ import sc.tyro.core.hamcrest.PropertyMatcher
 import sc.tyro.core.hamcrest.matcher.property.dummy.DummyRow
 import sc.tyro.core.support.property.RowSupport
 
+import static java.lang.String.valueOf
+
 /**
  * @author David Avenante
  * @since 1.0.0
@@ -44,14 +46,14 @@ class RowMatcher extends PropertyMatcher<RowSupport> {
             values.each { rows.add(new DummyRow(it)) }
         }
         values.clear()
-        rows.each { values.add(String.valueOf(it.title())) }
+        rows.each { values.add(valueOf(it.title())) }
         component.rows().size() == rows.size() && component.rows().containsAll(rows)
     }
 
     @Override
     void describeTo(Description description) {
         List<String> expectedRows = new ArrayList<>()
-        rows.each { expectedRows.add(String.valueOf(it.title())) }
+        rows.each { expectedRows.add(valueOf(it.title())) }
 
         description.appendText('row(s) ')
         description.appendValueList('[', ', ', ']', expectedRows)
@@ -60,7 +62,7 @@ class RowMatcher extends PropertyMatcher<RowSupport> {
     @Override
     protected void describeMismatchSafely(RowSupport component, Description mismatchDescription) {
         List<String> componentRows = new ArrayList<>()
-        component.rows().each { componentRows.add(String.valueOf(it.title())) }
+        component.rows().each { componentRows.add(valueOf(it.title())) }
 
         mismatchDescription.appendText('has row(s) ')
         mismatchDescription.appendValueList('[', ', ', ']', componentRows)

@@ -74,6 +74,10 @@ trait Input {
         provider.check(id(), "it[0].validity.valid")
     }
 
+    String validationMessage() {
+        provider.eval(id(), "it[0].validationMessage")
+    }
+
     Number length() {
         BigDecimal length = provider.eval(id(), "it.prop('maxlength')") as BigDecimal
         if (length.signum() == -1) {
