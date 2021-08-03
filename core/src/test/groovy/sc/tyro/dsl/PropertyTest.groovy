@@ -55,6 +55,16 @@ class PropertyTest {
     }
 
     @Test
+    @DisplayName("Should support validation message")
+    void validationMessage() {
+        TextField field = spy(TextField)
+
+        doReturn('Message').when(field).validationMessage()
+
+        field.should { have validationMessage('Message') }
+    }
+
+    @Test
     @DisplayName("Should support length")
     void length() {
         TextField field = spy(TextField)
