@@ -158,5 +158,5 @@ class Matchers {
 
     static Matcher<CellSupport> cells(Cell... values) { new CellMatcher(values) }
 
-    static Matcher<ValiditySupport> validationMessage(String message) { new ValidationMessageMatcher(message) }
+    static Matcher<ValiditySupport> errorMessage(String message) { new ErrorMessageMatcher(message) }
 }

@@ -52,7 +52,7 @@ class InputFieldTest {
         assert !email.required()
         assert !email.readOnly()
         assert email.valid()
-        assert email.validationMessage() == ''
+        assert email.errorMessage() == ''
         assert email.value() == ''
         assert email.focused()
 
@@ -72,7 +72,7 @@ class InputFieldTest {
         assert password.required()
         // Invalid cause required
         assert !password.valid()
-        assert password.validationMessage() == 'Please fill out this field.'
+        assert password.errorMessage() == 'Please fill out this field.'
 
         password.value('My Password')
         password.should { have value('My Password') }

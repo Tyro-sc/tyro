@@ -9,7 +9,7 @@ trait Validity {
         provider.check(id(), "it[0].validity.valid")
     }
 
-    String validationMessage() {
+    String errorMessage() {
         provider.eval(id(), "it[0].validationMessage")
     }
 }

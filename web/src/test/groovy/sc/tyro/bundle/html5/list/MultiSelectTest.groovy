@@ -27,7 +27,6 @@ import sc.tyro.web.TyroWebTestExtension
 
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static sc.tyro.core.Tyro.*
-import static sc.tyro.core.Tyro.valid
 import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 
 /**
@@ -55,7 +54,7 @@ class MultiSelectTest {
 
         cities.should {
             be valid
-            have validationMessage('')
+            have errorMessage('')
         }
 
         cities.should {

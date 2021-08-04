@@ -19,19 +19,9 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import sc.tyro.bundle.html5.input.InputTypePassword
-import sc.tyro.core.component.Radio
-import sc.tyro.core.component.field.NumberField
-import sc.tyro.core.component.field.PasswordField
-import sc.tyro.core.input.Key
 import sc.tyro.web.TyroWebTestExtension
 
 import static sc.tyro.core.Tyro.*
-import static sc.tyro.core.Tyro.invalid
-import static sc.tyro.core.Tyro.invalid
-import static sc.tyro.core.Tyro.invalid
-import static sc.tyro.core.Tyro.valid
-import static sc.tyro.core.Tyro.valid
 import static sc.tyro.core.input.Key.TAB
 import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 
@@ -40,31 +30,31 @@ import static sc.tyro.web.TyroWebTestExtension.BASE_URL
  * @since 1.0.0
  */
 @ExtendWith(TyroWebTestExtension)
-@DisplayName("Form Errors Tests")
-class FormErrorsTest {
+@DisplayName("Input Validity Tests")
+class InputValidityTest {
     @BeforeAll
     static void before() {
-        visit BASE_URL + 'form-errors.html'
+        visit BASE_URL + 'input-validity.html'
     }
 
     @Test
-    @DisplayName("Should check validation")
-    void validations() {
+    @DisplayName("Should verify fields validity")
+    void fieldsValidity() {
         field('Password').should {
             be invalid
-            have validationMessage('Please fill out this field.')
+            have errorMessage('Please fill out this field.')
         }
 
         field('Select').should {
             be valid
-            have validationMessage('')
+            have errorMessage('')
         }
 
         set field('Select') to 20
 
         field('Select').should {
             be invalid
-            have validationMessage('Value must be less than or equal to 10.')
+            have errorMessage('Value must be less than or equal to 10.')
         }
 
         // Change validation message onBlur
@@ -72,53 +62,81 @@ class FormErrorsTest {
 
         field('Select').should {
             be invalid
-            have validationMessage('Invalid Tips')
+            have errorMessage('Invalid Tips')
         }
+    }
 
+    @Test
+    @DisplayName("Should verify radio validity")
+    void radioValidity() {
         radio('Male').should {
             be invalid
-            have validationMessage('Please select one of these options.')
+            have errorMessage('Please select one of these options.')
         }
 
         radio('Female').should {
             be invalid
-            have validationMessage('Please select one of these options.')
+            have errorMessage('Please select one of these options.')
         }
 
         check radio('Male')
 
         radio('Male').should {
             be valid
-            have validationMessage('')
+            have errorMessage('')
         }
 
         radio('Female').should {
             be valid
-            have validationMessage('')
+            have errorMessage('')
         }
+    }
 
-        listBox('Planets').should {
+    @Test
+    @DisplayName("Should verify checkbox validity")
+    void checkboxValidity() {
+        checkbox('Check me out').should {
             be invalid
-            have validationMessage('Please select an item in the list.')
+            have errorMessage('Please check this box if you want to proceed.')
         }
 
-        listBox('Planets').select('Venus')
+        check checkbox('Check me out')
 
-        listBox('Planets').should {
+        checkbox('Check me out').should {
             be valid
-            have validationMessage('')
+            have errorMessage('')
         }
+    }
 
+    @Test
+    @DisplayName("Should verify Dropdown validity")
+    void dropDownValidity() {
         dropdown('Cities').should {
             be invalid
-            have validationMessage('Please select an item in the list.')
+            have errorMessage('Please select an item in the list.')
         }
 
         dropdown('Cities').select('Montpellier')
 
         dropdown('Cities').should {
             be valid
-            have validationMessage('')
+            have errorMessage('')
+        }
+    }
+
+    @Test
+    @DisplayName("Should verify ListBox validity")
+    void listBoxValidity() {
+        listBox('Planets').should {
+            be invalid
+            have errorMessage('Please select an item in the list.')
+        }
+
+        listBox('Planets').select('Venus')
+
+        listBox('Planets').should {
+            be valid
+            have errorMessage('')
         }
     }
 }

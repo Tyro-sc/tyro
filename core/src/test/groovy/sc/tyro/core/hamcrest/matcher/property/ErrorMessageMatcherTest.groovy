@@ -25,23 +25,23 @@ import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
 import static sc.tyro.core.hamcrest.Matchers.has
-import static sc.tyro.core.hamcrest.Matchers.validationMessage
+import static sc.tyro.core.hamcrest.Matchers.errorMessage
 
 /**
  * @author David Avenante
  * @since 1.0.0
  */
-@DisplayName("Validation Message Property Matcher")
-class ValidationMessageMatcherTest {
+@DisplayName("Error Message Property Matcher")
+class ErrorMessageMatcherTest {
     @Test
-    @DisplayName("Should support matcher Validation Message")
+    @DisplayName("Should support matcher Error Message")
     void matcher() {
         ValiditySupport cmp = mock(ValiditySupport)
 
-        when(cmp.validationMessage()).thenReturn('Invalid')
-        assertThat(cmp, has(validationMessage('Invalid')))
+        when(cmp.errorMessage()).thenReturn('Invalid')
+        assertThat(cmp, has(errorMessage('Invalid')))
 
-        Error error = assertThrows(AssertionError, { assertThat(cmp, has(validationMessage('Other Message'))) })
-        assertThat(error.message, is('\nExpected: has validation message "Other Message"\n     but: has validation message "Invalid"'))
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(errorMessage('Other Message'))) })
+        assertThat(error.message, is('\nExpected: has error message "Other Message"\n     but: has error message "Invalid"'))
     }
 }

@@ -49,7 +49,7 @@ class Form extends sc.tyro.core.component.Form {
     }
 
     @Override
-    String validationMessage() {
+    String errorMessage() {
         return ""
     }
 }

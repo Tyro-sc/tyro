@@ -23,25 +23,25 @@ import sc.tyro.core.support.state.ValiditySupport
  * @author David Avenante
  * @since 1.0.0
  */
-class ValidationMessageMatcher extends PropertyMatcher<ValiditySupport> {
+class ErrorMessageMatcher extends PropertyMatcher<ValiditySupport> {
     private String message
 
-    ValidationMessageMatcher(String message) {
+    ErrorMessageMatcher(String message) {
         this.message = message
     }
 
     @Override
     protected boolean matchesSafely(ValiditySupport component) {
-        component.validationMessage() == message
+        component.errorMessage() == message
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendText('validation message ') appendValue(message)
+        description.appendText('error message ') appendValue(message)
     }
 
     @Override
     protected void describeMismatchSafely(ValiditySupport component, Description mismatchDescription) {
-        mismatchDescription.appendText('has validation message ').appendValue(component.validationMessage())
+        mismatchDescription.appendText('has error message ').appendValue(component.errorMessage())
     }
 }
