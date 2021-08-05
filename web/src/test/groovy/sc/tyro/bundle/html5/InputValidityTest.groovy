@@ -22,7 +22,6 @@ import org.junit.jupiter.api.extension.ExtendWith
 import sc.tyro.web.TyroWebTestExtension
 
 import static sc.tyro.core.Tyro.*
-import static sc.tyro.core.input.Key.TAB
 import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 
 /**
@@ -51,14 +50,6 @@ class InputValidityTest {
         }
 
         set field('Select') to 20
-
-        field('Select').should {
-            be invalid
-            have errorMessage('Value must be less than or equal to 10.')
-        }
-
-        // Change validation message onBlur
-        type TAB
 
         field('Select').should {
             be invalid

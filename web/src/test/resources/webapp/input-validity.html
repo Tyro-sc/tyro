@@ -22,14 +22,13 @@
     <form id="form">
         <div class="form-group">
             <label for="password">Password</label>
-            <input id="password" type="password" class="form-control" placeholder="Password" required
-                   onblur="reportValidity()">
+            <input id="password" type="password" class="form-control" placeholder="Password" required>
         </div>
 
         <div class="form-group">
             <label for="tip">Select</label>
             <input type="number" id="tip" class="form-control" name="tip" value="5" min="1" max="10"
-                   onblur="setCustomValidity('Invalid Tips')">
+                   oninput="validateTip(this)">
         </div>
 
         <div class="form-check form-check-inline">
@@ -69,5 +68,14 @@
 
 </div>
 
+<script type="text/javascript">
+    function validateTip(tipField) {
+        tipField.setCustomValidity('');
+        let validityState = tipField.validity;
+        if (validityState.rangeUnderflow || validityState.rangeOverflow) {
+            tipField.setCustomValidity('Invalid Tips');
+        }
+    }
+</script>
 </body>
 </html>
