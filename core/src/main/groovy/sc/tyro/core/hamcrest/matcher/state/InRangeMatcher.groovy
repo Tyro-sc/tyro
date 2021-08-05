@@ -25,9 +25,9 @@ import sc.tyro.core.support.state.RangeSupport
  */
 class InRangeMatcher extends StateMatcher<RangeSupport> {
     @Override
-    protected boolean matchesSafely(RangeSupport item, Description mismatchDescription) {
+    protected boolean matchesSafely(RangeSupport component, Description mismatchDescription) {
         mismatchDescription.appendText('is out of range')
-        item.inRange()
+        component.inRange()
     }
 
     @Override

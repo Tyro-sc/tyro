@@ -15,24 +15,16 @@
  */
 package sc.tyro.bundle.html5.input
 
-import sc.tyro.core.component.Radio
-import sc.tyro.web.CssIdentifier
-
-import static sc.tyro.bundle.html5.input.Label.findFor
-
 /**
  * @author David Avenante
  * @since 1.0.0
  */
-@CssIdentifier('input[type=radio]')
-class InputTypeRadio extends Radio implements Validity {
-    @Override
-    boolean checked() {
-        provider.check(id(), "it.is(':checked')")
+trait Validity {
+    boolean valid() {
+        provider.check(id(), "it[0].validity.valid")
     }
 
-    @Override
-    String label() {
-        findFor(this)
+    String errorMessage() {
+        provider.eval(id(), "it[0].validationMessage")
     }
 }

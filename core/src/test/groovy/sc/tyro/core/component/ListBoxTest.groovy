@@ -17,10 +17,12 @@ package sc.tyro.core.component
 
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Validate
 import sc.tyro.core.support.Selectable
 import sc.tyro.core.support.UnSelectable
 import sc.tyro.core.support.property.*
 import sc.tyro.core.support.state.EmptySupport
+import sc.tyro.core.support.state.ValiditySupport
 
 /**
  * @author David Avenante
@@ -38,5 +40,6 @@ class ListBoxTest {
         assert ListBox in LabelSupport
         assert ListBox in Selectable
         assert ListBox in UnSelectable
+        assert ListBox in ValiditySupport
     }
 }

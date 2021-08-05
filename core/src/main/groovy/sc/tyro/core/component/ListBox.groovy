@@ -19,10 +19,11 @@ import sc.tyro.core.support.Selectable
 import sc.tyro.core.support.UnSelectable
 import sc.tyro.core.support.property.*
 import sc.tyro.core.support.state.EmptySupport
+import sc.tyro.core.support.state.ValiditySupport
 
 /**
  * @author David Avenante
  * @since 1.0.0
  */
 abstract class ListBox extends Component implements ItemSupport, GroupSupport, EmptySupport,
-        LabelSupport, Selectable, UnSelectable {}
+        LabelSupport, Selectable, UnSelectable, ValiditySupport {}

@@ -55,6 +55,16 @@ class PropertyTest {
     }
 
     @Test
+    @DisplayName("Should support error message")
+    void errorMessage() {
+        TextField field = spy(TextField)
+
+        doReturn('Message').when(field).errorMessage()
+
+        field.should { have errorMessage('Message') }
+    }
+
+    @Test
     @DisplayName("Should support length")
     void length() {
         TextField field = spy(TextField)

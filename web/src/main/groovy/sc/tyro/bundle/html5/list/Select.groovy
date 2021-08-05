@@ -15,6 +15,7 @@
  */
 package sc.tyro.bundle.html5.list
 
+import sc.tyro.bundle.html5.input.Validity
 import sc.tyro.core.By
 import sc.tyro.core.component.Dropdown
 import sc.tyro.web.CssIdentifier
@@ -26,7 +27,7 @@ import static sc.tyro.bundle.html5.input.Label.findFor
  * @since 1.0.0
  */
 @CssIdentifier("select:not([multiple])")
-class Select extends Dropdown {
+class Select extends Dropdown implements Validity {
     @Override
     List<Option> items() {
         provider.findAll(Option, By.expression('#' + id() + ' option'))

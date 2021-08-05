@@ -74,7 +74,6 @@ class StateTest {
         doReturn(false).when(checkbox).checked()
 
         checkbox.should { be unchecked }
-
     }
 
     @Test

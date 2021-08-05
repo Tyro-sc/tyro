@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test
 import sc.tyro.core.support.Checkable
 import sc.tyro.core.support.property.LabelSupport
 import sc.tyro.core.support.state.CheckSupport
+import sc.tyro.core.support.state.ValiditySupport
 
 /**
  * @author David Avenante
@@ -34,5 +35,6 @@ class RadioTest {
         assert Radio in LabelSupport
         assert Radio in CheckSupport
         assert Radio in Checkable
+        assert Radio in ValiditySupport
     }
 }

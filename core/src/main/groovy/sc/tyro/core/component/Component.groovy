@@ -25,9 +25,6 @@ import sc.tyro.core.input.MouseModifiers
 import sc.tyro.core.support.Draggable
 import sc.tyro.core.support.MouseSupport
 
-import java.lang.reflect.Modifier
-
-import static java.lang.reflect.Modifier.isAbstract
 import static java.util.Collections.unmodifiableCollection
 import static sc.tyro.core.input.MouseModifiers.*
 

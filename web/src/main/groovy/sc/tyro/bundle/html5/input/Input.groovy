@@ -26,7 +26,7 @@ import static sc.tyro.core.input.Key.BACK_SPACE
  * @author David Avenante
  * @since 1.0.0
  */
-trait Input {
+trait Input implements Validity {
     String placeholder() {
         provider.eval(id(), "it.prop('placeholder')")
     }
@@ -68,10 +68,6 @@ trait Input {
 
     Object value() {
         provider.eval(id(), "it.val()")
-    }
-
-    boolean valid() {
-        provider.check(id(), "it[0].validity.valid")
     }
 
     Number length() {

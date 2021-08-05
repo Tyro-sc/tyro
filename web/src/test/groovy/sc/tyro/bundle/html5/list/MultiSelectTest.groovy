@@ -53,6 +53,11 @@ class MultiSelectTest {
         ListBox cities = $('#cities') as MultiSelect
 
         cities.should {
+            be valid
+            have errorMessage('')
+        }
+
+        cities.should {
             have label('Cities list')
             have 6.items
             have 3.visibleItems

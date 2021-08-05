@@ -21,4 +21,6 @@ package sc.tyro.core.support.state
  */
 interface ValiditySupport {
     boolean valid()
+
+    String errorMessage()
 }

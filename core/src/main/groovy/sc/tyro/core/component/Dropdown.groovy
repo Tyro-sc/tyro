@@ -20,6 +20,7 @@ import sc.tyro.core.support.property.GroupSupport
 import sc.tyro.core.support.property.ItemSupport
 import sc.tyro.core.support.property.LabelSupport
 import sc.tyro.core.support.state.EmptySupport
+import sc.tyro.core.support.state.ValiditySupport
 
 /**
  * @author David Avenante
@@ -27,5 +28,5 @@ import sc.tyro.core.support.state.EmptySupport
  */
 abstract class Dropdown extends Component
         implements LabelSupport, GroupSupport, EmptySupport, Selectable,
-                ItemSupport {
+                ItemSupport, ValiditySupport {
 }

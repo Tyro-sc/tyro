@@ -19,9 +19,10 @@ import sc.tyro.core.support.Checkable
 import sc.tyro.core.support.UnCheckable
 import sc.tyro.core.support.property.LabelSupport
 import sc.tyro.core.support.state.CheckSupport
+import sc.tyro.core.support.state.ValiditySupport
 
 /**
  * @author David Avenante
  * @since 1.0.0
  */
-abstract class CheckBox extends Component implements CheckSupport, LabelSupport, Checkable, UnCheckable {}
+abstract class CheckBox extends Component implements CheckSupport, LabelSupport, Checkable, UnCheckable, ValiditySupport {}

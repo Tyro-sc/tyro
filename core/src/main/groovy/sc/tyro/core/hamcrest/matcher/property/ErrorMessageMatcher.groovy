@@ -13,25 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package sc.tyro.core.hamcrest.matcher.state
+package sc.tyro.core.hamcrest.matcher.property
 
 import org.hamcrest.Description
-import sc.tyro.core.hamcrest.StateMatcher
+import sc.tyro.core.hamcrest.PropertyMatcher
 import sc.tyro.core.support.state.ValiditySupport
 
 /**
  * @author David Avenante
  * @since 1.0.0
  */
-class InvalidMatcher extends StateMatcher<ValiditySupport> {
+class ErrorMessageMatcher extends PropertyMatcher<ValiditySupport> {
+    private String message
+
+    ErrorMessageMatcher(String message) {
+        this.message = message
+    }
+
     @Override
-    protected boolean matchesSafely(ValiditySupport component, Description mismatchDescription) {
-        mismatchDescription.appendText('is valid')
-        !component.valid()
+    protected boolean matchesSafely(ValiditySupport component) {
+        component.errorMessage() == message
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendText('invalid')
+        description.appendText('error message ') appendValue(message)
+    }
+
+    @Override
+    protected void describeMismatchSafely(ValiditySupport component, Description mismatchDescription) {
+        mismatchDescription.appendText('has error message ').appendValue(component.errorMessage())
     }
 }

@@ -53,6 +53,8 @@ class SelectTest {
         assert elements.items().size() == 5
 
         Dropdown os = $('#os') as Select
+        assert os.valid()
+        assert os.errorMessage() == ''
         assert os.items().size() == 8
 
         assert os.items()[1].value() == 'Ubuntu'

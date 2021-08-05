@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tyro Rocks</title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Tyro Rocks">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="css/bootstrap-4.5.0.min.css" rel="stylesheet" media="screen">
+
+    <script src="js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">Tyro Form Errors Tests</a>
+</nav>
+
+<div class="container-fluid">
+
+    <form id="form">
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" class="form-control" placeholder="Password" required>
+        </div>
+
+        <div class="form-group">
+            <label for="tip">Select</label>
+            <input type="number" id="tip" class="form-control" name="tip" value="5" min="1" max="10"
+                   oninput="validateTip(this)">
+        </div>
+
+        <div class="form-check form-check-inline">
+            <input type="radio" id="male" class="form-check-input" required name="gender" value="male">
+            <label for="male" class="form-check-label">Male</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input type="radio" id="female" class="form-check-input" required name="gender" value="female">
+            <label for="female" class="form-check-label">Female</label>
+        </div>
+
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="checkbox" required>
+            <label class="form-check-label" for="checkbox">Check me out</label>
+        </div>
+
+        <div class="form-group">
+            <label for="planets">Planets</label>
+            <select id="planets" class="form-control" multiple required>
+                <optgroup label="planets">
+                    <option>Venus</option>
+                    <option>Mars</option>
+                    <option>Jupiter</option>
+                </optgroup>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="cities">Cities</label>
+            <select id="cities" class="form-control" required>
+                <option value="">None</option>
+                <option>Montpellier</option>
+                <option>Montreal</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
+
+<script type="text/javascript">
+    function validateTip(tipField) {
+        tipField.setCustomValidity('');
+        let validityState = tipField.validity;
+        if (validityState.rangeUnderflow || validityState.rangeOverflow) {
+            tipField.setCustomValidity('Invalid Tips');
+        }
+    }
+</script>
+</body>
+</html>

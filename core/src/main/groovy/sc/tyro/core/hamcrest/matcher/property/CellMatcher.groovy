@@ -21,6 +21,8 @@ import sc.tyro.core.hamcrest.PropertyMatcher
 import sc.tyro.core.hamcrest.matcher.property.dummy.DummyCell
 import sc.tyro.core.support.property.CellSupport
 
+import static java.lang.String.valueOf
+
 /**
  * @author David Avenante
  * @since 1.0.0
@@ -44,14 +46,14 @@ class CellMatcher extends PropertyMatcher<CellSupport> {
             values.each { cells.add(new DummyCell(it)) }
         }
         values.clear()
-        cells.each { values.add(String.valueOf(it.value())) }
+        cells.each { values.add(valueOf(it.value())) }
         component.cells().size() == cells.size() && component.cells().containsAll(cells)
     }
 
     @Override
     void describeTo(Description description) {
         List<String> expectedCells = new ArrayList<>()
-        cells.each { expectedCells.add(String.valueOf(it.value())) }
+        cells.each { expectedCells.add(valueOf(it.value())) }
         description.appendText('cell(s) ')
         description.appendValueList('[', ', ', ']', expectedCells)
     }
@@ -59,7 +61,7 @@ class CellMatcher extends PropertyMatcher<CellSupport> {
     @Override
     protected void describeMismatchSafely(CellSupport component, Description mismatchDescription) {
         List<String> componentCells = new ArrayList<>()
-        component.cells().each { componentCells.add(String.valueOf(it.value())) }
+        component.cells().each { componentCells.add(valueOf(it.value())) }
 
         mismatchDescription.appendText('has cell(s) ')
         mismatchDescription.appendValueList('[', ', ', ']', componentCells)

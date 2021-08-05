@@ -32,6 +32,7 @@ import sc.tyro.core.support.*
 import sc.tyro.core.support.property.*
 
 import java.time.Duration
+import java.util.stream.Collector
 
 import static sc.tyro.core.By.expression
 import static sc.tyro.core.Config.provider
@@ -160,6 +161,8 @@ class Tyro {
     static ReferenceMatcher reference(String reference) { new ReferenceMatcher(reference) }
 
     static TitleMatcher title(String title) { new TitleMatcher(title) }
+
+    static ErrorMessageMatcher errorMessage(String message) { new ErrorMessageMatcher(message) }
 
     /**
      * Actions

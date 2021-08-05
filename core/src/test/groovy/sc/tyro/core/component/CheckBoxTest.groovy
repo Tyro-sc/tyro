@@ -21,6 +21,7 @@ import sc.tyro.core.support.Checkable
 import sc.tyro.core.support.UnCheckable
 import sc.tyro.core.support.property.LabelSupport
 import sc.tyro.core.support.state.CheckSupport
+import sc.tyro.core.support.state.ValiditySupport
 
 /**
  * @author David Avenante
@@ -36,5 +37,6 @@ class CheckBoxTest {
         assert CheckBox in LabelSupport
         assert CheckBox in Checkable
         assert CheckBox in UnCheckable
+        assert CheckBox in ValiditySupport
     }
 }
