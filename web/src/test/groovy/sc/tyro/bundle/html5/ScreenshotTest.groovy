@@ -4,11 +4,14 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import sc.tyro.bundle.html5.table.Table
+import sc.tyro.core.component.datagrid.DataGrid
 import sc.tyro.web.TyroWebTestExtension
 
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.not
 import static org.hamcrest.io.FileMatchers.anExistingFile
+import static sc.tyro.core.Tyro.$
 import static sc.tyro.core.Tyro.takeScreenshot
 import static sc.tyro.core.Tyro.visit
 import static sc.tyro.web.TyroWebTestExtension.BASE_URL
@@ -40,6 +43,13 @@ class ScreenshotTest {
     @Test
     @DisplayName("Should take component screenshot")
     void componentScreenshot() {
+        DataGrid data_grid = $('#data_grid') as Table
+        File screenshot = new File("target/screenshots/component.png")
 
+        assertThat(screenshot, not(anExistingFile()))
+
+        takeScreenshot('component', data_grid)
+
+        assertThat(screenshot, anExistingFile())
     }
 }

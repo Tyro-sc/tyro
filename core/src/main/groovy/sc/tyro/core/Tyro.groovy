@@ -169,9 +169,7 @@ class Tyro {
      */
     static void visit(String uri) { browser().open(uri) }
 
-    static void takeScreenshot(String name) { provider.takeScreenshot(name) }
-
-    static void takeScreenshot(Component component) { provider.takeScreenshot(component) }
+    static void takeScreenshot(String name, Component component = null) { provider.takeScreenshot(name, component) }
 
     static void check(Checkable... checkables) {
         checkables.each {

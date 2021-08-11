@@ -18,7 +18,6 @@ package sc.tyro.web
 import groovy.json.JsonSlurper
 import io.github.classgraph.ClassGraph
 import org.openqa.selenium.JavascriptExecutor
-import org.openqa.selenium.TakesScreenshot
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.interactions.Actions
@@ -26,6 +25,8 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import ru.yandex.qatools.ashot.AShot
 import ru.yandex.qatools.ashot.Screenshot
+import ru.yandex.qatools.ashot.coordinates.WebDriverCoordsProvider
+import ru.yandex.qatools.ashot.cropper.indent.IndentCropper
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies
 import sc.tyro.core.*
 import sc.tyro.core.component.Component
@@ -39,10 +40,8 @@ import java.lang.annotation.Annotation
 import java.lang.reflect.Modifier
 import java.nio.file.Files
 import java.nio.file.Path
-import java.nio.file.StandardCopyOption
 
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING
-import static org.openqa.selenium.OutputType.FILE
+import static ru.yandex.qatools.ashot.cropper.indent.IndentFilerFactory.blur
 import static sc.tyro.core.By.expression
 import static sc.tyro.core.Config.scannedPackages
 import static sc.tyro.core.input.MouseModifiers.*
@@ -254,20 +253,25 @@ class SeleniumProvider implements Provider {
     }
 
     @Override
-    void takeScreenshot(String name) {
-        Screenshot screenshot = new AShot()
-                .shootingStrategy(ShootingStrategies.viewportPasting(100))
-                .takeScreenshot(webDriver)
+    void takeScreenshot(String name, Component component = null) {
+        Screenshot screenshot
+
+        if(component) {
+            screenshot = new AShot()
+                    .imageCropper(new IndentCropper()
+                            .addIndentFilter(blur()))
+                    .coordsProvider(new WebDriverCoordsProvider())
+                    .takeScreenshot(webDriver, webDriver.findElement(org.openqa.selenium.By.id(component.id())))
+        } else {
+            screenshot = new AShot()
+                    .shootingStrategy(ShootingStrategies.viewportPasting(100))
+                    .takeScreenshot(webDriver)
+        }
 
         Path target = Path.of(System.getProperty("user.dir"), 'target', 'screenshots', name + '.png')
         Files.createDirectories(target.getParent())
 
         ImageIO.write(screenshot.getImage(), "PNG", target.toFile())
-    }
-
-    @Override
-    void takeScreenshot(Component component) {
-
     }
 
     private static By.ByExpression convertToExpression(By by) {

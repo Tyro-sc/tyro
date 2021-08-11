@@ -412,21 +412,21 @@ class ActionTest {
     @Test
     @DisplayName("Should take a window screenshot")
     void windowScreenshot() {
-        verify(provider, times(0)).takeScreenshot('my-screenshot')
+        verify(provider, times(0)).takeScreenshot('window')
 
-        takeScreenshot('my-screenshot')
+        takeScreenshot('window')
 
-        verify(provider, times(1)).takeScreenshot('my-screenshot')
+        verify(provider, times(1)).takeScreenshot('window')
     }
 
     @Test
     @DisplayName("Should take a component screenshot")
     void componentScreenshot() {
         Component cmp = new Component()
-        verify(provider, times(0)).takeScreenshot(cmp)
+        verify(provider, times(0)).takeScreenshot('component', cmp)
 
-        takeScreenshot(cmp)
+        takeScreenshot('component', cmp)
 
-        verify(provider, times(1)).takeScreenshot(cmp)
+        verify(provider, times(1)).takeScreenshot('component', cmp)
     }
 }

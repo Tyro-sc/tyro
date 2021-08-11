@@ -78,7 +78,5 @@ interface Provider {
 
     void registerScripts(String... scripts)
 
-    void takeScreenshot(String name)
-
-    void takeScreenshot(Component component)
+    void takeScreenshot(String name, Component component)
 }
