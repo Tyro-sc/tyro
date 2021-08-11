@@ -28,11 +28,11 @@ class ScreenshotTest {
     @Test
     @DisplayName("Should take window screenshot")
     void windowScreenshot() {
-        File screenshot = new File("target/screenshots/Sample.png")
+        File screenshot = new File("target/screenshots/window.png")
 
         assertThat(screenshot, not(anExistingFile()))
 
-        takeScreenshot('Sample')
+        takeScreenshot('window')
 
         assertThat(screenshot, anExistingFile())
     }

@@ -24,6 +24,9 @@ import org.openqa.selenium.WebElement
 import org.openqa.selenium.interactions.Actions
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import ru.yandex.qatools.ashot.AShot
+import ru.yandex.qatools.ashot.Screenshot
+import ru.yandex.qatools.ashot.shooting.ShootingStrategies
 import sc.tyro.core.*
 import sc.tyro.core.component.Component
 import sc.tyro.core.input.Key
@@ -31,6 +34,7 @@ import sc.tyro.core.input.MouseModifiers
 import sc.tyro.web.internal.CachedMetaData
 import sc.tyro.web.internal.DomIdProvider
 
+import javax.imageio.ImageIO
 import java.lang.annotation.Annotation
 import java.lang.reflect.Modifier
 import java.nio.file.Files
@@ -251,10 +255,14 @@ class SeleniumProvider implements Provider {
 
     @Override
     void takeScreenshot(String name) {
-        TakesScreenshot screenshot = ((TakesScreenshot) webDriver)
+        Screenshot screenshot = new AShot()
+                .shootingStrategy(ShootingStrategies.viewportPasting(100))
+                .takeScreenshot(webDriver)
+
         Path target = Path.of(System.getProperty("user.dir"), 'target', 'screenshots', name + '.png')
         Files.createDirectories(target.getParent())
-        Files.copy(new FileInputStream(screenshot.getScreenshotAs(FILE)), target, REPLACE_EXISTING)
+
+        ImageIO.write(screenshot.getImage(), "PNG", target.toFile())
     }
 
     @Override
