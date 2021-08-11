@@ -408,4 +408,25 @@ class ActionTest {
         type CTRL + 'c'
         verify(provider, times(1)).type([CTRL, 'c'])
     }
+
+    @Test
+    @DisplayName("Should take a window screenshot")
+    void windowScreenshot() {
+        verify(provider, times(0)).takeScreenshot('my-screenshot')
+
+        takeScreenshot('my-screenshot')
+
+        verify(provider, times(1)).takeScreenshot('my-screenshot')
+    }
+
+    @Test
+    @DisplayName("Should take a component screenshot")
+    void componentScreenshot() {
+        Component cmp = new Component()
+        verify(provider, times(0)).takeScreenshot(cmp)
+
+        takeScreenshot(cmp)
+
+        verify(provider, times(1)).takeScreenshot(cmp)
+    }
 }

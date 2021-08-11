@@ -18,6 +18,7 @@ package sc.tyro.web
 import groovy.json.JsonSlurper
 import io.github.classgraph.ClassGraph
 import org.openqa.selenium.JavascriptExecutor
+import org.openqa.selenium.TakesScreenshot
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.interactions.Actions
@@ -32,7 +33,12 @@ import sc.tyro.web.internal.DomIdProvider
 
 import java.lang.annotation.Annotation
 import java.lang.reflect.Modifier
+import java.nio.file.Files
+import java.nio.file.Path
+import java.nio.file.StandardCopyOption
 
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING
+import static org.openqa.selenium.OutputType.FILE
 import static sc.tyro.core.By.expression
 import static sc.tyro.core.Config.scannedPackages
 import static sc.tyro.core.input.MouseModifiers.*
@@ -243,6 +249,19 @@ class SeleniumProvider implements Provider {
         registeredScripts.addAll(scripts)
     }
 
+    @Override
+    void takeScreenshot(String name) {
+        TakesScreenshot screenshot = ((TakesScreenshot) webDriver)
+        Path target = Path.of(System.getProperty("user.dir"), 'target', 'screenshots', name + '.png')
+        Files.createDirectories(target.getParent())
+        Files.copy(new FileInputStream(screenshot.getScreenshotAs(FILE)), target, REPLACE_EXISTING)
+    }
+
+    @Override
+    void takeScreenshot(Component component) {
+
+    }
+
     private static By.ByExpression convertToExpression(By by) {
         switch (by.class) {
             case By.ByExpression:
@@ -328,7 +347,7 @@ class SeleniumProvider implements Provider {
         Map<Class, String> selectors = new HashMap<>()
 
         if (!cachedComponents.get(clazz)) {
-            List<Class> matchingClasses = new ArrayList<>();
+            List<Class> matchingClasses = new ArrayList<>()
             if (!Modifier.isAbstract(clazz.modifiers)) {
                 matchingClasses.add(clazz)
             }
