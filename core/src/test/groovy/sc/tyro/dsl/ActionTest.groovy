@@ -28,6 +28,7 @@ import sc.tyro.core.component.*
 import sc.tyro.core.component.field.RangeField
 import sc.tyro.core.component.field.TextField
 import sc.tyro.core.input.MouseModifiers
+import sc.tyro.core.provider.ScreenshotProvider
 import sc.tyro.core.support.Clearable
 
 import static org.hamcrest.MatcherAssert.assertThat
@@ -35,6 +36,7 @@ import static org.hamcrest.Matchers.containsString
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.Mockito.*
 import static sc.tyro.core.Config.provider
+import static sc.tyro.core.Config.screenshotProvider
 import static sc.tyro.core.Tyro.*
 import static sc.tyro.core.input.Key.*
 import static sc.tyro.core.input.MouseModifiers.DOUBLE
@@ -51,6 +53,7 @@ class ActionTest {
     @BeforeEach
     void setUp() {
         provider = mock(Provider)
+        screenshotProvider = mock(ScreenshotProvider)
     }
 
     @Test
@@ -412,21 +415,21 @@ class ActionTest {
     @Test
     @DisplayName("Should take a window screenshot")
     void windowScreenshot() {
-        verify(provider, times(0)).takeScreenshot('window', null)
+        verify(screenshotProvider, times(0)).takeScreenshot('window', null)
 
         takeScreenshot('window')
 
-        verify(provider, times(1)).takeScreenshot('window', null)
+        verify(screenshotProvider, times(1)).takeScreenshot('window', null)
     }
 
     @Test
     @DisplayName("Should take a component screenshot")
     void componentScreenshot() {
         Component cmp = new Component()
-        verify(provider, times(0)).takeScreenshot('component', cmp)
+        verify(screenshotProvider, times(0)).takeScreenshot('component', cmp)
 
         takeScreenshot('component', cmp)
 
-        verify(provider, times(1)).takeScreenshot('component', cmp)
+        verify(screenshotProvider, times(1)).takeScreenshot('component', cmp)
     }
 }

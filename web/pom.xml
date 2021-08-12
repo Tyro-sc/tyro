@@ -37,6 +37,7 @@
         <!-- Tests -->
         <testcontainer.version>1.16.0</testcontainer.version>
         <webdrivermanager.version>4.3.1</webdrivermanager.version>
+        <byte-buddy.version>1.10.22</byte-buddy.version>
     </properties>
 
     <build>
@@ -118,6 +119,12 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>${byte-buddy.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>

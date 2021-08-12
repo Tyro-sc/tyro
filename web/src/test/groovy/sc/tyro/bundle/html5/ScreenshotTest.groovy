@@ -15,12 +15,10 @@
  */
 package sc.tyro.bundle.html5
 
-import com.applitools.eyes.RectangleSize
 import com.applitools.eyes.selenium.Eyes
 import io.percy.selenium.Percy
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.extension.ExtendWith
-import org.mockito.Mockito
 import sc.tyro.bundle.html5.table.Table
 import sc.tyro.core.Config
 import sc.tyro.core.component.datagrid.DataGrid
@@ -36,7 +34,7 @@ import static org.hamcrest.Matchers.not
 import static org.hamcrest.io.FileMatchers.anExistingFile
 import static org.junit.jupiter.api.MethodOrderer.OrderAnnotation
 import static org.mockito.Mockito.mock
-import static org.mockito.Mockito.timeout
+import static org.mockito.Mockito.spy
 import static org.mockito.Mockito.times
 import static org.mockito.Mockito.verify
 import static sc.tyro.core.Tyro.*
@@ -117,5 +115,4 @@ class ScreenshotTest {
 
         verify(eyesProvider, times(1)).takeScreenshot('eyes', null)
     }
-
 }
