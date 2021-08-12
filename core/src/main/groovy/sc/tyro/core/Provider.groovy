@@ -17,6 +17,7 @@ package sc.tyro.core
 
 import sc.tyro.core.component.Component
 import sc.tyro.core.input.MouseModifiers
+import sc.tyro.core.provider.ScreenshotProvider
 
 /**
  * @author Mathieu Carbou
@@ -77,6 +78,4 @@ interface Provider {
     void runScript(String script)
 
     void registerScripts(String... scripts)
-
-    void takeScreenshot(String name, Component component)
 }

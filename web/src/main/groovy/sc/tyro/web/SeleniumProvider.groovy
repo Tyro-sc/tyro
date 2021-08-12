@@ -23,11 +23,6 @@ import org.openqa.selenium.WebElement
 import org.openqa.selenium.interactions.Actions
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import ru.yandex.qatools.ashot.AShot
-import ru.yandex.qatools.ashot.Screenshot
-import ru.yandex.qatools.ashot.coordinates.WebDriverCoordsProvider
-import ru.yandex.qatools.ashot.cropper.indent.IndentCropper
-import ru.yandex.qatools.ashot.shooting.ShootingStrategies
 import sc.tyro.core.*
 import sc.tyro.core.component.Component
 import sc.tyro.core.input.Key
@@ -35,13 +30,9 @@ import sc.tyro.core.input.MouseModifiers
 import sc.tyro.web.internal.CachedMetaData
 import sc.tyro.web.internal.DomIdProvider
 
-import javax.imageio.ImageIO
 import java.lang.annotation.Annotation
 import java.lang.reflect.Modifier
-import java.nio.file.Files
-import java.nio.file.Path
 
-import static ru.yandex.qatools.ashot.cropper.indent.IndentFilerFactory.blur
 import static sc.tyro.core.By.expression
 import static sc.tyro.core.Config.scannedPackages
 import static sc.tyro.core.input.MouseModifiers.*
@@ -250,28 +241,6 @@ class SeleniumProvider implements Provider {
     @Override
     void registerScripts(String... scripts) {
         registeredScripts.addAll(scripts)
-    }
-
-    @Override
-    void takeScreenshot(String name, Component component = null) {
-        Screenshot screenshot
-
-        if(component) {
-            screenshot = new AShot()
-                    .imageCropper(new IndentCropper()
-                            .addIndentFilter(blur()))
-                    .coordsProvider(new WebDriverCoordsProvider())
-                    .takeScreenshot(webDriver, webDriver.findElement(org.openqa.selenium.By.id(component.id())))
-        } else {
-            screenshot = new AShot()
-                    .shootingStrategy(ShootingStrategies.viewportPasting(100))
-                    .takeScreenshot(webDriver)
-        }
-
-        Path target = Path.of(System.getProperty("user.dir"), 'target', 'screenshots', name + '.png')
-        Files.createDirectories(target.getParent())
-
-        ImageIO.write(screenshot.getImage(), "PNG", target.toFile())
     }
 
     private static By.ByExpression convertToExpression(By by) {

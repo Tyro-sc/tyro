@@ -412,11 +412,11 @@ class ActionTest {
     @Test
     @DisplayName("Should take a window screenshot")
     void windowScreenshot() {
-        verify(provider, times(0)).takeScreenshot('window')
+        verify(provider, times(0)).takeScreenshot('window', null)
 
         takeScreenshot('window')
 
-        verify(provider, times(1)).takeScreenshot('window')
+        verify(provider, times(1)).takeScreenshot('window', null)
     }
 
     @Test

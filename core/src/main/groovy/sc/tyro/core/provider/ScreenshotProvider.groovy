@@ -13,18 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package sc.tyro.web
+package sc.tyro.core.provider
 
-import org.openqa.selenium.WebDriver
-import sc.tyro.core.Config
-import sc.tyro.web.internal.WebIdentifiers
-import sc.tyro.web.screenshot.AShotProvider
+import sc.tyro.core.component.Component
 
-class WebBundle {
-    static void init(WebDriver webDriver) {
-        Config.provider = new SeleniumProvider(webDriver)
-        Config.screenshotProvider = new AShotProvider(webDriver)
-        Config.identifiers = new WebIdentifiers()
-        Config.scan("sc.tyro.bundle")
-    }
+/**
+ * @author David Avenante
+ * @since 1.0.0
+ */
+interface ScreenshotProvider {
+    void takeScreenshot(String name, Component component)
 }
