@@ -37,7 +37,7 @@ import static org.testcontainers.containers.BrowserWebDriverContainer.VncRecordi
  */
 class TyroWebTestExtension implements BeforeAllCallback, AfterAllCallback {
     private static Javalin app
-    private static WebDriver driver
+    public static WebDriver driver
     private static BrowserWebDriverContainer container
     public static String BASE_URL
     private boolean isLocal = Boolean.valueOf(System.getProperty("local"))

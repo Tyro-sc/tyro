@@ -32,10 +32,10 @@ import sc.tyro.core.support.*
 import sc.tyro.core.support.property.*
 
 import java.time.Duration
-import java.util.stream.Collector
 
 import static sc.tyro.core.By.expression
 import static sc.tyro.core.Config.provider
+import static sc.tyro.core.Config.screenshotProvider
 import static sc.tyro.core.input.Key.COMMAND
 import static sc.tyro.core.input.Key.CTRL
 
@@ -168,6 +168,8 @@ class Tyro {
      * Actions
      */
     static void visit(String uri) { browser().open(uri) }
+
+    static void takeScreenshot(String name, Component component = null) { screenshotProvider.takeScreenshot(name, component) }
 
     static void check(Checkable... checkables) {
         checkables.each {

@@ -30,10 +30,14 @@
 
     <properties>
         <selenium-java.version>3.141.59</selenium-java.version>
+        <ashot.version>1.5.4</ashot.version>
+        <percy.version>1.0.0</percy.version>
+        <applitools-eyes.version>3.207.3</applitools-eyes.version>
 
         <!-- Tests -->
-        <testcontainer.version>1.15.2</testcontainer.version>
+        <testcontainer.version>1.16.0</testcontainer.version>
         <webdrivermanager.version>4.3.1</webdrivermanager.version>
+        <byte-buddy.version>1.10.22</byte-buddy.version>
     </properties>
 
     <build>
@@ -73,6 +77,33 @@
             <artifactId>selenium-java</artifactId>
             <version>${selenium-java.version}</version>
         </dependency>
+        <dependency>
+            <groupId>ru.yandex.qatools.ashot</groupId>
+            <artifactId>ashot</artifactId>
+            <version>${ashot.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-remote-driver</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.hamcrest</groupId>
+                    <artifactId>hamcrest-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.percy</groupId>
+            <artifactId>percy-java-selenium</artifactId>
+            <version>${percy.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.applitools</groupId>
+            <artifactId>eyes-selenium-java3</artifactId>
+            <version>${applitools-eyes.version}</version>
+            <optional>true</optional>
+        </dependency>
 
         <!-- Tests -->
         <dependency>
@@ -83,6 +114,17 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>${byte-buddy.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>

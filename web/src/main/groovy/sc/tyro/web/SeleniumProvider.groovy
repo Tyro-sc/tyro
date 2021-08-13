@@ -328,7 +328,7 @@ class SeleniumProvider implements Provider {
         Map<Class, String> selectors = new HashMap<>()
 
         if (!cachedComponents.get(clazz)) {
-            List<Class> matchingClasses = new ArrayList<>();
+            List<Class> matchingClasses = new ArrayList<>()
             if (!Modifier.isAbstract(clazz.modifiers)) {
                 matchingClasses.add(clazz)
             }

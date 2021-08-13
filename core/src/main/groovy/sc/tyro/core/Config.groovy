@@ -17,6 +17,7 @@ package sc.tyro.core
 
 import io.github.classgraph.ClassGraph
 import sc.tyro.core.component.Component
+import sc.tyro.core.provider.ScreenshotProvider
 
 import java.time.Duration
 
@@ -31,6 +32,8 @@ class Config {
     static Duration waitUntil = 2.seconds
 
     static Provider provider
+
+    static ScreenshotProvider screenshotProvider
 
     static MetaDataProvider meta
 
