@@ -19,7 +19,6 @@ import org.openqa.selenium.WebDriver
 import sc.tyro.core.Config
 import sc.tyro.core.provider.NullScreenshotProvider
 import sc.tyro.web.internal.WebIdentifiers
-import sc.tyro.web.screenshot.AShotProvider
 
 class WebBundle {
     static void init(WebDriver webDriver) {
