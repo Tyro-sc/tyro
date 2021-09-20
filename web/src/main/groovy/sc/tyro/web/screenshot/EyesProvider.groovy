@@ -13,19 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package sc.tyro.web
+package sc.tyro.web.screenshot
 
-import org.openqa.selenium.WebDriver
-import sc.tyro.core.Config
-import sc.tyro.core.provider.NullScreenshotProvider
-import sc.tyro.web.internal.WebIdentifiers
-import sc.tyro.web.screenshot.AShotProvider
+import com.applitools.eyes.selenium.Eyes
+import org.openqa.selenium.By
+import sc.tyro.core.component.Component
+import sc.tyro.core.provider.ScreenshotProvider
 
-class WebBundle {
-    static void init(WebDriver webDriver) {
-        Config.provider = new SeleniumProvider(webDriver)
-        Config.screenshotProvider = new NullScreenshotProvider()
-        Config.identifiers = new WebIdentifiers()
-        Config.scan("sc.tyro.bundle")
+class EyesProvider implements ScreenshotProvider {
+    private final Eyes eyes
+
+    EyesProvider(Eyes eyes) {
+        this.eyes = eyes
+    }
+
+    @Override
+    void takeScreenshot(String name, Component component) {
+        if (component) {
+            eyes.checkElement(By.id(component.id()))
+            return
+        }
+        eyes.checkWindow(name)
     }
 }

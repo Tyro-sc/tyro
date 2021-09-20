@@ -23,6 +23,7 @@ import sc.tyro.core.component.*
 import sc.tyro.core.component.field.RangeField
 import sc.tyro.core.component.field.TextField
 import sc.tyro.core.input.MouseModifiers
+import sc.tyro.core.provider.ScreenshotProvider
 import sc.tyro.core.support.Clearable
 
 import static org.hamcrest.MatcherAssert.assertThat
