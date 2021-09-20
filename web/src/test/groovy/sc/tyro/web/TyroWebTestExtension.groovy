@@ -88,6 +88,8 @@ class TyroWebTestExtension implements BeforeAllCallback, AfterAllCallback {
 
     private capabilities() {
         if (getenv("browser") == "firefox") {
+            // For JUnit5 test usage
+            System.setProperty("driver", "FirefoxDriver")
             Capabilities options = new FirefoxOptions()
             if (!isLocal) options.setHeadless(true)
             options.addArguments("--start-fullscreen")
