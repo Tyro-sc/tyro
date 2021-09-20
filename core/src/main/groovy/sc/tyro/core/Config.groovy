@@ -17,6 +17,7 @@ package sc.tyro.core
 
 import io.github.classgraph.ClassGraph
 import sc.tyro.core.component.Component
+import sc.tyro.core.provider.NullScreenshotProvider
 import sc.tyro.core.provider.ScreenshotProvider
 
 import java.time.Duration
@@ -33,7 +34,7 @@ class Config {
 
     static Provider provider
 
-    static ScreenshotProvider screenshotProvider
+    static ScreenshotProvider screenshotProvider = new NullScreenshotProvider()
 
     static MetaDataProvider meta
 

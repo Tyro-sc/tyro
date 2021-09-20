@@ -42,17 +42,17 @@ class BrowserTest {
     @Test
     @DisplayName("Should Open an URL")
     void open() {
-        browser.open('http://shouldItestprivatemethods.com')
+        browser.open('https://shouldItestprivatemethods.com')
 
-        verify(provider, times(1)).open('http://shouldItestprivatemethods.com')
+        verify(provider, times(1)).open('https://shouldItestprivatemethods.com')
     }
 
     @Test
     @DisplayName("Should Navigate to")
     void navigate() {
-        browser.navigateTo('http://someUrl')
+        browser.navigateTo('https://someUrl')
 
-        verify(provider, times(1)).navigateTo('http://someUrl')
+        verify(provider, times(1)).navigateTo('https://someUrl')
     }
 
     @Test
@@ -82,9 +82,9 @@ class BrowserTest {
     @Test
     @DisplayName("Should get URL")
     void getUrl() {
-        when(provider.url).thenReturn('http://www.tyro.sc')
+        when(provider.url).thenReturn('https://www.tyro.sc')
 
-        assertThat(browser.url, is('http://www.tyro.sc'))
+        assertThat(browser.url, is('https://www.tyro.sc'))
     }
 
     @Test

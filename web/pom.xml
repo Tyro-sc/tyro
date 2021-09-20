@@ -35,6 +35,7 @@
         <applitools-eyes.version>3.207.3</applitools-eyes.version>
 
         <!-- Tests -->
+        <javalin.version>3.13.11</javalin.version>
         <testcontainer.version>1.16.0</testcontainer.version>
         <webdrivermanager.version>4.3.1</webdrivermanager.version>
         <byte-buddy.version>1.10.22</byte-buddy.version>
@@ -130,6 +131,7 @@
         <dependency>
             <groupId>io.javalin</groupId>
             <artifactId>javalin</artifactId>
+            <version>${javalin.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>

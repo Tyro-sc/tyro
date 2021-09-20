@@ -13,29 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package sc.tyro.web.screenshot
+package sc.tyro.core.provider
 
-import io.percy.selenium.Percy
-import sc.tyro.core.provider.ScreenshotProvider
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import sc.tyro.core.component.Component
 
-class PercyProvider implements ScreenshotProvider {
-    private final Percy percy
-    public List<Integer> widths
-    public Integer minHeight
-    public boolean enableJavaScript
-    public String percyCSS
-
-    PercyProvider(Percy percy) {
-        this.percy = percy
-    }
+/**
+ * @author David Avenante
+ * @since 1.0.0
+ */
+class NullScreenshotProvider implements ScreenshotProvider {
+    private static final Logger LOGGER = LoggerFactory.getLogger(NullScreenshotProvider)
 
     @Override
     void takeScreenshot(String name, Component component) {
-        if(widths) {
-            percy.snapshot(name, widths, minHeight, enableJavaScript, percyCSS)
-            return
-        }
-        percy.snapshot(name)
+        LOGGER.warn("No screenshot provider defined!")
     }
 }

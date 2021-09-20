@@ -15,10 +15,12 @@
  */
 package sc.tyro.core
 
+import org.hamcrest.Matcher
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import sc.tyro.bundle.Widget
+import sc.tyro.core.provider.NullScreenshotProvider
 
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.*
@@ -62,14 +64,20 @@ class ConfigTest {
     @Test
     @DisplayName("Should add Components")
     void componentTypes() {
-        assertThat(Config.componentTypes, is(empty()))
+        assertThat(Config.componentTypes, is(empty()) as Matcher<? super HashSet>)
 
         Identifiers identifiers = mock(Identifiers)
         when(identifiers.hasIdentifier(Widget)).thenReturn(true)
-        Config.identifiers = identifiers;
+        Config.identifiers = identifiers
 
         Config.scan("sc.tyro.bundle")
 
-        assertThat(Config.componentTypes, hasSize(1))
+        assertThat(Config.componentTypes, hasSize(1) as Matcher<? super HashSet>)
+    }
+
+    @Test
+    @DisplayName("Should have NullScreenshot provider has default screenshot provider")
+    void screenshotProvider() {
+        assertThat(Config.screenshotProvider, instanceOf(NullScreenshotProvider))
     }
 }
