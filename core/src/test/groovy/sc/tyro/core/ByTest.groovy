@@ -68,8 +68,4 @@ class ByTest {
         assertThat(by_1, is(not(equalTo(by_2))))
         assertThat(by_1, is(equalTo(by_3)))
     }
-
-
-
-
 }

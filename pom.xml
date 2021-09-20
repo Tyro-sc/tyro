@@ -16,7 +16,8 @@
     limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -52,24 +53,24 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
 
-        <groovy.version>2.5.14</groovy.version>
-        <classgraph.version>4.8.78</classgraph.version>
-        <slf4j.version>1.7.30</slf4j.version>
+        <groovy.version>2.5.15</groovy.version>
+        <classgraph.version>4.8.116</classgraph.version>
+        <slf4j.version>1.7.32</slf4j.version>
 
         <!-- Tests -->
-        <junit.jupiter.version>5.7.0</junit.jupiter.version>
-        <mockito-junit.version>3.3.3</mockito-junit.version>
+        <junit.jupiter.version>5.8.0</junit.jupiter.version>
+        <mockito-junit.version>3.12.4</mockito-junit.version>
         <hamcrest.version>2.2</hamcrest.version>
-        <javalin.version>3.8.0</javalin.version>
-        <slf4j-simple.verion>1.7.28</slf4j-simple.verion>
 
         <!-- Plugins -->
-        <gmavenplus-plugin.version>1.8.1</gmavenplus-plugin.version>
+        <gmavenplus-plugin.version>1.13.0</gmavenplus-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-        <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
-        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+        <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
+        <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
         <groovydoc-maven-plugin.version>2.1</groovydoc-maven-plugin.version>
-        <license-maven-plugin.version>4.0.rc1</license-maven-plugin.version>
+        <license-maven-plugin.version>4.1</license-maven-plugin.version>
+        <codenarc-maven-plugin>0.22-1</codenarc-maven-plugin>
+        <codenarc.version>2.2.0</codenarc.version>
     </properties>
 
     <licenses>
@@ -176,9 +177,9 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>codenarc-maven-plugin</artifactId>
-                <version>0.22-1</version>
+                <version>${codenarc-maven-plugin}</version>
                 <configuration>
-                    <codeNarcVersion>2.1.0</codeNarcVersion>
+                    <codeNarcVersion>${codenarc.version}</codeNarcVersion>
                 </configuration>
                 <executions>
                     <execution>
@@ -222,7 +223,7 @@
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-simple</artifactId>
-                <version>${slf4j-simple.verion}</version>
+                <version>${slf4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
@@ -238,11 +239,6 @@
                 <groupId>org.hamcrest</groupId>
                 <artifactId>hamcrest</artifactId>
                 <version>${hamcrest.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.javalin</groupId>
-                <artifactId>javalin</artifactId>
-                <version>${javalin.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

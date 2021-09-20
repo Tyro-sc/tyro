@@ -15,15 +15,19 @@
  */
 package sc.tyro.core.provider
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import sc.tyro.core.component.Component
 
 /**
  * @author David Avenante
  * @since 1.0.0
  */
-class NoScreenshotProvider implements ScreenshotProvider {
+class NullScreenshotProvider implements ScreenshotProvider {
+    private static final Logger LOGGER = LoggerFactory.getLogger(NullScreenshotProvider)
+
     @Override
     void takeScreenshot(String name, Component component) {
-        throw new IllegalStateException("No screenshot provider defined!")
+        LOGGER.warn("No screenshot provider defined!")
     }
 }

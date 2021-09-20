@@ -18,22 +18,17 @@ package sc.tyro.dsl
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import sc.tyro.core.ComponentException
-import sc.tyro.core.Config
-import sc.tyro.core.MetaDataProvider
-import sc.tyro.core.MetaInfo
-import sc.tyro.core.Provider
-import sc.tyro.core.Tyro
+import sc.tyro.core.*
 import sc.tyro.core.component.*
 import sc.tyro.core.component.field.RangeField
 import sc.tyro.core.component.field.TextField
 import sc.tyro.core.input.MouseModifiers
-import sc.tyro.core.provider.ScreenshotProvider
 import sc.tyro.core.support.Clearable
 
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.containsString
 import static org.junit.jupiter.api.Assertions.assertThrows
+import static org.mockito.ArgumentMatchers.any
 import static org.mockito.Mockito.*
 import static sc.tyro.core.Config.provider
 import static sc.tyro.core.Config.screenshotProvider
@@ -53,7 +48,7 @@ class ActionTest {
     @BeforeEach
     void setUp() {
         provider = mock(Provider)
-        screenshotProvider = mock(ScreenshotProvider)
+        screenshotProvider = spy(screenshotProvider)
     }
 
     @Test
@@ -381,13 +376,13 @@ class ActionTest {
         when(Config.meta.metaInfo(any(Component))).thenReturn(new MetaInfo(id: '1', node: 'node'))
 
         clickOn cmp_1
-        verify(provider, times(1)).click(cmp_1, [LEFT, SINGLE], [] )
+        verify(provider, times(1)).click(cmp_1, [LEFT, SINGLE], [])
 
         doubleClickOn cmp_1
-        verify(provider, times(1)).click(cmp_1, [LEFT, DOUBLE], [] )
+        verify(provider, times(1)).click(cmp_1, [LEFT, DOUBLE], [])
 
         rightClickOn cmp_1
-        verify(provider, times(1)).click(cmp_1, [RIGHT, SINGLE], [] )
+        verify(provider, times(1)).click(cmp_1, [RIGHT, SINGLE], [])
 
         hoveringMouseOn cmp_1
         verify(provider, times(1)).mouseOver(cmp_1)

@@ -17,4 +17,6 @@ jobs:
         with:
           java-version: 11
       - name: Build and Tests with Firefox
-        run: ./mvnw clean package -Dbrowser=firefox
+        env:
+          browser: firefox
+        run: ./mvnw clean package

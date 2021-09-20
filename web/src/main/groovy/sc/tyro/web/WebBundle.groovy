@@ -17,13 +17,13 @@ package sc.tyro.web
 
 import org.openqa.selenium.WebDriver
 import sc.tyro.core.Config
+import sc.tyro.core.provider.NullScreenshotProvider
 import sc.tyro.web.internal.WebIdentifiers
-import sc.tyro.web.screenshot.AShotProvider
 
 class WebBundle {
     static void init(WebDriver webDriver) {
         Config.provider = new SeleniumProvider(webDriver)
-        Config.screenshotProvider = new AShotProvider(webDriver)
+        Config.screenshotProvider = new NullScreenshotProvider()
         Config.identifiers = new WebIdentifiers()
         Config.scan("sc.tyro.bundle")
     }
