@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--
 
-    Copyright © 2021 Ovea (d.avenante@gmail.com)
+    Copyright © 2020 Ovea (d.avenante@gmail.com)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -16,17 +16,18 @@
     limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>sc.tyro</groupId>
     <artifactId>tyro</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Tyro</name>
-    <inceptionYear>2021</inceptionYear>
+    <inceptionYear>2020</inceptionYear>
 
     <organization>
         <name>Tyro-sc</name>
@@ -39,7 +40,7 @@
         <connection>scm:git:git@github.com:Tyro-sc/tyro.git</connection>
         <developerConnection>scm:git:git@github.com:Tyro-sc/tyro.git</developerConnection>
         <url>https://github.com/Tyro-sc/tyro</url>
-        <tag>1.2.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <modules>
