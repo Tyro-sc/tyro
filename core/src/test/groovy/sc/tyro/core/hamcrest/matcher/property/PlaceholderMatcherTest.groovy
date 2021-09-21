@@ -24,8 +24,14 @@ import static org.hamcrest.Matchers.is
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
+import static sc.tyro.core.hamcrest.Matchers.endingWith
+import static sc.tyro.core.hamcrest.Matchers.followingPattern
 import static sc.tyro.core.hamcrest.Matchers.has
 import static sc.tyro.core.hamcrest.Matchers.placeholder
+import static sc.tyro.core.hamcrest.Matchers.startingWith
+import static sc.tyro.core.hamcrest.Matchers.text
+import static sc.tyro.core.hamcrest.Matchers.text
+import static sc.tyro.core.hamcrest.Matchers.text
 
 /**
  * @author David Avenante
@@ -38,10 +44,13 @@ class PlaceholderMatcherTest {
     void matcher() {
         Field cmp = mock(Field)
 
-        when(cmp.placeholder()).thenReturn('MyPlaceholder')
-        assertThat(cmp, has(placeholder('MyPlaceholder')))
+        when(cmp.placeholder()).thenReturn('My Placeholder')
+        assertThat(cmp, has(placeholder('My Placeholder')))
+        assertThat(cmp, has(placeholder(startingWith('My'))))
+        assertThat(cmp, has(placeholder(endingWith('Placeholder'))))
+        assertThat(cmp, has(placeholder(followingPattern('^[a-zA-Z ]*'))))
 
-        Error error = assertThrows(AssertionError, { assertThat(cmp, has(placeholder('OtherPlaceholder'))) })
-        assertThat(error.message, is('\nExpected: has placeholder "OtherPlaceholder"\n     but: has placeholder "MyPlaceholder"'))
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(placeholder('Other Placeholder'))) })
+        assertThat(error.message, is('\nExpected: has placeholder "Other Placeholder"\n     but: has placeholder "My Placeholder"'))
     }
 }

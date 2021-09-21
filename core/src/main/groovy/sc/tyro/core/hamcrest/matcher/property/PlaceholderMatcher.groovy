@@ -16,6 +16,7 @@
 package sc.tyro.core.hamcrest.matcher.property
 
 import org.hamcrest.Description
+import org.hamcrest.Matcher
 import sc.tyro.core.hamcrest.PropertyMatcher
 import sc.tyro.core.support.property.PlaceholderSupport
 
@@ -25,14 +26,19 @@ import sc.tyro.core.support.property.PlaceholderSupport
  */
 class PlaceholderMatcher extends PropertyMatcher<PlaceholderSupport> {
     private String placeholder
+    private Matcher matcher
 
     PlaceholderMatcher(String placeholder) {
         this.placeholder = placeholder
     }
 
+    PlaceholderMatcher(Matcher<String> matcher) {
+        this.matcher = matcher
+    }
+
     @Override
     protected boolean matchesSafely(PlaceholderSupport component) {
-        component.placeholder() == placeholder
+        return matcher ? matcher.matches(component.placeholder()) : component.placeholder() == placeholder
     }
 
     @Override

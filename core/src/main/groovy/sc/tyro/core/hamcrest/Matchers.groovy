@@ -88,7 +88,11 @@ class Matchers {
     // Properties
     static Matcher<LabelSupport> label(String label) { new LabelMatcher(label) }
 
+    static Matcher<LabelSupport> label(Matcher<String> matcher) { new LabelMatcher(matcher) }
+
     static Matcher<PlaceholderSupport> placeholder(String placeholder) { new PlaceholderMatcher(placeholder) }
+
+    static Matcher<PlaceholderSupport> placeholder(Matcher<String> matcher) { new PlaceholderMatcher(matcher) }
 
     static Matcher<MaximumSupport> maximum(Object maximum) { new MaximumMatcher(maximum) }
 
@@ -102,11 +106,21 @@ class Matchers {
 
     static Matcher<TextSupport> text(Matcher<String> matcher) { new TextMatcher(matcher) }
 
+    static Matcher<String> startingWith(String prefix) { org.hamcrest.Matchers.startsWith(prefix) }
+
+    static Matcher<String> endingWith(String suffix) { org.hamcrest.Matchers.endsWith(suffix) }
+
+    static Matcher<String> followingPattern(String regex) { org.hamcrest.Matchers.matchesPattern(regex) }
+
     static Matcher<ValueSupport> value(Object value) { new ValueMatcher(value) }
 
     static Matcher<ReferenceSupport> reference(String source) { new ReferenceMatcher(source) }
 
+    static Matcher<ReferenceSupport> reference(Matcher<String> matcher) { new ReferenceMatcher(matcher) }
+
     static Matcher<TitleSupport> title(String title) { new TitleMatcher(title) }
+
+    static Matcher<TitleSupport> title(Matcher<String> matcher) { new TitleMatcher(matcher) }
 
     static Matcher<ItemSupport> items(String... items) { new ItemMatcher(items) }
 

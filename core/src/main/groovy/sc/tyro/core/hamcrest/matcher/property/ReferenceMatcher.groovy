@@ -16,6 +16,7 @@
 package sc.tyro.core.hamcrest.matcher.property
 
 import org.hamcrest.Description
+import org.hamcrest.Matcher
 import sc.tyro.core.hamcrest.PropertyMatcher
 import sc.tyro.core.support.property.ReferenceSupport
 
@@ -24,15 +25,20 @@ import sc.tyro.core.support.property.ReferenceSupport
  * @since 1.0.0
  */
 class ReferenceMatcher extends PropertyMatcher<ReferenceSupport> {
-    String reference
+    private String reference
+    private Matcher matcher
 
     ReferenceMatcher(String reference) {
         this.reference = reference
     }
 
+    ReferenceMatcher(Matcher<String> matcher) {
+        this.matcher = matcher
+    }
+
     @Override
     protected boolean matchesSafely(ReferenceSupport component) {
-        component.reference() == reference
+        return matcher ? matcher.matches(component.reference()) : component.reference() == reference
     }
 
     @Override

@@ -25,7 +25,14 @@ import static org.hamcrest.Matchers.is
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
+import static sc.tyro.core.hamcrest.Matchers.endingWith
+import static sc.tyro.core.hamcrest.Matchers.followingPattern
 import static sc.tyro.core.hamcrest.Matchers.has
+import static sc.tyro.core.hamcrest.Matchers.startingWith
+import static sc.tyro.core.hamcrest.Matchers.text
+import static sc.tyro.core.hamcrest.Matchers.text
+import static sc.tyro.core.hamcrest.Matchers.text
+import static sc.tyro.core.hamcrest.Matchers.title
 
 /**
  * @author David Avenante
@@ -37,11 +44,24 @@ class TitleMatcherTest {
     @DisplayName("Should support matcher Title")
     void matcher() {
         TitleSupport cmp = mock(TitleSupport)
-        when(cmp.title()).thenReturn('MyTitle')
+        when(cmp.title()).thenReturn('My Title')
 
-        assertThat(cmp, has(Matchers.title('MyTitle')))
+        assertThat(cmp, has(title('My Title')))
+        assertThat(cmp, has(title(startingWith('My'))))
+        assertThat(cmp, has(title(endingWith('Title'))))
+        assertThat(cmp, has(title(followingPattern('^[a-zA-Z ]*'))))
 
-        Error error = assertThrows(AssertionError, { assertThat(cmp, has(Matchers.title('OtherTitle'))) })
-        assertThat(error.message, is('\nExpected: has title "OtherTitle"\n     but: has title "MyTitle"'))
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(title('Other Title'))) })
+        assertThat(error.message, is('\nExpected: has title "Other Title"\n     but: has title "My Title"'))
+
+        error = assertThrows(AssertionError, { assertThat(cmp, has(title(startingWith('prefix')))) })
+        assertThat(error.message, is('\nExpected: has title starting with "prefix"\n     but: has title "My Title"'))
+
+        error = assertThrows(AssertionError, { assertThat(cmp, has(title(endingWith('suffix')))) })
+        assertThat(error.message, is('\nExpected: has title ending with "suffix"\n     but: has title "My Title"'))
+
+        error = assertThrows(AssertionError, { assertThat(cmp, has(title(endingWith('[1-9]*')))) })
+        assertThat(error.message, is('\nExpected: has title following pattern "[1-9]*"\n     but: has title "My Title"'))
+
     }
 }

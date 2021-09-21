@@ -20,15 +20,11 @@ import org.junit.jupiter.api.Test
 import sc.tyro.core.support.property.TextSupport
 
 import static org.hamcrest.MatcherAssert.assertThat
-import static org.hamcrest.Matchers.emptyString
 import static org.hamcrest.Matchers.is
-import static org.hamcrest.Matchers.not
-import static org.hamcrest.Matchers.startsWith
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
-import static sc.tyro.core.hamcrest.Matchers.has
-import static sc.tyro.core.hamcrest.Matchers.text
+import static sc.tyro.core.hamcrest.Matchers.*
 
 /**
  * @author David Avenante
@@ -43,7 +39,9 @@ class TextMatcherTest {
         when(cmp.text()).thenReturn('My Text')
 
         assertThat(cmp, has(text('My Text')))
-        assertThat(cmp, has(text(startsWith('Mo'))))
+        assertThat(cmp, has(text(startingWith('My'))))
+        assertThat(cmp, has(text(endingWith('Text'))))
+        assertThat(cmp, has(text(followingPattern('^[a-zA-Z ]*'))))
 
         Error error = assertThrows(AssertionError, { assertThat(cmp, has(text('OtherText'))) })
         assertThat(error.message, is('\nExpected: has text "OtherText"\n     but: has text "My Text"'))

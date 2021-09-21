@@ -16,6 +16,7 @@
 package sc.tyro.core.hamcrest.matcher.property
 
 import org.hamcrest.Description
+import org.hamcrest.Matcher
 import sc.tyro.core.hamcrest.PropertyMatcher
 import sc.tyro.core.support.property.LabelSupport
 
@@ -25,14 +26,19 @@ import sc.tyro.core.support.property.LabelSupport
  */
 class LabelMatcher extends PropertyMatcher<LabelSupport> {
     private String label
+    private Matcher matcher
 
     LabelMatcher(String label) {
         this.label = label
     }
 
+    LabelMatcher(Matcher<String> matcher) {
+        this.matcher = matcher
+    }
+
     @Override
     protected boolean matchesSafely(LabelSupport component) {
-        component.label() == label
+        return matcher ? matcher.matches(component.label()) : component.label() == label
     }
 
     @Override

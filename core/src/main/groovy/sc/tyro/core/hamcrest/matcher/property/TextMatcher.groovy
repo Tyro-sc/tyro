@@ -17,6 +17,7 @@ package sc.tyro.core.hamcrest.matcher.property
 
 import org.hamcrest.Description
 import org.hamcrest.Matcher
+import sc.tyro.core.hamcrest.Matchers
 import sc.tyro.core.hamcrest.PropertyMatcher
 import sc.tyro.core.support.property.TextSupport
 
@@ -32,16 +33,13 @@ class TextMatcher extends PropertyMatcher<TextSupport> {
         this.text = text
     }
 
-    TextMatcher(Matcher matcher) {
+    TextMatcher(Matcher<String> matcher) {
         this.matcher = matcher
     }
 
     @Override
     protected boolean matchesSafely(TextSupport component) {
-        if (matcher) {
-            return matcher.matches(component.text())
-        }
-        component.text() == text
+        return matcher ? matcher.matches(component.text()) : component.text() == text
     }
 
     @Override

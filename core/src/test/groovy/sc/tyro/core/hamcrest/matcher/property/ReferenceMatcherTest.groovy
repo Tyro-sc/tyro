@@ -25,7 +25,14 @@ import static org.hamcrest.Matchers.is
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
+import static sc.tyro.core.hamcrest.Matchers.endingWith
+import static sc.tyro.core.hamcrest.Matchers.followingPattern
 import static sc.tyro.core.hamcrest.Matchers.has
+import static sc.tyro.core.hamcrest.Matchers.reference
+import static sc.tyro.core.hamcrest.Matchers.startingWith
+import static sc.tyro.core.hamcrest.Matchers.text
+import static sc.tyro.core.hamcrest.Matchers.text
+import static sc.tyro.core.hamcrest.Matchers.text
 
 /**
  * @author David Avenante
@@ -39,9 +46,12 @@ class ReferenceMatcherTest {
         ReferenceSupport cmp = mock(ReferenceSupport)
 
         when(cmp.reference()).thenReturn('my-reference')
-        assertThat(cmp, has(Matchers.reference('my-reference')))
+        assertThat(cmp, has(reference('my-reference')))
+        assertThat(cmp, has(reference(startingWith('my'))))
+        assertThat(cmp, has(reference(endingWith('reference'))))
+        assertThat(cmp, has(reference(followingPattern('^[a-zA-Z-]*'))))
 
-        Error error = assertThrows(AssertionError, { assertThat(cmp, has(Matchers.reference('other-reference'))) })
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(reference('other-reference'))) })
         assertThat(error.message, is('\nExpected: has reference "other-reference"\n     but: has reference "my-reference"'))
     }
 }

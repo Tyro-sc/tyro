@@ -16,7 +16,9 @@
 package sc.tyro.core.hamcrest.matcher.property
 
 import org.hamcrest.Description
+import org.hamcrest.Matcher
 import sc.tyro.core.hamcrest.PropertyMatcher
+import sc.tyro.core.support.property.LabelSupport
 import sc.tyro.core.support.property.TitleSupport
 
 /**
@@ -25,14 +27,19 @@ import sc.tyro.core.support.property.TitleSupport
  */
 class TitleMatcher extends PropertyMatcher<TitleSupport> {
     private String title
+    private Matcher matcher
 
     TitleMatcher(String title) {
         this.title = title
     }
 
+    TitleMatcher(Matcher<String> matcher) {
+        this.matcher = matcher
+    }
+
     @Override
     protected boolean matchesSafely(TitleSupport component) {
-        component.title() == title
+        return matcher ? matcher.matches(component.title()) : component.title() == title
     }
 
     @Override

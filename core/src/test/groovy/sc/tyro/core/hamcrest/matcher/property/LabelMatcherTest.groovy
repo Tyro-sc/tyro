@@ -25,7 +25,12 @@ import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.is
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.Mockito.mock
+import static sc.tyro.core.hamcrest.Matchers.endingWith
+import static sc.tyro.core.hamcrest.Matchers.followingPattern
 import static sc.tyro.core.hamcrest.Matchers.has
+import static sc.tyro.core.hamcrest.Matchers.label
+import static sc.tyro.core.hamcrest.Matchers.startingWith
+import static sc.tyro.core.hamcrest.Matchers.text
 
 /**
  * @author David Avenante
@@ -37,11 +42,14 @@ class LabelMatcherTest {
     @DisplayName("Should support matcher Label")
     void matcher() {
         LabelSupport cmp = mock(LabelSupport)
-        Mockito.when(cmp.label()).thenReturn('MyLabel')
+        Mockito.when(cmp.label()).thenReturn('My Label')
 
-        assertThat(cmp, has(Matchers.label('MyLabel')))
+        assertThat(cmp, has(label('My Label')))
+        assertThat(cmp, has(label(startingWith('My'))))
+        assertThat(cmp, has(label(endingWith('Label'))))
+        assertThat(cmp, has(label(followingPattern('^[a-zA-Z ]*'))))
 
-        Error error = assertThrows(AssertionError, { assertThat(cmp, has(Matchers.label('OtherLabel'))) })
-        assertThat(error.message, is('\nExpected: has label "OtherLabel"\n     but: has label "MyLabel"'))
+        Error error = assertThrows(AssertionError, { assertThat(cmp, has(label('Other Label'))) })
+        assertThat(error.message, is('\nExpected: has label "Other Label"\n     but: has label "My Label"'))
     }
 }
