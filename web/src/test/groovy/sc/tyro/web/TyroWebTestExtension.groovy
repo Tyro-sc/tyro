@@ -15,41 +15,49 @@
  */
 package sc.tyro.web
 
-
+import io.github.bonigarcia.wdm.WebDriverManager
 import io.javalin.Javalin
 import org.junit.jupiter.api.extension.AfterAllCallback
 import org.junit.jupiter.api.extension.BeforeAllCallback
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.openqa.selenium.Capabilities
+import org.openqa.selenium.MutableCapabilities
 import org.openqa.selenium.WebDriver
-import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
-import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.firefox.FirefoxOptions
-import org.testcontainers.containers.BrowserWebDriverContainer
+import org.slf4j.Logger
 
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver
 import static io.github.bonigarcia.wdm.WebDriverManager.firefoxdriver
+import static io.javalin.http.staticfiles.Location.CLASSPATH
 import static java.lang.Boolean.valueOf
 import static java.lang.System.getenv
 import static java.net.InetAddress.getByName
-import static org.testcontainers.containers.BrowserWebDriverContainer.VncRecordingMode.RECORD_ALL
+import static org.openqa.selenium.remote.Browser.CHROME
+import static org.openqa.selenium.remote.Browser.FIREFOX
+import static org.slf4j.LoggerFactory.getLogger
 
 /**
  * @author David Avenante
  * @since 1.0.0
  */
 class TyroWebTestExtension implements BeforeAllCallback, AfterAllCallback {
-    private static Javalin app
-    public static WebDriver driver
-    private static BrowserWebDriverContainer container
+    private static Logger LOGGER = getLogger(TyroWebTestExtension)
+
     public static String BASE_URL
-    private boolean isLocal = valueOf(getenv("local"))
+    private static WebDriver webDriver
+    private static WebDriverManager wdm
+
+    private static Javalin app
+    private boolean isCI = valueOf(getenv('CI'))
+    private String browser = getenv('browser')
 
     @Override
     void beforeAll(ExtensionContext extensionContext) throws Exception {
         app = Javalin.create({
-            config -> config.addStaticFiles("/webapp")
+            config ->
+                config
+                        .addStaticFiles("/webapp", CLASSPATH)
         }).start(0)
 
         DatagramSocket socket = new DatagramSocket()
@@ -57,49 +65,39 @@ class TyroWebTestExtension implements BeforeAllCallback, AfterAllCallback {
         String host_ip = socket.localAddress.hostAddress
         BASE_URL = "http://${host_ip}:${app.port()}/"
 
-        Capabilities options = capabilities()
-        if (isLocal) {
-            if (getenv("browser") == "firefox") {
-                firefoxdriver().setup()
-                driver = new FirefoxDriver(options)
-            } else {
-                chromedriver().setup()
-                driver = new ChromeDriver(options)
-            }
-        } else {
-            container = new BrowserWebDriverContainer()
-                    .withCapabilities(options)
-                    .withRecordingMode(RECORD_ALL, new File("./target/"))
-            container.start()
-            driver = container.webDriver
+        if (!browser) {
+            LOGGER.info('No Browser selected. Use Chrome')
+            browser = CHROME
         }
 
-        WebBundle.init(driver)
+        Capabilities capabilities = new MutableCapabilities()
+        switch (browser) {
+            case FIREFOX:
+                wdm = firefoxdriver()
+                Capabilities options = new FirefoxOptions()
+                options.addArguments("--start-fullscreen")
+                options.addArguments("--start-maximized")
+                capabilities.merge(options)
+                break
+            case CHROME:
+                wdm = chromedriver()
+                Capabilities options = new ChromeOptions()
+                options.addArguments("--start-fullscreen")
+                capabilities.merge(options)
+        }
+
+        if (isCI) {
+            wdm.browserInDocker()
+        }
+
+        wdm.capabilities(capabilities)
+        webDriver = wdm.create()
+        WebBundle.init(webDriver)
     }
 
     @Override
     void afterAll(ExtensionContext extensionContext) throws Exception {
-        driver.close()
-        app.stop()
-        if (!isLocal) {
-            container.stop()
-        }
-    }
-
-    private capabilities() {
-        if (getenv("browser") == "firefox") {
-            // For JUnit5 test usage
-            System.setProperty("driver", "FirefoxDriver")
-            Capabilities options = new FirefoxOptions()
-            if (!isLocal) options.setHeadless(true)
-            options.addArguments("--start-fullscreen")
-            options.addArguments("--start-maximized")
-            return options
-        } else {
-            Capabilities options = new ChromeOptions()
-            options.addArguments("--start-fullscreen")
-            if (!isLocal) options.setHeadless(true)
-            return options
-        }
+        webDriver.quit()
+        wdm.quit()
     }
 }
