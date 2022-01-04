@@ -33,8 +33,8 @@ import static io.javalin.http.staticfiles.Location.CLASSPATH
 import static java.lang.Boolean.valueOf
 import static java.lang.System.getenv
 import static java.net.InetAddress.getByName
-import static org.openqa.selenium.remote.Browser.CHROME
-import static org.openqa.selenium.remote.Browser.FIREFOX
+import static org.openqa.selenium.remote.BrowserType.CHROME
+import static org.openqa.selenium.remote.BrowserType.FIREFOX
 import static org.slf4j.LoggerFactory.getLogger
 
 /**
