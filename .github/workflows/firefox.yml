@@ -22,4 +22,4 @@ jobs:
       - name: Build and Tests with Firefox
         env:
           browser: firefox
-        run: ./mvnw clean test
+        run: ./mvnw clean package

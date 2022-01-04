@@ -20,7 +20,7 @@ jobs:
           java-version: 11
 
       - name: Build and Tests with Chrome
-        run: ./mvnw clean test
+        run: ./mvnw clean package
 
       - name: Coverage
         env:
