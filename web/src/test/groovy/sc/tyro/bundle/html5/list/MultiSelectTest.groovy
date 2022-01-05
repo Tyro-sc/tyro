@@ -18,7 +18,7 @@ package sc.tyro.bundle.html5.list
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.condition.DisabledIfSystemProperty
+import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable
 import org.junit.jupiter.api.extension.ExtendWith
 import sc.tyro.core.ComponentException
 import sc.tyro.core.component.Item
@@ -43,7 +43,7 @@ class MultiSelectTest {
 
     @Test
     @DisplayName("Should have expected behaviours for MultiSelect")
-    @DisabledIfSystemProperty(named = "driver", matches = "FirefoxDriver") // Open a new issue see README.md
+    @DisabledIfEnvironmentVariable(named = "browser", matches = "firefox") // Open a new issue see README.md
     void multiSelect() {
         assert MultiSelect in ListBox
 

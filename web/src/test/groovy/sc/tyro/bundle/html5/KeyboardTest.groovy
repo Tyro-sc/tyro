@@ -18,7 +18,7 @@ package sc.tyro.bundle.html5
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.condition.DisabledIfSystemProperty
+import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable
 import org.junit.jupiter.api.extension.ExtendWith
 import sc.tyro.bundle.html5.input.InputTypeText
 import sc.tyro.core.component.Component
@@ -199,7 +199,7 @@ class KeyboardTest {
 
     @Test
     @DisplayName("Should use Key Modifiers")
-    @DisabledIfSystemProperty(named = "driver", matches = "FirefoxDriver") // https://github.com/mozilla/geckodriver/issues/944
+    @DisabledIfEnvironmentVariable(named = "browser", matches = "firefox") // https://github.com/mozilla/geckodriver/issues/944
     void keyModifiers() {
         browser().refresh()
         InputTypeText textField = $('#textfield') as InputTypeText
