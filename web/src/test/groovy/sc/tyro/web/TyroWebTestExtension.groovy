@@ -55,9 +55,7 @@ class TyroWebTestExtension implements BeforeAllCallback, AfterAllCallback {
     @Override
     void beforeAll(ExtensionContext extensionContext) throws Exception {
         app = Javalin.create({
-            config ->
-                config
-                        .addStaticFiles("/webapp", CLASSPATH)
+            config -> config.addStaticFiles("/webapp", CLASSPATH)
         }).start(0)
 
         DatagramSocket socket = new DatagramSocket()
