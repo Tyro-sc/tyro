@@ -58,7 +58,7 @@
 
         <!-- Tests -->
         <junit.jupiter.version>5.8.0</junit.jupiter.version>
-        <mockito-junit.version>3.12.4</mockito-junit.version>
+        <mockito-junit.version>4.2.0</mockito-junit.version>
         <hamcrest.version>2.2</hamcrest.version>
 
         <!-- Plugins -->
