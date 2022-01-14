@@ -1,5 +1,5 @@
 /*
- * Copyright © 2020 Ovea (d.avenante@gmail.com)
+ * Copyright © 2021 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,7 +48,7 @@ class Config {
         scannedPackages = packageNames
         componentTypes.clear()
         componentTypes.addAll(packageNames
-                .collect {new ClassGraph().whitelistPackages(it).scan().getSubclasses(Component.name) }
+                .collect {new ClassGraph().acceptPackages(it).scan().getSubclasses(Component.name) }
                 .flatten()
                 .collect {it.loadClass() }
                 .findAll { Component.isAssignableFrom(it) && identifiers.hasIdentifier(it) })

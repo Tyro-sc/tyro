@@ -1,5 +1,5 @@
 /*
- * Copyright © 2020 Ovea (d.avenante@gmail.com)
+ * Copyright © 2021 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -279,7 +279,7 @@ class SeleniumProvider implements Provider {
         LOGGER.debug(v)
 
         if (v == '__JQUERY_MISSING__') {
-            js.executeScript(getClass().getResource('jquery-3.1.1.slim.min.js').text + getClass()
+            js.executeScript(getClass().getResource('jquery-3.6.0.slim.min.js').text + getClass()
                     .getResource('tyro.js').text)
             registeredScripts.each { js.executeScript(it) }
             return execute(id, expression)
