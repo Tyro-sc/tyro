@@ -239,7 +239,7 @@ class Tyro {
 
     static void submit(Submissible c) { c.submit() }
 
-    static <T extends Component> T on(Component c) { c as T }
+    static <T extends Component> T on(T c) { c as T }
 
     static final FillAction fill(Field c) { new FillAction(c) }
 
