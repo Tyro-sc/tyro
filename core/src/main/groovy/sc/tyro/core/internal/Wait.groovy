@@ -31,10 +31,6 @@ import java.time.Duration
 class Wait {
     private static final Logger LOGGER = LoggerFactory.getLogger(Wait)
 
-    static void wait(Duration duration) {
-        Thread.sleep(duration.toMillis())
-    }
-
     static void waitUntil(Closure c, Duration duration) {
         waitUntil(c, null, duration)
     }
