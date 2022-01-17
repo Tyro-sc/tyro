@@ -76,7 +76,7 @@ class By {
 
         @Override
         String toString() {
-            return 'expression: ' + expression
+            return expression
         }
     }
 }

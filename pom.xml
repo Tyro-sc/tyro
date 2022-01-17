@@ -55,6 +55,7 @@
         <groovy.version>3.0.9</groovy.version>
         <classgraph.version>4.8.138</classgraph.version>
         <slf4j.version>1.7.33</slf4j.version>
+        <ascii-data.version>1.4.0</ascii-data.version>
 
         <!-- Tests -->
         <junit.jupiter.version>5.8.2</junit.jupiter.version>
@@ -218,6 +219,11 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mitchtalmadge</groupId>
+                <artifactId>ascii-data</artifactId>
+                <version>${ascii-data.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>

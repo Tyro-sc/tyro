@@ -23,6 +23,7 @@ import sc.tyro.core.component.field.Field
 
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.is
+import static org.hamcrest.Matchers.startsWith
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.ArgumentMatchers.any
 import static org.mockito.Mockito.*
@@ -71,10 +72,14 @@ class TyroTest {
     @Test
     @DisplayName("Should find button by text")
     void findButtonByText() {
+        Config.meta = mock(MetaDataProvider)
+
         Button button_1 = spy(Button)
+        doReturn('id1').when(button_1).id()
         doReturn('Ok').when(button_1).text()
         doReturn(true).when(button_1).available()
         Button button_2 = spy(Button)
+        doReturn('id2').when(button_2).id()
         doReturn('!Ok').when(button_2).text()
         doReturn(true).when(button_2).available()
 
@@ -84,9 +89,8 @@ class TyroTest {
 
         // Should fail if more than on match
         when(button_2.text()).thenReturn('Ok')
-
-        IllegalStateException error = assertThrows(IllegalStateException, { button('Ok').should { be available } })
-        assertThat(error.message, is("Find 2 component(s) Button with text 'Ok'."))
+        ComponentException error = assertThrows(ComponentException, { button('Ok').should { be available } })
+        assertThat(error.message, startsWith("Find 2 Component(s) sc.tyro.core.component.Button with text 'Ok'"))
 
         Button unavailable = spy(Button)
         doReturn(false).when(unavailable).available()
@@ -100,9 +104,11 @@ class TyroTest {
     @DisplayName("Should find heading by text")
     void findHeadingByText() {
         Heading heading_1 = spy(Heading)
+        doReturn('id1').when(heading_1).id()
         doReturn('Title').when(heading_1).text()
         doReturn(true).when(heading_1).available()
         Heading heading_2 = mock(Heading)
+        doReturn('id2').when(heading_1).id()
         doReturn('!Title').when(heading_2).text()
         doReturn(true).when(heading_2).available()
 
@@ -113,8 +119,8 @@ class TyroTest {
         // Should fail if more than on match
         when(heading_2.text()).thenReturn('Title')
 
-        IllegalStateException error = assertThrows(IllegalStateException, { heading('Title').should { be available } })
-        assertThat(error.message, is("Find 2 component(s) Heading with text 'Title'."))
+        ComponentException error = assertThrows(ComponentException, { heading('Title').should { be available } })
+        assertThat(error.message, startsWith("Find 2 Component(s) sc.tyro.core.component.Heading with text 'Title'"))
 
         Heading unavailable = spy(Heading)
         doReturn(false).when(unavailable).available()
@@ -128,9 +134,11 @@ class TyroTest {
     @DisplayName("Should find link by text")
     void findLinkByText() {
         Link link_1 = spy(Link)
+        doReturn('id1').when(link_1).id()
         doReturn('Link').when(link_1).text()
         doReturn(true).when(link_1).available()
         Link link_2 = spy(Link)
+        doReturn('id2').when(link_2).id()
         doReturn('!Link').when(link_2).text()
         doReturn(true).when(link_2).available()
 
@@ -141,8 +149,8 @@ class TyroTest {
         // Should fail if more than on match
         when(link_2.text()).thenReturn('Link')
 
-        IllegalStateException error = assertThrows(IllegalStateException, { link('Link').should { be available } })
-        assertThat(error.message, is("Find 2 component(s) Link with text 'Link'."))
+        ComponentException error = assertThrows(ComponentException, { link('Link').should { be available } })
+        assertThat(error.message, startsWith("Find 2 Component(s) sc.tyro.core.component.Link with text 'Link'"))
 
         Link unavailable = spy(Link)
         doReturn(false).when(unavailable).available()
@@ -158,9 +166,11 @@ class TyroTest {
     @DisplayName("Should find radio by label")
     void findRadioByLabel() {
         Radio radio_1 = spy(Radio)
+        doReturn('id1').when(radio_1).id()
         doReturn('Label').when(radio_1).label()
         doReturn(true).when(radio_1).available()
         Radio radio_2 = spy(Radio)
+        doReturn('id2').when(radio_2).id()
         doReturn('!Label').when(radio_2).label()
         doReturn(true).when(radio_2).available()
 
@@ -171,8 +181,8 @@ class TyroTest {
         // Should fail if more than on match
         when(radio_2.label()).thenReturn('Label')
 
-        IllegalStateException error = assertThrows(IllegalStateException, { radio('Label').should { be available } })
-        assertThat(error.message, is("Find 2 component(s) Radio with label 'Label'."))
+        ComponentException error = assertThrows(ComponentException, { radio('Label').should { be available } })
+        assertThat(error.message, startsWith("Find 2 Component(s) sc.tyro.core.component.Radio with label 'Label'"))
 
         Radio unavailable = spy(Radio)
         doReturn(false).when(unavailable).available()
@@ -186,9 +196,11 @@ class TyroTest {
     @DisplayName("Should find checkbox by label")
     void findCheckBoxByLabel() {
         CheckBox checkBox_1 = spy(CheckBox)
+        doReturn('id1').when(checkBox_1).id()
         doReturn('Label').when(checkBox_1).label()
         doReturn(true).when(checkBox_1).available()
         CheckBox checkBox_2 = spy(CheckBox)
+        doReturn('id2').when(checkBox_2).id()
         doReturn('!Label').when(checkBox_2).label()
         doReturn(true).when(checkBox_2).available()
 
@@ -199,8 +211,8 @@ class TyroTest {
         // Should fail if more than on match
         when(checkBox_2.label()).thenReturn('Label')
 
-        IllegalStateException error = assertThrows(IllegalStateException, { checkbox('Label').should { be available } })
-        assertThat(error.message, is("Find 2 component(s) CheckBox with label 'Label'."))
+        ComponentException error = assertThrows(ComponentException, { checkbox('Label').should { be available } })
+        assertThat(error.message, startsWith("Find 2 Component(s) sc.tyro.core.component.CheckBox with label 'Label'"))
 
         CheckBox unavailable = spy(CheckBox)
         doReturn(false).when(unavailable).available()
@@ -214,9 +226,11 @@ class TyroTest {
     @DisplayName("Should find listBox by label")
     void findListBoxByLabel() {
         ListBox listBox_1 = spy(ListBox)
+        doReturn('id1').when(listBox_1).id()
         doReturn('Label').when(listBox_1).label()
         doReturn(true).when(listBox_1).available()
         ListBox listBox_2 = spy(ListBox)
+        doReturn('id2').when(listBox_2).id()
         doReturn('!Label').when(listBox_2).label()
         doReturn(true).when(listBox_2).available()
 
@@ -227,8 +241,8 @@ class TyroTest {
         // Should fail if more than on match
         when(listBox_2.label()).thenReturn('Label')
 
-        IllegalStateException error = assertThrows(IllegalStateException, { listBox('Label').should { be available } })
-        assertThat(error.message, is("Find 2 component(s) ListBox with label 'Label'."))
+        ComponentException error = assertThrows(ComponentException, { listBox('Label').should { be available } })
+        assertThat(error.message, startsWith("Find 2 Component(s) sc.tyro.core.component.ListBox with label 'Label'"))
 
         ListBox unavailable = spy(ListBox)
         doReturn(false).when(unavailable).available()
@@ -242,9 +256,11 @@ class TyroTest {
     @DisplayName("Should find dropdown by label")
     void findDropdownByLabel() {
         Dropdown dropdown_1 = spy(Dropdown)
+        doReturn('id1').when(dropdown_1).id()
         doReturn('Label').when(dropdown_1).label()
         doReturn(true).when(dropdown_1).available()
         Dropdown dropdown_2 = spy(Dropdown)
+        doReturn('id2').when(dropdown_2).id()
         doReturn('!Label').when(dropdown_2).label()
         doReturn(true).when(dropdown_2).available()
 
@@ -255,8 +271,8 @@ class TyroTest {
         // Should fail if more than on match
         when(dropdown_2.label()).thenReturn('Label')
 
-        IllegalStateException error = assertThrows(IllegalStateException, { dropdown("Label").should { be available } })
-        assertThat(error.message, is("Find 2 component(s) Dropdown with label 'Label'."))
+        ComponentException error = assertThrows(ComponentException, { dropdown("Label").should { be available } })
+        assertThat(error.message, startsWith("Find 2 Component(s) sc.tyro.core.component.Dropdown with label 'Label'"))
 
         Dropdown unavailable = spy(Dropdown)
         doReturn(false).when(unavailable).available()
@@ -270,9 +286,11 @@ class TyroTest {
     @DisplayName("Should find field by label or placeholder")
     void findFieldByLabel() {
         Field field_1 = spy(Field)
+        doReturn('id1').when(field_1).id()
         doReturn('Label').when(field_1).label()
         doReturn(true).when(field_1).available()
         Field field_2 = spy(Field)
+        doReturn('id2').when(field_2).id()
         doReturn('!Label').when(field_2).placeholder()
         doReturn(true).when(field_2).available()
 
@@ -284,8 +302,8 @@ class TyroTest {
         // Should fail if more than on match
         when(field_2.placeholder()).thenReturn('Label')
 
-        IllegalStateException error = assertThrows(IllegalStateException, { field('Label').should { be available } })
-        assertThat(error.message, is("Find 2 component(s) Field with label or placeholder 'Label'."))
+        ComponentException error = assertThrows(ComponentException, { field('Label').should { be available } })
+        assertThat(error.message, startsWith("Find 2 Component(s) sc.tyro.core.component.field.Field with label or placeholder 'Label'"))
 
         Field unavailable = spy(Field)
         doReturn(false).when(unavailable).available()
@@ -314,8 +332,8 @@ class TyroTest {
         // Should fail if more than on match
         when(group_2.value()).thenReturn('Value')
 
-        IllegalStateException error = assertThrows(IllegalStateException, { group("Value").should { be available } })
-        assertThat(error.message, is("Find 2 component(s) Group with value 'Value'."))
+        ComponentException error = assertThrows(ComponentException, { group("Value").should { be available } })
+        assertThat(error.message, startsWith("Find 2 Component(s) sc.tyro.core.component.Group with value 'Value'"))
 
         Group unavailable = spy(Group)
         doReturn(false).when(unavailable).available()
@@ -342,8 +360,8 @@ class TyroTest {
         // Should fail if more than on match
         when(item_2.value()).thenReturn('Value')
 
-        IllegalStateException error = assertThrows(IllegalStateException, { item("Value").should { be available } })
-        assertThat(error.message, is("Find 2 component(s) Item with value 'Value'."))
+        ComponentException error = assertThrows(ComponentException, { item("Value").should { be available } })
+        assertThat(error.message, startsWith("Find 2 Component(s) sc.tyro.core.component.Item with value 'Value'"))
 
         Item unavailable = spy(Item)
         doReturn(false).when(unavailable).available()
@@ -359,9 +377,11 @@ class TyroTest {
     @DisplayName("Should find panel by title")
     void findPanelByTitle() {
         Panel panel_1 = spy(Panel)
+        doReturn('id1').when(panel_1).id()
         doReturn('Title').when(panel_1).title()
         doReturn(true).when(panel_1).available()
         Panel panel_2 = spy(Panel)
+        doReturn('id2').when(panel_2).id()
         doReturn('!Title').when(panel_2).title()
         doReturn(true).when(panel_2).available()
 
@@ -372,8 +392,8 @@ class TyroTest {
         // Should fail if more than on match
         when(panel_2.title()).thenReturn('Title')
 
-        IllegalStateException error = assertThrows(IllegalStateException, { panel("Title").should { be available } })
-        assertThat(error.message, is("Find 2 component(s) Panel with title 'Title'."))
+        ComponentException error = assertThrows(ComponentException, { panel("Title").should { be available } })
+        assertThat(error.message, startsWith("Find 2 Component(s) sc.tyro.core.component.Panel with title 'Title'"))
 
         Panel unavailable = spy(Panel)
         doReturn(false).when(unavailable).available()

@@ -15,24 +15,31 @@
  */
 package sc.tyro.bundle.html5
 
+import com.mitchtalmadge.asciidata.table.ASCIITable
 import org.codehaus.groovy.runtime.typehandling.GroovyCastException
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import sc.tyro.bundle.html5.input.InputTypePassword
+import sc.tyro.core.ComponentException
 import sc.tyro.core.component.*
 import sc.tyro.core.component.field.EmailField
 import sc.tyro.core.component.field.Field
 import sc.tyro.core.component.field.PasswordField
+import sc.tyro.core.component.field.TextField
 import sc.tyro.web.TyroWebTestExtension
 
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.endsWith
+import static org.hamcrest.Matchers.equalTo
+import static org.hamcrest.Matchers.is
 import static org.hamcrest.Matchers.startsWith
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static sc.tyro.core.By.expression
 import static sc.tyro.core.Config.provider
 import static sc.tyro.core.Tyro.*
+import static sc.tyro.core.Tyro.visible
 import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 
 /**
@@ -81,7 +88,7 @@ class FactoryTest {
     @DisplayName("Should find components by type")
     void findByType() {
         List<Field> fields = findAll(Field)
-        assert fields.size() == 2
+        assert fields.size() == 6
 
         List<Button> buttons = findAll(Button)
         assert buttons.size() == 5
@@ -104,10 +111,6 @@ class FactoryTest {
 
         Field unavailable = field('Unavailable Button')
         unavailable.should { be missing }
-
-        ClassCastException classCastError = assertThrows(GroovyCastException, { PasswordField password = field("Email", EmailField) })
-        assertThat(classCastError.message, startsWith("Cannot cast object 'InputTypeEmail"))
-        assertThat(classCastError.message, endsWith("with class 'sc.tyro.bundle.html5.input.InputTypeEmail' to class 'sc.tyro.core.component.field.PasswordField'"))
     }
 
     @Test
@@ -174,5 +177,34 @@ class FactoryTest {
     void findLink() {
         Link link = link('Nineteen Eighty-Four')
         assert link.reference() == 'https://www.george-orwell.org/1984/0.html'
+    }
+
+    @Test
+    @DisplayName("Should display beautiful message when factory not able to find expected component(s)")
+    void beautifulErrorMessage() {
+        ClassCastException error = assertThrows(GroovyCastException, { EmailField email = field('Password') })
+        assertThat(error.message, startsWith("Cannot cast object 'InputTypePassword"))
+        assertThat(error.message, endsWith("with class 'sc.tyro.bundle.html5.input.InputTypePassword' to class 'sc.tyro.core.component.field.EmailField'"))
+        println error.message
+
+        ComponentException exception = assertThrows(ComponentException, { field("Label1", PasswordField) })
+        assertThat(exception.message, startsWith("Unable to find Component(s) sc.tyro.core.component.field.PasswordField with label or placeholder 'Label1'"))
+        println exception.message
+
+        exception = assertThrows(ComponentException, { field("Label2", TextField) })
+        assertThat(exception.message, startsWith("Find 2 Component(s) sc.tyro.core.component.field.TextField with label or placeholder 'Label2'"))
+        println exception.message
+
+        sc.tyro.core.component.Button button = button('Unavailable Button')
+        assertThat(button.available(), is(false))
+
+        exception = assertThrows(ComponentException, { button.visible() })
+        assertThat(exception.message, equalTo("Component defined by sc.tyro.core.component.Button with text 'Unavailable Button' not found."))
+        println exception.message
+
+        Field invalid = $('#invalid') as InputTypePassword
+        exception = assertThrows(ComponentException, { invalid.visible() })
+        assertThat(exception.message, equalTo("Component defined by expression: \$('#invalid') not found."))
+        println exception.message
     }
 }
