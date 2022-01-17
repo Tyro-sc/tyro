@@ -27,4 +27,8 @@ class ComponentException extends RuntimeException {
     ComponentException(String message) {
         super(message)
     }
+
+    ComponentException(String message, Throwable cause) {
+        super(message, cause)
+    }
 }

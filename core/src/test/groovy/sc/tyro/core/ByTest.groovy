@@ -55,7 +55,7 @@ class ByTest {
 
         assertThat(by.expression, is('expression'))
         assertThat(by.hashCode(), is('expression'.hashCode()))
-        assertThat(by.toString(), is('expression: expression'))
+        assertThat(by.toString(), is('expression'))
     }
 
     @Test

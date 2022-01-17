@@ -15,6 +15,7 @@
  */
 package sc.tyro.core
 
+import com.mitchtalmadge.asciidata.table.ASCIITable
 import org.hamcrest.Matcher
 import sc.tyro.core.component.*
 import sc.tyro.core.component.datagrid.Cell
@@ -310,27 +311,27 @@ class Tyro {
 
     static <T extends Component> T findByLabel(String label, Class<T> clazz) {
         boolean hasPlaceholderSupport = PlaceholderSupport.isAssignableFrom(clazz)
-        Collection<T> components = provider.findAll(clazz).findAll {
+        Collection<T> components = provider.findAll(superClassOf(clazz)).findAll {
             (LabelSupport.isAssignableFrom(clazz) ? it.label() == label : false) || (hasPlaceholderSupport ? it.placeholder() == label : false)
         }
-        createComponent(components, clazz, label, "label${hasPlaceholderSupport ? ' or placeholder' : ''}")
+        (T) getComponent(components, clazz, label, "label${hasPlaceholderSupport ? ' or placeholder' : ''}")
     }
 
     static <T extends Component> T findByText(String text, Class<T> clazz) {
-        Collection<T> components = provider.findAll(clazz).findAll { (TextSupport.isAssignableFrom(clazz) ? it.text() == text : false) }
-        createComponent(components, clazz, text, 'text')
+        Collection<T> components = provider.findAll(superClassOf(clazz)).findAll { (TextSupport.isAssignableFrom(clazz) ? it.text() == text : false) }
+        (T) getComponent(components, clazz, text, 'text')
     }
 
     static <T extends Component> T findByValue(String value, Class<T> clazz) {
-        Collection<T> components = provider.findAll(clazz).findAll { (ValueSupport.isAssignableFrom(clazz) ? it.value() == value : false) }
-        createComponent(components, clazz, value, 'value')
+        Collection<T> components = provider.findAll(superClassOf(clazz)).findAll { (ValueSupport.isAssignableFrom(clazz) ? it.value() == value : false) }
+        (T) getComponent(components, clazz, value, 'value')
     }
 
     static <T extends Component> T findByTitle(String title, Class<T> clazz) {
-        Collection<T> components = provider.findAll(clazz).findAll {
+        Collection<T> components = provider.findAll(superClassOf(clazz)).findAll {
             (TitleSupport.isAssignableFrom(clazz) ? it.title() == title : false)
         }
-        createComponent(components, clazz, title, 'title')
+        (T) getComponent(components, clazz, title, 'title')
     }
 
     static withOsModifierClickOn(Component c) {
@@ -347,17 +348,34 @@ class Tyro {
             type(CTRL + text)
     }
 
-    private static TYRO_COMPONENT_NOT_FOUND_BY_FACTORY = 'TYRO_COMPONENT_NOT_FOUND_BY_FACTORY'
+    private static <T extends Component> T getComponent(List<T> components, Class<T> clazz, String value, String selector) {
+        Collection assignable = components.findAll { clazz.isAssignableFrom(it.class) }
 
-    private static <T extends Component> T createComponent(List<T> components, Class<T> clazz, String value, String selector) {
-        switch (components.size()) {
-            case 1:
-                return components.first()
-            case 2:
-                throw new IllegalStateException("Find ${components.size()} component(s) ${clazz.simpleName} with ${selector} '${value}'.")
-            default:
-                // Return none existing component to be able to test availability
-                provider.find(Config.componentTypes.find { clazz.isAssignableFrom(it) }, expression(TYRO_COMPONENT_NOT_FOUND_BY_FACTORY.toString()))
+        if (assignable.size() == 1) return (T) assignable.get(0)
+        if (assignable.size() > 1) throw new ComponentException(buildMessage("Find " + components.size(), components, clazz, "with " + selector + " '" + value + "'"))
+        if (components.size() > 0) throw new ComponentException(buildMessage("Unable to find", components, clazz, "with " + selector + " '" + value + "'"))
+
+        provider.find(Config.componentTypes.find { clazz.isAssignableFrom(it) }, expression("${clazz.name} with ${selector} '${value}'"))
+    }
+
+    // Find the first superclass that extend Component
+    private static Class superClassOf(Class clazz) {
+        Class last = clazz
+        while (last.superclass.name != Component.name) {
+            last = last.superclass
         }
+        return last
+    }
+
+    private static String buildMessage(String pre, List components, Class clazz, String selector) {
+        String message = "${pre} Component(s) ${clazz.name} ${selector}" + System.lineSeparator()
+
+        String[] headers = new String[] {"Type", "Selector", "ID"}
+        String[][] data = new String[components.size()][]
+
+        components.eachWithIndex{it,index-> data[index] = [it.class.name, selector, it.id()] }
+
+        message += ASCIITable.fromData(headers, data).toString()
+        return message
     }
 }

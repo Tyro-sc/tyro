@@ -36,19 +36,26 @@ class DomIdProvider implements IdProvider {
     private boolean singleElement
 
     DomIdProvider(ByExpression expression, boolean singleElement) {
-        this.expression = jQuery(expression)
+        this.expression = expression
         this.singleElement = singleElement
     }
 
     @Override
     List<MetaInfo> metaInfos() throws ComponentException {
-        LOGGER.debug("metaInfos - ${expression}")
+        ByExpression jQueryExpression = jQuery(expression)
+        LOGGER.debug("metaInfos - ${jQueryExpression}")
+        List<MetaInfo> metaInfos
 
-        List<MetaInfo> metaInfos = provider.metaInfo(expression)
+        try {
+            metaInfos = provider.metaInfo(jQueryExpression)
+        } catch (RuntimeException e) {
+            throw new ComponentException("Component defined by ${expression} not found.", e)
+        }
+
         if (singleElement) {
             if (metaInfos.size() == 1) return metaInfos
-            if (metaInfos.size() == 0) throw new ComponentException("Component defined by expression ${expression} not found.")
-            throw new ComponentException("Component defined by expression ${expression} is not unique: got ${metaInfos.size()}")
+            if (metaInfos.size() == 0) throw new ComponentException("Component defined by expression: ${jQueryExpression} not found.")
+            throw new ComponentException("Component defined by expression: ${jQueryExpression} is not unique: got ${metaInfos.size()}")
         }
         return metaInfos
     }
