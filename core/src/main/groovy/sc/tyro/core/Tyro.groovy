@@ -36,6 +36,7 @@ import java.time.Duration
 
 import static sc.tyro.core.By.expression
 import static sc.tyro.core.Config.provider
+import static sc.tyro.core.Config.provider
 import static sc.tyro.core.Config.screenshotProvider
 import static sc.tyro.core.input.Key.COMMAND
 import static sc.tyro.core.input.Key.CTRL
@@ -267,27 +268,27 @@ class Tyro {
     // Generic Component Factory
     static Browser browser() { new Browser(provider) }
 
-    static Button button(String text) { findByText(text, Button) }
+    static Button button(String text, Component c = null) { findByText(text, Button, c) }
 
-    static Radio radio(String label) { findByLabel(label, Radio) }
+    static Radio radio(String label, Component c = null) { findByLabel(label, Radio, c) }
 
-    static <T extends Field> T field(String label, Class<T> clazz = Field) { findByLabel(label, clazz) }
+    static <T extends Field> T field(String label, Class<T> clazz = Field, Component c = null) { findByLabel(label, clazz, c) }
 
-    static CheckBox checkbox(String label) { findByLabel(label, CheckBox) }
+    static CheckBox checkbox(String label, Component c = null) { findByLabel(label, CheckBox, c) }
 
-    static Dropdown dropdown(String label) { findByLabel(label, Dropdown) }
+    static Dropdown dropdown(String label, Component c = null) { findByLabel(label, Dropdown, c) }
 
-    static ListBox listBox(String label) { findByLabel(label, ListBox) }
+    static ListBox listBox(String label, Component c = null) { findByLabel(label, ListBox, c) }
 
-    static Group group(String value) { findByValue(value, Group) }
+    static Group group(String value, Component c = null) { findByValue(value, Group, c) }
 
-    static Item item(String value) { findByValue(value, Item) }
+    static Item item(String value, Component c = null) { findByValue(value, Item, c) }
 
-    static Heading heading(String text) { findByText(text, Heading) }
+    static Heading heading(String text, Component c = null) { findByText(text, Heading, c) }
 
-    static Panel panel(String title) { findByTitle(title, Panel) }
+    static Panel panel(String title, Component c = null) { findByTitle(title, Panel, c) }
 
-    static Link link(String text) { findByText(text, Link) }
+    static Link link(String text, Component c = null) { findByText(text, Link, c) }
 
     static void waitUntil(Closure c, Matcher what, Duration duration = null) { Wait.waitUntil(c, what, duration) }
 
@@ -309,28 +310,35 @@ class Tyro {
         }
     }
 
-    static <T extends Component> T findByLabel(String label, Class<T> clazz) {
+    static <T extends Component> T findByLabel(String label, Class<T> clazz, Component parent) {
         boolean hasPlaceholderSupport = PlaceholderSupport.isAssignableFrom(clazz)
-        Collection<T> components = provider.findAll(superClassOf(clazz)).findAll {
-            (LabelSupport.isAssignableFrom(clazz) ? it.label() == label : false) || (hasPlaceholderSupport ? it.placeholder() == label : false)
-        }
+        Collection<T> components = provider.findAll(superClassOf(clazz))
+                .findAll {
+                    (LabelSupport.isAssignableFrom(clazz) ? it.label() == label : false) || (hasPlaceholderSupport ? it.placeholder() == label : false)
+                }
+        if (parent != null) { components = components.findAll {provider.contains(parent, it) } }
+
         (T) getComponent(components, clazz, label, "label${hasPlaceholderSupport ? ' or placeholder' : ''}")
     }
 
-    static <T extends Component> T findByText(String text, Class<T> clazz) {
+    static <T extends Component> T findByText(String text, Class<T> clazz, Component parent) {
         Collection<T> components = provider.findAll(superClassOf(clazz)).findAll { (TextSupport.isAssignableFrom(clazz) ? it.text() == text : false) }
+        if (parent != null) { components = components.findAll {provider.contains(parent, it) } }
+
         (T) getComponent(components, clazz, text, 'text')
     }
 
-    static <T extends Component> T findByValue(String value, Class<T> clazz) {
+    static <T extends Component> T findByValue(String value, Class<T> clazz, Component parent) {
         Collection<T> components = provider.findAll(superClassOf(clazz)).findAll { (ValueSupport.isAssignableFrom(clazz) ? it.value() == value : false) }
+        if (parent != null) { components = components.findAll {provider.contains(parent, it) } }
+
         (T) getComponent(components, clazz, value, 'value')
     }
 
-    static <T extends Component> T findByTitle(String title, Class<T> clazz) {
-        Collection<T> components = provider.findAll(superClassOf(clazz)).findAll {
-            (TitleSupport.isAssignableFrom(clazz) ? it.title() == title : false)
-        }
+    static <T extends Component> T findByTitle(String title, Class<T> clazz, Component parent) {
+        Collection<T> components = provider.findAll(superClassOf(clazz)).findAll {(TitleSupport.isAssignableFrom(clazz) ? it.title() == title : false) }
+        if (parent != null) { components = components.findAll {provider.contains(parent, it) } }
+
         (T) getComponent(components, clazz, title, 'title')
     }
 

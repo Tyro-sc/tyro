@@ -22,7 +22,6 @@ import sc.tyro.core.component.*
 import sc.tyro.core.component.field.Field
 
 import static org.hamcrest.MatcherAssert.assertThat
-import static org.hamcrest.Matchers.is
 import static org.hamcrest.Matchers.startsWith
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.ArgumentMatchers.any
@@ -401,5 +400,33 @@ class TyroTest {
 
         // Should provide a none available component
         panel("Unavailable").should { be missing }
+    }
+
+    @Test
+    @DisplayName("Should find component on parent context")
+    void context() {
+        Panel panel_1 = spy(Panel)
+        doReturn('id1').when(panel_1).id()
+        doReturn('Title 1').when(panel_1).title()
+        doReturn(true).when(panel_1).available()
+        Panel panel_2 = spy(Panel)
+        doReturn('id2').when(panel_2).id()
+        doReturn('Title 2').when(panel_2).title()
+        doReturn(true).when(panel_2).available()
+        Panel panel_3 = spy(Panel)
+        doReturn('id3').when(panel_3).id()
+        doReturn('Title 2').when(panel_3).title()
+        doReturn(true).when(panel_3).available()
+
+        when(provider.findAll(Panel)).thenReturn(List.of(panel_1, panel_2, panel_3))
+
+        Panel parent = panel('Title 1')
+        parent.available()
+
+        ComponentException error = assertThrows(ComponentException, { panel("Title 2").should { be available } })
+        assertThat(error.message, startsWith("Find 2 Component(s) sc.tyro.core.component.Panel with title 'Title 2'"))
+
+        when(provider.contains(parent, panel_3)).thenReturn(true)
+        panel('Title 2', on(parent)).available()
     }
 }
