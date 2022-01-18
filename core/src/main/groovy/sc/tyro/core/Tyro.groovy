@@ -36,7 +36,6 @@ import java.time.Duration
 
 import static sc.tyro.core.By.expression
 import static sc.tyro.core.Config.provider
-import static sc.tyro.core.Config.provider
 import static sc.tyro.core.Config.screenshotProvider
 import static sc.tyro.core.input.Key.COMMAND
 import static sc.tyro.core.input.Key.CTRL
@@ -272,7 +271,9 @@ class Tyro {
 
     static Radio radio(String label, Component c = null) { findByLabel(label, Radio, c) }
 
-    static <T extends Field> T field(String label, Class<T> clazz = Field, Component c = null) { findByLabel(label, clazz, c) }
+    static Field field(String label, Component c = null) { findByLabel(label, Field, c) }
+
+    static <T extends Field> T field(String label, Class<T> clazz, Component c = null) { findByLabel(label, clazz, c) }
 
     static CheckBox checkbox(String label, Component c = null) { findByLabel(label, CheckBox, c) }
 
