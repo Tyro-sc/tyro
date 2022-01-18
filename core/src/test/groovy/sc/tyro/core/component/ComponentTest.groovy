@@ -62,12 +62,8 @@ class ComponentTest {
         Component cmp_3 = new Component()
         cmp_3.metaClass.id = { '1' }
 
-        Widget cmp_4 = new Widget()
-        cmp_4.metaClass.id = { '1' }
-
-        assert cmp_1 != cmp_2 // Same class not same id
-        assert cmp_1 == cmp_3  // Same class and same id
-        assert cmp_1 != cmp_4  // Different class and same id
+        assert cmp_1 != cmp_2 // Not same id
+        assert cmp_1 == cmp_3  // Same id
 
         assert cmp_1.hashCode() == '1'.hashCode() // hashCode is based on id
     }

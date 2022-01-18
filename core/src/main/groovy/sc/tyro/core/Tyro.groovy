@@ -267,27 +267,29 @@ class Tyro {
     // Generic Component Factory
     static Browser browser() { new Browser(provider) }
 
-    static Button button(String text) { findByText(text, Button) }
+    static Button button(String text, Component c = null) { findByText(text, Button, c) }
 
-    static Radio radio(String label) { findByLabel(label, Radio) }
+    static Radio radio(String label, Component c = null) { findByLabel(label, Radio, c) }
 
-    static <T extends Field> T field(String label, Class<T> clazz = Field) { findByLabel(label, clazz) }
+    static Field field(String label, Component c = null) { findByLabel(label, Field, c) }
 
-    static CheckBox checkbox(String label) { findByLabel(label, CheckBox) }
+    static <T extends Field> T field(String label, Class<T> clazz, Component c = null) { findByLabel(label, clazz, c) }
 
-    static Dropdown dropdown(String label) { findByLabel(label, Dropdown) }
+    static CheckBox checkbox(String label, Component c = null) { findByLabel(label, CheckBox, c) }
 
-    static ListBox listBox(String label) { findByLabel(label, ListBox) }
+    static Dropdown dropdown(String label, Component c = null) { findByLabel(label, Dropdown, c) }
 
-    static Group group(String value) { findByValue(value, Group) }
+    static ListBox listBox(String label, Component c = null) { findByLabel(label, ListBox, c) }
 
-    static Item item(String value) { findByValue(value, Item) }
+    static Group group(String value, Component c = null) { findByValue(value, Group, c) }
 
-    static Heading heading(String text) { findByText(text, Heading) }
+    static Item item(String value, Component c = null) { findByValue(value, Item, c) }
 
-    static Panel panel(String title) { findByTitle(title, Panel) }
+    static Heading heading(String text, Component c = null) { findByText(text, Heading, c) }
 
-    static Link link(String text) { findByText(text, Link) }
+    static Panel panel(String title, Component c = null) { findByTitle(title, Panel, c) }
+
+    static Link link(String text, Component c = null) { findByText(text, Link, c) }
 
     static void waitUntil(Closure c, Matcher what, Duration duration = null) { Wait.waitUntil(c, what, duration) }
 
@@ -309,28 +311,35 @@ class Tyro {
         }
     }
 
-    static <T extends Component> T findByLabel(String label, Class<T> clazz) {
+    static <T extends Component> T findByLabel(String label, Class<T> clazz, Component parent) {
         boolean hasPlaceholderSupport = PlaceholderSupport.isAssignableFrom(clazz)
-        Collection<T> components = provider.findAll(superClassOf(clazz)).findAll {
-            (LabelSupport.isAssignableFrom(clazz) ? it.label() == label : false) || (hasPlaceholderSupport ? it.placeholder() == label : false)
-        }
+        Set<T> components = provider.findAll(superClassOf(clazz))
+                .findAll {
+                    (LabelSupport.isAssignableFrom(clazz) ? it.label() == label : false) || (hasPlaceholderSupport ? it.placeholder() == label : false)
+                }.toSet()
+        if (parent != null) { components = components.findAll {provider.contains(parent, it) } }
+
         (T) getComponent(components, clazz, label, "label${hasPlaceholderSupport ? ' or placeholder' : ''}")
     }
 
-    static <T extends Component> T findByText(String text, Class<T> clazz) {
-        Collection<T> components = provider.findAll(superClassOf(clazz)).findAll { (TextSupport.isAssignableFrom(clazz) ? it.text() == text : false) }
+    static <T extends Component> T findByText(String text, Class<T> clazz, Component parent) {
+        Set<T> components = provider.findAll(superClassOf(clazz)).findAll { (TextSupport.isAssignableFrom(clazz) ? it.text() == text : false) }.toSet()
+        if (parent != null) { components = components.findAll {provider.contains(parent, it) } }
+
         (T) getComponent(components, clazz, text, 'text')
     }
 
-    static <T extends Component> T findByValue(String value, Class<T> clazz) {
-        Collection<T> components = provider.findAll(superClassOf(clazz)).findAll { (ValueSupport.isAssignableFrom(clazz) ? it.value() == value : false) }
+    static <T extends Component> T findByValue(String value, Class<T> clazz, Component parent) {
+        Set<T> components = provider.findAll(superClassOf(clazz)).findAll { (ValueSupport.isAssignableFrom(clazz) ? it.value() == value : false) }.toSet()
+        if (parent != null) { components = components.findAll {provider.contains(parent, it) } }
+
         (T) getComponent(components, clazz, value, 'value')
     }
 
-    static <T extends Component> T findByTitle(String title, Class<T> clazz) {
-        Collection<T> components = provider.findAll(superClassOf(clazz)).findAll {
-            (TitleSupport.isAssignableFrom(clazz) ? it.title() == title : false)
-        }
+    static <T extends Component> T findByTitle(String title, Class<T> clazz, Component parent) {
+        Set<T> components = provider.findAll(superClassOf(clazz)).findAll {(TitleSupport.isAssignableFrom(clazz) ? it.title() == title : false) }.toSet()
+        if (parent != null) { components = components.findAll {provider.contains(parent, it) } }
+
         (T) getComponent(components, clazz, title, 'title')
     }
 
@@ -348,10 +357,10 @@ class Tyro {
             type(CTRL + text)
     }
 
-    private static <T extends Component> T getComponent(List<T> components, Class<T> clazz, String value, String selector) {
+    private static <T extends Component> T getComponent(Set<T> components, Class<T> clazz, String value, String selector) {
         Collection assignable = components.findAll { clazz.isAssignableFrom(it.class) }
 
-        if (assignable.size() == 1) return (T) assignable.get(0)
+        if (assignable.size() == 1) return (T) assignable[0]
         if (assignable.size() > 1) throw new ComponentException(buildMessage("Find " + components.size(), components, clazz, "with " + selector + " '" + value + "'"))
         if (components.size() > 0) throw new ComponentException(buildMessage("Unable to find", components, clazz, "with " + selector + " '" + value + "'"))
 
@@ -367,7 +376,7 @@ class Tyro {
         return last
     }
 
-    private static String buildMessage(String pre, List components, Class clazz, String selector) {
+    private static String buildMessage(String pre, Set components, Class clazz, String selector) {
         String message = "${pre} Component(s) ${clazz.name} ${selector}" + System.lineSeparator()
 
         String[] headers = new String[] {"Type", "Selector", "ID"}
