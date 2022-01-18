@@ -313,31 +313,31 @@ class Tyro {
 
     static <T extends Component> T findByLabel(String label, Class<T> clazz, Component parent) {
         boolean hasPlaceholderSupport = PlaceholderSupport.isAssignableFrom(clazz)
-        Collection<T> components = provider.findAll(superClassOf(clazz))
+        Set<T> components = provider.findAll(superClassOf(clazz))
                 .findAll {
                     (LabelSupport.isAssignableFrom(clazz) ? it.label() == label : false) || (hasPlaceholderSupport ? it.placeholder() == label : false)
-                }
+                }.toSet()
         if (parent != null) { components = components.findAll {provider.contains(parent, it) } }
 
         (T) getComponent(components, clazz, label, "label${hasPlaceholderSupport ? ' or placeholder' : ''}")
     }
 
     static <T extends Component> T findByText(String text, Class<T> clazz, Component parent) {
-        Collection<T> components = provider.findAll(superClassOf(clazz)).findAll { (TextSupport.isAssignableFrom(clazz) ? it.text() == text : false) }
+        Set<T> components = provider.findAll(superClassOf(clazz)).findAll { (TextSupport.isAssignableFrom(clazz) ? it.text() == text : false) }.toSet()
         if (parent != null) { components = components.findAll {provider.contains(parent, it) } }
 
         (T) getComponent(components, clazz, text, 'text')
     }
 
     static <T extends Component> T findByValue(String value, Class<T> clazz, Component parent) {
-        Collection<T> components = provider.findAll(superClassOf(clazz)).findAll { (ValueSupport.isAssignableFrom(clazz) ? it.value() == value : false) }
+        Set<T> components = provider.findAll(superClassOf(clazz)).findAll { (ValueSupport.isAssignableFrom(clazz) ? it.value() == value : false) }.toSet()
         if (parent != null) { components = components.findAll {provider.contains(parent, it) } }
 
         (T) getComponent(components, clazz, value, 'value')
     }
 
     static <T extends Component> T findByTitle(String title, Class<T> clazz, Component parent) {
-        Collection<T> components = provider.findAll(superClassOf(clazz)).findAll {(TitleSupport.isAssignableFrom(clazz) ? it.title() == title : false) }
+        Set<T> components = provider.findAll(superClassOf(clazz)).findAll {(TitleSupport.isAssignableFrom(clazz) ? it.title() == title : false) }.toSet()
         if (parent != null) { components = components.findAll {provider.contains(parent, it) } }
 
         (T) getComponent(components, clazz, title, 'title')
@@ -357,10 +357,10 @@ class Tyro {
             type(CTRL + text)
     }
 
-    private static <T extends Component> T getComponent(List<T> components, Class<T> clazz, String value, String selector) {
+    private static <T extends Component> T getComponent(Set<T> components, Class<T> clazz, String value, String selector) {
         Collection assignable = components.findAll { clazz.isAssignableFrom(it.class) }
 
-        if (assignable.size() == 1) return (T) assignable.get(0)
+        if (assignable.size() == 1) return (T) assignable[0]
         if (assignable.size() > 1) throw new ComponentException(buildMessage("Find " + components.size(), components, clazz, "with " + selector + " '" + value + "'"))
         if (components.size() > 0) throw new ComponentException(buildMessage("Unable to find", components, clazz, "with " + selector + " '" + value + "'"))
 
@@ -376,7 +376,7 @@ class Tyro {
         return last
     }
 
-    private static String buildMessage(String pre, List components, Class clazz, String selector) {
+    private static String buildMessage(String pre, Set components, Class clazz, String selector) {
         String message = "${pre} Component(s) ${clazz.name} ${selector}" + System.lineSeparator()
 
         String[] headers = new String[] {"Type", "Selector", "ID"}
