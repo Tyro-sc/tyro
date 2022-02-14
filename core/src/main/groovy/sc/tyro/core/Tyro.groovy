@@ -267,29 +267,29 @@ class Tyro {
     // Generic Component Factory
     static Browser browser() { new Browser(provider) }
 
-    static Button button(String text, Component c = null) { findByText(text, Button, c) }
+    static Button button(String text, Component parent = null) { findByText(text, Button, parent) }
 
-    static Radio radio(String label, Component c = null) { findByLabel(label, Radio, c) }
+    static Radio radio(String label, Component parent = null) { findByLabel(label, Radio, parent) }
 
-    static Field field(String label, Component c = null) { findByLabel(label, Field, c) }
+    static Field field(String label, Component parent = null) { findByLabel(label, Field, parent) }
 
-    static <T extends Field> T field(String label, Class<T> clazz, Component c = null) { findByLabel(label, clazz, c) }
+    static <T extends Field> T field(String label, Class<T> clazz, Component parent = null) { findByLabel(label, clazz, parent) }
 
-    static CheckBox checkbox(String label, Component c = null) { findByLabel(label, CheckBox, c) }
+    static CheckBox checkbox(String label, Component parent = null) { findByLabel(label, CheckBox, parent) }
 
-    static Dropdown dropdown(String label, Component c = null) { findByLabel(label, Dropdown, c) }
+    static Dropdown dropdown(String label, Component parent = null) { findByLabel(label, Dropdown, parent) }
 
-    static ListBox listBox(String label, Component c = null) { findByLabel(label, ListBox, c) }
+    static ListBox listBox(String label, Component parent = null) { findByLabel(label, ListBox, parent) }
 
-    static Group group(String value, Component c = null) { findByValue(value, Group, c) }
+    static Group group(String value, Component parent = null) { findByValue(value, Group, parent) }
 
-    static Item item(String value, Component c = null) { findByValue(value, Item, c) }
+    static Item item(String value, Component parent = null) { findByValue(value, Item, parent) }
 
-    static Heading heading(String text, Component c = null) { findByText(text, Heading, c) }
+    static Heading heading(String text, Component parent = null) { findByText(text, Heading, parent) }
 
-    static Panel panel(String title, Component c = null) { findByTitle(title, Panel, c) }
+    static Panel panel(String title, Component parent = null) { findByTitle(title, Panel, parent) }
 
-    static Link link(String text, Component c = null) { findByText(text, Link, c) }
+    static Link link(String text, Component parent = null) { findByText(text, Link, parent) }
 
     static void waitUntil(Closure c, Matcher what, Duration duration = null) { Wait.waitUntil(c, what, duration) }
 
