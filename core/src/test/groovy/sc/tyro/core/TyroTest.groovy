@@ -18,10 +18,13 @@ package sc.tyro.core
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import sc.tyro.core.component.*
 import sc.tyro.core.component.field.Field
 
 import static org.hamcrest.MatcherAssert.assertThat
+import static org.hamcrest.Matchers.is
 import static org.hamcrest.Matchers.startsWith
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.ArgumentMatchers.any
@@ -34,6 +37,7 @@ import static sc.tyro.core.Tyro.*
  */
 @DisplayName("Tyro base class Tests")
 class TyroTest {
+    private static final Logger LOGGER = LoggerFactory.getLogger(TyroTest)
     private Provider provider
 
     @BeforeEach
@@ -405,6 +409,8 @@ class TyroTest {
     @Test
     @DisplayName("Should find component on parent context")
     void context() {
+        Config.meta = mock(MetaDataProvider)
+
         Panel panel_1 = spy(Panel)
         doReturn('id1').when(panel_1).id()
         doReturn('Title 1').when(panel_1).title()
@@ -417,16 +423,21 @@ class TyroTest {
         doReturn('id3').when(panel_3).id()
         doReturn('Title 2').when(panel_3).title()
         doReturn(true).when(panel_3).available()
+        Panel panel_4 = spy(Panel)
+        doReturn('id4').when(panel_4).id()
+        doReturn('Title 4').when(panel_4).title()
+        doReturn(true).when(panel_4).available()
 
-        when(provider.findAll(Panel)).thenReturn(List.of(panel_1, panel_2, panel_3))
+        when(provider.findAll(Panel)).thenReturn(List.of(panel_1, panel_2, panel_3, panel_4))
 
         Panel parent = panel('Title 1')
         parent.available()
 
         ComponentException error = assertThrows(ComponentException, { panel("Title 2").should { be available } })
         assertThat(error.message, startsWith("Find 2 Component(s) sc.tyro.core.component.Panel with title 'Title 2'"))
+        LOGGER.info(error.message)
 
         when(provider.contains(parent, panel_3)).thenReturn(true)
-        panel('Title 2', on(parent)).available()
+        assertThat(panel('Title 2', on(parent)).available(), is(true))
     }
 }
