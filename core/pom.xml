@@ -22,7 +22,7 @@
     <parent>
         <groupId>sc.tyro</groupId>
         <artifactId>tyro</artifactId>
-        <version>1.3.0-SNAPSHOT</version>
+        <version>1.3.0</version>
     </parent>
 
     <artifactId>tyro-core</artifactId>
