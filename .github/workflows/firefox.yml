@@ -7,19 +7,14 @@ on:
 
 jobs:
   test:
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    name: Run Tests Under Firefox
     runs-on: ubuntu-latest
+    env:
+      browser: firefox
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Set up JDK 11
-        uses: actions/setup-java@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
         with:
           distribution: 'liberica'
           java-version: 11
-
-      - name: Build and Tests with Firefox
-        env:
-          browser: firefox
-        run: ./mvnw clean package
+      - run: ./mvnw clean package

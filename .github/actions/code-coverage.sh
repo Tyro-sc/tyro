@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-. ${PWD}/.github/actions/logger.sh
-
 #GITHUB_WORKSPACE=~/Projects/Tyro-sc/tyro
 
 cd "${GITHUB_WORKSPACE}" || exit
