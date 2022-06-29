@@ -28,9 +28,11 @@ import sc.tyro.core.support.Clearable
 
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.containsString
+import static org.hamcrest.Matchers.is
 import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.ArgumentMatchers.any
 import static org.mockito.Mockito.*
+import static sc.tyro.core.Config.*
 import static sc.tyro.core.Config.provider
 import static sc.tyro.core.Config.screenshotProvider
 import static sc.tyro.core.Tyro.*
@@ -370,11 +372,15 @@ class ActionTest {
     @Test
     @DisplayName("Should delegate to mouse")
     void mouseDelegation() {
-        Config.provider = mock(Provider)
+        Config.provider = provider
         Config.meta = mock(MetaDataProvider)
+
         Component cmp_1 = new Component()
+        when(provider.enabled(cmp_1)).thenReturn(true)
+        when(provider.visible(cmp_1)).thenReturn(true)
+
         Component cmp_2 = new Component()
-        when(Config.meta.metaInfo(any(Component))).thenReturn(new MetaInfo(id: '1', node: 'node'))
+        when(meta.metaInfo(any(Component))).thenReturn(new MetaInfo(id: '1', node: 'node'))
 
         clickOn cmp_1
         verify(provider, times(1)).click(cmp_1, [LEFT, SINGLE], [])
@@ -390,6 +396,40 @@ class ActionTest {
 
         drag cmp_1 on cmp_2
         verify(provider, times(1)).dragAndDrop(cmp_1, cmp_2)
+    }
+
+    @Test
+    @DisplayName("Should fail to delegate to mouse if component not has expected state")
+    void mouseDelegationFailure() {
+        Config.provider = provider
+        Config.meta = mock(MetaDataProvider)
+
+        Component cmp = new Component()
+        // Component is: unavailable, disabled and hidden
+        when(meta.metaInfo(any(Component))).thenThrow(new ComponentException(""))
+        when(provider.enabled(cmp)).thenReturn(false)
+        when(provider.visible(cmp)).thenReturn(false)
+
+        Exception ex = assertThrows(ComponentException, { clickOn cmp })
+        assertThat(ex.message, is('Unable to click on unavailable component'))
+        ex = assertThrows(ComponentException, { doubleClickOn cmp })
+        assertThat(ex.message, is('Unable to double click on unavailable component'))
+
+        // Component is now available
+        when(meta.metaInfo(any(Component))).thenReturn(new MetaInfo(id: '1', node: 'node'))
+
+        ex = assertThrows(ComponentException, { clickOn cmp })
+        assertThat(ex.message, is('Unable to click on disabled component'))
+        ex = assertThrows(ComponentException, { doubleClickOn cmp })
+        assertThat(ex.message, is('Unable to double click on disabled component'))
+
+        // Component is now enabled
+        when(provider.enabled(cmp)).thenReturn(true)
+
+        ex = assertThrows(ComponentException, { clickOn cmp })
+        assertThat(ex.message, is('Unable to click on hidden component'))
+        ex = assertThrows(ComponentException, { doubleClickOn cmp })
+        assertThat(ex.message, is('Unable to double click on hidden component'))
     }
 
     @Test
