@@ -250,12 +250,12 @@ class Tyro {
 
     // Delegate to Mouse
     static void clickOn(Component c) {
-        checkCanReceiveAction(c, "click")
+        checkStateSupportAction(c, "click")
         mouse.clickOn(c)
     }
 
     static void doubleClickOn(Component c) {
-        checkCanReceiveAction(c, "double click")
+        checkStateSupportAction(c, "double click")
         mouse.doubleClickOn(c)
     }
 
@@ -408,7 +408,7 @@ class Tyro {
         return message
     }
 
-    private static checkCanReceiveAction(cmp, String action) {
+    private static checkStateSupportAction(cmp, String action) {
         try {
             waitUntil({ cmp.available() })
         } catch (AssertionError ignored) {
