@@ -170,10 +170,12 @@ class Tyro {
      */
     static void visit(String uri) { browser().open(uri) }
 
-    static void takeScreenshot(String name, Component component = null) { screenshotProvider.takeScreenshot(name, component) }
+    static void takeScreenshot(String name, Component component = null) {
+        screenshotProvider.takeScreenshot(name, component)
+    }
 
-    static void check(Checkable... checkables) {
-        checkables.each {
+    static void check(Checkable... items) {
+        items.each {
             if (!it.enabled())
                 throw new ComponentException("${it.class.simpleName} ${it} is disabled and cannot be checked")
             if (it.checked())
@@ -182,8 +184,8 @@ class Tyro {
         }
     }
 
-    static void uncheck(UnCheckable... unCheckables) {
-        unCheckables.each {
+    static void uncheck(UnCheckable... items) {
+        items.each {
             if (!it.enabled())
                 throw new ComponentException("${it.class.simpleName} ${it} is disabled and cannot be unchecked")
             if (!it.checked())
@@ -192,8 +194,8 @@ class Tyro {
         }
     }
 
-    static void switchOn(Switchable... switchables) {
-        switchables.each {
+    static void switchOn(Switchable... items) {
+        items.each {
             if (!it.enabled())
                 throw new ComponentException("${it.class.simpleName} ${it} is disabled and cannot be switched on")
             if (it.on())
@@ -202,8 +204,8 @@ class Tyro {
         }
     }
 
-    static void switchOff(UnSwitchable... unSwitchables) {
-        unSwitchables.each {
+    static void switchOff(UnSwitchable... items) {
+        items.each {
             if (!it.enabled())
                 throw new ComponentException("${it.class.simpleName} ${it} is disabled and cannot be switched off")
             if (!it.on())
@@ -247,11 +249,19 @@ class Tyro {
     static final FillAction set(Field c) { new FillAction(c) }
 
     // Delegate to Mouse
-    static void clickOn(Component c) { mouse.clickOn(c) }
+    static void clickOn(Component c) {
+        checkCanReceiveAction(c, "click")
+        mouse.clickOn(c)
+    }
 
-    static void doubleClickOn(Component c) { mouse.doubleClickOn(c) }
+    static void doubleClickOn(Component c) {
+        checkCanReceiveAction(c, "double click")
+        mouse.doubleClickOn(c)
+    }
 
-    static void rightClickOn(Component c) { mouse.rightClickOn(c) }
+    static void rightClickOn(Component c) {
+        mouse.rightClickOn(c)
+    }
 
     static void hoveringMouseOn(Component c) { mouse.hoveringMouseOn(c) }
 
@@ -273,7 +283,9 @@ class Tyro {
 
     static Field field(String label, Component parent = null) { findByLabel(label, Field, parent) }
 
-    static <T extends Field> T field(String label, Class<T> clazz, Component parent = null) { findByLabel(label, clazz, parent) }
+    static <T extends Field> T field(String label, Class<T> clazz, Component parent = null) {
+        findByLabel(label, clazz, parent)
+    }
 
     static CheckBox checkbox(String label, Component parent = null) { findByLabel(label, CheckBox, parent) }
 
@@ -317,28 +329,36 @@ class Tyro {
                 .findAll {
                     (LabelSupport.isAssignableFrom(clazz) ? it.label() == label : false) || (hasPlaceholderSupport ? it.placeholder() == label : false)
                 }.toSet()
-        if (parent != null) { components = components.findAll {provider.contains(parent, it) } }
+        if (parent != null) {
+            components = components.findAll { provider.contains(parent, it) }
+        }
 
         (T) getComponent(components, clazz, label, "label${hasPlaceholderSupport ? ' or placeholder' : ''}")
     }
 
     static <T extends Component> T findByText(String text, Class<T> clazz, Component parent) {
         Set<T> components = provider.findAll(superClassOf(clazz)).findAll { (TextSupport.isAssignableFrom(clazz) ? it.text() == text : false) }.toSet()
-        if (parent != null) { components = components.findAll {provider.contains(parent, it) } }
+        if (parent != null) {
+            components = components.findAll { provider.contains(parent, it) }
+        }
 
         (T) getComponent(components, clazz, text, 'text')
     }
 
     static <T extends Component> T findByValue(String value, Class<T> clazz, Component parent) {
         Set<T> components = provider.findAll(superClassOf(clazz)).findAll { (ValueSupport.isAssignableFrom(clazz) ? it.value() == value : false) }.toSet()
-        if (parent != null) { components = components.findAll {provider.contains(parent, it) } }
+        if (parent != null) {
+            components = components.findAll { provider.contains(parent, it) }
+        }
 
         (T) getComponent(components, clazz, value, 'value')
     }
 
     static <T extends Component> T findByTitle(String title, Class<T> clazz, Component parent) {
-        Set<T> components = provider.findAll(superClassOf(clazz)).findAll {(TitleSupport.isAssignableFrom(clazz) ? it.title() == title : false) }.toSet()
-        if (parent != null) { components = components.findAll {provider.contains(parent, it) } }
+        Set<T> components = provider.findAll(superClassOf(clazz)).findAll { (TitleSupport.isAssignableFrom(clazz) ? it.title() == title : false) }.toSet()
+        if (parent != null) {
+            components = components.findAll { provider.contains(parent, it) }
+        }
 
         (T) getComponent(components, clazz, title, 'title')
     }
@@ -379,12 +399,32 @@ class Tyro {
     private static String buildMessage(String pre, Set components, Class clazz, String selector) {
         String message = "${pre} Component(s) ${clazz.name} ${selector}" + System.lineSeparator()
 
-        String[] headers = new String[] {"Type", "Selector", "ID"}
+        String[] headers = new String[]{"Type", "Selector", "ID"}
         String[][] data = new String[components.size()][]
 
-        components.eachWithIndex{it,index-> data[index] = [it.class.name, selector, it.id()] }
+        components.eachWithIndex { it, index -> data[index] = [it.class.name, selector, it.id()] }
 
         message += ASCIITable.fromData(headers, data).toString()
         return message
+    }
+
+    private static checkCanReceiveAction(cmp, String action) {
+        try {
+            waitUntil({ cmp.available() })
+        } catch (AssertionError ignored) {
+            throw new ComponentException("Unable to ${action} on unavailable component")
+        }
+
+        try {
+            waitUntil({ cmp.enabled() })
+        } catch (AssertionError ignored) {
+            throw new ComponentException("Unable to ${action} on disabled component")
+        }
+
+        try {
+            waitUntil({ cmp.visible() })
+        } catch (AssertionError ignored) {
+            throw new ComponentException("Unable to ${action} on hidden component")
+        }
     }
 }
