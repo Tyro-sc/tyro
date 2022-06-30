@@ -18,7 +18,7 @@ jobs:
           java-version: 11
           distribution: liberica
           cache: maven
-          server-id: ovea-oss-staging
+          server-id: ovea-oss-snapshots
           server-username: ${{ secrets.OSS_SONATYPE_USERNAME }}
           server-password: ${{ secrets.OSS_SONATYPE_PASSWORD }}
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
@@ -33,7 +33,7 @@ jobs:
           export GPG_TTY=$(tty)
           git config user.name ${{ secrets.GIT_USERNAME }}
           git config user.email ${{ secrets.GIT_EMAIL }}
-          ./mvnw deploy -DskipTests
+          ./mvnw -X deploy -DskipTests
 
 #      - name: Release to Maven Central
 #        env:
