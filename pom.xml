@@ -65,6 +65,7 @@
         <!-- Plugins -->
         <gmavenplus-plugin.version>1.13.1</gmavenplus-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
+        <maven-release-plugin.version>3.0.0-M6</maven-release-plugin.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
         <groovydoc-maven-plugin.version>2.1</groovydoc-maven-plugin.version>
@@ -193,6 +194,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
+                <version>${maven-release-plugin.version}</version>
                 <configuration>
                     <tagNameFormat>@{project.version}</tagNameFormat>
                     <projectVersionPolicyId>SemVerVersionPolicy</projectVersionPolicyId>
