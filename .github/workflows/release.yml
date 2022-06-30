@@ -34,6 +34,7 @@ jobs:
           git config user.name ${{ secrets.GIT_USERNAME }}
           git config user.email ${{ secrets.GIT_EMAIL }}
           ./mvnw -X deploy -DskipTests
+
 #      - name: Release to Maven Central
 #        env:
 #          MAVEN_USERNAME: ${{ secrets.OSS_SONATYPE_USERNAME }}
