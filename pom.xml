@@ -196,7 +196,7 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <configuration>
 <!--                    <tagNameFormat>@{project.version}</tagNameFormat>-->
-                    <projectVersionPolicyId>SemVerVersionPolicy</projectVersionPolicyId>
+<!--                    <projectVersionPolicyId>SemVerVersionPolicy</projectVersionPolicyId>-->
                 </configuration>
             </plugin>
             <plugin>
