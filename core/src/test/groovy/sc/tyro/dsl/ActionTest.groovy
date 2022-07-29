@@ -399,7 +399,7 @@ class ActionTest {
     }
 
     @Test
-    @DisplayName("Should fail to delegate to mouse if component not has expected state")
+    @DisplayName("Should fail to delegate to mouse if component has not expected state")
     void mouseDelegationFailure() {
         Config.provider = provider
         Config.meta = mock(MetaDataProvider)
