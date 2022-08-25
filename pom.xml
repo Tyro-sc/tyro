@@ -33,7 +33,7 @@
     </organization>
 
     <description>A functional UI testing API</description>
-    <url>http://www.tyro.sc</url>
+    <url>https://www.tyro.sc</url>
 
     <scm>
         <connection>scm:git:https://github.com/Tyro-sc/tyro.git</connection>

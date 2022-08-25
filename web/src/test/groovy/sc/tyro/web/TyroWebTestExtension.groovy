@@ -68,27 +68,25 @@ class TyroWebTestExtension implements BeforeAllCallback, AfterAllCallback {
             browser = CHROME
         }
 
-        Capabilities capabilities = new MutableCapabilities()
         switch (browser) {
             case FIREFOX:
                 wdm = firefoxdriver()
-                Capabilities options = new FirefoxOptions()
+                FirefoxOptions options = new FirefoxOptions()
                 options.addArguments("--start-fullscreen")
                 options.addArguments("--start-maximized")
-                capabilities.merge(options)
+                wdm.capabilities(options)
                 break
             case CHROME:
                 wdm = chromedriver()
-                Capabilities options = new ChromeOptions()
+                ChromeOptions options = new ChromeOptions()
                 options.addArguments("--start-fullscreen")
-                capabilities.merge(options)
+                wdm.capabilities(options)
         }
 
         if (isCI) {
             wdm.browserInDocker()
         }
 
-        wdm.capabilities(capabilities)
         webDriver = wdm.create()
         WebBundle.init(webDriver)
     }
