@@ -32,7 +32,7 @@
         <selenium-java.version>4.6.0</selenium-java.version>
 
         <!-- Tests -->
-        <javalin.version>5.1.3</javalin.version>
+        <javalin.version>5.1.4</javalin.version>
         <webdrivermanager.version>5.3.1</webdrivermanager.version>
         <byte-buddy.version>1.12.18</byte-buddy.version>
     </properties>
