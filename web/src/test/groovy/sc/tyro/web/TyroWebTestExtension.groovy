@@ -20,8 +20,6 @@ import io.javalin.Javalin
 import org.junit.jupiter.api.extension.AfterAllCallback
 import org.junit.jupiter.api.extension.BeforeAllCallback
 import org.junit.jupiter.api.extension.ExtensionContext
-import org.openqa.selenium.Capabilities
-import org.openqa.selenium.MutableCapabilities
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeOptions
 import org.openqa.selenium.firefox.FirefoxOptions
@@ -33,8 +31,6 @@ import static io.javalin.http.staticfiles.Location.CLASSPATH
 import static java.lang.Boolean.valueOf
 import static java.lang.System.getenv
 import static java.net.InetAddress.getByName
-import static org.openqa.selenium.remote.BrowserType.CHROME
-import static org.openqa.selenium.remote.BrowserType.FIREFOX
 import static org.slf4j.LoggerFactory.getLogger
 
 /**
@@ -50,13 +46,11 @@ class TyroWebTestExtension implements BeforeAllCallback, AfterAllCallback {
 
     private static Javalin app
     private boolean isCI = valueOf(getenv('CI'))
-    private String browser = getenv('browser')
+    private String browser = getenv('browser')?.toLowerCase()
 
     @Override
     void beforeAll(ExtensionContext extensionContext) throws Exception {
-        app = Javalin.create({
-            config -> config.addStaticFiles("/webapp", CLASSPATH)
-        }).start(0)
+        app = Javalin.create({it.staticFiles.add "/webapp", CLASSPATH }).start(0)
 
         DatagramSocket socket = new DatagramSocket()
         socket.connect(getByName("8.8.8.8"), 10002)
@@ -65,30 +59,31 @@ class TyroWebTestExtension implements BeforeAllCallback, AfterAllCallback {
 
         if (!browser) {
             LOGGER.info('No Browser selected. Use Chrome')
-            browser = CHROME
+            browser = "chrome"
         }
 
-        Capabilities capabilities = new MutableCapabilities()
         switch (browser) {
-            case FIREFOX:
+            case "firefox":
                 wdm = firefoxdriver()
-                Capabilities options = new FirefoxOptions()
+                FirefoxOptions options = new FirefoxOptions()
                 options.addArguments("--start-fullscreen")
                 options.addArguments("--start-maximized")
-                capabilities.merge(options)
+                wdm.capabilities(options)
                 break
-            case CHROME:
+            case "chrome":
                 wdm = chromedriver()
-                Capabilities options = new ChromeOptions()
+                ChromeOptions options = new ChromeOptions()
                 options.addArguments("--start-fullscreen")
-                capabilities.merge(options)
+                wdm.capabilities(options)
+                break
+            default:
+                throw new IllegalStateException("Fail to set browser: " + browser)
         }
 
         if (isCI) {
             wdm.browserInDocker()
         }
 
-        wdm.capabilities(capabilities)
         webDriver = wdm.create()
         WebBundle.init(webDriver)
     }
