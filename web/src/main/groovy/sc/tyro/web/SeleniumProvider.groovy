@@ -279,7 +279,7 @@ class SeleniumProvider implements Provider {
         LOGGER.debug(v)
 
         if (v == '__JQUERY_MISSING__') {
-            js.executeScript(getClass().getResource('jquery-3.6.0.slim.min.js').text + getClass()
+            js.executeScript(getClass().getResource('jquery-3.6.1.slim.min.js').text + getClass()
                     .getResource('tyro.js').text)
             registeredScripts.each { js.executeScript(it) }
             return execute(id, expression)

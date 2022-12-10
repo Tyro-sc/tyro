@@ -1,7 +1,0 @@
-component_depth: 1
-exclude:
-  - .*/KeyConverter\.groovy
-languages:
-  - groovy
-  - script
-  - javascript
