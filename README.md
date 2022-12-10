@@ -3,7 +3,6 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/c091b16c5832c890a59b/maintainability)](https://codeclimate.com/github/Tyro-sc/tyro/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c091b16c5832c890a59b/test_coverage)](https://codeclimate.com/github/Tyro-sc/tyro/test_coverage)
-[![BCH compliance](https://bettercodehub.com/edge/badge/Tyro-sc/tyro?branch=master)](https://bettercodehub.com/)
 
 # Tyro
 
