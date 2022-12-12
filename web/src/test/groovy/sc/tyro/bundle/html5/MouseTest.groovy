@@ -33,6 +33,7 @@ import static sc.tyro.web.TyroWebTestExtension.BASE_URL
  */
 
 @DisplayName("Mouse Tests")
+@ExtendWith(TyroWebTestExtension)
 class MouseTest {
     @BeforeEach
     void before() {
@@ -40,7 +41,6 @@ class MouseTest {
     }
 
     @Nested
-    @ExtendWith(TyroWebTestExtension)
     @DisplayName("Functional way")
     class FunctionalWay {
         @Test
@@ -87,7 +87,6 @@ class MouseTest {
     }
 
     @Nested
-    @ExtendWith(TyroWebTestExtension)
     @DisplayName("Imperative way")
     class ImperativeWay {
         @Test
@@ -133,7 +132,6 @@ class MouseTest {
     }
 
     @Nested
-    @ExtendWith(TyroWebTestExtension)
     @DisplayName("Other")
     class Other {
         @Test
@@ -165,7 +163,6 @@ class MouseTest {
     }
 
     @Nested
-    @ExtendWith(TyroWebTestExtension)
     @DisplayName("Keyboard")
     class Keyboard {
         @Test

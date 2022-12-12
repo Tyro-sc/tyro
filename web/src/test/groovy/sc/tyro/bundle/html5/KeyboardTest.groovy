@@ -114,7 +114,7 @@ class KeyboardTest {
         browser().refresh()
         [
                 '#span_backspace': BACK_SPACE,
-                '#span_tab'      : TAB,
+//                '#span_tab'      : TAB,         // Disabled cause trigger a focus change
                 '#span_clear'    : CLEAR,
                 '#span_enter'    : ENTER,
                 '#span_escape'   : ESCAPE,
@@ -167,6 +167,7 @@ class KeyboardTest {
 //                '#span_numpad7'      : NUMPAD7,
 //                '#span_numpad8'      : NUMPAD8,
 //                '#span_numpad9'      : NUMPAD9
+
         ].each { k, v ->
             Component span = $(k)
             span.should { be missing }

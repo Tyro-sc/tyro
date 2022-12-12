@@ -7,39 +7,29 @@
     <meta name="description" content="Tyro Rocks">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="css/bootstrap-4.5.0.min.css" rel="stylesheet" media="screen">
-
     <script src="js/jquery-3.1.1.min.js"></script>
 </head>
 <body>
 
-<nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="#">Tyro Popup</a>
-</nav>
+<h2>Tyro Popup</h2>
+<hr/>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <h1>Form</h1>
+<h1>Form</h1>
 
-            <form id="dsl-form">
-                <div id="firstname_blur" style="display: none;background-color: #5cb85c">Blur message</div>
-                <div class="form-group">
-                    <label>First name
-                        <input id="first.name" type="text" class="form-control" placeholder="First name">
-                    </label>
-                    <label>Lats name
-                        <input id="last_name" type="text" class="form-control" placeholder="Last name">
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="reset" class="btn btn-primary">Reset</button>
-            </form>
-        </div>
-        <div class="col-md-2"></div>
+<form id="dsl-form">
+    <div id="firstname_blur" style="display: none;background-color: #5cb85c">Blur message</div>
+    <div>
+        <label>First name
+            <input id="first.name" type="text" placeholder="First name">
+        </label>
+        <br/>
+        <label>Lats name
+            <input id="last_name" type="text" placeholder="Last name">
+        </label>
     </div>
-</div>
+    <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
+</form>
 
 </body>
 </html>

@@ -65,7 +65,7 @@ class FactoryTest {
     @Test
     @DisplayName("Should find all components by expression")
     void findAllByExpression() {
-        List<Button> buttons = provider.findAll(Button, expression('.btn-primary'))
+        List<Button> buttons = provider.findAll(Button, expression('.some-selector'))
 
         assert buttons.size() == 4
     }
