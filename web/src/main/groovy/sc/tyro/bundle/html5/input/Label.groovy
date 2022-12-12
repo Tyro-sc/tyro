@@ -27,8 +27,10 @@ class Label {
         "function() {" +
             "   var label = \$('label[for=' + it.attr('id') + ']');" +
             "   if (label.length > 0) return label.text().trim();" +
-            "   var p = it.prev('label');" +
-            "   if (p.length > 0) return p.text();" +
+            "   label = it.prev('label');" +
+            "   if (label.length > 0) return label.text();" +
+            "   var label = it.next('label');" +
+            "   if (label.length > 0) return label.text();" +
             "   return it.parent().text().trim();" +
             "}()"
 

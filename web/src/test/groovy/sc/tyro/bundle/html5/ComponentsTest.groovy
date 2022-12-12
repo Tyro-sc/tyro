@@ -169,7 +169,7 @@ class ComponentsTest {
         Form form = $('#form') as Form
         InputTypeEmail email = $('#form [type=email]') as InputTypeEmail
         InputTypePassword password = $('#form [type=password]') as InputTypePassword
-        Message message = $('#form .alert') as Message
+        Message message = $('#form div[role=message]') as Message
 
         assert form.visible()
         // Cause password mandatory
@@ -347,7 +347,7 @@ class ComponentsTest {
     @Test
     @DisplayName("Should have expected behaviours for nav")
     void nav() {
-        Nav nav = $('nav.navbar') as Nav
+        Nav nav = $('nav') as Nav
 
         assert nav.visible()
     }
