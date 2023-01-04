@@ -24,4 +24,8 @@ jobs:
           java-version: 11
           distribution: 'liberica'
       - run: ./mvnw clean package
-      - run: .github/actions/code-coverage.sh
+      - uses: JetBrains/qodana-action@main
+        env:
+          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
+
+#      - run: .github/actions/code-coverage.sh
