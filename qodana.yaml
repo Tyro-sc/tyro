@@ -3,3 +3,5 @@ linter: jetbrains/qodana-js:2022.3-eap
 exclude:
   - name: JSUnresolvedVariable
   - name: JSUnresolvedFunction
+include:
+  - name: CheckDependencyLicenses
