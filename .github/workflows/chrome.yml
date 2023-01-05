@@ -44,13 +44,15 @@ jobs:
           java-version: 11
           distribution: 'liberica'
       - uses: JetBrains/qodana-action@main
-        args: |
-          --source-directory,core,
-        artifact-name: qodana-core
+        with:
+          args: |
+            --source-directory,core,
+          artifact-name: qodana-core
       - uses: JetBrains/qodana-action@main
-        args: |
-          --source-directory,web,
-        artifact-name: qodana-web
+        with:
+          args: |
+            --source-directory,web,
+          artifact-name: qodana-web
 
   coverage:
     name: Run Code Coverage
