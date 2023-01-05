@@ -47,13 +47,13 @@ jobs:
         uses: JetBrains/qodana-action@main
         with:
           args: |
-            --project-dir,core
+            --source-directory,core
           artifact-name: qodana-core
       - name: Run Qodana for Web module
         uses: JetBrains/qodana-action@main
         with:
           args: |
-            --project-dir,web
+            --source-directory,web
           artifact-name: qodana-web
 
   coverage:
