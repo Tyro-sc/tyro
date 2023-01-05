@@ -9,6 +9,48 @@ jobs:
   test:
     name: Run Tests Under Chrome
     runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: 'liberica'
+      - run: ./mvnw clean package
+
+  quality:
+    name: Run Quality Gates
+    depends-on: [test]
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: 'liberica'
+      - uses: JetBrains/qodana-action@main
+        env:
+          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
+      - name: Upload coverage to Code Climate
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ${{ runner.temp }}/qodana/results/qodana.sarif.json
+
+  coverage:
+    name: Run Code Coverage
+    depends-on: [ test ]
+    runs-on: ubuntu-20.04
     env:
       CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
     steps:
@@ -24,10 +66,5 @@ jobs:
           java-version: 11
           distribution: 'liberica'
       - run: ./mvnw clean package
-      - uses: JetBrains/qodana-action@main
-        env:
-          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
-      - uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: ${{ runner.temp }}/qodana/results/qodana.sarif.json
-#      - run: .github/actions/code-coverage.sh
+      - name: Upload coverage to Code Climate
+        run: .github/actions/code-coverage.sh
