@@ -27,8 +27,12 @@ jobs:
     name: Run Quality Gates
     needs: [ tests ]
     runs-on: ubuntu-latest
+    env:
+      QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - uses: actions/cache@v3
         with:
           path: ~/.m2/repository
@@ -40,12 +44,13 @@ jobs:
           java-version: 11
           distribution: 'liberica'
       - uses: JetBrains/qodana-action@main
-        env:
-          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
-      - name: Upload coverage to Code Climate
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: ${{ runner.temp }}/qodana/results/qodana.sarif.json
+        args: |
+          --source-directory,core,
+        artifact-name: qodana-core
+      - uses: JetBrains/qodana-action@main
+        args: |
+          --source-directory,web,
+        artifact-name: qodana-web
 
   coverage:
     name: Run Code Coverage
@@ -66,5 +71,4 @@ jobs:
           java-version: 11
           distribution: 'liberica'
       - run: ./mvnw clean package
-      - name: Upload coverage to Code Climate
-        run: .github/actions/code-coverage.sh
+      - run: .github/actions/code-coverage.sh
