@@ -13,7 +13,7 @@
 
           metaInfos.push({
             // See http://learn.jquery.com/using-jquery-core/faq/how-do-i-select-an-element-by-an-id-that-has-characters-used-in-css-notation/
-            id: id.replace(/(:|\.|\[|\]|,|=|@)/g, "\\$1"),
+            id: id.replace(/([:.\[\],=@])/g, "\\$1"),
             node: me.prop('nodeName').toLowerCase()
           });
         });
