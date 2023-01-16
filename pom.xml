@@ -58,13 +58,13 @@
         <ascii-data.version>1.4.0</ascii-data.version>
 
         <!-- Tests -->
-        <junit.jupiter.version>5.9.1</junit.jupiter.version>
+        <junit.jupiter.version>5.9.2</junit.jupiter.version>
         <mockito-junit.version>4.11.0</mockito-junit.version>
         <hamcrest.version>2.2</hamcrest.version>
 
         <!-- Plugins -->
         <gmavenplus-plugin.version>2.1.0</gmavenplus-plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M8</maven-surefire-plugin.version>
         <maven-release-plugin.version>3.0.0-M7</maven-release-plugin.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
