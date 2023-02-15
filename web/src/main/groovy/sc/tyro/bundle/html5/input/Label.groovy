@@ -25,7 +25,7 @@ import sc.tyro.core.component.Component
 class Label {
     private static final String expr =
         "function() {" +
-            "   var label = \$('label[for=' + it.attr('id') + ']');" +
+            "   var label = \$('label[for=\"' + it.attr('id') + '\"]');" +
             "   if (label.length > 0) return label.text().trim();" +
             "   label = it.prev('label');" +
             "   if (label.length > 0) return label.text();" +

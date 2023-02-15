@@ -169,7 +169,7 @@ class ComponentsTest {
         Form form = $('#form') as Form
         InputTypeEmail email = $('#form [type=email]') as InputTypeEmail
         InputTypePassword password = $('#form [type=password]') as InputTypePassword
-        Message message = $('#form div[role=message]') as Message
+        Message message = $('#form div[data-role=message]') as Message
 
         assert form.visible()
         // Cause password mandatory
@@ -444,6 +444,17 @@ class ComponentsTest {
         Cite cite = $('cite') as Cite
 
         cite.text() == 'Nineteen Eighty-Four'
+    }
+
+    @Test
+    @DisplayName("Should support id with dot on it")
+    void idWithDot() {
+        Radio kraken = radio('Kraken') as InputTypeRadio
+        assert !kraken.checked()
+
+        kraken.click()
+
+        assert kraken.checked()
     }
 
     @CssIdentifier('div')
