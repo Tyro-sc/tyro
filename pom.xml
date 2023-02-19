@@ -155,8 +155,7 @@
                                 <exclude>**/*.yml</exclude>
                                 <exclude>mvn*</exclude>
                                 <exclude>.mvn/**</exclude>
-                                <exclude>**/*.adoc</exclude>
-                                <exclude>**/*.spec</exclude>
+                                <exclude>external-issues.txt</exclude>
                                 <exclude>src/test/resources/**</exclude>
                                 <exclude>src/main/resources/**</exclude>
                             </excludes>
