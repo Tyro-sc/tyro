@@ -7,10 +7,6 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    env:
-      MAVEN_USERNAME: ${{ secrets.OSS_SONATYPE_USERNAME }}
-      MAVEN_PASSWORD: ${{ secrets.OSS_SONATYPE_PASSWORD }}
-      MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
     steps:
       - uses: actions/checkout@v3
@@ -23,10 +19,10 @@ jobs:
           distribution: liberica
           cache: maven
           server-id: ovea-oss-staging
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
+          server-username: ${{ secrets.OSS_SONATYPE_USERNAME }}
+          server-password: ${{ secrets.OSS_SONATYPE_PASSWORD }}
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
-          gpg-passphrase: MAVEN_GPG_PASSPHRASE
+          gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
       - name: Release to Maven Central
         run: |

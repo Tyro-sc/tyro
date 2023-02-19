@@ -9,8 +9,6 @@ jobs:
   test:
     name: Run Tests Under Chrome
     runs-on: ubuntu-20.04
-    env:
-      CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/cache@v3
@@ -24,4 +22,3 @@ jobs:
           java-version: 11
           distribution: 'liberica'
       - run: ./mvnw clean package
-      - run: .github/actions/code-coverage.sh
