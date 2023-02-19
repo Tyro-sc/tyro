@@ -20,10 +20,11 @@ The documentation of Tyro is available [here][TyroDoc]. This site contains all t
 
 You can find project template [here][TyroTemplate] with examples and configuration.
 
+## About
+Tyro is a project created and maintained by [David Avenante] and licensed under the terms of the [Apache 2.0 License].
+
 [Logo]: https://docs.tyro.sc/current/images/logo-white.svg
 [TyroDoc]: https://docs.tyro.sc/
 [TyroTemplate]: https://github.com/Tyro-sc/tyro-starters
-
-
-## About
-Tyro is a project created and maintained by [David Avenante] and licensed under the terms of the [Apache 2.0 License].
+[David Avenante]: https://twitter.com/altus34
+[Apache 2.0 License]: https://www.apache.org/licenses/LICENSE-2.0
