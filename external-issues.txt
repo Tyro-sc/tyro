@@ -1,0 +1,4 @@
+Try to get time to follow this issue:
+https://github.com/mozilla/geckodriver/issues/944
+
+Find new issue on CTRL click on option not visible in a multiselect
