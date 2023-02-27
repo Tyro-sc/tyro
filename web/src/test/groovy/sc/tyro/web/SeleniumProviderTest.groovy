@@ -15,13 +15,21 @@
  */
 package sc.tyro.web
 
+
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import sc.tyro.bundle.html5.Div
+import sc.tyro.bundle.html5.Img
 import sc.tyro.bundle.html5.input.InputTypeText
 import sc.tyro.core.Config
+import sc.tyro.core.component.Image
 
+import java.nio.file.Path
+
+import static org.hamcrest.MatcherAssert.assertThat
+import static org.hamcrest.Matchers.not
+import static org.hamcrest.io.FileMatchers.anExistingFile
 import static sc.tyro.core.Tyro.*
 import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 
@@ -32,6 +40,7 @@ import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 @ExtendWith(TyroWebTestExtension)
 @DisplayName("Selenium Provider Tests")
 class SeleniumProviderTest {
+
     @Test
     @DisplayName("Should add jquery if missing")
     void jquery() {
@@ -82,5 +91,28 @@ class SeleniumProviderTest {
 
         created = $('#created') as Div
         created.should { be available }
+    }
+
+    @Test
+    @DisplayName("Should be able to take screenshots")
+    void takeScreenshot() {
+        visit BASE_URL + 'components.html'
+
+        File screenshotDir = Path.of(System.getProperty("user.dir"), 'target', 'screenshots').toFile()
+        screenshotDir.deleteDir()
+
+        File componentScreenshot = new File("target/screenshots/montpellier.png")
+        File pageScreenshot = new File("target/screenshots/page.png")
+
+        assertThat(componentScreenshot, not(anExistingFile()))
+        assertThat(pageScreenshot, not(anExistingFile()))
+
+        Image image = $('#image') as Img
+        takeScreenshot("montpellier", image)
+
+        takeScreenshot("page")
+
+        assertThat(componentScreenshot, anExistingFile())
+        assertThat(pageScreenshot, anExistingFile())
     }
 }
