@@ -27,7 +27,7 @@ import sc.tyro.web.CssIdentifier
 class Ol extends ListView {
     @Override
     List<Li> items() {
-        provider.findAll(Li, By.expression('#' + id() + ' li'))
+        provider.findAll(Li, By.expression('[id="' + id() + '"] li'))
     }
 
     @Override

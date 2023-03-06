@@ -26,10 +26,10 @@ import sc.tyro.web.CssIdentifier
 @CssIdentifier('section')
 class Section extends Component {
     List<P> paragraphs() {
-        provider.findAll(P, By.expression('#' + id() + ' > p'))
+        provider.findAll(P, By.expression('[id="' + id() + '"] > p'))
     }
 
     List<Article> articles() {
-        provider.findAll(Article, By.expression('#' + id() + ' > article'))
+        provider.findAll(Article, By.expression('[id="' + id() + '"] > article'))
     }
 }
