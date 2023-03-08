@@ -26,7 +26,7 @@ import sc.tyro.web.CssIdentifier
 @CssIdentifier('optgroup')
 class OptionGroup extends Group {
     List<Option> items() {
-        provider.findAll(Option, By.expression('#' + id() + ' option'))
+        provider.findAll(Option, By.expression('[id="' + id() + '"] option'))
     }
 
     Option item(String value) {
