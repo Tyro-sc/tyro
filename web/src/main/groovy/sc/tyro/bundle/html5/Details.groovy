@@ -32,6 +32,6 @@ class Details extends Component implements TextSupport {
     }
 
     Summary summary() {
-        provider.find(Summary, By.expression('#' + id() + ' summary'))
+        provider.find(Summary, By.expression('[id="' + id() + '"] summary'))
     }
 }
