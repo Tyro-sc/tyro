@@ -70,7 +70,7 @@
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
         <groovydoc-maven-plugin.version>2.1</groovydoc-maven-plugin.version>
-        <license-maven-plugin.version>4.1</license-maven-plugin.version>
+        <license-maven-plugin.version>4.2</license-maven-plugin.version>
         <codenarc-maven-plugin>0.22-1</codenarc-maven-plugin>
         <codenarc.version>2.2.0</codenarc.version>
     </properties>
