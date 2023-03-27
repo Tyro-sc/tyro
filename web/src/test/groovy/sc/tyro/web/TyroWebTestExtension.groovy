@@ -93,5 +93,6 @@ class TyroWebTestExtension implements BeforeAllCallback, AfterAllCallback {
     void afterAll(ExtensionContext extensionContext) throws Exception {
         webDriver.quit()
         wdm.quit()
+        app.stop()
     }
 }
