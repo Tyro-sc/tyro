@@ -52,7 +52,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
 
-        <groovy.version>3.0.16</groovy.version>
+        <groovy.version>3.0.17</groovy.version>
         <classgraph.version>4.8.157</classgraph.version>
         <slf4j.version>2.0.7</slf4j.version>
         <ascii-data.version>1.4.0</ascii-data.version>
