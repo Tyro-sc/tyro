@@ -33,8 +33,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.ArgumentMatchers.any
 import static org.mockito.Mockito.*
 import static sc.tyro.core.Config.*
-import static sc.tyro.core.Config.provider
-import static sc.tyro.core.Config.screenshotProvider
 import static sc.tyro.core.Tyro.*
 import static sc.tyro.core.input.Key.*
 import static sc.tyro.core.input.MouseModifiers.DOUBLE
@@ -51,7 +49,7 @@ class ActionTest {
     @BeforeEach
     void setUp() {
         provider = mock(Provider)
-        screenshotProvider = spy(screenshotProvider)
+        screenshotProvider = spy(ScreenshotProvider)
     }
 
     @Test
