@@ -15,7 +15,6 @@
  */
 package sc.tyro.bundle.html5
 
-import com.mitchtalmadge.asciidata.table.ASCIITable
 import org.codehaus.groovy.runtime.typehandling.GroovyCastException
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
@@ -39,7 +38,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows
 import static sc.tyro.core.By.expression
 import static sc.tyro.core.Config.provider
 import static sc.tyro.core.Tyro.*
-import static sc.tyro.core.Tyro.visible
 import static sc.tyro.web.TyroWebTestExtension.BASE_URL
 
 /**
