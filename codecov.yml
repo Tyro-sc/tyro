@@ -1,0 +1,22 @@
+codecov:
+  require_ci_to_pass: yes
+
+comment:
+  layout: "reach, diff, flags, files"
+  behavior: default
+  require_changes: false
+  require_base: no
+  require_head: yes
+
+coverage:
+  precision: 4
+  round: nearest
+  status:
+    patch:
+      default:
+        target: auto
+        informational: true
+    project:
+      default:
+        target: auto
+        informational: true
