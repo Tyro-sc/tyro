@@ -122,7 +122,6 @@
                 <version>${gmavenplus-plugin.version}</version>
                 <configuration>
                     <verbose>true</verbose>
-                    <invokeDynamic>false</invokeDynamic>
                 </configuration>
                 <executions>
                     <execution>
@@ -134,13 +133,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.groovy</groupId>
-                        <artifactId>groovy</artifactId>
-                        <version>${groovy.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
             <plugin>
                 <groupId>com.mycila</groupId>
