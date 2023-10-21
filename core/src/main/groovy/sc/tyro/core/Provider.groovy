@@ -17,7 +17,6 @@ package sc.tyro.core
 
 import sc.tyro.core.component.Component
 import sc.tyro.core.input.MouseModifiers
-import sc.tyro.core.provider.ScreenshotProvider
 
 /**
  * @author Mathieu Carbou

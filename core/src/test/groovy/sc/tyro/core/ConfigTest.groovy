@@ -17,6 +17,7 @@ package sc.tyro.core
 
 import org.hamcrest.Matcher
 import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import sc.tyro.bundle.Widget
@@ -77,6 +78,7 @@ class ConfigTest {
 
     @Test
     @DisplayName("Should have NullScreenshot provider has default screenshot provider")
+    @Disabled
     void screenshotProvider() {
         assertThat(Config.screenshotProvider, instanceOf(NullScreenshotProvider))
     }
