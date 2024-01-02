@@ -23,7 +23,7 @@ jobs:
             ${{ runner.os }}-maven-
       - uses: actions/setup-java@v4
         with:
-          java-version: 11
+          java-version: 17
           distribution: 'liberica'
       - run: ./mvnw clean package
       - uses: codecov/codecov-action@v3
