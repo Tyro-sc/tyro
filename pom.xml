@@ -49,7 +49,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
 
         <groovy.version>4.0.17</groovy.version>
@@ -59,7 +59,7 @@
 
         <!-- Tests -->
         <junit.jupiter.version>5.10.1</junit.jupiter.version>
-        <mockito-junit.version>5.7.0</mockito-junit.version>
+        <mockito-junit.version>5.8.0</mockito-junit.version>
         <hamcrest.version>2.2</hamcrest.version>
 
         <!-- Plugins -->
