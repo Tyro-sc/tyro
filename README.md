@@ -3,7 +3,7 @@
 
 [![codecov](https://codecov.io/gh/Tyro-sc/tyro/graph/badge.svg?token=0PDV6IIKR5)](https://codecov.io/gh/Tyro-sc/tyro)
 
-[![badge-jdk](https://img.shields.io/badge/jdk-11-green.svg)](https://www.oracle.com/java/technologies/javase-downloads.html)
+[![badge-jdk](https://img.shields.io/badge/jdk-17-green.svg)](https://www.oracle.com/java/technologies/downloads/#java17)
 [![License badge](https://img.shields.io/badge/license-Apache2-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![Twitter Follow](https://img.shields.io/twitter/follow/altus34.svg?style=social)](https://twitter.com/altus34)
 
