@@ -33,7 +33,7 @@
         <selenium-http-jdk-client.version>4.13.0</selenium-http-jdk-client.version>
 
         <!-- Tests -->
-        <javalin.version>5.6.3</javalin.version>
+        <javalin.version>6.1.0</javalin.version>
         <webdrivermanager.version>5.6.3</webdrivermanager.version>
         <byte-buddy.version>1.14.11</byte-buddy.version>
     </properties>
