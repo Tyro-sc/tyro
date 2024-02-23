@@ -26,6 +26,6 @@ jobs:
           java-version: 17
           distribution: 'liberica'
       - run: ./mvnw clean package
-      - uses: codecov/codecov-action@v3
+      - uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
