@@ -34,7 +34,7 @@
         <!-- Tests -->
         <javalin.version>6.1.3</javalin.version>
         <webdrivermanager.version>5.7.0</webdrivermanager.version>
-        <byte-buddy.version>1.14.12</byte-buddy.version>
+        <byte-buddy.version>1.14.15</byte-buddy.version>
     </properties>
 
     <build>
