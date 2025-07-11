@@ -19,6 +19,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable
 import org.junit.jupiter.api.extension.ExtendWith
 import sc.tyro.web.CssIdentifier
 import sc.tyro.web.TyroWebTestExtension
@@ -65,6 +66,7 @@ class MouseTest {
 
         @Test
         @DisplayName("Should right click")
+        @DisabledIfEnvironmentVariable(named = "browser", matches = "firefox")
         void rightClick() {
             Button button = $('#button_5') as Button
 
@@ -111,6 +113,7 @@ class MouseTest {
 
         @Test
         @DisplayName("Should right click")
+        @DisabledIfEnvironmentVariable(named = "browser", matches = "firefox")
         void rightClick() {
             Button button = $('#button_5') as Button
 

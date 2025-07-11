@@ -57,7 +57,6 @@ class TyroWebTestExtension implements BeforeAllCallback, AfterAllCallback {
         String host_ip = socket.localAddress.hostAddress
         BASE_URL = "http://${host_ip}:${app.port()}/"
 
-        System.setProperty("webdriver.http.factory", "jdk-http-client")
         if (!browser) {
             LOGGER.info('No Browser selected. Use Chrome')
             browser = "chrome"

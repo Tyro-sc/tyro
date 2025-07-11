@@ -92,6 +92,16 @@
     };
 
     $(document).ready(function () {
+
+        // Disable right-click context menu
+        document.oncontextmenu = function () { // Use document as opposed to window for IE8 compatibility
+            return false;
+        };
+
+        window.addEventListener('contextmenu', function (e) { // Not compatible with IE < 9
+            e.preventDefault();
+        }, false);
+
         // ==================== MOUSE ===================
         $('#button_1').on('click', function (e) {
             e.preventDefault();
