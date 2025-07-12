@@ -73,6 +73,7 @@
         <license-maven-plugin.version>4.3</license-maven-plugin.version>
         <codenarc-maven-plugin>0.22-1</codenarc-maven-plugin>
         <codenarc.version>3.3.0</codenarc.version>
+        <central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
     </properties>
 
     <licenses>
@@ -247,18 +248,6 @@
         </dependencies>
     </dependencyManagement>
 
-    <distributionManagement>
-        <repository>
-            <id>ovea-oss-staging</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-        <snapshotRepository>
-            <id>ovea-oss-snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-            <uniqueVersion>false</uniqueVersion>
-        </snapshotRepository>
-    </distributionManagement>
-
     <profiles>
         <profile>
             <id>publish</id>
@@ -314,6 +303,15 @@
                                 </goals>
                             </execution>
                         </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>${central-publishing-maven-plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
